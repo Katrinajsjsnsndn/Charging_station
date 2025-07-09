@@ -35,4 +35,4 @@ apm32_slave_node\main.o: ../Core/Inc/gpio.h
 apm32_slave_node\main.o: ../rs485/rs485.h
 apm32_slave_node\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 apm32_slave_node\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-apm32_slave_node\main.o: ..\APP\charge_control.h
+apm32_slave_node\main.o: ../APP/charge_control.h

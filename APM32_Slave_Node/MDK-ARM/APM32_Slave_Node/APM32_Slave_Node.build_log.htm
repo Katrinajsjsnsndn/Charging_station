@@ -27,18 +27,28 @@ Project File Date:  07/09/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'APM32_Slave_Node'
-compiling charge_control.c...
-..\APP\charge_control.h(42): warning:  #1-D: last line of file ends without a newline
+compiling rs485.c...
+../APP/charge_control.h(46): warning:  #1-D: last line of file ends without a newline
   #endif
-..\APP\charge_control.c(154): warning:  #223-D: function "printf" declared implicitly
-  	printf("ºÏ≤‚µΩ…Ë±∏\n");
-..\APP\charge_control.c(155): warning:  #1-D: last line of file ends without a newline
+..\rs485\rs485.c(75): warning:  #1-D: last line of file ends without a newline
   }
-..\APP\charge_control.c: 3 warnings, 0 errors
+..\rs485\rs485.c: 2 warnings, 0 errors
+compiling main.c...
+../APP/charge_control.h(46): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Core/Src/main.c(115): warning:  #188-D: enumerated type mixed with another type
+  	HAL_GPIO_WritePin(
+PIOC,
+PIO_PIN_13,1);
+../Core/Src/main.c(116): warning:  #188-D: enumerated type mixed with another type
+  	HAL_GPIO_WritePin(
+PIOC,
+PIO_PIN_14,1);
+../Core/Src/main.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=12520 RO-data=324 RW-data=40 ZI-data=2192  
+Program Size: Code=12380 RO-data=328 RW-data=36 ZI-data=1988  
 FromELF: creating hex file...
-"APM32_Slave_Node\APM32_Slave_Node.axf" - 0 Error(s), 3 Warning(s).
+"APM32_Slave_Node\APM32_Slave_Node.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 

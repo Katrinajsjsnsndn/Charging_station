@@ -109,9 +109,9 @@ int main(void)
 
 //		lv_init();
 //		lv_port_disp_init();
-		 // Ñ­»·½ÓÊÕ
+		 // Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     //HAL_UART_Receive_DMA(&huart2, uart2_rx_buf, RX_BUF_SIZE);
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,0);
+		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,0);
 		lvgl_task();
 
   /* USER CODE END 2 */

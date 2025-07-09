@@ -19,6 +19,11 @@
 void Enable_Charging() 
 {
   HAL_GPIO_WritePin(CE_GPIO_Port, CE_Pin, GPIO_PIN_SET);
+	
+	//使能dac输出
+	HAL_GPIO_WritePin(GPIOB,CD4051_A0_Pin,1);
+	HAL_GPIO_WritePin(GPIOB,CD4051_A1_Pin,1);
+	HAL_GPIO_WritePin(GPIOB,CD4051_A2_Pin,0);
 }
 
 void Disable_Charging() 
@@ -27,22 +32,20 @@ void Disable_Charging()
 }
 
 
-//使用快速模式写命令写DAC寄存器
-void MCP4725_WriteData_Voltage(uint16_t Vout)   //电压单位mV
+void MCP4725_WriteData_Digital(uint16_t data)   //12位数字量
 {
-  uint8_t temp;
-	uint16_t Dn;
-	Dn = ( 4096 * Vout) / 5000; //这里的VREF_5V宏定义为5000
-	temp = (0x0F00 & Dn) >> 8;  //12位数据。0000XXXX XXXXXXXX 
+    uint8_t data_H=0,data_L=0;
+	data_H = ( 0x0F00 & data) >> 8;
+	data_L = 0X00FF & data ;
 	IIC_Start();
-	IIC_Write_Byte(0XC2);      //器件寻址，器件代吗：1100； 地址位A2，A1，A0为 0 ， 0 ， 1；-> 1100 0010
+	IIC_Write_Byte(0XC0);      //器件寻址，器件代吗：1100； 地址位A2，A1，A0为 0 ， 0 ， 0；-> 1100 0010
     IIC_Wait_Ack();	 
-    IIC_Write_Byte(temp); 	  //将高8位送到DAC寄存器
+    IIC_Write_Byte(data_H); 	
     IIC_Wait_Ack();	 
-    IIC_Write_Byte(Dn);        //将低8位送到DAC寄存器
-		IIC_Wait_Ack();	
+    IIC_Write_Byte(data_L);
+	IIC_Wait_Ack();	
     IIC_Stop();//产生一个停止条件  	
-	//delay_ms(10);	
+	HAL_Delay(10);	
 }
  
 

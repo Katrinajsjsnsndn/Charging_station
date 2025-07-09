@@ -176,6 +176,6 @@ amp_main_mcu\lvgl_task.o: ../lvgl/src/../src/extra/widgets/imgbtn/lv_imgbtn.h
 amp_main_mcu\lvgl_task.o: ../lvgl/src/../src/extra/widgets/span/lv_span.h
 amp_main_mcu\lvgl_task.o: ../lvgl/examples/porting/lv_port_disp_template.h
 amp_main_mcu\lvgl_task.o: ../Core/Inc/usart.h
-amp_main_mcu\lvgl_task.o: ..\rs485\rs485.h
+amp_main_mcu\lvgl_task.o: ../rs485/rs485.h
 amp_main_mcu\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 amp_main_mcu\lvgl_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

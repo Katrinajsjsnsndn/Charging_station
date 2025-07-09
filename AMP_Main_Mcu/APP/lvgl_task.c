@@ -134,7 +134,8 @@ void rs485_task(void *pvParameters)
     
     while(1)
     {
-			
+					HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,0);
+
 				RS485_Master_Send_Turn(0x01,1);
         vTaskDelay(10);
     }

@@ -28,6 +28,7 @@ void IIC_Stop(void);
 void IIC_Write_Byte(uint8_t IIC_Byte);
 
 void IIC_Wait_Ack(void);
+void Enable_Charging(void);
 
 
 
@@ -39,4 +40,7 @@ void IIC_Wait_Ack(void);
 
 void IIC_GPIO_Config(void);
 void check_device(uint8_t addr);
+void MCP4725_WriteData_Digital(uint16_t data);   //12Î»Êý×ÖÁ¿
+
+
 #endif

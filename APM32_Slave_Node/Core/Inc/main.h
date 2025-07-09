@@ -60,6 +60,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define CD4051_A0_Pin GPIO_PIN_13
+#define CD4051_A0_GPIO_Port GPIOB
+#define CD4051_A1_Pin GPIO_PIN_14
+#define CD4051_A1_GPIO_Port GPIOB
+#define CD4051_A2_Pin GPIO_PIN_15
+#define CD4051_A2_GPIO_Port GPIOB
 #define CE_Pin GPIO_PIN_12
 #define CE_GPIO_Port GPIOA
 #define SCL_Pin GPIO_PIN_6

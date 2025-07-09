@@ -37,10 +37,10 @@ extern DMA_HandleTypeDef hdma_usart2_rx;
 
 
 
-uint8_t rx_buffer[BUFFER_SIZE] = {0};  // ��ʼ�����ջ�����
-uint8_t rx_done = 0;                   // ��ʼ��������ɱ�־
-uint8_t rx_len = 0;                    // ��ʼ�����ճ���
-uint16_t Get_ADC(void);
+uint8_t rx_buffer[BUFFER_SIZE] = {0};  
+uint8_t rx_done = 0;                   
+uint8_t rx_len = 0;                 
+uint16_t Get_ADC(uint8_t adc_channel);
 RS485_Frame_t my_frame;
 /* USER CODE END PTD */
 
@@ -68,8 +68,9 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint16_t read_adc;
-
+uint16_t read_adc_1,read_adc_2;
+uint16_t dac_set;
+float current_set=1;
 /* USER CODE END 0 */
 
 /**
@@ -104,14 +105,21 @@ int main(void)
   MX_DMA_Init();
   MX_USART2_UART_Init();
   MX_ADC1_Init();
+  MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
-	   HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
 
-   __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
+	HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
+
+  __HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
 	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,1);
-		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,1);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,1);
 
-IIC_GPIO_Config();
+	IIC_GPIO_Config();
+	Enable_Charging();
+
+
+	dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -122,7 +130,10 @@ IIC_GPIO_Config();
 
     /* USER CODE BEGIN 3 */
 		RS485_Master_Receive_Process();
-		check_device(0XC0);
+		read_adc_1=Get_ADC(1);
+		read_adc_2=Get_ADC(2);
+
+		//check_device(0XC0);
   }
   /* USER CODE END 3 */
 }
@@ -174,24 +185,40 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-uint16_t Get_ADC(void)
+uint16_t Get_ADC(uint8_t adc_channel)
 {
     uint16_t adc_value = 0;
+    ADC_HandleTypeDef *adc_handle = NULL;
+
+    // 根据传入的通道参数选择对应的ADC
+    if (adc_channel == 1)
+    {
+        adc_handle = &hadc1;
+    }
+    else if (adc_channel == 2)
+    {
+        adc_handle = &hadc2;
+    }
+    else
+    {
+        // 如果传入的通道参数无效，返回0或错误处理
+        return 0;
+    }
 
     // 1. 启动ADC转换
-    HAL_ADC_Start(&hadc1);
+    HAL_ADC_Start(adc_handle);
 
     // 2. 等待转换完成
-    if (HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY) == HAL_OK)
+    if (HAL_ADC_PollForConversion(adc_handle, HAL_MAX_DELAY) == HAL_OK)
     {
         // 3. 获取转换结果
-        adc_value = HAL_ADC_GetValue(&hadc1);
+        adc_value = HAL_ADC_GetValue(adc_handle);
     }
 
     // 4. 停止ADC
-    HAL_ADC_Stop(&hadc1);
-		return adc_value;
+    HAL_ADC_Stop(adc_handle);
+
+    return adc_value;
 }
 
 

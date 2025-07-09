@@ -1,4 +1,6 @@
 #include "rs485.h"
+#include "charge_control.h"
+extern uint16_t dac_set;
 
 uint8_t tx_buf[RS485_MAX_FRAME_LEN];
 uint8_t rx_buf[RS485_MAX_FRAME_LEN];
@@ -54,6 +56,8 @@ void RS485_Master_Receive_Process(void) {
                 // 处理设置参数命令
                 // 根据实际需求实现具体逻辑
                 // 例如：根据 frame.data 设置设备状态
+								MCP4725_WriteData_Digital(dac_set);
+
                 break;
 
             case CMD_READ_DATA:  // 响应成功命令

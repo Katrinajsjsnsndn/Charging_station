@@ -32,3 +32,5 @@ apm32_slave_node\rs485.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flas
 apm32_slave_node\rs485.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 apm32_slave_node\rs485.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 apm32_slave_node\rs485.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+apm32_slave_node\rs485.o: ../APP/charge_control.h
+apm32_slave_node\rs485.o: ../Core/Inc/gpio.h
