@@ -32,14 +32,14 @@ void start_task(void *pvParameters);    /* 任务函数 */
  * 包括: 任务句柄 任务优先级 堆栈大小 创建任务
  */
 #define LV_DEMO_TASK_PRIO   3           /* 任务优先级 */
-#define LV_DEMO_STK_SIZE    1024        /* 任务堆栈大小 */
+#define LV_DEMO_STK_SIZE    128        /* 任务堆栈大小 */
 TaskHandle_t LV_DEMOTask_Handler;       /* 任务句柄 */
 void lv_demo_task(void *pvParameters);  /* 任务函数 */
 
 /* LED_TASK 任务 配置
  * 包括: 任务句柄 任务优先级 堆栈大小 创建任务
  */
-#define LED_TASK_PRIO       4           /* 任务优先级 */
+#define LED_TASK_PRIO       3           /* 任务优先级 */
 #define LED_STK_SIZE        128         /* 任务堆栈大小 */
 TaskHandle_t RS485Task_Handler;           /* 任务句柄 */
 void rs485_task(void *pvParameters);      /* 任务函数 */
@@ -66,6 +66,8 @@ void lvgl_task()
  * @param       pvParameters : 传入参数(未用到)
  * @retval      无
  */
+BaseType_t xStatus,xStatus_2;
+
 void start_task(void *pvParameters)
 {
     pvParameters = pvParameters;
@@ -73,7 +75,7 @@ void start_task(void *pvParameters)
     taskENTER_CRITICAL();           /* 进入临界区 */
 
     /* 创建LVGL任务 */
-    xTaskCreate((TaskFunction_t )lv_demo_task,
+    xStatus=xTaskCreate((TaskFunction_t )lv_demo_task,
                 (const char*    )"lv_demo_task",
                 (uint16_t       )LV_DEMO_STK_SIZE, 
                 (void*          )NULL,
@@ -81,7 +83,7 @@ void start_task(void *pvParameters)
                 (TaskHandle_t*  )&LV_DEMOTask_Handler);
 
     /* LED测试任务 */
-    xTaskCreate((TaskFunction_t )rs485_task,
+    xStatus_2=xTaskCreate((TaskFunction_t )rs485_task,
                 (const char*    )"rs485_task",
                 (uint16_t       )LED_STK_SIZE,
                 (void*          )NULL,

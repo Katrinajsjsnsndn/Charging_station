@@ -1936,27 +1936,27 @@ Image Symbol Table
     uxCriticalNesting                        0x20000074   Data           4  port.o(.data)
     ulMaxPRIGROUPValue                       0x20000078   Data           4  port.o(.data)
     .data                                    0x2000007c   Section        7  rs485.o(.data)
-    .data                                    0x20000084   Section       12  lvgl_task.o(.data)
-    .bss                                     0x20000090   Section      596  freertos.o(.bss)
-    xIdleTaskTCBBuffer                       0x20000090   Data          84  freertos.o(.bss)
-    xIdleStack                               0x200000e4   Data         512  freertos.o(.bss)
-    .bss                                     0x200002e4   Section      208  usart.o(.bss)
-    .bss                                     0x200003b4   Section       72  stm32f1xx_hal_timebase_tim.o(.bss)
-    .bss                                     0x200003fc   Section      240  tasks.o(.bss)
-    pxReadyTasksLists                        0x200003fc   Data         140  tasks.o(.bss)
-    xDelayedTaskList1                        0x20000488   Data          20  tasks.o(.bss)
-    xDelayedTaskList2                        0x2000049c   Data          20  tasks.o(.bss)
-    xPendingReadyList                        0x200004b0   Data          20  tasks.o(.bss)
-    xTasksWaitingTermination                 0x200004c4   Data          20  tasks.o(.bss)
-    xSuspendedTaskList                       0x200004d8   Data          20  tasks.o(.bss)
-    .bss                                     0x200004ec   Section     3072  heap_4.o(.bss)
-    ucHeap                                   0x200004ec   Data        3072  heap_4.o(.bss)
-    .bss                                     0x200010ec   Section       96  libspace.o(.bss)
-    HEAP                                     0x20001150   Section      512  startup_stm32f103xb.o(HEAP)
-    Heap_Mem                                 0x20001150   Data         512  startup_stm32f103xb.o(HEAP)
-    STACK                                    0x20001350   Section     1024  startup_stm32f103xb.o(STACK)
-    Stack_Mem                                0x20001350   Data        1024  startup_stm32f103xb.o(STACK)
-    __initial_sp                             0x20001750   Data           0  startup_stm32f103xb.o(STACK)
+    .data                                    0x20000084   Section       20  lvgl_task.o(.data)
+    .bss                                     0x20000098   Section      596  freertos.o(.bss)
+    xIdleTaskTCBBuffer                       0x20000098   Data          84  freertos.o(.bss)
+    xIdleStack                               0x200000ec   Data         512  freertos.o(.bss)
+    .bss                                     0x200002ec   Section      208  usart.o(.bss)
+    .bss                                     0x200003bc   Section       72  stm32f1xx_hal_timebase_tim.o(.bss)
+    .bss                                     0x20000404   Section      240  tasks.o(.bss)
+    pxReadyTasksLists                        0x20000404   Data         140  tasks.o(.bss)
+    xDelayedTaskList1                        0x20000490   Data          20  tasks.o(.bss)
+    xDelayedTaskList2                        0x200004a4   Data          20  tasks.o(.bss)
+    xPendingReadyList                        0x200004b8   Data          20  tasks.o(.bss)
+    xTasksWaitingTermination                 0x200004cc   Data          20  tasks.o(.bss)
+    xSuspendedTaskList                       0x200004e0   Data          20  tasks.o(.bss)
+    .bss                                     0x200004f4   Section     3072  heap_4.o(.bss)
+    ucHeap                                   0x200004f4   Data        3072  heap_4.o(.bss)
+    .bss                                     0x200010f4   Section       96  libspace.o(.bss)
+    HEAP                                     0x20001158   Section      512  startup_stm32f103xb.o(HEAP)
+    Heap_Mem                                 0x20001158   Data         512  startup_stm32f103xb.o(HEAP)
+    STACK                                    0x20001358   Section     1024  startup_stm32f103xb.o(STACK)
+    Stack_Mem                                0x20001358   Data        1024  startup_stm32f103xb.o(STACK)
+    __initial_sp                             0x20001758   Data           0  startup_stm32f103xb.o(STACK)
 
     Global Symbols
 
@@ -2216,12 +2216,14 @@ Image Symbol Table
     StartTask_Handler                        0x20000084   Data           4  lvgl_task.o(.data)
     LV_DEMOTask_Handler                      0x20000088   Data           4  lvgl_task.o(.data)
     RS485Task_Handler                        0x2000008c   Data           4  lvgl_task.o(.data)
-    huart2                                   0x200002e4   Data          72  usart.o(.bss)
-    hdma_usart2_tx                           0x2000032c   Data          68  usart.o(.bss)
-    hdma_usart2_rx                           0x20000370   Data          68  usart.o(.bss)
-    htim1                                    0x200003b4   Data          72  stm32f1xx_hal_timebase_tim.o(.bss)
-    __libspace_start                         0x200010ec   Data          96  libspace.o(.bss)
-    __temporary_stack_top$libspace           0x2000114c   Data           0  libspace.o(.bss)
+    xStatus                                  0x20000090   Data           4  lvgl_task.o(.data)
+    xStatus_2                                0x20000094   Data           4  lvgl_task.o(.data)
+    huart2                                   0x200002ec   Data          72  usart.o(.bss)
+    hdma_usart2_tx                           0x20000334   Data          68  usart.o(.bss)
+    hdma_usart2_rx                           0x20000378   Data          68  usart.o(.bss)
+    htim1                                    0x200003bc   Data          72  stm32f1xx_hal_timebase_tim.o(.bss)
+    __libspace_start                         0x200010f4   Data          96  libspace.o(.bss)
+    __temporary_stack_top$libspace           0x20001154   Data           0  libspace.o(.bss)
 
 
 
@@ -2231,7 +2233,7 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002820, Max: 0x00020000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00002828, Max: 0x00020000, ABSOLUTE)
 
     Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00002790, Max: 0x00020000, ABSOLUTE)
 
@@ -2433,7 +2435,7 @@ Memory Map of the image
     0x08002770   0x08002770   0x00000020   Data   RO         4449    Region$$Table       anon$$obj.o
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002790, Size: 0x00001750, Max: 0x00005000, ABSOLUTE)
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08002790, Size: 0x00001758, Max: 0x00005000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2445,16 +2447,16 @@ Memory Map of the image
     0x20000070   0x08002800   0x0000000c   Data   RW         4111    .data               port.o
     0x2000007c   0x0800280c   0x00000007   Data   RW         4183    .data               rs485.o
     0x20000083   0x08002813   0x00000001   PAD
-    0x20000084   0x08002814   0x0000000c   Data   RW         4229    .data               lvgl_task.o
-    0x20000090        -       0x00000254   Zero   RW          234    .bss                freertos.o
-    0x200002e4        -       0x000000d0   Zero   RW          313    .bss                usart.o
-    0x200003b4        -       0x00000048   Zero   RW          461    .bss                stm32f1xx_hal_timebase_tim.o
-    0x200003fc        -       0x000000f0   Zero   RW         3398    .bss                tasks.o
-    0x200004ec        -       0x00000c00   Zero   RW         4042    .bss                heap_4.o
-    0x200010ec        -       0x00000060   Zero   RW         4323    .bss                c_w.l(libspace.o)
-    0x2000114c   0x08002820   0x00000004   PAD
-    0x20001150        -       0x00000200   Zero   RW            2    HEAP                startup_stm32f103xb.o
-    0x20001350        -       0x00000400   Zero   RW            1    STACK               startup_stm32f103xb.o
+    0x20000084   0x08002814   0x00000014   Data   RW         4229    .data               lvgl_task.o
+    0x20000098        -       0x00000254   Zero   RW          234    .bss                freertos.o
+    0x200002ec        -       0x000000d0   Zero   RW          313    .bss                usart.o
+    0x200003bc        -       0x00000048   Zero   RW          461    .bss                stm32f1xx_hal_timebase_tim.o
+    0x20000404        -       0x000000f0   Zero   RW         3398    .bss                tasks.o
+    0x200004f4        -       0x00000c00   Zero   RW         4042    .bss                heap_4.o
+    0x200010f4        -       0x00000060   Zero   RW         4323    .bss                c_w.l(libspace.o)
+    0x20001154   0x08002828   0x00000004   PAD
+    0x20001158        -       0x00000200   Zero   RW            2    HEAP                startup_stm32f103xb.o
+    0x20001358        -       0x00000400   Zero   RW            1    STACK               startup_stm32f103xb.o
 
 
 ==============================================================================
@@ -2471,7 +2473,7 @@ Image component sizes
        156         14          0          0          0        887   gpio.o
        472         24          0         32       3072       7287   heap_4.o
        138          0          0          0          0       3294   list.o
-       184         62          0         12          0       2196   lvgl_task.o
+       184         62          0         20          0       2282   lvgl_task.o
        164         10          0          0          0     460116   main.o
        578         58          0         12          0      10056   port.o
        106         10          0          7          0       2614   rs485.o
@@ -2493,7 +2495,7 @@ Image component sizes
        272         30          0          0        208       1808   usart.o
 
     ----------------------------------------------------------------------
-      9322        670        352        144       5724     626432   Object Totals
+      9322        670        352        152       5724     626518   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         28          0          2          1          0          0   (incl. Padding)
 
@@ -2544,15 +2546,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      9776        686        352        144       5824     621140   Grand Totals
-      9776        686        352        144       5824     621140   ELF Image Totals
-      9776        686        352        144          0          0   ROM Totals
+      9776        686        352        152       5824     621226   Grand Totals
+      9776        686        352        152       5824     621226   ELF Image Totals
+      9776        686        352        152          0          0   ROM Totals
 
 ==============================================================================
 
     Total RO  Size (Code + RO Data)                10128 (   9.89kB)
-    Total RW  Size (RW Data + ZI Data)              5968 (   5.83kB)
-    Total ROM Size (Code + RO Data + RW Data)      10272 (  10.03kB)
+    Total RW  Size (RW Data + ZI Data)              5976 (   5.84kB)
+    Total ROM Size (Code + RO Data + RW Data)      10280 (  10.04kB)
 
 ==============================================================================
 

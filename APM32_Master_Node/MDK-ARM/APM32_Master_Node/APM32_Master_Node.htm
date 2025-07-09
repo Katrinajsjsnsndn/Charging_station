@@ -3,7 +3,7 @@
 <title>Static Call Graph - [APM32_Master_Node\APM32_Master_Node.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image APM32_Master_Node\APM32_Master_Node.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Jul 09 17:07:50 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Jul 09 17:35:12 2025
 <BR><P>
 <H3>Maximum Stack Usage =        200 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -966,8 +966,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> lvgl_task.o(i.start_task)
 </UL>
-<P><STRONG><a name="[3e]"></a>start_task</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, lvgl_task.o(i.start_task))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = start_task &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[3e]"></a>start_task</STRONG> (Thumb, 68 bytes, Stack size 24 bytes, lvgl_task.o(i.start_task))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = start_task &rArr; xTaskCreate &rArr; pvPortMalloc &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortExitCritical
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortEnterCritical
