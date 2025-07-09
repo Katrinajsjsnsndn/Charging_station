@@ -1,0 +1,11 @@
+amp_main_mcu\lv_ll.o: ..\lvgl\src\misc\lv_ll.c
+amp_main_mcu\lv_ll.o: ..\lvgl\src\misc\lv_ll.h
+amp_main_mcu\lv_ll.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+amp_main_mcu\lv_ll.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+amp_main_mcu\lv_ll.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+amp_main_mcu\lv_ll.o: ..\lvgl\src\misc\lv_mem.h
+amp_main_mcu\lv_ll.o: ..\lvgl\src\misc\../lv_conf_internal.h
+amp_main_mcu\lv_ll.o: ..\lvgl\src\misc\../lv_conf_kconfig.h
+amp_main_mcu\lv_ll.o: ../lvgl/lv_conf.h
+amp_main_mcu\lv_ll.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+amp_main_mcu\lv_ll.o: ..\lvgl\src\misc\lv_types.h

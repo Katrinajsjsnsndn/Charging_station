@@ -19,13 +19,17 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "dma.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "lcd.h"
 #include "test code.h"
-
+#include "lvgl_task.h"
+#include "lvgl.h" 
+#include "lv_port_disp_template.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -35,7 +39,11 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define RX_BUF_SIZE  64
+#define TX_BUF_SIZE  64
 
+uint8_t uart2_rx_buf[RX_BUF_SIZE];
+uint8_t uart2_tx_buf[TX_BUF_SIZE];
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -90,12 +98,22 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-		LCD_Init();			   	
-		LCD_Display_Dir(USE_LCM_DIR);		 		
+
+	 	LCD_Init();			   	//
+		LCD_Display_Dir(USE_LCM_DIR);		 		//
 
 		LCD_Clear(WHITE);		
-		FillRec_Test();
+
+//		lv_init();
+//		lv_port_disp_init();
+		 // —≠ª∑Ω” ’
+    //HAL_UART_Receive_DMA(&huart2, uart2_rx_buf, RX_BUF_SIZE);
+		HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,0);
+		lvgl_task();
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

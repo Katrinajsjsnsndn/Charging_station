@@ -1,0 +1,13 @@
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\lv_lru.c
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\lv_lru.h
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\../lv_conf_internal.h
+amp_main_mcu\lv_lru.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\../lv_conf_kconfig.h
+amp_main_mcu\lv_lru.o: ../lvgl/lv_conf.h
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\lv_types.h
+amp_main_mcu\lv_lru.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\lv_math.h
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\lv_mem.h
+amp_main_mcu\lv_lru.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\lv_assert.h
+amp_main_mcu\lv_lru.o: ..\lvgl\src\misc\lv_log.h

@@ -28,5 +28,6 @@ amp_main_mcu\test code.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flas
 amp_main_mcu\test code.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 amp_main_mcu\test code.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 amp_main_mcu\test code.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
+amp_main_mcu\test code.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 amp_main_mcu\test code.o: ..\LCD\pic.h
 amp_main_mcu\test code.o: ..\LCD\test code.h

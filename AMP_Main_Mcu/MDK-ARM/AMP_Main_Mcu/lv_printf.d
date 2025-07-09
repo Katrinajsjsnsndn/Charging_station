@@ -1,0 +1,10 @@
+amp_main_mcu\lv_printf.o: ..\lvgl\src\misc\lv_printf.c
+amp_main_mcu\lv_printf.o: ..\lvgl\src\misc\lv_printf.h
+amp_main_mcu\lv_printf.o: ..\lvgl\src\misc\../lv_conf_internal.h
+amp_main_mcu\lv_printf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+amp_main_mcu\lv_printf.o: ..\lvgl\src\misc\../lv_conf_kconfig.h
+amp_main_mcu\lv_printf.o: ../lvgl/lv_conf.h
+amp_main_mcu\lv_printf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+amp_main_mcu\lv_printf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+amp_main_mcu\lv_printf.o: ..\lvgl\src\misc\lv_types.h
+amp_main_mcu\lv_printf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

@@ -1,0 +1,17 @@
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\lv_bidi.c
+amp_main_mcu\lv_bidi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\lv_bidi.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\../lv_conf_internal.h
+amp_main_mcu\lv_bidi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\../lv_conf_kconfig.h
+amp_main_mcu\lv_bidi.o: ../lvgl/lv_conf.h
+amp_main_mcu\lv_bidi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\lv_txt.h
+amp_main_mcu\lv_bidi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\lv_area.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\../font/lv_font.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\../font/lv_symbol_def.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\lv_printf.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\lv_types.h
+amp_main_mcu\lv_bidi.o: ..\lvgl\src\misc\../misc/lv_mem.h
+amp_main_mcu\lv_bidi.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

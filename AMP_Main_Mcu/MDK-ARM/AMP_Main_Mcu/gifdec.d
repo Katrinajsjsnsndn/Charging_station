@@ -1,0 +1,16 @@
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\gifdec.c
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\gifdec.h
+amp_main_mcu\gifdec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/lv_fs.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/../lv_conf_internal.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/../lv_conf_kconfig.h
+amp_main_mcu\gifdec.o: ..\lvgl\lv_conf.h
+amp_main_mcu\gifdec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/lv_log.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/lv_types.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/lv_mem.h
+amp_main_mcu\gifdec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+amp_main_mcu\gifdec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/lv_color.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/lv_assert.h
+amp_main_mcu\gifdec.o: ..\lvgl\src\extra\libs\gif\../../../misc/lv_math.h
