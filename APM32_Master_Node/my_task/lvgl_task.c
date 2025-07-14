@@ -8,6 +8,7 @@
 //#include "lv_port_disp_template.h"
 #include "semphr.h"
 #include "rs485.h"
+#include "test code.h"
 
 //#include "adc.h"
 //#include "dac.h"
@@ -16,6 +17,7 @@
 extern float current;
 extern uint16_t dac_set;
 void Current_Set(void);
+uint8_t read_key();
 
 /******************************************************************************************************/
 /*FreeRTOS≈‰÷√*/
@@ -117,6 +119,7 @@ void lv_demo_task(void *pvParameters)
  * @retval      Œﬁ
  */
 uint16_t read_adc;
+uint8_t key_val,key_old,key_down,key_up;
 
 void rs485_task(void *pvParameters)
 {
@@ -125,12 +128,51 @@ void rs485_task(void *pvParameters)
     while(1)
     {
 
-				RS485_Master_Send_Turn(0x01,1);
+				key_val=read_key();
+				key_down= key_val&(key_val^key_old);
+				key_up=~key_val&(key_val^key_old);
+				key_old=key_val;
+				if(key_down==KEY_UP)
+				{
+					RS485_Master_Send_Turn(0x01,1);
+				}
+				if(key_down==KEY_DOWN)
+				{
+					RS485_Master_Send_Turn(0x01,0);
+				}
+				if(key_down==KEY_LEFT)
+				{
+					RS485_Master_Send_Turn(0x01,3);
+				}
         vTaskDelay(10);
+				HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,GPIO_PIN_RESET);
+
     }
 }
 
 
+uint8_t read_key()
+{
+	
+    uint8_t temp = KEY_NONE;
+
+    if (HAL_GPIO_ReadPin(KEY_1_GPIO_Port, KEY_1_Pin) == 0)
+        temp = KEY_RETURN;
+    else if (HAL_GPIO_ReadPin(KEY_2_GPIO_Port, KEY_2_Pin) == 0)
+        temp = KEY_MENU;
+    else if (HAL_GPIO_ReadPin(KEY_3_GPIO_Port, KEY_3_Pin) == 0)
+        temp = KEY_OK;
+    else if (HAL_GPIO_ReadPin(KEY_4_GPIO_Port, KEY_4_Pin) == 0)
+        temp = KEY_LEFT;
+    else if (HAL_GPIO_ReadPin(KEY_5_GPIO_Port, KEY_5_Pin) == 0)
+        temp = KEY_RIGHT;
+    else if (HAL_GPIO_ReadPin(KEY_6_GPIO_Port, KEY_6_Pin) == 0)
+        temp = KEY_DOWN;
+    else if (HAL_GPIO_ReadPin(KEY_7_GPIO_Port, KEY_7_Pin) == 0)
+        temp = KEY_UP;
+
+    return temp;
+}
 
 
 //uint16_t Get_ADC(void)

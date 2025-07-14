@@ -116,7 +116,6 @@ int main(void)
 	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_14,1);
 
 	IIC_GPIO_Config();
-	Enable_Charging();
 
 
 	dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);

@@ -35,6 +35,8 @@
 "apm32_master_node\port.o"
 "apm32_master_node\rs485.o"
 "apm32_master_node\lvgl_task.o"
+"apm32_master_node\lcd.o"
+"apm32_master_node\test code.o"
 --strict --scatter "APM32_Master_Node\APM32_Master_Node.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

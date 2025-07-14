@@ -48,3 +48,4 @@ apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_
 apm32_master_node\lvgl_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 apm32_master_node\lvgl_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 apm32_master_node\lvgl_task.o: ../Core/Inc/usart.h
+apm32_master_node\lvgl_task.o: ../tft/test code.h

@@ -18,7 +18,7 @@
 #define CMD_READ_RESP       0x11
 #define CMD_SET_PARAM       0x20
 #define CMD_SET_RESP        0x21
-#define CMD_CTRL            0x30
+#define CMD_FEEDBACK        0x30
 #define CMD_CTRL_RESP       0x31
 
 #define RS485_MAX_DATA_LEN  32
@@ -30,7 +30,7 @@ typedef struct {
     uint8_t addr_from;
     uint8_t cmd;
     uint8_t len;
-    uint8_t data[RS485_MAX_DATA_LEN];
+    uint8_t data;
     uint8_t checksum;
 } RS485_Frame_t;
 

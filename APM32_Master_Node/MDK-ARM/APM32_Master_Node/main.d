@@ -46,3 +46,5 @@ apm32_master_node\main.o: ../Core/Inc/dma.h
 apm32_master_node\main.o: ../Core/Inc/usart.h
 apm32_master_node\main.o: ../Core/Inc/gpio.h
 apm32_master_node\main.o: ../my_task/lvgl_task.h
+apm32_master_node\main.o: ../tft/lcd.h
+apm32_master_node\main.o: ../tft/test code.h

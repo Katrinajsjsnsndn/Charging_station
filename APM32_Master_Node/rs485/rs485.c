@@ -5,6 +5,8 @@ uint8_t rx_buf[RS485_MAX_FRAME_LEN];
 
 void RS485_Master_Send_Turn(uint8_t slave_addr,uint8_t device_switch) 
 {
+		HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,1);
+
     RS485_Frame_t frame;
     frame.head = RS485_FRAME_HEAD;
     frame.addr_to = slave_addr;

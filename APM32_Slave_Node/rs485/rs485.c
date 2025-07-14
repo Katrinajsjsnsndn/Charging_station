@@ -1,10 +1,11 @@
 #include "rs485.h"
 #include "charge_control.h"
 extern uint16_t dac_set;
+void Data_Feedback(void);
 
 uint8_t tx_buf[RS485_MAX_FRAME_LEN];
 uint8_t rx_buf[RS485_MAX_FRAME_LEN];
-
+uint8_t data_feedback_flag;
 void RS485_Master_SendReadCmd(uint8_t slave_addr) {
     RS485_Frame_t frame;
     frame.head = RS485_FRAME_HEAD;
@@ -29,7 +30,9 @@ uint8_t RS485_CalcChecksum(const uint8_t *buf, uint8_t len)
 RS485_Frame_t frame;
 
 // 接收处理函数
-void RS485_Master_Receive_Process(void) {
+void RS485_Master_Receive_Process(void) \
+{
+		Data_Feedback();
     if (rx_done) 
 		{  // 检查是否接收到完整数据
 
@@ -56,8 +59,19 @@ void RS485_Master_Receive_Process(void) {
                 // 处理设置参数命令
                 // 根据实际需求实现具体逻辑
                 // 例如：根据 frame.data 设置设备状态
-								MCP4725_WriteData_Digital(dac_set);
-
+								if(frame.data==1)
+								{
+										Enable_Charging();
+										MCP4725_WriteData_Digital(dac_set);
+								}
+								if(frame.data==0)
+								{
+										Disable_Charging();
+								}
+								if(frame.data ==3)
+								{
+									data_feedback_flag=1;
+								}
                 break;
 
             case CMD_READ_DATA:  // 响应成功命令
@@ -72,4 +86,27 @@ void RS485_Master_Receive_Process(void) {
 			        rx_done = 0;  // 清除接收完成标志
  
     }
+}
+
+void Data_Feedback()
+{
+	if(data_feedback_flag!=1)
+	{
+		return;
+	}
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+
+		RS485_Frame_t frame;
+    frame.head = RS485_FRAME_HEAD;
+    frame.addr_to = 0x00;
+    frame.addr_from = RS485_ADDR_SLAVE1;
+    frame.cmd = CMD_FEEDBACK;
+    frame.len = 1;
+		//frame.data =;
+    frame.checksum = RS485_CalcChecksum((uint8_t*)&frame, 6);
+
+    memcpy(tx_buf, &frame, 7); 
+    HAL_UART_Transmit_DMA(&huart2, tx_buf, 7);
+
+
 }

@@ -29,6 +29,7 @@ void IIC_Write_Byte(uint8_t IIC_Byte);
 
 void IIC_Wait_Ack(void);
 void Enable_Charging(void);
+void Disable_Charging(void); 
 
 
 

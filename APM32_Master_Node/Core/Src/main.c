@@ -30,16 +30,16 @@
 #define MAX_FRAME_LENGTH 32
 
 #include "lvgl_task.h"
+#include "lcd.h"
+#include "test code.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-uint8_t receive_data_R[80];
-uint8_t rxBuffer[50];
-uint8_t rxIndex = 0;
-uint8_t frameReceived = 0;
-
+uint8_t rx_buffer[BUFFER_SIZE] = {0};  
+uint8_t rx_done = 0;                   
+uint8_t rx_len = 0;                 
 float current=0.1;
 uint16_t dac_set;
 /* USER CODE END PTD */
@@ -64,7 +64,7 @@ uint16_t dac_set;
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
-
+uint16_t temp;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -104,13 +104,29 @@ int main(void)
   MX_DMA_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,1);
-   //__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
-   //HAL_UART_Receive_DMA(&huart2, rxBuffer, MAX_FRAME_LENGTH);
+	HAL_GPIO_WritePin(GPIOB, LED_Pin, GPIO_PIN_RESET);
+//	HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
 
-   //UART_Start_Receive_DMA(&huart2, receive_data_R, 80);
-	 
-	 		lvgl_task();
+//		__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
+		LCD_Init();			 
+			HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,1);
+		LCD_Display_Dir(USE_LCM_DIR);		 		//
+
+		LCD_Clear(BLACK);
+			HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,1);
+
+		temp=LCD_Read_ID(0x04);
+		main_test("IC:ST7789V");		//������ҳ
+		Color_Test();								//��ɫ����
+	Read_Test();								//��ID ��ɫ ����
+	FillRec_Test();							//ͼ�β���
+	English_Font_test();				//Ӣ�Ĳ���
+	Chinese_Font_test();				//���Ĳ���
+	Pic_test();									//ͼƬ����
+	Switch_test();							//��ʾ���ز���
+	Rotate_Test();							//��ת����
+
+//	 		lvgl_task();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
