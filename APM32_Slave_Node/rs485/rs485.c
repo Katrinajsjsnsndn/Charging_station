@@ -6,18 +6,7 @@ void Data_Feedback(void);
 uint8_t tx_buf[RS485_MAX_FRAME_LEN];
 uint8_t rx_buf[RS485_MAX_FRAME_LEN];
 uint8_t data_feedback_flag;
-void RS485_Master_SendReadCmd(uint8_t slave_addr) {
-    RS485_Frame_t frame;
-    frame.head = RS485_FRAME_HEAD;
-    frame.addr_to = slave_addr;
-    frame.addr_from = RS485_ADDR_MASTER;
-    frame.cmd = CMD_READ_DATA;
-    frame.len = 0;
-    frame.checksum = RS485_CalcChecksum((uint8_t*)&frame, 5);
 
-    memcpy(tx_buf, &frame, 6); 
-    HAL_UART_Transmit(&huart2, tx_buf, 6, 100);
-}
 uint8_t RS485_CalcChecksum(const uint8_t *buf, uint8_t len) 
 {
     uint16_t sum = 0;
@@ -30,83 +19,90 @@ uint8_t RS485_CalcChecksum(const uint8_t *buf, uint8_t len)
 RS485_Frame_t frame;
 
 // 接收处理函数
-void RS485_Master_Receive_Process(void) \
+
+/* ----------------------------------------------------------
+ * 2. 接收处理：按“头-len-data-checksum”方式解析
+ * ---------------------------------------------------------- */
+void RS485_Master_Receive_Process(void)
 {
-		Data_Feedback();
-    if (rx_done) 
-		{  // 检查是否接收到完整数据
+    if (!rx_done) return;
 
-        memcpy(&frame, rx_buffer, sizeof(frame));  // 将接收到的数据拷贝到帧结构中
+    /* 最小长度：固定头 5 字节 + 至少 1 字节 data + 1 字节 checksum */
+    if (rx_len < 7) goto frame_err;
 
-        // 验证帧头
-        if (frame.head != RS485_FRAME_HEAD) 
-				{
-            // 帧头错误，丢弃数据
-            return;
-        }
+    RS485_Frame_t *pHdr = (RS485_Frame_t *)rx_buffer;
 
-        // 验证校验和
-        uint8_t calc_checksum = RS485_CalcChecksum((uint8_t*)&frame, sizeof(frame) - sizeof(frame.checksum));
-        if (frame.checksum != calc_checksum) {
-            // 校验和错误，丢弃数据
-            return;
-        }
+    /* 2.1 帧头检查 */
+    if (pHdr->head != RS485_FRAME_HEAD) goto frame_err;
 
-        // 根据命令类型处理
-        switch (frame.cmd) 
-			 {
-            case CMD_SET_PARAM:  // 设置参数命令
-                // 处理设置参数命令
-                // 根据实际需求实现具体逻辑
-                // 例如：根据 frame.data 设置设备状态
-								if(frame.data==1)
-								{
-										Enable_Charging();
-										MCP4725_WriteData_Digital(dac_set);
-								}
-								if(frame.data==0)
-								{
-										Disable_Charging();
-								}
-								if(frame.data ==3)
-								{
-									data_feedback_flag=1;
-								}
-                break;
+    /* 2.2 长度检查 */
+    uint16_t expect_len = 5 + pHdr->len + 1;   /* 5固定 + data[len] + checksum */
+    if (rx_len != expect_len) goto frame_err;
 
-            case CMD_READ_DATA:  // 响应成功命令
-//                // 处理响应成功命令
-//                // 根据实际需求实现具体逻辑
-                break;
+    /* 2.3 校验和检查：校验范围 = 整个帧（除最后一个字节） */
+    uint8_t calc_cs = RS485_CalcChecksum(rx_buffer, expect_len - 1);
+    if (calc_cs != rx_buffer[expect_len - 1]) goto frame_err;
 
-            default:
-                // 未知命令，丢弃数据
-                break;
-        }
-			        rx_done = 0;  // 清除接收完成标志
- 
+    /* 2.4 命令分发 */
+    switch (pHdr->cmd)
+    {
+        case CMD_SET_PARAM:
+            if (pHdr->len >= 1)          /* 至少 1 字节参数 */
+            {
+                uint8_t param = rx_buffer[5];   /* data 起始位置 */
+                if (param == 1)
+                {
+                    Enable_Charging();
+                    MCP4725_WriteData_Digital(dac_set);
+                }
+                else if (param == 0)
+                {
+                    Disable_Charging();
+                }
+                else if (param == 3)
+                {
+                    data_feedback_flag = 1;
+                }
+            }
+            break;
+
+        case CMD_READ_DATA:
+            /* TODO：按协议回复 */
+            break;
+
+        default:
+            break;
     }
-}
 
+frame_err:
+    /* 3. 重新启动下一轮 DMA 接收 */
+    rx_done = 0;
+    rx_len  = 0;
+    HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
+}
+uint8_t text_num0=12,text_num1=13;
 void Data_Feedback()
 {
 	if(data_feedback_flag!=1)
 	{
 		return;
 	}
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
+		uint8_t txBuf[15];               // 128 字节临时缓冲区
+		RS485_Frame_t *f = (RS485_Frame_t *)txBuf;
 
-		RS485_Frame_t frame;
-    frame.head = RS485_FRAME_HEAD;
-    frame.addr_to = 0x00;
-    frame.addr_from = RS485_ADDR_SLAVE1;
-    frame.cmd = CMD_FEEDBACK;
-    frame.len = 1;
-		//frame.data =;
-    frame.checksum = RS485_CalcChecksum((uint8_t*)&frame, 6);
+		f->head     = 0xAA;
+		f->addr_to  = 0x00;
+		f->addr_from= 0x01;
+		f->cmd      = 0x03;
+		f->len      = 3;                  // 要发 6 字节数据
+		f->data[0]  = 0x11;               // 第 1 字节
+		f->data[1]  = 0x22;               // 第 2 字节
+		f->data[2]  = 0x66;               // 第 6 字节
 
-    memcpy(tx_buf, &frame, 7); 
-    HAL_UART_Transmit_DMA(&huart2, tx_buf, 7);
+		uint8_t checksum = RS485_CalcChecksum(txBuf, sizeof(RS485_Frame_t) + f->len);
+		txBuf[sizeof(RS485_Frame_t) + f->len] = checksum;
 
-
+		HAL_UART_Transmit(&huart2, txBuf, sizeof(RS485_Frame_t) + f->len + 1,100);
+		
 }

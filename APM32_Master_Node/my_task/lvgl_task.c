@@ -10,6 +10,7 @@
 #include "rs485.h"
 #include "test code.h"
 #include "lcd.h"
+#include "rs485.h"
 
 //#include "adc.h"
 //#include "dac.h"
@@ -102,14 +103,27 @@ void start_task(void *pvParameters)
  * @param       pvParameters : 传入参数(未用到)
  * @retval      无
  */
+int16_t num_debug;
 void lv_demo_task(void *pvParameters)
 {
     pvParameters = pvParameters;
 //		setup_ui(&guider_ui);
 //		events_init(&guider_ui);
+				DrawTestPage("英文显示测试");
+
     while(1)
     {
-        //lv_timer_handler(); /* LVGL计时器 */
+	POINT_COLOR=RED;
+	BACK_COLOR=WHITE;
+	LCD_ShowString(10,30,200,12,12,"12345");
+	LCD_ShowString(10,45,200,12,12,"12345");
+	POINT_COLOR=GREEN;
+	LCD_ShowString(10,60,200,16,16,"12345");
+	LCD_ShowString(10,80,200,16,16,"12345");
+	POINT_COLOR=BLUE;
+	LCD_ShowNumber(10, 100, rx_buffer[0], 10, 16);   // 显示 -12345
+
+			//lv_timer_handler(); /* LVGL计时器 */
         vTaskDelay(5);
     }
 }
@@ -125,32 +139,37 @@ uint8_t key_val,key_old,key_down,key_up;
 void rs485_task(void *pvParameters)
 {
     pvParameters = pvParameters;
-    
+    				//RS485_Master_Send_Turn(0x01,3);
+
     while(1)
     {
-	 	LCD_Init();			   	//
-		LCD_Display_Dir(USE_LCM_DIR);		 		//
+					//RS485_Master_Send_Turn(0x01,3);
 
-		LCD_Clear(BLACK);		
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-					main_test("IC:ST7789");		  //测试主页
-		Color_Test();								//纯色测试
-				key_val=read_key();
-				key_down= key_val&(key_val^key_old);
-				key_up=~key_val&(key_val^key_old);
-				key_old=key_val;
+//				key_val=read_key();
+//				key_down= key_val&(key_val^key_old);
+//				key_up=~key_val&(key_val^key_old);
+//				key_old=key_val;
+					uint8_t on_off = 1;
+
 				if(key_down==KEY_UP)
 				{
-					RS485_Master_Send_Turn(0x01,1);
+					on_off=1;
+					RS485_Master_Send_Turn(0x02, &on_off, 1);				
 				}
 				if(key_down==KEY_DOWN)
 				{
-					RS485_Master_Send_Turn(0x01,0);
+					on_off=0;
+					
+					RS485_Master_Send_Turn(0x02, &on_off, 1);	
 				}
-				if(key_down==KEY_LEFT)
+				if(key_down==KEY_RETURN)
 				{
-					RS485_Master_Send_Turn(0x01,3);
+					on_off=3;
+					RS485_Master_Send_Turn(0x02, &on_off, 1);	
+						//HAL_GPIO_WritePin(RS485_EN_GPIO_Port, RS485_EN_Pin, GPIO_PIN_RESET);
+
 				}
+				RS485_Master_Receive_Process();
         vTaskDelay(10);
 				HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,GPIO_PIN_RESET);
 
@@ -160,10 +179,10 @@ void rs485_task(void *pvParameters)
 
 uint8_t read_key()
 {
-//	
+	
 //    uint8_t temp = KEY_NONE;
 
-//    if (HAL_GPIO_ReadPin(KEY_1_GPIO_Port, KEY_1_Pin) == 0)
+//    if (HAL_GPIO_ReadPin(My_Key_GPIO_Port, My_Key_Pin) == 0)
 //        temp = KEY_RETURN;
 //    else if (HAL_GPIO_ReadPin(KEY_2_GPIO_Port, KEY_2_Pin) == 0)
 //        temp = KEY_MENU;
@@ -178,48 +197,69 @@ uint8_t read_key()
 //    else if (HAL_GPIO_ReadPin(KEY_7_GPIO_Port, KEY_7_Pin) == 0)
 //        temp = KEY_UP;
 
-//    return temp;
+ //   return temp;
 }
 
 
-//uint16_t Get_ADC(void)
-//{
-//    uint16_t adc_value = 0;
-
-//    // 1. 启动ADC转换
-//    HAL_ADC_Start(&hadc1);
-
-//    // 2. 等待转换完成
-//    if (HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY) == HAL_OK)
-//    {
-//        // 3. 获取转换结果
-//        adc_value = HAL_ADC_GetValue(&hadc1);
-//    }
-
-//    // 4. 停止ADC
-//    HAL_ADC_Stop(&hadc1);
-//		return adc_value;
-//}
-
-//void Current_Set()
-//{
-// 	dac_set=4095*((current/5.0f)/2.1f);
-//	  HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, dac_set);//(x/4096)*2.1v
-//    HAL_DAC_Start(&hdac, DAC_CHANNEL_1);
-//	 
 
 
-//}
-//void Lvgl_init()
-//{
-// 
-//	 	LCD_Init();			   	//
-//		LCD_Display_Dir(USE_LCM_DIR);		 		//
+ RS485_Frame_t *pHdr;
+// 接收处理函数
 
-//		LCD_Clear(WHITE);		
+/* ----------------------------------------------------------
+ * 2. 接收处理：按“头-len-data-checksum”方式解析
+ * ---------------------------------------------------------- */
+void RS485_Master_Receive_Process(void)
+{
+    if (!rx_done) return;
 
-//		lv_init();
-//		lv_port_disp_init();
+    /* 最小长度：固定头 5 字节 + 至少 1 字节 data + 1 字节 checksum */
+    if (rx_len < 7) goto frame_err;
 
+     pHdr = (RS485_Frame_t *)rx_buffer;
 
-//}
+    /* 2.1 帧头检查 */
+    if (pHdr->head != RS485_FRAME_HEAD) goto frame_err;
+
+    /* 2.2 长度检查 */
+    uint16_t expect_len = 5 + pHdr->len + 1;   /* 5固定 + data[len] + checksum */
+    if (rx_len != expect_len) goto frame_err;
+
+//    /* 2.3 校验和检查：校验范围 = 整个帧（除最后一个字节） */
+//    uint8_t calc_cs = RS485_CalcChecksum(rx_buffer, expect_len - 1);
+//    if (calc_cs != rx_buffer[expect_len - 1]) goto frame_err;
+
+    /* 2.4 命令分发 */
+    switch (pHdr->cmd)
+    {
+        case CMD_SET_PARAM:
+            if (pHdr->len >= 1)          /* 至少 1 字节参数 */
+            {
+                uint8_t param = rx_buffer[5];   /* data 起始位置 */
+                if (param == 1)
+                {
+                    
+                }
+                else if (param == 0)
+                {
+                }
+                else if (param == 3)
+                {
+                }
+            }
+            break;
+
+        case CMD_READ_DATA:
+            /* TODO：按协议回复 */
+            break;
+
+        default:
+            break;
+    }
+
+frame_err:
+    /* 3. 重新启动下一轮 DMA 接收 */
+    rx_done = 0;
+    rx_len  = 0;
+    HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
+}

@@ -16,6 +16,7 @@ typedef enum {
 } KeyEnum;
 void lvgl_task(void);
 void Lvgl_init(void);
+void RS485_Master_Receive_Process(void) ;
 
 
 #endif

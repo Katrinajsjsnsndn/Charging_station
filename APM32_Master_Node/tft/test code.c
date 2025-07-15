@@ -289,3 +289,52 @@ void Switch_test(void)
 //	delay_ms(1500);
 //}
 
+/* 把整数转成字符串，返回指针指向静态缓冲区 */
+char* NumToStr(int32_t val, uint8_t base)
+{
+    static char buf[35];        // 32 位二进制最长 32+0b+'\0'=35
+    char *p = buf + sizeof(buf) - 1;
+    uint8_t neg = 0;
+
+    *p = '\0';
+
+    /* 十进制负号处理 */
+    if (base == 10 && val < 0)
+    {
+        neg = 1;
+        val = -val;
+    }
+
+    /* 进制转换 */
+    switch (base)
+    {
+    case 10:                               /* 十进制 */
+        do { *--p = val % 10 + '0'; } while (val /= 10);
+        if (neg) *--p = '-';
+        break;
+
+    case 16:                               /* 十六进制，大写 */
+        *--p = 'x';
+        *--p = '0';
+        do {
+            uint8_t n = val & 0x0F;
+            *--p = (n > 9) ? (n - 10 + 'A') : (n + '0');
+        } while (val >>= 4);
+        break;
+
+    case 2:                                /* 二进制 */
+        *--p = 'b';
+        *--p = '0';
+        do { *--p = (val & 1) + '0'; } while (val >>= 1);
+        break;
+
+    default:
+        return (char*)"ERR";
+    }
+    return p;
+}
+/* 在 (x,y) 处显示整数，base=10/16/2 */
+void LCD_ShowNumber(uint16_t x, uint16_t y, int32_t val, uint8_t base, uint8_t size)
+{
+    LCD_ShowString(x, y, 320, 240, size, (uint8_t*)NumToStr(val, base));
+}

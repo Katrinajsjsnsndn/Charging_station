@@ -129,9 +129,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		RS485_Master_Receive_Process();
+		Data_Feedback();
+
 		read_adc_1=Get_ADC(1);
 		read_adc_2=Get_ADC(2);
-
+		HAL_Delay(10);
 		//check_device(0XC0);
   }
   /* USER CODE END 3 */

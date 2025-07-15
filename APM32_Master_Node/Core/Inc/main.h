@@ -44,6 +44,7 @@ extern uint8_t rx_len;
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
+extern DMA_HandleTypeDef hdma_usart2_rx;
 
 /* USER CODE END EC */
 

@@ -14,6 +14,7 @@ void Rotate_Test(void);					//旋转测试
 void Color_Test(void);					//纯色测试
 void Switch_test(void);					//显示开关测试
 void Read_Test(void);						//读颜色测试
+void LCD_ShowNumber(uint16_t x, uint16_t y, int32_t val, uint8_t base, uint8_t size);
 
 
 #endif

@@ -107,21 +107,20 @@ int main(void)
 //	HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
 
 //		__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
-		//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
-	HAL_Delay(10);
+//	HAL_GPIO_WritePin(RS485_EN_GPIO_Port, RS485_EN_Pin, GPIO_PIN_SET);
+//	
+		HAL_Delay(10);
 	LCD_Init();			   	//初始化LCD 	
 	LCD_Display_Dir(USE_LCM_DIR);		 		//屏幕方向
 	LCD_Clear(WHITE);		//清屏
-	  HAL_GPIO_WritePin(GPIOC, DB13_Pin|DB14_Pin|DB15_Pin|DB0_Pin
-                          |DB1_Pin|DB2_Pin|DB3_Pin|DB4_Pin
-                          |DB5_Pin|DB6_Pin|DB7_Pin|DB8_Pin
-                          |DB9_Pin|DB10_Pin|DB11_Pin|DB12_Pin, GPIO_PIN_RESET);
 
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
 
-	main_test("IC:ST7789");		  //测试主页
-	Color_Test();								//纯色测试
-	
+
+	  
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
+
+	lvgl_task();
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
@@ -184,6 +183,27 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+void USART2_IRQHandler(void)
+{
+  /* USER CODE BEGIN USART2_IRQn 0 */
+  /* USER CODE END USART2_IRQn 0 */
+  /* USER CODE BEGIN USART2_IRQn 1 */
+	/* 1. 先判断 IDLE */
+    if (__HAL_UART_GET_FLAG(&huart2, UART_FLAG_IDLE) != RESET)
+    {
+        __HAL_UART_CLEAR_IDLEFLAG(&huart2);   // 读 SR + 读 DR
+
+        /* 2. 停 DMA，计算长度 */
+        HAL_UART_DMAStop(&huart2);
+        rx_len = BUFFER_SIZE - __HAL_DMA_GET_COUNTER(&hdma_usart2_rx);
+        rx_done = 1;
+
+        /* 3. 重新启动 DMA 接收 */
+        HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
+    }
+
+  /* USER CODE END USART2_IRQn 1 */
+}
 /* USER CODE END 4 */
 
 /**

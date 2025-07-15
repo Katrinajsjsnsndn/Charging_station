@@ -27,16 +27,17 @@
 #define RS485_MAX_FRAME_LEN (6 + RS485_MAX_DATA_LEN)
 
 typedef struct {
-    uint8_t head;
-    uint8_t addr_to;
-    uint8_t addr_from;
-    uint8_t cmd;
-    uint8_t len;
-    uint8_t data;
-    uint8_t checksum;
+    uint8_t head;      // 帧头
+    uint8_t addr_to;   // 目标地址
+    uint8_t addr_from; // 源地址
+    uint8_t cmd;       // 命令
+    uint8_t len;       // 后续 data[] 的字节数
+    uint8_t data[];    // 柔性数组：实际数据紧跟其后
+    /* checksum 紧跟在 data[] 后面，不放在结构体里 */
 } RS485_Frame_t;
 
 uint8_t RS485_CalcChecksum(const uint8_t *buf, uint8_t len);
-void RS485_Master_Send_Turn(uint8_t slave_addr,uint8_t device_switch);
-
+void RS485_Master_Send_Turn(uint8_t slave_addr,
+                            const uint8_t *p_data,
+                            uint8_t data_len);
 #endif
