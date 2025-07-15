@@ -12,46 +12,54 @@ uint16_t BACK_COLOR=0xFFFF;  //背景色
 //管理LCD重要参数
 //默认为竖屏
 _lcd_dev lcddev;
-
-    //当mdk -O1时间优化时需要设置
-//延时i
-void opt_delay(uint8_t i)
-{
-	while(i--);
-}
-
-// 延时函数
-void delay_ms(uint32_t ms)
-{
-    HAL_Delay(ms);
-}
-
+	 					    
 //写寄存器函数
 //data:寄存器值
+void delay_ms(uint16_t nms)
+{	 		  	  
+	HAL_Delay(nms);
+} 
 void LCD_WR_REG(uint16_t data)
-{ 
- 	LCD_CS_CLR; 
-	LCD_RS_CLR;//写地址  
+{
+		uint8_t i;	
 
-	DATAOUT(data);
-	opt_delay(100);
-	LCD_WR_CLR; 
-	LCD_WR_SET; 
- 	LCD_CS_SET;   
+		HAL_GPIO_WritePin(SPI_CS_GPIO_PORT,SPI_CS_PIN,0);//SPI_CS = 0;		
+		HAL_GPIO_WritePin(SPI_DC_GPIO_PORT,SPI_DC_PIN,0);//SPI_DC = 0;//RS=0 命令
+		
+		for(i=0; i<8; i++)
+		{
+			if (data & 0x80)
+			 HAL_GPIO_WritePin(SPI_SDI_GPIO_PORT,SPI_SDI_PIN,1);//SPI_SDI = 1;
+			else
+			 HAL_GPIO_WritePin(SPI_SDI_GPIO_PORT,SPI_SDI_PIN,0);//SPI_SDI = 0;
+			
+			data <<= 1;		 
+			HAL_GPIO_WritePin(SPI_SCK_GPIO_PORT,SPI_SCK_PIN,0);//SPI_SCK = 0;		  
+			HAL_GPIO_WritePin(SPI_SCK_GPIO_PORT,SPI_SCK_PIN,1);//SPI_SCK = 1;
+		}
+		HAL_GPIO_WritePin(SPI_CS_GPIO_PORT,SPI_CS_PIN,1);//SPI_CS=1;				
 }
 //写数据函数
 //data:寄存器值
 void LCD_WR_DATA(uint16_t data)
 {
-	LCD_CS_CLR;
-	LCD_RS_SET;
-
-	DATAOUT(data);
-		opt_delay(100);
-
-	LCD_WR_CLR;
-	LCD_WR_SET;
-	LCD_CS_SET;
+		uint8_t i;
+	
+		HAL_GPIO_WritePin(SPI_CS_GPIO_PORT,SPI_CS_PIN,0);//SPI_CS = 0;		
+		HAL_GPIO_WritePin(SPI_DC_GPIO_PORT,SPI_DC_PIN,1);//SPI_DC = 1;//RS=1 数据
+		
+		for(i=0; i<8; i++)
+		{
+			if (data & 0x80)
+			 		HAL_GPIO_WritePin(SPI_SDI_GPIO_PORT,SPI_SDI_PIN,1);//SPI_SDI = 1;
+			else
+			  HAL_GPIO_WritePin(SPI_SDI_GPIO_PORT,SPI_SDI_PIN,0);//SPI_SDI = 0;
+			
+			data <<= 1;		 
+			HAL_GPIO_WritePin(SPI_SCK_GPIO_PORT,SPI_SCK_PIN,0);//SPI_SCK = 0;		  
+			HAL_GPIO_WritePin(SPI_SCK_GPIO_PORT,SPI_SCK_PIN,1);//SPI_SCK = 1;
+		}
+		HAL_GPIO_WritePin(SPI_CS_GPIO_PORT,SPI_CS_PIN,1);//SPI_CS=1;			
 }
 
 //写寄存器
@@ -72,9 +80,31 @@ void LCD_WriteRAM_Prepare(void)
 //RGB_Code:颜色值
 void LCD_WriteRAM(uint16_t RGB_Code)
 {							    
-	LCD_WR_DATA(RGB_Code);//写十六位GRAM
+//写十六位GRAM
+  uint8_t i;
+	HAL_GPIO_WritePin(SPI_CS_GPIO_PORT,SPI_CS_PIN,0);//SPI_CS = 0;
+	HAL_GPIO_WritePin(SPI_DC_GPIO_PORT,SPI_DC_PIN,1);//SPI_DC = 1;
+	
+	for(i=0; i<16; i++)
+	{
+		if (RGB_Code & 0x8000)
+		 HAL_GPIO_WritePin(SPI_SDI_GPIO_PORT,SPI_SDI_PIN,1);//SPI_SDI = 1;
+		else
+		 HAL_GPIO_WritePin(SPI_SDI_GPIO_PORT,SPI_SDI_PIN,0);//SPI_SDI = 0;
+		
+		RGB_Code <<= 1;		 
+			HAL_GPIO_WritePin(SPI_SCK_GPIO_PORT,SPI_SCK_PIN,0);//SPI_SCK = 0;		  
+			HAL_GPIO_WritePin(SPI_SCK_GPIO_PORT,SPI_SCK_PIN,1);//SPI_SCK = 1;
+	} 
+		HAL_GPIO_WritePin(SPI_CS_GPIO_PORT,SPI_CS_PIN,1);//SPI_CS=1;			
 }
 
+//当mdk -O1时间优化时需要设置
+//延时i
+void opt_delay(uint8_t i)
+{
+	while(i--);
+}
 
 //LCD开启显示
 void LCD_DisplayOn(void)
@@ -124,8 +154,8 @@ void LCD_Display_Dir(uint8_t dir)
 	if(dir==0||dir==1)			//竖屏
 	{
 			lcddev.dir=0;	//竖屏
-			lcddev.width=320;
-			lcddev.height=240;
+			lcddev.width=240;
+			lcddev.height=320;
 
 			lcddev.wramcmd=0X2C;
 			lcddev.setxcmd=0X2A;
@@ -199,209 +229,168 @@ void LCD_Set_Window(uint16_t sx,uint16_t sy,uint16_t width,uint16_t height)
 }
 //初始化lcd
 void LCD_Init(void)
-{	
-	
-	
+{
 
-	 LCD_CS_SET ;
-	 LCD_RS_SET;
-	 LCD_WR_SET ;
-	 LCD_RD_SET ;
-		LCD_RST_CLR;
-		delay_ms(100);
-		LCD_RST_SET;
+//	RCC->APB2ENR|=1<<2;//先使能外设PORTA时钟
+// 	RCC->APB2ENR|=1<<3;//先使能外设PORTB时钟
+// 	RCC->APB2ENR|=1<<4;//先使能外设PORTC时钟
 
-		delay_ms(120);                //ms            
-		LCD_WR_REG(0x11);
-	 
-    delay_ms(120); 
- 
-    LCD_WR_REG(0x36);
-    LCD_WR_DATA(0x00);
- 
- 
-    LCD_WR_REG(0x3A);
-    LCD_WR_DATA(0X55);//55 66
- 
-    LCD_WR_REG(0xB2);
-    LCD_WR_DATA(0x0C);
-    LCD_WR_DATA(0x0C);
-    LCD_WR_DATA(0x00);
-    LCD_WR_DATA(0x33);
-    LCD_WR_DATA(0x33);
- 
-    LCD_WR_REG(0xB7);
-    LCD_WR_DATA(0x35);
- 
-    LCD_WR_REG(0xBB); /* vcom */
-    LCD_WR_DATA(0x32);  /* 30 */
- 
-    LCD_WR_REG(0xC0);
-    LCD_WR_DATA(0x0C);
- 
-    LCD_WR_REG(0xC2);
-    LCD_WR_DATA(0x01);
- 
-    LCD_WR_REG(0xC3); /* vrh */
-    LCD_WR_DATA(0x10);  /* 17 0D */
- 
-    LCD_WR_REG(0xC4); /* vdv */
-    LCD_WR_DATA(0x20);  /* 20 */
- 
-    LCD_WR_REG(0xC6);
-    LCD_WR_DATA(0x0f);
- 
-    LCD_WR_REG(0xD0);
-    LCD_WR_DATA(0xA4); 
-    LCD_WR_DATA(0xA1); 
- 
-    LCD_WR_REG(0xE0); /* Set Gamma  */
-    LCD_WR_DATA(0xd0);
-    LCD_WR_DATA(0x00);
-    LCD_WR_DATA(0x02);
-    LCD_WR_DATA(0x07);
-    LCD_WR_DATA(0x0a);
-    LCD_WR_DATA(0x28);
-    LCD_WR_DATA(0x32);
-    LCD_WR_DATA(0X44);
-    LCD_WR_DATA(0x42);
-    LCD_WR_DATA(0x06);
-    LCD_WR_DATA(0x0e);
-    LCD_WR_DATA(0x12);
-    LCD_WR_DATA(0x14);
-    LCD_WR_DATA(0x17);
- 
- 
-    LCD_WR_REG(0XE1);  /* Set Gamma */
-    LCD_WR_DATA(0xd0);
-    LCD_WR_DATA(0x00);
-    LCD_WR_DATA(0x02);
-    LCD_WR_DATA(0x07);
-    LCD_WR_DATA(0x0a);
-    LCD_WR_DATA(0x28);
-    LCD_WR_DATA(0x31);
-    LCD_WR_DATA(0x54);
-    LCD_WR_DATA(0x47);
-    LCD_WR_DATA(0x0e);
-    LCD_WR_DATA(0x1c);
-    LCD_WR_DATA(0x17);
-    LCD_WR_DATA(0x1b); 
-    LCD_WR_DATA(0x1e);
- 
- 
-    LCD_WR_REG(0x2A);
-    LCD_WR_DATA(0x00);
-    LCD_WR_DATA(0x00);
-    LCD_WR_DATA(0x00);
-    LCD_WR_DATA(0xef);
- 
-    LCD_WR_REG(0x2B);
-    LCD_WR_DATA(0x00);
-    LCD_WR_DATA(0x00);
-    LCD_WR_DATA(0x01);
-    LCD_WR_DATA(0x3f);
- 
-    LCD_WR_REG(0x29); /* display on */
+//	RCC->APB2ENR|=1<<0;    //开启辅助时钟
+//	JTAG_Set(SWD_ENABLE);  //开启SWD
+//	
+//	GPIOA->CRL&=0XFFFFF0FF;
+//	GPIOA->CRL|=0X00000300;//LED(背光开关) = PA2
+//	GPIOA->CRH&=0X0FF00FFF;
+//	GPIOA->CRH|=0X30038000;//SPI_SDO = PA11  CS = PA12   DC = PA15
+//	GPIOA->ODR|=0X9804;    //IO上拉
+//	
+//	GPIOC->CRH&=0X000FFFFF;
+//	GPIOC->CRH|=0X33300000;//SDI = PC13  SCK = PC14  RST = PC15 	
+//	GPIOC->ODR|=0XE000;    //IO上拉
+//	
+
+	
+	HAL_GPIO_WritePin(SPI_RST_GPIO_PORT,SPI_RST_PIN,1);//SPI_RST=1;
+	delay_ms(1);
+	HAL_GPIO_WritePin(SPI_RST_GPIO_PORT,SPI_RST_PIN,0);
+	delay_ms(10);
+	HAL_GPIO_WritePin(SPI_RST_GPIO_PORT,SPI_RST_PIN,1);//SPI_RST=1;
+	delay_ms(120);  
+
+
+//************* Start Initial Sequence **********//
+LCD_WR_REG(0x11);
+delay_ms(120); //Delay 120ms
+//--------display and color format setting-----------//
+LCD_WR_REG(0x36);
+LCD_WR_DATA(0x00);
+LCD_WR_REG(0x3a);
+LCD_WR_DATA(0x05);
+//--------ST7789V Frame rate setting------------//
+LCD_WR_REG(0xb2);
+LCD_WR_DATA(0x0c);
+LCD_WR_DATA(0x0c);
+LCD_WR_DATA(0x00);
+LCD_WR_DATA(0x33);
+LCD_WR_DATA(0x33);
+LCD_WR_REG(0xb7);
+LCD_WR_DATA(0x35);
+//-----------ST7789V Power setting---------------//
+LCD_WR_REG(0xbb);
+LCD_WR_DATA(0x28);
+LCD_WR_REG(0xc0);
+LCD_WR_DATA(0x2c);
+LCD_WR_REG(0xc2);
+LCD_WR_DATA(0x01);
+LCD_WR_REG(0xc3);
+LCD_WR_DATA(0x0b);
+LCD_WR_REG(0xc4);
+LCD_WR_DATA(0x20);
+LCD_WR_REG(0xc6);
+LCD_WR_DATA(0x0f);
+LCD_WR_REG(0xd0);
+LCD_WR_DATA(0xa4);
+LCD_WR_DATA(0xa1);
+//------------ST7789V gamma setting-------------//
+LCD_WR_REG(0xe0);
+LCD_WR_DATA(0xd0);
+LCD_WR_DATA(0x01);
+LCD_WR_DATA(0x08);
+LCD_WR_DATA(0x0f);
+LCD_WR_DATA(0x11);
+LCD_WR_DATA(0x2a);
+LCD_WR_DATA(0x36);
+LCD_WR_DATA(0x55);
+LCD_WR_DATA(0x44);
+LCD_WR_DATA(0x3a);
+LCD_WR_DATA(0x0b);
+LCD_WR_DATA(0x06);
+LCD_WR_DATA(0x11);
+LCD_WR_DATA(0x20);
+LCD_WR_REG(0xe1);
+LCD_WR_DATA(0xd0);
+LCD_WR_DATA(0x02);
+LCD_WR_DATA(0x07);
+LCD_WR_DATA(0x0a);
+LCD_WR_DATA(0x0b);
+LCD_WR_DATA(0x18);
+LCD_WR_DATA(0x34);
+LCD_WR_DATA(0x43);
+LCD_WR_DATA(0x4a);
+LCD_WR_DATA(0x2b);
+LCD_WR_DATA(0x1b);
+LCD_WR_DATA(0x1c);
+LCD_WR_DATA(0x22);
+LCD_WR_DATA(0x1f);
+LCD_WR_REG(0x29);
 
 } 
-uint16_t DATAIN(void) {
-    uint16_t data = 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_15) ? 0x8000 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_14) ? 0x4000 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_13) ? 0x2000 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_12) ? 0x1000 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_11) ? 0x0800 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_10) ? 0x0400 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_9) ? 0x0200 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_8) ? 0x0100 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_7) ? 0x0080 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_6) ? 0x0040 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_5) ? 0x0020 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_4) ? 0x0010 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_3) ? 0x0008 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_2) ? 0x0004 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_1) ? 0x0002 : 0;
-    data |= HAL_GPIO_ReadPin(DATA_PORT, GPIO_PIN_0) ? 0x0001 : 0;
-    return data;
-}
-//读LCD数据
-//返回值:读到的值
-uint16_t LCD_RD_DATA(void)
-{										   
-		uint16_t t;
-    // 将 GPIOC 的 PC0~PC15 配置为上拉输入模式
-    GPIOC->CRL = 0x88888888; // PC0~PC7 上拉输入
-    GPIOC->CRH = 0x88888888; // PC8~PC15 上拉输入
-    GPIOC->ODR = 0x0000;     // 全部输出低电平（虽然在输入模式下无效，但保持一致）
 
-    LCD_RS_SET;  // 设置为读取数据模式
-    LCD_CS_CLR;  // 选中 LCD
-    LCD_RD_CLR;  // 拉低 RD 信号，开始读取
-    t = DATAIN();  // 读取数据
-    LCD_RD_SET;  // 恢复 RD 信号
-    LCD_CS_SET;  // 取消选中 LCD
 
-    // 将 GPIOC 的 PC0~PC15 恢复为上拉输出模式
-    GPIOC->CRL = 0x33333333; // PC0~PC7 上拉输出
-    GPIOC->CRH = 0x33333333; // PC8~PC15 上拉输出
-    GPIOC->ODR = 0xFFFF;     // 全部输出高电平
-
-    return t;  // 返回读取的数据
-}
-
-//读显示屏 ID
-uint16_t LCD_Read_ID(uint8_t reg)
-{
-	LCD_WR_REG(reg);
-	LCD_RD_DATA(); 				//dummy read 	
-	LCD_RD_DATA();   	    	//读到0X00
-	lcddev.id=LCD_RD_DATA();   	//读取85								   
-	lcddev.id<<=8;
-	lcddev.id|=LCD_RD_DATA();  	//读取52 	
-	return lcddev.id;
-}
 
 //读取个某点的颜色值	 
 //x,y:坐标
-//返回值:此点的颜色
-uint16_t LCD_ReadPoint(uint16_t x,uint16_t y)
-{
- 	uint16_t r,g,b;
-	if(x>=lcddev.width||y>=lcddev.height)return 0;	//超过了范围,直接返回		   
-	LCD_SetCursor(x,y);
-	LCD_WR_REG(0X2E);//发送读GRAM指令
-	
-	GPIOB->CRL=0X88888888; 							//PB0-7  上拉输入
-	GPIOB->CRH=0X88888888; 							//PB8-15 上拉输入
-	GPIOB->ODR=0XFFFF;     							//全部输出高
+////返回值:此点的颜色
+//uint16_t LCD_ReadPoint(uint16_t x,uint16_t y)
+//{
+//	uint8_t i,r,g,b,reg=0x2e;
+// 	uint16_t color;
+//	if(x>=lcddev.width||y>=lcddev.height)return 0;	//超过了范围,直接返回		   
+//	LCD_SetCursor(x,y);
+//	SPI_CS = 0;		
+//	SPI_DC = 0;
+//		
+//		for(i=0; i<8; i++)
+//		{
+//			if (reg & 0x80)
+//			 SPI_SDI = 1;
+//			else
+//			 SPI_SDI = 0;
+//			
+//			reg <<= 1;		 
+//			SPI_SCK = 0;  
+//			SPI_SCK = 1;	
+//		}
+//		
+//		
 
-	LCD_RS_SET;
-	LCD_CS_CLR;	    
-	//读取数据(读GRAM时,第一次为假读)	
-	LCD_RD_CLR;		
-	opt_delay(2);//延时	
- 	r=DATAIN();  										//实际坐标颜色 
-	LCD_RD_SET;
 
- 	//dummy READ
-	LCD_RD_CLR;					   
-	opt_delay(2);//延时					   
- 	r=DATAIN();  	//实际坐标颜色
-	LCD_RD_SET;
-	 
-	LCD_RD_CLR;					   
-	opt_delay(2);//延时			   
-	b=DATAIN();//读取蓝色值  	  
-	LCD_RD_SET;
-	g=r&0XFF;//第一次读取的是RG的值,R在前,G在后,各占8位
-	g<<=8;
+//		for(i=0; i<8; i++)							//第一次空读 后三次分别为R G B
+//		{
+//			SPI_SCK = 0;		 	
+//			SPI_SCK = 1;			
+//		}
 
-	LCD_CS_SET;
-	GPIOB->CRL=0X33333333; 		//PB0-7  上拉输出
-	GPIOB->CRH=0X33333333; 		//PB8-15 上拉输出
-	GPIOB->ODR=0XFFFF;    		//全部输出高  
-	return (((r>>11)<<11)|((g>>10)<<5)|(b>>11));//公式转换一下
-}		
+
+//		for(i=0; i<8; i++)
+//		{
+//			SPI_SCK = 0;		r=r << 1 | SPI_SDO; 	
+//			SPI_SCK = 1;			
+//		}
+
+
+
+//		for(i=0; i<8; i++)
+//		{
+//			SPI_SCK = 0;		g=g << 1 | SPI_SDO; 	
+//			SPI_SCK = 1;			
+//		}
+
+
+//		for(i=0; i<8; i++)
+//		{
+//			SPI_SCK = 0;		b=b << 1 | SPI_SDO; 	
+//			SPI_SCK = 1;			
+//		}		
+//		
+//		color = ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3);
+//		
+//		
+//		SPI_CS=1;	
+
+//		
+//return color;
+//}		
   
 //清屏函数
 //color:要清屏的填充色
@@ -974,5 +963,42 @@ void lcd_draw_bline(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2,uint8_t s
 		} 
 	}  
 }
+static uint8_t spi_read_byte(void)
+{
+    uint8_t i, data = 0;
+
+    for (i = 0; i < 8; i++)
+    {
+        HAL_GPIO_WritePin(SPI_SCK_GPIO_PORT, SPI_SCK_PIN, GPIO_PIN_RESET);  // 低
+        data <<= 1;
+        if (HAL_GPIO_ReadPin(SPI_SDO_GPIO_PORT, SPI_SDO_PIN) == GPIO_PIN_SET)
+            data |= 0x01;
+        HAL_GPIO_WritePin(SPI_SCK_GPIO_PORT, SPI_SCK_PIN, GPIO_PIN_SET);    // 高，采样
+    }
+    return data;
+}
+uint16_t id_order=0x04;
+uint32_t LCD_Read_ID(void)
+{
+    uint8_t id[3];
+    uint32_t id32;
+
+    /* 初始化 SDO 为输入 */
 
 
+
+ LCD_WR_REG(0x04);
+		HAL_GPIO_WritePin(SPI_CS_GPIO_PORT,SPI_CS_PIN,0);//SPI_CS=1;				
+
+    /* 2. 进入数据阶段（DC = 1），连续读 3 字节 */
+    HAL_GPIO_WritePin(SPI_DC_GPIO_PORT, SPI_DC_PIN, GPIO_PIN_SET);     // DC=1 数据
+
+    id[0] = spi_read_byte();   /* dummy 0x00 */
+    id[1] = spi_read_byte();   /* manufacturer ID，通常是 0x85 */
+    id[2] = spi_read_byte();   /* version/driver ID */
+
+    HAL_GPIO_WritePin(SPI_CS_GPIO_PORT, SPI_CS_PIN, GPIO_PIN_SET);     // CS = 1
+
+    id32 = ((uint32_t)id[0] << 16) | ((uint32_t)id[1] << 8) | id[2];
+    return id32;
+}

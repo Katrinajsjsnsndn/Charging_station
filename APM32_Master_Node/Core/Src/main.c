@@ -69,7 +69,7 @@ uint16_t temp;
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+	uint32_t id ;
 /* USER CODE END 0 */
 
 /**
@@ -104,29 +104,24 @@ int main(void)
   MX_DMA_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-	HAL_GPIO_WritePin(GPIOB, LED_Pin, GPIO_PIN_RESET);
 //	HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
 
 //		__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
-		LCD_Init();			 
-			HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,1);
-		LCD_Display_Dir(USE_LCM_DIR);		 		//
+		//HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+	HAL_Delay(10);
+	LCD_Init();			   	//初始化LCD 	
+	LCD_Display_Dir(USE_LCM_DIR);		 		//屏幕方向
+	LCD_Clear(WHITE);		//清屏
+	  HAL_GPIO_WritePin(GPIOC, DB13_Pin|DB14_Pin|DB15_Pin|DB0_Pin
+                          |DB1_Pin|DB2_Pin|DB3_Pin|DB4_Pin
+                          |DB5_Pin|DB6_Pin|DB7_Pin|DB8_Pin
+                          |DB9_Pin|DB10_Pin|DB11_Pin|DB12_Pin, GPIO_PIN_RESET);
 
-		LCD_Clear(BLACK);
-			HAL_GPIO_WritePin(GPIOB,GPIO_PIN_7,1);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
 
-		temp=LCD_Read_ID(0x04);
-		main_test("IC:ST7789V");		//������ҳ
-		Color_Test();								//��ɫ����
-	Read_Test();								//��ID ��ɫ ����
-	FillRec_Test();							//ͼ�β���
-	English_Font_test();				//Ӣ�Ĳ���
-	Chinese_Font_test();				//���Ĳ���
-	Pic_test();									//ͼƬ����
-	Switch_test();							//��ʾ���ز���
-	Rotate_Test();							//��ת����
-
-//	 		lvgl_task();
+	main_test("IC:ST7789");		  //测试主页
+	Color_Test();								//纯色测试
+	
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

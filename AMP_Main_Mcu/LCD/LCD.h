@@ -33,21 +33,23 @@ extern uint16_t  BACK_COLOR; //背景颜色.默认为白色
 ////////////////////////////////////////////////////////////////////
 //-----------------LCD端口定义---------------- 
 
-// 定义LCD控制引脚
-#define SPI_CS_PIN GPIO_PIN_9
+
+// 定义LCD控制引脚		
+#define SPI_CS_PIN GPIO_PIN_15
 #define SPI_CS_GPIO_PORT GPIOB
-#define SPI_SDI_PIN GPIO_PIN_7
+#define SPI_SDI_PIN GPIO_PIN_12
 #define SPI_SDI_GPIO_PORT GPIOB
-#define SPI_SDO_PIN GPIO_PIN_4
-#define SPI_SDO_GPIO_PORT GPIOB
-#define SPI_RST_PIN GPIO_PIN_3
+#define SPI_SDO_PIN GPIO_PIN_6
+#define SPI_SDO_GPIO_PORT GPIOA
+#define SPI_RST_PIN GPIO_PIN_14
 #define SPI_RST_GPIO_PORT GPIOB
-#define SPI_SCK_PIN GPIO_PIN_6
+#define SPI_SCK_PIN GPIO_PIN_1
 #define SPI_SCK_GPIO_PORT GPIOB
-#define SPI_DC_PIN GPIO_PIN_8
+#define SPI_DC_PIN GPIO_PIN_13
 #define SPI_DC_GPIO_PORT GPIOB
-#define LCD_LED_PIN GPIO_PIN_5
-#define LCD_LED_GPIO_PORT GPIOB
+#define LCD_LED_PIN GPIO_PIN_7
+#define LCD_LED_GPIO_PORT GPIOA
+
 	 
 
 //画笔颜色

@@ -5,7 +5,7 @@
 
 /////////////////////////////////////用户配置区///////////////////////////////////	 
 //支持横竖屏快速定义切换
-#define USE_LCM_DIR  	  0   	//定义液晶屏顺时针旋转方向 	0-0度旋转，1-180度旋转，2-270度旋转，3-90度旋转
+#define USE_LCM_DIR  	  3   	//定义液晶屏顺时针旋转方向 	0-0度旋转，1-180度旋转，2-270度旋转，3-90度旋转
 #define USE_TP_TYPE   	CTP 	//定义触摸类型  CTP = 电容模式 , RTP = 电阻模式
 
 #define CTP 0X80		//电容模式
@@ -33,69 +33,24 @@ extern uint16_t  BACK_COLOR; //背景颜色.默认为白色
 ////////////////////////////////////////////////////////////////////
 //-----------------LCD端口定义---------------- 
 
-// 定义LCD控制引脚
-#define SPI_CS_PIN GPIO_PIN_4
-#define SPI_CS_GPIO_PORT GPIOA
-#define SPI_SDI_PIN GPIO_PIN_5
+// 定义LCD控制引脚		
+#define SPI_CS_PIN GPIO_PIN_15
+#define SPI_CS_GPIO_PORT GPIOB
+#define SPI_SDI_PIN GPIO_PIN_12
 #define SPI_SDI_GPIO_PORT GPIOB
-#define SPI_SDO_PIN GPIO_PIN_4
-#define SPI_SDO_GPIO_PORT GPIOB
-#define SPI_RST_PIN GPIO_PIN_3
+#define SPI_SDO_PIN GPIO_PIN_6
+#define SPI_SDO_GPIO_PORT GPIOA
+#define SPI_RST_PIN GPIO_PIN_14
 #define SPI_RST_GPIO_PORT GPIOB
-#define SPI_SCK_PIN GPIO_PIN_5
-#define SPI_SCK_GPIO_PORT GPIOA
-#define SPI_DC_PIN GPIO_PIN_8
-#define SPI_DC_GPIO_PORT GPIOA
+#define SPI_SCK_PIN GPIO_PIN_1
+#define SPI_SCK_GPIO_PORT GPIOB
+#define SPI_DC_PIN GPIO_PIN_13
+#define SPI_DC_GPIO_PORT GPIOB
 #define LCD_LED_PIN GPIO_PIN_7
-#define LCD_LED_GPIO_PORT GPIOB
-
-// 定义控制宏
-#define LCD_CS_SET HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET)
-#define LCD_CS_CLR HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET)
-
-#define LCD_RS_SET HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET)
-#define LCD_RS_CLR  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET)
-
-#define LCD_WR_SET HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET)
-#define LCD_WR_CLR  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET)
-
-#define LCD_RD_SET HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET)
-#define LCD_RD_CLR  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET)
-
-#define LCD_RST_SET HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_SET)
-#define LCD_RST_CLR  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_3, GPIO_PIN_RESET)
-
-#define LCD_LED_ON()  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET)
-#define LCD_LED_OFF() HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_RESET)
+#define LCD_LED_GPIO_PORT GPIOA
 
 
 
-// 定义数据线端口和引脚
-#define DATA_PORT GPIOC
-#define DATA_PINS (GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | \
-                   GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | \
-                   GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15)
-
-// 定义数据输出和输入的宏
-#define DATAOUT(x) do { \
-    HAL_GPIO_WritePin(DATA_PORT, DATA_PINS, GPIO_PIN_RESET); \
-    if ((x) & 0x0001) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_0, GPIO_PIN_SET); \
-    if ((x) & 0x0002) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_1, GPIO_PIN_SET); \
-    if ((x) & 0x0004) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_2, GPIO_PIN_SET); \
-    if ((x) & 0x0008) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_3, GPIO_PIN_SET); \
-    if ((x) & 0x0010) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_4, GPIO_PIN_SET); \
-    if ((x) & 0x0020) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_5, GPIO_PIN_SET); \
-    if ((x) & 0x0040) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_6, GPIO_PIN_SET); \
-    if ((x) & 0x0080) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_7, GPIO_PIN_SET); \
-    if ((x) & 0x0100) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_8, GPIO_PIN_SET); \
-    if ((x) & 0x0200) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_9, GPIO_PIN_SET); \
-    if ((x) & 0x0400) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_10, GPIO_PIN_SET); \
-    if ((x) & 0x0800) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_11, GPIO_PIN_SET); \
-    if ((x) & 0x1000) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_12, GPIO_PIN_SET); \
-    if ((x) & 0x2000) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_13, GPIO_PIN_SET); \
-    if ((x) & 0x4000) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_14, GPIO_PIN_SET); \
-    if ((x) & 0x8000) HAL_GPIO_WritePin(DATA_PORT, GPIO_PIN_15, GPIO_PIN_SET); \
-} while(0)
 
 
 //画笔颜色
@@ -156,8 +111,9 @@ void LCD_Display_Dir(uint8_t dir); //设置LCD显示方向
 void lcd_draw_bline(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2,uint8_t size,uint16_t color);//画一条粗线
 void gui_fill_circle(uint16_t x0,uint16_t y0,uint16_t r,uint16_t color);//画实心圆
 void gui_draw_hline(uint16_t x0,uint16_t y0,uint16_t len,uint16_t color);//画水平线 电容触摸屏专有部分
-uint16_t LCD_Read_ID(uint8_t reg);//读ID
 uint16_t LCD_ReadPoint(uint16_t x,uint16_t y);//读取指定坐标颜色
+uint8_t LCD_RD_DATA(void);
+uint32_t LCD_Read_ID(void);
 
 
 

@@ -101,18 +101,30 @@ int main(void)
   MX_DMA_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+	HAL_Delay(10);
+	HAL_GPIO_WritePin(GPIOA,GPIO_PIN_7,1);//SPI_RST=1;
 
-	 	LCD_Init();			   	//
-		LCD_Display_Dir(USE_LCM_DIR);		 		//
+	LCD_Init();			   	//初始化LCD 	
+	LCD_Display_Dir(USE_LCM_DIR);		 		//屏幕方向
+	LCD_Clear(WHITE);		//清屏
 
-		LCD_Clear(WHITE);		
+	main_test("IC:ST7789");		  //测试主页
+	Color_Test();								//纯色测试
+	
+		FillRec_Test();							//图形测试
 
-//		lv_init();
-//		lv_port_disp_init();
-		 // ѭ������
-    //HAL_UART_Receive_DMA(&huart2, uart2_rx_buf, RX_BUF_SIZE);
-		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,0);
-		lvgl_task();
+	
+	
+	
+//	
+//	//Read_Test();								//读颜色测试
+//	English_Font_test();				//英文测试
+//	Chinese_Font_test();				//中文测试
+//	Pic_test();									//图片测试
+//	Switch_test();							//显示开关测试
+//	Rotate_Test();							//旋转测试
+//		HAL_GPIO_WritePin(GPIOA,GPIO_PIN_11,0);
+		//lvgl_task();
 
   /* USER CODE END 2 */
 

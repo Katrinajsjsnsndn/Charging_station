@@ -9,6 +9,7 @@
 #include "semphr.h"
 #include "rs485.h"
 #include "test code.h"
+#include "lcd.h"
 
 //#include "adc.h"
 //#include "dac.h"
@@ -127,7 +128,13 @@ void rs485_task(void *pvParameters)
     
     while(1)
     {
+	 	LCD_Init();			   	//
+		LCD_Display_Dir(USE_LCM_DIR);		 		//
 
+		LCD_Clear(BLACK);		
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
+					main_test("IC:ST7789");		  //≤‚ ‘÷˜“≥
+		Color_Test();								//¥ø…´≤‚ ‘
 				key_val=read_key();
 				key_down= key_val&(key_val^key_old);
 				key_up=~key_val&(key_val^key_old);
@@ -153,25 +160,25 @@ void rs485_task(void *pvParameters)
 
 uint8_t read_key()
 {
-	
-    uint8_t temp = KEY_NONE;
+//	
+//    uint8_t temp = KEY_NONE;
 
-    if (HAL_GPIO_ReadPin(KEY_1_GPIO_Port, KEY_1_Pin) == 0)
-        temp = KEY_RETURN;
-    else if (HAL_GPIO_ReadPin(KEY_2_GPIO_Port, KEY_2_Pin) == 0)
-        temp = KEY_MENU;
-    else if (HAL_GPIO_ReadPin(KEY_3_GPIO_Port, KEY_3_Pin) == 0)
-        temp = KEY_OK;
-    else if (HAL_GPIO_ReadPin(KEY_4_GPIO_Port, KEY_4_Pin) == 0)
-        temp = KEY_LEFT;
-    else if (HAL_GPIO_ReadPin(KEY_5_GPIO_Port, KEY_5_Pin) == 0)
-        temp = KEY_RIGHT;
-    else if (HAL_GPIO_ReadPin(KEY_6_GPIO_Port, KEY_6_Pin) == 0)
-        temp = KEY_DOWN;
-    else if (HAL_GPIO_ReadPin(KEY_7_GPIO_Port, KEY_7_Pin) == 0)
-        temp = KEY_UP;
+//    if (HAL_GPIO_ReadPin(KEY_1_GPIO_Port, KEY_1_Pin) == 0)
+//        temp = KEY_RETURN;
+//    else if (HAL_GPIO_ReadPin(KEY_2_GPIO_Port, KEY_2_Pin) == 0)
+//        temp = KEY_MENU;
+//    else if (HAL_GPIO_ReadPin(KEY_3_GPIO_Port, KEY_3_Pin) == 0)
+//        temp = KEY_OK;
+//    else if (HAL_GPIO_ReadPin(KEY_4_GPIO_Port, KEY_4_Pin) == 0)
+//        temp = KEY_LEFT;
+//    else if (HAL_GPIO_ReadPin(KEY_5_GPIO_Port, KEY_5_Pin) == 0)
+//        temp = KEY_RIGHT;
+//    else if (HAL_GPIO_ReadPin(KEY_6_GPIO_Port, KEY_6_Pin) == 0)
+//        temp = KEY_DOWN;
+//    else if (HAL_GPIO_ReadPin(KEY_7_GPIO_Port, KEY_7_Pin) == 0)
+//        temp = KEY_UP;
 
-    return temp;
+//    return temp;
 }
 
 

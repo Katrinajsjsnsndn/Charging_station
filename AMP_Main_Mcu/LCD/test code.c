@@ -269,22 +269,22 @@ void Switch_test(void)
 	
 }
 
-//¶ÁÑÕÉ« ²âÊÔ
-void Read_Test(void)
-{
-	uint16_t color;
-	uint8_t cbuf[20] = {0},i;
+////¶ÁÑÕÉ« ²âÊÔ
+//void Read_Test(void)
+//{
+//	uint16_t color;
+//	uint8_t cbuf[20] = {0},i;
 
-	DrawTestPage("¶ÁÑÕÉ«Öµ²âÊÔ");
-	LCD_Fill(0,23,lcddev.width,lcddev.height-23,WHITE);	
-	for (i=0; i<7; i++) 
-	{
-		POINT_COLOR=ColornTab[i];
-		LCD_Fill(40-10,55+i*25-10,40+10,55+i*25+10,POINT_COLOR);
-		color = LCD_ReadPoint(40,55+i*25);
-		sprintf((char *)cbuf,"read color:0x%04x",color);
-		Show_Str(40+20,55+i*25-8,cbuf,16,1);
-	}
-	delay_ms(1500);
-}
+//	DrawTestPage("¶ÁÑÕÉ«Öµ²âÊÔ");
+//	LCD_Fill(0,23,lcddev.width,lcddev.height-23,WHITE);	
+//	for (i=0; i<7; i++) 
+//	{
+//		POINT_COLOR=ColornTab[i];
+//		LCD_Fill(40-10,55+i*25-10,40+10,55+i*25+10,POINT_COLOR);
+//		color = LCD_ReadPoint(40,55+i*25);
+//		sprintf((char *)cbuf,"read color:0x%04x",color);
+//		Show_Str(40+20,55+i*25-8,cbuf,16,1);
+//	}
+//	delay_ms(1500);
+//}
 
