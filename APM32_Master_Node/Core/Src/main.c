@@ -34,6 +34,8 @@
 #include "test code.h"
 #include "lvgl.h" 
 #include "lv_port_disp_template.h"
+#include "my_lvgl_ui.h"
+#include "charge_control.h"
 
 /* USER CODE END Includes */
 
@@ -72,7 +74,7 @@ void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN 0 */
 //lv_ui guider_ui;
 /* USER CODE END 0 */
-
+uint16_t eeprom_val;
 /**
   * @brief  The application entry point.
   * @retval int
@@ -114,29 +116,17 @@ int main(void)
 	LCD_Init();			   	//初始化LCD 	
 	LCD_Display_Dir(USE_LCM_DIR);		 		//屏幕方向
 	LCD_Clear(WHITE);		//清屏
+	IIC_GPIO_Config();
 
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
-	lv_init();
-	lv_port_disp_init();
-		char* github_addr = "https://gitee.com/W23";
-		lv_obj_t * label = lv_label_create(lv_scr_act());
-    lv_label_set_recolor(label, true);
-    lv_label_set_long_mode(label, LV_LABEL_LONG_SCROLL_CIRCULAR); /*Circular scroll*/
-    lv_obj_set_width(label, 120);
-    lv_label_set_text_fmt(label, "#ff0000 Gitee: %s#", github_addr);
-    lv_obj_align(label, LV_ALIGN_CENTER, 0, 10);
-	
-    lv_obj_t * label2 = lv_label_create(lv_scr_act());
-    lv_label_set_recolor(label2, true);
-    lv_label_set_long_mode(label2, LV_LABEL_LONG_SCROLL_CIRCULAR); /*Circular scroll*/
-    lv_obj_set_width(label2, 120);
-    lv_label_set_text_fmt(label2, "#ff0000 Hello# #0000ff world !123456789#");
-    lv_obj_align(label2, LV_ALIGN_CENTER, 0, -10);
-	//lvgl_task();
-  /* USER CODE END 2 */
+//	lv_init();
+//	lv_port_disp_init();
+	draw_main_ui();
+//	lvgl_task();
+//  /* USER CODE END 2 */
 
-  /* Call init function for freertos objects (in cmsis_os2.c) */
+//  /* Call init function for freertos objects (in cmsis_os2.c) */
 //  MX_FREERTOS_Init();
 
 //  /* Start scheduler */
@@ -149,10 +139,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-				lv_task_handler();
-				HAL_Delay(10);
-			lv_tick_inc(1);         //lvgl heart beat
-
+		//MCP4725_WriteData_Voltage(5000);
+		MCP4725_WriteData_Digital(620);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

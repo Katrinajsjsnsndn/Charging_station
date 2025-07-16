@@ -14,16 +14,16 @@
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
-          <Device>APM32F103RB</Device>
+          <Device>APM32F103C8</Device>
           <Vendor>Geehy</Vendor>
           <PackID>Geehy.APM32F1xx_DFP.1.1.0</PackID>
           <PackURL>https://www.geehy.com/uploads/tool/</PackURL>
-          <Cpu>IRAM(0x20000000,0x5000) IROM(0x08000000,0x20000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
+          <Cpu>IRAM(0x20000000,0x5000) IROM(0x08000000,0x10000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0APM32F10x_128 -FS08000000 -FL020000 -FP0($$Device:APM32F103RB$Flash\APM32F10x_128.FLM))</FlashDriverDll>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0APM32F10x_64 -FS08000000 -FL010000 -FP0($$Device:APM32F103C8$Flash\APM32F10x_64.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
-          <RegisterFile>$$Device:APM32F103RB$Device\Device\Geehy\APM32F10x\Include\apm32f10x.h</RegisterFile>
+          <RegisterFile>$$Device:APM32F103C8$Device\Device\Geehy\APM32F10x\Include\apm32f10x.h</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
           <Asm></Asm>
@@ -33,7 +33,7 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:APM32F103RB$SVD\APM32F103xx.svd</SFDFile>
+          <SFDFile>$$Device:APM32F103C8$SVD\APM32F103xx.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
@@ -81,7 +81,7 @@
           </BeforeMake>
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
-            <RunUserProg2>1</RunUserProg2>
+            <RunUserProg2>0</RunUserProg2>
             <UserProg1Name></UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
@@ -252,7 +252,7 @@
               <IROM>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x20000</Size>
+                <Size>0x10000</Size>
               </IROM>
               <XRAM>
                 <Type>0</Type>
@@ -277,7 +277,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x20000</Size>
+                <Size>0x10000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -603,6 +603,16 @@
               <FileName>lvgl_task.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\my_task\lvgl_task.h</FilePath>
+            </File>
+            <File>
+              <FileName>charge_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\my_task\charge_control.c</FilePath>
+            </File>
+            <File>
+              <FileName>charge_control.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\my_task\charge_control.h</FilePath>
             </File>
           </Files>
         </Group>

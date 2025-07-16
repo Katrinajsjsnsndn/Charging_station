@@ -119,7 +119,7 @@ int main(void)
 
 
 	dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
-	                    Enable_Charging();
+	Enable_Charging();
 
   /* USER CODE END 2 */
 
@@ -136,7 +136,7 @@ int main(void)
 		read_adc_1=Get_ADC(1);//采样电阻0.005哦  放大倍数50倍
 		read_current=((read_adc_1/4095)*3.3)/0.25;
 		HAL_Delay(10);
-		//check_device(0XC0);
+//		check_device(0XC0);
   }
   /* USER CODE END 3 */
 }

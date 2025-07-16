@@ -178,3 +178,5 @@ apm32_master_node\lvgl_task.o: ../lvgl/src/extra/widgets/led/lv_led.h
 apm32_master_node\lvgl_task.o: ../lvgl/src/extra/widgets/imgbtn/lv_imgbtn.h
 apm32_master_node\lvgl_task.o: ../lvgl/src/extra/widgets/span/lv_span.h
 apm32_master_node\lvgl_task.o: ../lvgl/examples/porting/lv_port_disp_template.h
+apm32_master_node\lvgl_task.o: ..\my_task\charge_control.h
+apm32_master_node\lvgl_task.o: ../Core/Inc/gpio.h

@@ -11,24 +11,42 @@
  *
  * @note       充电使能（CE）PA12
 					
-					
+TODO 卡了很久的bug，iic引脚明明配错了为什么检测设备的代码还可以，但是之前就不行。					
 					
  * @see        相关函数或类的引用。
  */
-
-void Enable_Charging() 
+uint16_t MCP4725_Read_EEPROM(void)
 {
-  HAL_GPIO_WritePin(CE_GPIO_Port, CE_Pin, GPIO_PIN_SET);
-	
-	//使能dac输出
-	HAL_GPIO_WritePin(GPIOB,CD4051_A0_Pin,1);
-	HAL_GPIO_WritePin(GPIOB,CD4051_A1_Pin,1);
-	HAL_GPIO_WritePin(GPIOB,CD4051_A2_Pin,0);
+    uint8_t buf[3];
+    uint16_t value;
+
+    IIC_Start();
+    IIC_Write_Byte(0x61); // 0xC0写，0xC1读（你的模块地址，部分模块用0x61）
+    IIC_Wait_Ack();
+    buf[0] = IIC_Read_Byte(1); // 状态字节，ACK
+    buf[1] = IIC_Read_Byte(1); // 高8位，ACK
+    buf[2] = IIC_Read_Byte(0); // 低8位，NACK
+    IIC_Stop();
+
+    value = ((buf[1] << 4) | (buf[2] >> 4)) & 0x0FFF; // 12位DAC值
+    return value;
 }
-
-void Disable_Charging() 
+void MCP4725_WriteData_Voltage(uint16_t Vout)   //电压单位mV
 {
-  HAL_GPIO_WritePin(CE_GPIO_Port, CE_Pin, GPIO_PIN_RESET);
+	uint8_t temp;
+	uint16_t Dn;
+	Dn = ( 4096 * Vout) / 5000; //这里的VREF_5V宏定义为5000
+	temp = (0x0F00 & Dn) >> 8;  //12位数据。0000XXXX XXXXXXXX 
+	IIC_Start();
+	IIC_Write_Byte(0XC0);      //器件寻址，器件代吗：1100； 地址位A2，A1，A0为 0 ， 0 ， 1；-> 1100 0010
+    //这个地址0XC0或0XC1,根据自己购买的模块决定
+    IIC_Wait_Ack();	 
+    IIC_Write_Byte(temp); 	  //将高8位送到DAC寄存器
+    IIC_Wait_Ack();	 
+    IIC_Write_Byte(Dn);        //将低8位送到DAC寄存器
+	IIC_Wait_Ack();	
+    IIC_Stop();//产生一个停止条件  	
+	HAL_Delay(10);	
 }
 
 
@@ -43,9 +61,9 @@ void MCP4725_WriteData_Digital(uint16_t data)   //12位数字量
     IIC_Write_Byte(data_H); 	
     IIC_Wait_Ack();	 
     IIC_Write_Byte(data_L);
-		IIC_Wait_Ack();	
+	IIC_Wait_Ack();	
     IIC_Stop();//产生一个停止条件  	
-		HAL_Delay(10);	
+	HAL_Delay(10);	
 }
  
 
@@ -148,7 +166,31 @@ void IIC_Write_Byte(uint8_t IIC_Byte)
 	}
 	IIC_SCL(GPIO_PIN_RESET);//通讯未结束，拉低SCL
 }
-
+uint8_t IIC_Read_Byte(uint8_t ack)
+{
+    uint8_t i, receive = 0;
+    IIC_SDA(GPIO_PIN_SET); // SDA为输入
+    for(i=0; i<8; i++)
+    {
+        IIC_SCL(GPIO_PIN_RESET);
+        i2c_Delay();
+        IIC_SCL(GPIO_PIN_SET);
+        receive <<= 1;
+        if(IIC_Read_SDA()) receive++;
+        i2c_Delay();
+    }
+    IIC_SCL(GPIO_PIN_RESET);
+    // 发送ACK或NACK
+    if(ack)
+        IIC_SDA(GPIO_PIN_RESET);
+    else
+        IIC_SDA(GPIO_PIN_SET);
+    IIC_SCL(GPIO_PIN_SET);
+    i2c_Delay();
+    IIC_SCL(GPIO_PIN_RESET);
+    IIC_SDA(GPIO_PIN_SET); // 恢复SDA
+    return receive;
+}
 void check_device(uint8_t addr)
 {
 	IIC_Start();

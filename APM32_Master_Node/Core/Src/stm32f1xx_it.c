@@ -208,7 +208,6 @@ void TIM1_UP_IRQHandler(void)
   * @brief This function handles USART2 global interrupt.
   */
 
-
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

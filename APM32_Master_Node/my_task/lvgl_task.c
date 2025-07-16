@@ -15,6 +15,7 @@
 #include "lv_port_disp_template.h"
 //#include "adc.h"
 //#include "dac.h"
+#include "charge_control.h"
 
 
 extern float current;
@@ -113,7 +114,7 @@ void lv_demo_task(void *pvParameters)
     while(1)
     {
 
-			lv_timer_handler(); /* LVGL¼ÆÊ±Æ÷ */
+		check_device(0XC0);
 			vTaskDelay(5);   // 
 
     }

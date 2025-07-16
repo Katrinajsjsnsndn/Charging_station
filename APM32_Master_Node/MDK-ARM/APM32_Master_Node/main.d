@@ -177,3 +177,5 @@ apm32_master_node\main.o: ../lvgl/src/extra/widgets/led/lv_led.h
 apm32_master_node\main.o: ../lvgl/src/extra/widgets/imgbtn/lv_imgbtn.h
 apm32_master_node\main.o: ../lvgl/src/extra/widgets/span/lv_span.h
 apm32_master_node\main.o: ../lvgl/examples/porting/lv_port_disp_template.h
+apm32_master_node\main.o: ../tft/my_lvgl_ui.h
+apm32_master_node\main.o: ../my_task/charge_control.h

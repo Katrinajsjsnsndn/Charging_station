@@ -28,6 +28,8 @@
 
 #include "lvgl.h" 
 #include "lv_port_disp_template.h"
+#include "my_lvgl_ui.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

@@ -83,6 +83,10 @@ void Error_Handler(void);
 #define DB4_GPIO_Port GPIOC
 #define DB5_Pin GPIO_PIN_5
 #define DB5_GPIO_Port GPIOC
+#define I2C_SCL_Pin GPIO_PIN_10
+#define I2C_SCL_GPIO_Port GPIOB
+#define I2C_SDA_Pin GPIO_PIN_11
+#define I2C_SDA_GPIO_Port GPIOB
 #define DB6_Pin GPIO_PIN_6
 #define DB6_GPIO_Port GPIOC
 #define DB7_Pin GPIO_PIN_7
