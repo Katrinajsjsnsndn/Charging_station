@@ -2320,8 +2320,7 @@
 					"bg_img_recolor": "#ffffff",
 					"bg_img_recolor_opa": 0
 				}
-			],
-			"layerName": "screen"
+			]
 		},
 		{
 			"name": "screen_2",
@@ -3672,8 +3671,7 @@
 			],
 			"event": {
 				"widget": {}
-			},
-			"layerName": "screen_2"
+			}
 		}
 	],
 	"Application": {

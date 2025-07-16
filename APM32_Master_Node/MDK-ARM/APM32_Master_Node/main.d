@@ -177,3 +177,5 @@ apm32_master_node\main.o: ..\lvgl\src/extra/widgets/led/lv_led.h
 apm32_master_node\main.o: ..\lvgl\src/extra/widgets/imgbtn/lv_imgbtn.h
 apm32_master_node\main.o: ..\lvgl\src/extra/widgets/span/lv_span.h
 apm32_master_node\main.o: ..\lvgl\examples\porting\lv_port_disp_template.h
+apm32_master_node\main.o: ..\lvgl_ui\src\custom\../generated/gui_guider.h
+apm32_master_node\main.o: ..\lvgl_ui\src\custom\../generated/events_init.h

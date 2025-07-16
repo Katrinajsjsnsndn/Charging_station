@@ -34,6 +34,8 @@
 #include "test code.h"
 #include "lvgl.h" 
 #include "lv_port_disp_template.h"
+#include "../generated/gui_guider.h"
+#include "../generated/events_init.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,12 +67,12 @@ uint16_t dac_set;
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
-uint16_t temp;
+lv_ui  guider_ui;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-	uint32_t id ;
+//lv_ui guider_ui;
 /* USER CODE END 0 */
 
 /**
@@ -105,40 +107,22 @@ int main(void)
   MX_DMA_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-//	HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
+	HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
 
-//		__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
-//	HAL_GPIO_WritePin(RS485_EN_GPIO_Port, RS485_EN_Pin, GPIO_PIN_SET);
-//	
+		__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
+	HAL_GPIO_WritePin(RS485_EN_GPIO_Port, RS485_EN_Pin, GPIO_PIN_SET);
+	
 		HAL_Delay(10);
 	LCD_Init();			   	//初始化LCD 	
 	LCD_Display_Dir(USE_LCM_DIR);		 		//屏幕方向
 	LCD_Clear(WHITE);		//清屏
 
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-
-
-	  
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
-	Chinese_Font_test();
 	lv_init();
 	lv_port_disp_init();
-	
-	    lv_obj_t *myBtn = lv_btn_create(lv_scr_act());                               // 创建按钮; 父对象：当前活动屏幕
-    lv_obj_set_pos(myBtn, 10, 10);                                               // 设置坐标
-    lv_obj_set_size(myBtn, 120, 50);                                             // 设置大小
-   
-    // 按钮上的文本
-    lv_obj_t *label_btn = lv_label_create(myBtn);                                // 创建文本标签，父对象：上面的btn按钮
-    lv_obj_align(label_btn, LV_ALIGN_CENTER, 0, 0);                              // 对齐于：父对象
-    lv_label_set_text(label_btn, "Test");                                        // 设置标签的文本
- 
-    // 独立的标签
-    lv_obj_t *myLabel = lv_label_create(lv_scr_act());                           // 创建文本标签; 父对象：当前活动屏幕
-    lv_label_set_text(myLabel, "Hello world!");                                  // 设置标签的文本
-    lv_obj_align(myLabel, LV_ALIGN_CENTER, 0, 0);                                // 对齐于：父对象
-    lv_obj_align_to(myBtn, myLabel, LV_ALIGN_OUT_TOP_MID, 0, -20);               // 对齐于：某对象
-
+	setup_ui(&guider_ui);           // 初始化 UI
+	events_init(&guider_ui);       // 初始化 事件
 //	lvgl_task();
 //  /* USER CODE END 2 */
 
@@ -156,7 +140,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 			lv_timer_handler(); /* LVGL计时器 */
-					lv_tick_inc(1);         //lvgl heart beat
+			lv_tick_inc(1);         //lvgl heart beat
 			HAL_Delay(1);   // 
 
     /* USER CODE BEGIN 3 */
