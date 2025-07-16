@@ -1,0 +1,13 @@
+apm32_master_node\lv_async.o: ..\lvgl\src\misc\lv_async.c
+apm32_master_node\lv_async.o: ..\lvgl\src\misc\lv_async.h
+apm32_master_node\lv_async.o: ..\lvgl\src\misc\lv_types.h
+apm32_master_node\lv_async.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+apm32_master_node\lv_async.o: ..\lvgl\src\misc\lv_mem.h
+apm32_master_node\lv_async.o: ..\lvgl\src\misc\../lv_conf_internal.h
+apm32_master_node\lv_async.o: ..\lvgl\src\misc\../lv_conf_kconfig.h
+apm32_master_node\lv_async.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_async.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+apm32_master_node\lv_async.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+apm32_master_node\lv_async.o: ..\lvgl\src\misc\lv_timer.h
+apm32_master_node\lv_async.o: ..\lvgl\src\misc\../hal/lv_hal_tick.h
+apm32_master_node\lv_async.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

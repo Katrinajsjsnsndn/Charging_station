@@ -32,7 +32,8 @@
 #include "lvgl_task.h"
 #include "lcd.h"
 #include "test code.h"
-
+#include "lvgl.h" 
+#include "lv_port_disp_template.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -119,15 +120,33 @@ int main(void)
 
 	  
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
+	Chinese_Font_test();
+	lv_init();
+	lv_port_disp_init();
+	
+	    lv_obj_t *myBtn = lv_btn_create(lv_scr_act());                               // 创建按钮; 父对象：当前活动屏幕
+    lv_obj_set_pos(myBtn, 10, 10);                                               // 设置坐标
+    lv_obj_set_size(myBtn, 120, 50);                                             // 设置大小
+   
+    // 按钮上的文本
+    lv_obj_t *label_btn = lv_label_create(myBtn);                                // 创建文本标签，父对象：上面的btn按钮
+    lv_obj_align(label_btn, LV_ALIGN_CENTER, 0, 0);                              // 对齐于：父对象
+    lv_label_set_text(label_btn, "Test");                                        // 设置标签的文本
+ 
+    // 独立的标签
+    lv_obj_t *myLabel = lv_label_create(lv_scr_act());                           // 创建文本标签; 父对象：当前活动屏幕
+    lv_label_set_text(myLabel, "Hello world!");                                  // 设置标签的文本
+    lv_obj_align(myLabel, LV_ALIGN_CENTER, 0, 0);                                // 对齐于：父对象
+    lv_obj_align_to(myBtn, myLabel, LV_ALIGN_OUT_TOP_MID, 0, -20);               // 对齐于：某对象
 
-	lvgl_task();
-  /* USER CODE END 2 */
+//	lvgl_task();
+//  /* USER CODE END 2 */
 
-  /* Call init function for freertos objects (in cmsis_os2.c) */
-  MX_FREERTOS_Init();
+//  /* Call init function for freertos objects (in cmsis_os2.c) */
+//  MX_FREERTOS_Init();
 
-  /* Start scheduler */
-  osKernelStart();
+//  /* Start scheduler */
+//  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
@@ -136,6 +155,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+			lv_timer_handler(); /* LVGL计时器 */
+					lv_tick_inc(1);         //lvgl heart beat
+			HAL_Delay(1);   // 
 
     /* USER CODE BEGIN 3 */
   }

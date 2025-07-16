@@ -26,6 +26,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
+#include "lvgl.h" 
+#include "lv_port_disp_template.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -65,13 +67,16 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
 void vApplicationTickHook(void);
 
 /* USER CODE BEGIN 3 */
-__weak void vApplicationTickHook( void )
+ void vApplicationTickHook( void )
 {
    /* This function will be called by each tick interrupt if
    configUSE_TICK_HOOK is set to 1 in FreeRTOSConfig.h. User code can be
    added here, but the tick hook is called from an interrupt context, so
    code must not attempt to block, and only the interrupt safe FreeRTOS API
    functions can be used (those that end in FromISR()). */
+
+			lv_tick_inc(1);         //lvgl heart beat
+
 }
 /* USER CODE END 3 */
 

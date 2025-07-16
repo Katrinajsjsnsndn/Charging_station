@@ -11,7 +11,8 @@
 #include "test code.h"
 #include "lcd.h"
 #include "rs485.h"
-
+#include "lvgl.h" 
+#include "lv_port_disp_template.h"
 //#include "adc.h"
 //#include "dac.h"
 
@@ -36,7 +37,7 @@ void start_task(void *pvParameters);    /* 任务函数 */
  * 包括: 任务句柄 任务优先级 堆栈大小 创建任务
  */
 #define LV_DEMO_TASK_PRIO   3           /* 任务优先级 */
-#define LV_DEMO_STK_SIZE    128        /* 任务堆栈大小 */
+#define LV_DEMO_STK_SIZE    512        /* 任务堆栈大小 */
 TaskHandle_t LV_DEMOTask_Handler;       /* 任务句柄 */
 void lv_demo_task(void *pvParameters);  /* 任务函数 */
 
@@ -44,12 +45,13 @@ void lv_demo_task(void *pvParameters);  /* 任务函数 */
  * 包括: 任务句柄 任务优先级 堆栈大小 创建任务
  */
 #define LED_TASK_PRIO       3           /* 任务优先级 */
-#define LED_STK_SIZE        128         /* 任务堆栈大小 */
+#define LED_STK_SIZE        0         /* 任务堆栈大小 */
 TaskHandle_t RS485Task_Handler;           /* 任务句柄 */
 void rs485_task(void *pvParameters);      /* 任务函数 */
 
-
+//TODO rtos堆栈分配
 //lv_ui guider_ui;
+
 void lvgl_task()
 {
 		//Lvgl_init();
@@ -103,28 +105,36 @@ void start_task(void *pvParameters)
  * @param       pvParameters : 传入参数(未用到)
  * @retval      无
  */
-int16_t num_debug;
+
 void lv_demo_task(void *pvParameters)
 {
     pvParameters = pvParameters;
 //		setup_ui(&guider_ui);
 //		events_init(&guider_ui);
-				DrawTestPage("英文显示测试");
+//		 // 按钮
+//    lv_obj_t *myBtn = lv_btn_create(lv_scr_act());                               // 创建按钮; 父对象：当前活动屏幕
+//    lv_obj_set_pos(myBtn, 10, 10);                                               // 设置坐标
+//    lv_obj_set_size(myBtn, 120, 50);                                             // 设置大小
+//   
+//    // 按钮上的文本
+//    lv_obj_t *label_btn = lv_label_create(myBtn);                                // 创建文本标签，父对象：上面的btn按钮
+//    lv_obj_align(label_btn, LV_ALIGN_CENTER, 0, 0);                              // 对齐于：父对象
+//    lv_label_set_text(label_btn, "Test");                                        // 设置标签的文本
+// 
+//    // 独立的标签
+//    lv_obj_t *myLabel = lv_label_create(lv_scr_act());                           // 创建文本标签; 父对象：当前活动屏幕
+//    lv_label_set_text(myLabel, "Hello world!");                                  // 设置标签的文本
+//    lv_obj_align(myLabel, LV_ALIGN_CENTER, 0, 0);                                // 对齐于：父对象
+//    lv_obj_align_to(myBtn, myLabel, LV_ALIGN_OUT_TOP_MID, 0, -20);               // 对齐于：某对象
+
 
     while(1)
     {
-	POINT_COLOR=RED;
-	BACK_COLOR=WHITE;
-	LCD_ShowString(10,30,200,12,12,"12345");
-	LCD_ShowString(10,45,200,12,12,"12345");
-	POINT_COLOR=GREEN;
-	LCD_ShowString(10,60,200,16,16,"12345");
-	LCD_ShowString(10,80,200,16,16,"12345");
-	POINT_COLOR=BLUE;
-	LCD_ShowNumber(10, 100, rx_buffer[0], 10, 16);   // 显示 -12345
 
-			//lv_timer_handler(); /* LVGL计时器 */
-        vTaskDelay(5);
+			lv_timer_handler(); /* LVGL计时器 */
+			vTaskDelay(5);   // 
+ /* 2.1 准备一块足够大的缓冲区（一个任务约 40 字节） */
+
     }
 }
 
@@ -145,34 +155,32 @@ void rs485_task(void *pvParameters)
     {
 					//RS485_Master_Send_Turn(0x01,3);
 
-//				key_val=read_key();
-//				key_down= key_val&(key_val^key_old);
-//				key_up=~key_val&(key_val^key_old);
-//				key_old=key_val;
+				key_val=read_key();
+				key_down= key_val&(key_val^key_old);
+				key_up=~key_val&(key_val^key_old);
+				key_old=key_val;
 					uint8_t on_off = 1;
 
 				if(key_down==KEY_UP)
 				{
 					on_off=1;
-					RS485_Master_Send_Turn(0x02, &on_off, 1);				
+					RS485_Master_Send_Turn(0x01, &on_off, 1);				
 				}
 				if(key_down==KEY_DOWN)
 				{
 					on_off=0;
 					
-					RS485_Master_Send_Turn(0x02, &on_off, 1);	
+					RS485_Master_Send_Turn(0x01, &on_off, 1);	
 				}
 				if(key_down==KEY_RETURN)
 				{
 					on_off=3;
-					RS485_Master_Send_Turn(0x02, &on_off, 1);	
-						//HAL_GPIO_WritePin(RS485_EN_GPIO_Port, RS485_EN_Pin, GPIO_PIN_RESET);
+					RS485_Master_Send_Turn(0x01, &on_off, 1);	
 
 				}
 				RS485_Master_Receive_Process();
         vTaskDelay(10);
 				HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,GPIO_PIN_RESET);
-
     }
 }
 
@@ -180,10 +188,10 @@ void rs485_task(void *pvParameters)
 uint8_t read_key()
 {
 	
-//    uint8_t temp = KEY_NONE;
+    uint8_t temp = KEY_NONE;
 
-//    if (HAL_GPIO_ReadPin(My_Key_GPIO_Port, My_Key_Pin) == 0)
-//        temp = KEY_RETURN;
+    if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9) == 0)
+        temp = KEY_RETURN;
 //    else if (HAL_GPIO_ReadPin(KEY_2_GPIO_Port, KEY_2_Pin) == 0)
 //        temp = KEY_MENU;
 //    else if (HAL_GPIO_ReadPin(KEY_3_GPIO_Port, KEY_3_Pin) == 0)
@@ -197,7 +205,7 @@ uint8_t read_key()
 //    else if (HAL_GPIO_ReadPin(KEY_7_GPIO_Port, KEY_7_Pin) == 0)
 //        temp = KEY_UP;
 
- //   return temp;
+    return temp;
 }
 
 

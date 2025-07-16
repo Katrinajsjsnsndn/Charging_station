@@ -30,7 +30,7 @@ void RS485_Master_Send_Turn(uint8_t slave_addr,
     tx_buf[5 + data_len] = cs;
 
     /* 5. Æô¶¯ DMA ·¢ËÍ */
-    HAL_UART_Transmit_DMA(&huart2, tx_buf, 6 + data_len);   /* 5 + len + checksum */
+    HAL_UART_Transmit(&huart2, tx_buf, 6 + data_len,10);   /* 5 + len + checksum */
 }
 uint8_t RS485_CalcChecksum(const uint8_t *buf, uint8_t len) 
 {

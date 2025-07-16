@@ -119,6 +119,8 @@ int main(void)
 
 
 	dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
+	                    Enable_Charging();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -130,8 +132,8 @@ int main(void)
     /* USER CODE BEGIN 3 */
 		RS485_Master_Receive_Process();
 		Data_Feedback();
-
-		read_adc_1=Get_ADC(1);
+    MCP4725_WriteData_Digital(dac_set);
+		read_adc_1=Get_ADC(1);//采样电阻0.005哦  放大倍数50倍
 		read_adc_2=Get_ADC(2);
 		HAL_Delay(10);
 		//check_device(0XC0);

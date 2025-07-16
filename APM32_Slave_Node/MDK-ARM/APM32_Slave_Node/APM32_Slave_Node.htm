@@ -3,7 +3,7 @@
 <title>Static Call Graph - [APM32_Slave_Node\APM32_Slave_Node.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image APM32_Slave_Node\APM32_Slave_Node.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Jul 15 15:39:10 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Jul 15 20:02:24 2025
 <BR><P>
 <H3>Maximum Stack Usage =        160 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -464,6 +464,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485_Master_Receive_Process
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[8d]"></a>Error_Handler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, main.o(i.Error_Handler))
@@ -573,8 +574,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MCP4725_WriteData_Digital
+<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MCP4725_WriteData_Digital
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[69]"></a>HAL_GPIO_Init</STRONG> (Thumb, 766 bytes, Stack size 36 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_Init))
@@ -593,13 +594,13 @@ Global Symbols
 <P><STRONG><a name="[5d]"></a>HAL_GPIO_WritePin</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_WritePin))
 <BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_GPIO_Config
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable_Charging
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Data_Feedback
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Write_Byte
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Wait_Ack
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Stop
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable_Charging
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_Charging
 </UL>
 
@@ -884,6 +885,7 @@ Global Symbols
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_Start
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485_Master_Receive_Process
+<LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[9a]"></a>MX_ADC1_Init</STRONG> (Thumb, 86 bytes, Stack size 16 bytes, adc.o(i.MX_ADC1_Init))
@@ -952,8 +954,8 @@ Global Symbols
 <P><STRONG><a name="[a0]"></a>RS485_Master_Receive_Process</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, rs485.o(i.RS485_Master_Receive_Process))
 <BR><BR>[Stack]<UL><LI>Max Depth = 108<LI>Call Chain = RS485_Master_Receive_Process &rArr; HAL_UART_Receive_DMA &rArr; UART_Start_Receive_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_DMA
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MCP4725_WriteData_Digital
+<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MCP4725_WriteData_Digital
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_DMA
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable_Charging
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disable_Charging
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485_CalcChecksum
@@ -1006,7 +1008,7 @@ Global Symbols
 <P><STRONG><a name="[f]"></a>UsageFault_Handler</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.UsageFault_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[4f]"></a>main</STRONG> (Thumb, 164 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[4f]"></a>main</STRONG> (Thumb, 176 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority &rArr; __NVIC_SetPriority
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RS485_Master_Receive_Process
@@ -1015,11 +1017,13 @@ Global Symbols
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_DMA_Init
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC2_Init
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC1_Init
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MCP4725_WriteData_Digital
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IIC_GPIO_Config
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Receive_DMA
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Enable_Charging
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Data_Feedback
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_ADC
