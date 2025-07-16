@@ -37,7 +37,7 @@ void start_task(void *pvParameters);    /* 任务函数 */
  * 包括: 任务句柄 任务优先级 堆栈大小 创建任务
  */
 #define LV_DEMO_TASK_PRIO   3           /* 任务优先级 */
-#define LV_DEMO_STK_SIZE    512        /* 任务堆栈大小 */
+#define LV_DEMO_STK_SIZE    256        /* 任务堆栈大小 */
 TaskHandle_t LV_DEMOTask_Handler;       /* 任务句柄 */
 void lv_demo_task(void *pvParameters);  /* 任务函数 */
 
@@ -45,7 +45,7 @@ void lv_demo_task(void *pvParameters);  /* 任务函数 */
  * 包括: 任务句柄 任务优先级 堆栈大小 创建任务
  */
 #define LED_TASK_PRIO       3           /* 任务优先级 */
-#define LED_STK_SIZE        0         /* 任务堆栈大小 */
+#define LED_STK_SIZE        128         /* 任务堆栈大小 */
 TaskHandle_t RS485Task_Handler;           /* 任务句柄 */
 void rs485_task(void *pvParameters);      /* 任务函数 */
 
@@ -108,15 +108,13 @@ void start_task(void *pvParameters)
 
 void lv_demo_task(void *pvParameters)
 {
-    pvParameters = pvParameters;
-
+    
 
     while(1)
     {
 
 			lv_timer_handler(); /* LVGL计时器 */
 			vTaskDelay(5);   // 
- /* 2.1 准备一块足够大的缓冲区（一个任务约 40 字节） */
 
     }
 }

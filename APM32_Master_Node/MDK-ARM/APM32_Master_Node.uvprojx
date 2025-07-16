@@ -81,7 +81,7 @@
           </BeforeMake>
           <AfterMake>
             <RunUserProg1>0</RunUserProg1>
-            <RunUserProg2>0</RunUserProg2>
+            <RunUserProg2>1</RunUserProg2>
             <UserProg1Name></UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../rs485;../my_task;../tft;..\lvgl;..\lvgl\examples;..\lvgl\src;..\lvgl\examples\porting;..\lvgl_ui\src\custom;..\lvgl_ui\src\generated\guider_customer_fonts;..\lvgl_ui\src\generated</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;../rs485;../my_task;../tft;../lvgl;../lvgl/examples;../lvgl/src;../lvgl/examples/porting;../lvgl_ui/src/custom;../lvgl_ui/src/generated/guider_customer_fonts;../lvgl_ui/src/generated</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -638,6 +638,16 @@
               <FileName>test code.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\tft\test code.h</FilePath>
+            </File>
+            <File>
+              <FileName>My_lvgl_ui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\tft\My_lvgl_ui.c</FilePath>
+            </File>
+            <File>
+              <FileName>My_lvgl_ui.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\tft\My_lvgl_ui.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1488,46 +1498,6 @@
               <FileName>lv_extra.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\lvgl\src\extra\lv_extra.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>lvgl_ui</GroupName>
-          <Files>
-            <File>
-              <FileName>custom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lvgl_ui\src\custom\custom.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_font_montserratMedium_12.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lvgl_ui\src\generated\guider_fonts\lv_font_montserratMedium_12.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_font_montserratMedium_16.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lvgl_ui\src\generated\guider_fonts\lv_font_montserratMedium_16.c</FilePath>
-            </File>
-            <File>
-              <FileName>events_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lvgl_ui\src\generated\events_init.c</FilePath>
-            </File>
-            <File>
-              <FileName>gui_guider.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lvgl_ui\src\generated\gui_guider.c</FilePath>
-            </File>
-            <File>
-              <FileName>setup_scr_screen.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lvgl_ui\src\generated\setup_scr_screen.c</FilePath>
-            </File>
-            <File>
-              <FileName>widgets_init.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\lvgl_ui\src\generated\widgets_init.c</FilePath>
             </File>
           </Files>
         </Group>

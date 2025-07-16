@@ -4,7 +4,7 @@ apm32_master_node\lv_calendar.o: ..\lvgl\src\extra\widgets\calendar\../../../wid
 apm32_master_node\lv_calendar.o: ..\lvgl\src\extra\widgets\calendar\../../../widgets/../lv_conf_internal.h
 apm32_master_node\lv_calendar.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_calendar.o: ..\lvgl\src\extra\widgets\calendar\../../../widgets/../lv_conf_kconfig.h
-apm32_master_node\lv_calendar.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_calendar.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_calendar.o: ..\lvgl\src\extra\widgets\calendar\../../../widgets/../core/lv_obj.h
 apm32_master_node\lv_calendar.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 apm32_master_node\lv_calendar.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

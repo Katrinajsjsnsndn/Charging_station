@@ -3,7 +3,7 @@ apm32_master_node\lv_gc.o: ..\lvgl\src\misc\lv_gc.h
 apm32_master_node\lv_gc.o: ..\lvgl\src\misc\../lv_conf_internal.h
 apm32_master_node\lv_gc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_gc.o: ..\lvgl\src\misc\../lv_conf_kconfig.h
-apm32_master_node\lv_gc.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_gc.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_gc.o: ..\lvgl\src\misc\lv_mem.h
 apm32_master_node\lv_gc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 apm32_master_node\lv_gc.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

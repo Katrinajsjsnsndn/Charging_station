@@ -14,4 +14,3 @@ apm32_master_node\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/ta
 apm32_master_node\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h
 apm32_master_node\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 apm32_master_node\tasks.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/stack_macros.h
-apm32_master_node\tasks.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

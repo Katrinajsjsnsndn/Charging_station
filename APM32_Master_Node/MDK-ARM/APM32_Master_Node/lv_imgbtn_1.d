@@ -6,7 +6,7 @@ apm32_master_node\lv_imgbtn_1.o: ..\lvgl\src\extra\widgets\imgbtn\../../../../sr
 apm32_master_node\lv_imgbtn_1.o: ..\lvgl\src\extra\widgets\imgbtn\../../../../src/misc/../lv_conf_internal.h
 apm32_master_node\lv_imgbtn_1.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_imgbtn_1.o: ..\lvgl\src\extra\widgets\imgbtn\../../../../src/misc/../lv_conf_kconfig.h
-apm32_master_node\lv_imgbtn_1.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_imgbtn_1.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_imgbtn_1.o: ..\lvgl\src\extra\widgets\imgbtn\../../../../src/misc/lv_types.h
 apm32_master_node\lv_imgbtn_1.o: ..\lvgl\src\extra\widgets\imgbtn\../../../../src/misc/lv_timer.h
 apm32_master_node\lv_imgbtn_1.o: ..\lvgl\src\extra\widgets\imgbtn\../../../../src/misc/../hal/lv_hal_tick.h

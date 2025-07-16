@@ -8,7 +8,7 @@ apm32_master_node\lv_hal_disp.o: ..\lvgl\src\hal\lv_hal.h
 apm32_master_node\lv_hal_disp.o: ..\lvgl\src\hal\../draw/lv_draw.h
 apm32_master_node\lv_hal_disp.o: ..\lvgl\src\hal\../draw/../lv_conf_internal.h
 apm32_master_node\lv_hal_disp.o: ..\lvgl\src\hal\../draw/../lv_conf_kconfig.h
-apm32_master_node\lv_hal_disp.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_hal_disp.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_hal_disp.o: ..\lvgl\src\hal\../draw/../misc/lv_style.h
 apm32_master_node\lv_hal_disp.o: ..\lvgl\src\hal\../draw/../misc/../font/lv_font.h
 apm32_master_node\lv_hal_disp.o: ..\lvgl\src\hal\../draw/../misc/../font/lv_symbol_def.h

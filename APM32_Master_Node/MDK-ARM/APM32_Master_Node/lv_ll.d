@@ -6,6 +6,6 @@ apm32_master_node\lv_ll.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 apm32_master_node\lv_ll.o: ..\lvgl\src\misc\lv_mem.h
 apm32_master_node\lv_ll.o: ..\lvgl\src\misc\../lv_conf_internal.h
 apm32_master_node\lv_ll.o: ..\lvgl\src\misc\../lv_conf_kconfig.h
-apm32_master_node\lv_ll.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_ll.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_ll.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 apm32_master_node\lv_ll.o: ..\lvgl\src\misc\lv_types.h

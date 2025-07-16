@@ -3,7 +3,7 @@ apm32_master_node\lv_img_cache.o: ..\lvgl\src\draw\../misc/lv_assert.h
 apm32_master_node\lv_img_cache.o: ..\lvgl\src\draw\../misc/../lv_conf_internal.h
 apm32_master_node\lv_img_cache.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_img_cache.o: ..\lvgl\src\draw\../misc/../lv_conf_kconfig.h
-apm32_master_node\lv_img_cache.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_img_cache.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_img_cache.o: ..\lvgl\src\draw\../misc/lv_log.h
 apm32_master_node\lv_img_cache.o: ..\lvgl\src\draw\../misc/lv_types.h
 apm32_master_node\lv_img_cache.o: ..\lvgl\src\draw\../misc/lv_mem.h

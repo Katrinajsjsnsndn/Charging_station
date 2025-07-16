@@ -4,7 +4,7 @@ apm32_master_node\lv_gpu_d2_draw_label.o: ..\lvgl\src\draw\renesas\../../draw/..
 apm32_master_node\lv_gpu_d2_draw_label.o: ..\lvgl\src\draw\renesas\../../draw/../misc/../lv_conf_internal.h
 apm32_master_node\lv_gpu_d2_draw_label.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_gpu_d2_draw_label.o: ..\lvgl\src\draw\renesas\../../draw/../misc/../lv_conf_kconfig.h
-apm32_master_node\lv_gpu_d2_draw_label.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_gpu_d2_draw_label.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_gpu_d2_draw_label.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 apm32_master_node\lv_gpu_d2_draw_label.o: ..\lvgl\src\draw\renesas\../../draw/../misc/lv_txt.h
 apm32_master_node\lv_gpu_d2_draw_label.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h

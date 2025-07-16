@@ -70,7 +70,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 uint16_t read_adc_1,read_adc_2;
 uint16_t dac_set;
-float current_set=1;
+float current_set=1,read_current;
 /* USER CODE END 0 */
 
 /**
@@ -134,7 +134,7 @@ int main(void)
 		Data_Feedback();
     MCP4725_WriteData_Digital(dac_set);
 		read_adc_1=Get_ADC(1);//采样电阻0.005哦  放大倍数50倍
-		read_adc_2=Get_ADC(2);
+		read_current=((read_adc_1/4095)*3.3)/0.25;
 		HAL_Delay(10);
 		//check_device(0XC0);
   }

@@ -3,7 +3,7 @@ apm32_master_node\lv_draw.o: ..\lvgl\src\draw\lv_draw.h
 apm32_master_node\lv_draw.o: ..\lvgl\src\draw\../lv_conf_internal.h
 apm32_master_node\lv_draw.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_draw.o: ..\lvgl\src\draw\../lv_conf_kconfig.h
-apm32_master_node\lv_draw.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_draw.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_draw.o: ..\lvgl\src\draw\../misc/lv_style.h
 apm32_master_node\lv_draw.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 apm32_master_node\lv_draw.o: ..\lvgl\src\draw\../misc/../font/lv_font.h

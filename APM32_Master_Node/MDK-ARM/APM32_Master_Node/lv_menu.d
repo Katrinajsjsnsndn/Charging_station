@@ -4,7 +4,7 @@ apm32_master_node\lv_menu.o: ..\lvgl\src\extra\widgets\menu\../../../core/lv_obj
 apm32_master_node\lv_menu.o: ..\lvgl\src\extra\widgets\menu\../../../core/../lv_conf_internal.h
 apm32_master_node\lv_menu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_menu.o: ..\lvgl\src\extra\widgets\menu\../../../core/../lv_conf_kconfig.h
-apm32_master_node\lv_menu.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_menu.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_menu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 apm32_master_node\lv_menu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 apm32_master_node\lv_menu.o: ..\lvgl\src\extra\widgets\menu\../../../core/../misc/lv_style.h

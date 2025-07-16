@@ -79,8 +79,6 @@ void Error_Handler(void);
 #define CS_GPIO_Port GPIOA
 #define CLK_Pin GPIO_PIN_5
 #define CLK_GPIO_Port GPIOA
-#define KEY_1_Pin GPIO_PIN_6
-#define KEY_1_GPIO_Port GPIOA
 #define DB4_Pin GPIO_PIN_4
 #define DB4_GPIO_Port GPIOC
 #define DB5_Pin GPIO_PIN_5

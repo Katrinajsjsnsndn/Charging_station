@@ -5,7 +5,7 @@ apm32_master_node\lv_draw_sw_dither.o: ..\lvgl\src\draw\sw\../../core/../misc/lv
 apm32_master_node\lv_draw_sw_dither.o: ..\lvgl\src\draw\sw\../../core/../misc/../lv_conf_internal.h
 apm32_master_node\lv_draw_sw_dither.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_draw_sw_dither.o: ..\lvgl\src\draw\sw\../../core/../misc/../lv_conf_kconfig.h
-apm32_master_node\lv_draw_sw_dither.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_draw_sw_dither.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_draw_sw_dither.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 apm32_master_node\lv_draw_sw_dither.o: ..\lvgl\src\draw\sw\lv_draw_sw_gradient.h
 apm32_master_node\lv_draw_sw_dither.o: ..\lvgl\src\draw\sw\../../misc/lv_color.h

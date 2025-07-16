@@ -5,7 +5,7 @@ apm32_master_node\lv_theme_mono.o: ..\lvgl\src\extra\themes\mono\../../../../src
 apm32_master_node\lv_theme_mono.o: ..\lvgl\src\extra\themes\mono\../../../../src/misc/../lv_conf_internal.h
 apm32_master_node\lv_theme_mono.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lv_theme_mono.o: ..\lvgl\src\extra\themes\mono\../../../../src/misc/../lv_conf_kconfig.h
-apm32_master_node\lv_theme_mono.o: ..\lvgl\lv_conf.h
+apm32_master_node\lv_theme_mono.o: ../lvgl/lv_conf.h
 apm32_master_node\lv_theme_mono.o: ..\lvgl\src\extra\themes\mono\../../../../src/misc/lv_types.h
 apm32_master_node\lv_theme_mono.o: ..\lvgl\src\extra\themes\mono\../../../../src/misc/lv_timer.h
 apm32_master_node\lv_theme_mono.o: ..\lvgl\src\extra\themes\mono\../../../../src/misc/../hal/lv_hal_tick.h
