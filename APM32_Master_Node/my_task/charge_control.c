@@ -196,5 +196,4 @@ void check_device(uint8_t addr)
 	IIC_Start();
 	IIC_Write_Byte(addr | write_bit);
 	IIC_Wait_Ack();
-	printf("ºÏ≤‚µΩ…Ë±∏\n");
 }

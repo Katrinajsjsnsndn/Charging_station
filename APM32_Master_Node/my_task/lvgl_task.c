@@ -16,6 +16,7 @@
 //#include "adc.h"
 //#include "dac.h"
 #include "charge_control.h"
+#include "charging_station_ui.h"
 
 
 extern float current;
@@ -51,7 +52,6 @@ TaskHandle_t RS485Task_Handler;           /* 任务句柄 */
 void rs485_task(void *pvParameters);      /* 任务函数 */
 
 //TODO rtos堆栈分配
-//lv_ui guider_ui;
 
 void lvgl_task()
 {
@@ -97,6 +97,14 @@ void start_task(void *pvParameters)
                 (UBaseType_t    )LED_TASK_PRIO,
                 (TaskHandle_t*  )&RS485Task_Handler);
 
+    /* 充电站UI任务 */
+    xTaskCreate((TaskFunction_t )charging_station_ui_task,
+                (const char*    )"charging_ui_task",
+                (uint16_t       )128,
+                (void*          )NULL,
+                (UBaseType_t    )2,
+                (TaskHandle_t*  )NULL);
+
     taskEXIT_CRITICAL();            /* 退出临界区 */
     vTaskDelete(StartTask_Handler); /* 删除开始任务 */
 }
@@ -126,7 +134,6 @@ void lv_demo_task(void *pvParameters)
  * @retval      无
  */
 uint16_t read_adc;
-uint8_t key_val,key_old,key_down,key_up;
 
 void rs485_task(void *pvParameters)
 {
@@ -135,58 +142,35 @@ void rs485_task(void *pvParameters)
     while(1)
     {
 
-				key_val=read_key();
-				key_down= key_val&(key_val^key_old);
-				key_up=~key_val&(key_val^key_old);
-				key_old=key_val;
-				uint8_t on_off = 1;
+//				key_val=read_key();
+//				key_down= key_val&(key_val^key_old);
+//				key_up=~key_val&(key_val^key_old);
+//				key_old=key_val;
+//				uint8_t on_off = 1;
 
-				if(key_down==KEY_UP)
-				{
-					on_off=1;
-					RS485_Master_Send_Turn(0x01, &on_off, 1);				
-				}
-				if(key_down==KEY_DOWN)
-				{
-					on_off=0;
-					
-					RS485_Master_Send_Turn(0x01, &on_off, 1);	
-				}
-				if(key_down==KEY_RETURN)
-				{
-					on_off=3;
-					RS485_Master_Send_Turn(0x01, &on_off, 1);	
+//				if(key_down==KEY_UP)
+//				{
+//					on_off=1;
+//					RS485_Master_Send_Turn(0x01, &on_off, 1);				
+//				}
+//				if(key_down==KEY_DOWN)
+//				{
+//					on_off=0;
+//					
+//					RS485_Master_Send_Turn(0x01, &on_off, 1);	
+//				}
+//				if(key_down==KEY_RETURN)
+//				{
+//					on_off=3;
+//					RS485_Master_Send_Turn(0x01, &on_off, 1);	
 
-				}
-				RS485_Master_Receive_Process();
+//				}
+//				RS485_Master_Receive_Process();
         vTaskDelay(10);
 				HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,GPIO_PIN_RESET);
     }
 }
 
-
-uint8_t read_key()
-{
-	
-    uint8_t temp = KEY_NONE;
-
-    if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9) == 0)
-        temp = KEY_RETURN;
-//    else if (HAL_GPIO_ReadPin(KEY_2_GPIO_Port, KEY_2_Pin) == 0)
-//        temp = KEY_MENU;
-//    else if (HAL_GPIO_ReadPin(KEY_3_GPIO_Port, KEY_3_Pin) == 0)
-//        temp = KEY_OK;
-//    else if (HAL_GPIO_ReadPin(KEY_4_GPIO_Port, KEY_4_Pin) == 0)
-//        temp = KEY_LEFT;
-//    else if (HAL_GPIO_ReadPin(KEY_5_GPIO_Port, KEY_5_Pin) == 0)
-//        temp = KEY_RIGHT;
-//    else if (HAL_GPIO_ReadPin(KEY_6_GPIO_Port, KEY_6_Pin) == 0)
-//        temp = KEY_DOWN;
-//    else if (HAL_GPIO_ReadPin(KEY_7_GPIO_Port, KEY_7_Pin) == 0)
-//        temp = KEY_UP;
-
-    return temp;
-}
 
 
 

@@ -74,7 +74,7 @@ void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN 0 */
 //lv_ui guider_ui;
 /* USER CODE END 0 */
-uint16_t eeprom_val;
+
 /**
   * @brief  The application entry point.
   * @retval int
@@ -123,14 +123,14 @@ int main(void)
 //	lv_init();
 //	lv_port_disp_init();
 	draw_main_ui();
-//	lvgl_task();
-//  /* USER CODE END 2 */
+	lvgl_task();
+  /* USER CODE END 2 */
 
-//  /* Call init function for freertos objects (in cmsis_os2.c) */
-//  MX_FREERTOS_Init();
+  /* Call init function for freertos objects (in cmsis_os2.c) */
+  MX_FREERTOS_Init();
 
-//  /* Start scheduler */
-//  osKernelStart();
+  /* Start scheduler */
+  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
@@ -139,8 +139,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-		//MCP4725_WriteData_Voltage(5000);
-		MCP4725_WriteData_Digital(620);
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
