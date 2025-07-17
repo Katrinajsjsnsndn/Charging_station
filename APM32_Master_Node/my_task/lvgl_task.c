@@ -2,28 +2,19 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "cmsis_os.h"
-//#include "lcd.h"
-//#include "test code.h"
-//#include "lvgl.h" 
-//#include "lv_port_disp_template.h"
 #include "semphr.h"
 #include "rs485.h"
-#include "test code.h"
 #include "lcd.h"
 #include "rs485.h"
 #include "lvgl.h" 
 #include "lv_port_disp_template.h"
-//#include "adc.h"
-//#include "dac.h"
+
 #include "charge_control.h"
 #include "charging_station_ui.h"
 
 
-extern float current;
 extern uint16_t dac_set;
-void Current_Set(void);
-uint8_t read_key();
-
+extern Station_Info_t stations[STATION_NUM];
 /******************************************************************************************************/
 /*FreeRTOS配置*/
 
@@ -39,7 +30,7 @@ void start_task(void *pvParameters);    /* 任务函数 */
  * 包括: 任务句柄 任务优先级 堆栈大小 创建任务
  */
 #define LV_DEMO_TASK_PRIO   3           /* 任务优先级 */
-#define LV_DEMO_STK_SIZE    256        /* 任务堆栈大小 */
+#define LV_DEMO_STK_SIZE    128        /* 任务堆栈大小 */
 TaskHandle_t LV_DEMOTask_Handler;       /* 任务句柄 */
 void lv_demo_task(void *pvParameters);  /* 任务函数 */
 
@@ -100,7 +91,7 @@ void start_task(void *pvParameters)
     /* 充电站UI任务 */
     xTaskCreate((TaskFunction_t )charging_station_ui_task,
                 (const char*    )"charging_ui_task",
-                (uint16_t       )128,
+                (uint16_t       )256,
                 (void*          )NULL,
                 (UBaseType_t    )2,
                 (TaskHandle_t*  )NULL);
@@ -118,11 +109,10 @@ void start_task(void *pvParameters)
 void lv_demo_task(void *pvParameters)
 {
     
+			MCP4725_WriteData_Digital(1240);
 
     while(1)
     {
-
-		check_device(0XC0);
 			vTaskDelay(5);   // 
 
     }
@@ -142,32 +132,9 @@ void rs485_task(void *pvParameters)
     while(1)
     {
 
-//				key_val=read_key();
-//				key_down= key_val&(key_val^key_old);
-//				key_up=~key_val&(key_val^key_old);
-//				key_old=key_val;
-//				uint8_t on_off = 1;
 
-//				if(key_down==KEY_UP)
-//				{
-//					on_off=1;
-//					RS485_Master_Send_Turn(0x01, &on_off, 1);				
-//				}
-//				if(key_down==KEY_DOWN)
-//				{
-//					on_off=0;
-//					
-//					RS485_Master_Send_Turn(0x01, &on_off, 1);	
-//				}
-//				if(key_down==KEY_RETURN)
-//				{
-//					on_off=3;
-//					RS485_Master_Send_Turn(0x01, &on_off, 1);	
-
-//				}
-//				RS485_Master_Receive_Process();
+				RS485_Master_Receive_Process();
         vTaskDelay(10);
-				HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,GPIO_PIN_RESET);
     }
 }
 
@@ -177,6 +144,7 @@ void rs485_task(void *pvParameters)
 
  RS485_Frame_t *pHdr;
 // 接收处理函数
+float receive_current, receive_val;
 
 /* ----------------------------------------------------------
  * 2. 接收处理：按“头-len-data-checksum”方式解析
@@ -197,38 +165,56 @@ void RS485_Master_Receive_Process(void)
     uint16_t expect_len = 5 + pHdr->len + 1;   /* 5固定 + data[len] + checksum */
     if (rx_len != expect_len) goto frame_err;
 
-//    /* 2.3 校验和检查：校验范围 = 整个帧（除最后一个字节） */
-//    uint8_t calc_cs = RS485_CalcChecksum(rx_buffer, expect_len - 1);
-//    if (calc_cs != rx_buffer[expect_len - 1]) goto frame_err;
+    /* 2.3 校验和检查：校验范围 = 整个帧（除最后一个字节） */
+    uint8_t calc_cs = RS485_CalcChecksum(rx_buffer, expect_len - 1);
+    if (calc_cs != rx_buffer[expect_len - 1]) goto frame_err;
 
-    /* 2.4 命令分发 */
-    switch (pHdr->cmd)
-    {
+   /* 5. 命令分发 */
+    switch (pHdr->cmd) {
         case CMD_SET_PARAM:
-            if (pHdr->len >= 1)          /* 至少 1 字节参数 */
-            {
-                uint8_t param = rx_buffer[5];   /* data 起始位置 */
-                if (param == 1)
-                {
-                    
-                }
-                else if (param == 0)
-                {
-                }
-                else if (param == 3)
-                {
+            if (pHdr->len >= 1) {
+                uint8_t param = pHdr->data[0]; // 直接通过结构体访问
+                switch (param) {
+                    case 0: /* 处理 param=0 */ break;
+                    case 1: /* 处理 param=1 */ break;
+                    case 3: /* 处理 param=3 */ break;
+                    default: /* 无效参数 */ break;
                 }
             }
             break;
 
         case CMD_READ_DATA:
-            /* TODO：按协议回复 */
+            // 示例：回复当前数据（read_current 和 read_val）
+							memcpy(&receive_current, &pHdr->data[0], 4); // 解析第1个float（read_current）
+							memcpy(&receive_val, &pHdr->data[4], 4);     // 解析第2个float（read_val）
+
             break;
 
         default:
+            /* 未知命令 */
             break;
     }
+		if(pHdr->addr_from==0x01)
+		{
+				stations[0].battery_connected = 1;
+				stations[0].current = receive_current;
+				stations[0].voltage = receive_val;
+				stations[0].power = receive_current * receive_val;
 
+				// 状态判断
+				if(stations[0].battery_connected) 
+				{
+						if(stations[0].current > 0.1f) {
+								stations[0].status = 1; // 充电中
+						} else {
+								stations[0].status = 0; // 空闲
+						}
+				} 
+				else 
+				{
+						stations[0].status = 0; // 未连接
+				}
+		}
 frame_err:
     /* 3. 重新启动下一轮 DMA 接收 */
     rx_done = 0;

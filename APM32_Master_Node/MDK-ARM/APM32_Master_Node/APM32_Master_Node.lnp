@@ -39,7 +39,6 @@
 "apm32_master_node\charging_station_ui.o"
 "apm32_master_node\lcd.o"
 "apm32_master_node\test code.o"
-"apm32_master_node\my_lvgl_ui.o"
 "apm32_master_node\lv_port_disp_template.o"
 "apm32_master_node\lv_port_indev_template.o"
 "apm32_master_node\lv_disp.o"

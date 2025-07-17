@@ -29,6 +29,20 @@ typedef enum {
     KEY_UP = 7
 } KeyEnum;
 // 状态定义（可用于外部调用）
+
+
+// 站点信息结构体
+typedef struct {
+    uint8_t status;
+    float voltage;
+    float current;
+    float power;
+    uint8_t progress;
+    uint8_t battery_connected;
+} Station_Info_t;
+
+#define STATION_NUM 4
+
 #define STATION_STATUS_IDLE        0
 #define STATION_STATUS_CHARGING    1
 #define STATION_STATUS_ERROR       2

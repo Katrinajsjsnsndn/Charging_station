@@ -659,16 +659,6 @@
               <FileType>5</FileType>
               <FilePath>..\tft\test code.h</FilePath>
             </File>
-            <File>
-              <FileName>My_lvgl_ui.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\tft\My_lvgl_ui.c</FilePath>
-            </File>
-            <File>
-              <FileName>My_lvgl_ui.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\tft\My_lvgl_ui.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

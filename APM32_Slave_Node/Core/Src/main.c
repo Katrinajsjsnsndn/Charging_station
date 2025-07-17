@@ -70,7 +70,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 uint16_t read_adc_1,read_adc_2;
 uint16_t dac_set;
-float current_set=1,read_current;
+float current_set=1,read_current,read_val;
 /* USER CODE END 0 */
 
 /**
@@ -119,7 +119,7 @@ int main(void)
 
 
 	dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
-	Enable_Charging();
+	//Enable_Charging();
 
   /* USER CODE END 2 */
 
@@ -131,12 +131,13 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		RS485_Master_Receive_Process();
-		Data_Feedback();
+		Data_Feedback();//默认一直发送
     MCP4725_WriteData_Digital(dac_set);
 		read_adc_1=Get_ADC(1);//采样电阻0.005哦  放大倍数50倍
-		read_current=((read_adc_1/4095)*3.3)/0.25;
+		read_adc_2=Get_ADC(2);
+		read_current = ((float)read_adc_1 / 4095.0f) * 3.3f / 0.25f;
+		read_val = (float)read_adc_2 / 4095.0f * 3.3f * 10.0f;
 		HAL_Delay(10);
-//		check_device(0XC0);
   }
   /* USER CODE END 3 */
 }

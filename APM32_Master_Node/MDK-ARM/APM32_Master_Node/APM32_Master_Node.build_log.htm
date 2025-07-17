@@ -29,13 +29,21 @@ Project File Date:  07/17/2025
 Build target 'APM32_Master_Node'
 Note: source file '..\lvgl\src\extra\widgets\imgbtn\lv_imgbtn.c' - object file renamed from 'APM32_Master_Node\lv_imgbtn.o' to 'APM32_Master_Node\lv_imgbtn_1.o'.
 compiling charging_station_ui.c...
-..\my_task\charging_station_ui.c(410): warning:  #1-D: last line of file ends without a newline
+..\my_task\charging_station_ui.c(223): warning:  #69-D: integer conversion resulted in truncation
+      Show_Str(128, 8, (uint8_t*)"主站状态", 16, 
+OLOR_WHITE);
+..\my_task\charging_station_ui.c(225): warning:  #69-D: integer conversion resulted in truncation
+      Show_Str(120, 32, (uint8_t*)"● 正常运行", 12, 
+OLOR_GREEN);
+..\my_task\charging_station_ui.c(415): warning:  #1-D: last line of file ends without a newline
   }
-..\my_task\charging_station_ui.c: 1 warning, 0 errors
+..\my_task\charging_station_ui.c(19): warning:  #550-D: variable "system_total_power"  was set but never used
+  static uint16_t system_total_power = 200;
+..\my_task\charging_station_ui.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=20816 RO-data=6688 RW-data=3532 ZI-data=5916  
+Program Size: Code=20424 RO-data=6688 RW-data=4484 ZI-data=5948  
 FromELF: creating hex file...
-"APM32_Master_Node\APM32_Master_Node.axf" - 0 Error(s), 1 Warning(s).
+"APM32_Master_Node\APM32_Master_Node.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,7 +66,7 @@ Package Vendor: Geehy
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE@5.6.0
-Build Time Elapsed:  00:00:06
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>

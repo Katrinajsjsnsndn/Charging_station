@@ -36,7 +36,7 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-#define BUFFER_SIZE 7
+#define BUFFER_SIZE 25
 extern uint8_t rx_buffer[BUFFER_SIZE];  
 extern uint8_t rx_done;                 
 extern uint8_t rx_len;                 

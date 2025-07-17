@@ -73,6 +73,7 @@ void MX_FREERTOS_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 //lv_ui guider_ui;
+
 /* USER CODE END 0 */
 
 /**
@@ -108,21 +109,13 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 	HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
-
 	__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
-	HAL_GPIO_WritePin(RS485_EN_GPIO_Port, RS485_EN_Pin, GPIO_PIN_SET);
 	
-	HAL_Delay(10);
-	LCD_Init();			   	//初始化LCD 	
-	LCD_Display_Dir(USE_LCM_DIR);		 		//屏幕方向
-	LCD_Clear(WHITE);		//清屏
+	
 	IIC_GPIO_Config();
 
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, GPIO_PIN_SET);
-//	lv_init();
-//	lv_port_disp_init();
-	draw_main_ui();
+	HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,GPIO_PIN_RESET);
+
 	lvgl_task();
   /* USER CODE END 2 */
 

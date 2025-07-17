@@ -4,18 +4,18 @@
 #include "stdio.h"
 
 // 站点信息结构体
-typedef struct {
-    uint8_t status;
-    float voltage;
-    float current;
-    float power;
-    uint8_t progress;
-    uint8_t battery_connected;
-} Station_Info_t;
+// typedef struct {
+//     uint8_t status;
+//     float voltage;
+//     float current;
+//     float power;
+//     uint8_t progress;
+//     uint8_t battery_connected;
+// } Station_Info_t;
 
 #define STATION_NUM 4
 
-static Station_Info_t stations[STATION_NUM] = {0};
+Station_Info_t stations[STATION_NUM] = {0};
 static uint16_t system_total_power = 200;
 static uint16_t system_used_power = 0;
 
@@ -60,9 +60,9 @@ static void draw_charging_screen(void);
 // 尺寸
 #define SCREEN_WIDTH        320
 #define SCREEN_HEIGHT       240
-#define HEADER_HEIGHT       30
+#define HEADER_HEIGHT       60
 #define STATION_GRID_X      10
-#define STATION_GRID_Y      50
+#define STATION_GRID_Y      70
 #define STATION_WIDTH       145
 #define STATION_HEIGHT      70
 #define STATION_MARGIN      10
@@ -214,9 +214,15 @@ void charging_station_ui_task(void)
 // 优化主界面绘制：只刷新头部、卡片区和底部提示，不全屏清空
 static void draw_main_screen(void)
 {
-    // 只刷新头部
-    LCD_Fill(0, 0, SCREEN_WIDTH-1, HEADER_HEIGHT-1, COLOR_BLUE);
-    Show_Str(10, 8, (uint8_t*)"充电站", 16, 0);
+    // 先清理全屏，防止残影
+    LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
+
+    // 顶部黑色背景（可选，实际已全屏清理，这行可省略）
+    //LCD_Fill(0, 0, SCREEN_WIDTH-1, HEADER_HEIGHT-1, COLOR_BLACK);
+    // 居中显示“主站状态”
+    Show_Str(128, 8, (uint8_t*)"主站状态", 16, COLOR_WHITE);
+    // 居中显示绿色“● 正常运行”
+    Show_Str(120, 32, (uint8_t*)"● 正常运行", 12, COLOR_GREEN);
 
     // 只刷新卡片区
     for(uint8_t i = 0; i < STATION_NUM; i++) {
@@ -224,20 +230,6 @@ static void draw_main_screen(void)
         uint16_t y = STATION_GRID_Y + (i / 2) * (STATION_HEIGHT + STATION_MARGIN);
         draw_station_card(x, y, i, (i == selected_station));
     }
-
-    // 功率条和功率信息
-    char power_str[32];
-    sprintf(power_str, "功率: %dW / %dW", system_used_power, system_total_power);
-    Show_Str(100, 12, (uint8_t*)power_str, 12, 0);
-    uint16_t bar_width = 200, bar_height = 8, bar_x = 10, bar_y = 220;
-    LCD_Fill(bar_x, bar_y, bar_x + bar_width - 1, bar_y + bar_height - 1, COLOR_DARK_GRAY);
-    uint16_t progress_width = (system_used_power * bar_width) / system_total_power;
-    if(progress_width > bar_width) progress_width = bar_width;
-    LCD_Fill(bar_x, bar_y, bar_x + progress_width - 1, bar_y + bar_height - 1, COLOR_GREEN);
-
-    // 底部导航提示
-    LCD_Fill(0, 230, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
-    Show_Str(10, 235, (uint8_t*)"←→↑↓选择子站", 10, 0);
 }
 
 // 优化导航：只重绘前后两个卡片
@@ -372,9 +364,22 @@ static void draw_menu_screen(void)
 static void draw_detail_screen(void)
 {
     LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
-    Show_Str(10, 8, (uint8_t*)"子站详情(示例)", 16, 0);
-    // 可补充显示选中子站的详细信息
-    Show_Str(10, 40, (uint8_t*)"返回: RETURN", 12, 0);
+    Show_Str(10, 8, (uint8_t*)"子站详情", 16, 0);
+
+    // 获取当前选中子站信息
+    Station_Info_t *s = &stations[selected_station];
+
+    char info_str[32];
+    sprintf(info_str, "输出电压: %.2f V", s->voltage);
+    Show_Str(10, 40, (uint8_t*)info_str, 12, 0);
+
+    sprintf(info_str, "输出电流: %.2f A", s->current);
+    Show_Str(10, 65, (uint8_t*)info_str, 12, 0);
+
+    sprintf(info_str, "输出功率: %d W", (int)(s->power));
+    Show_Str(10, 90, (uint8_t*)info_str, 12, 0);
+
+    Show_Str(10, 130, (uint8_t*)"返回: RETURN", 12, 0);
 }
 
 // 设置页面
