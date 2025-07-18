@@ -1,6 +1,7 @@
 #include "rs485.h"
 #include "charge_control.h"
 extern uint16_t dac_set;
+extern float current_set;
 void Data_Feedback(void);
 
 uint8_t tx_buf[RS485_MAX_FRAME_LEN];
@@ -53,11 +54,16 @@ void RS485_Master_Receive_Process(void)
                 if (param == 1)
                 {
                     Enable_Charging();
+										current_set=1;
+										dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
                     MCP4725_WriteData_Digital(dac_set);
                 }
-                else if (param == 0)
-                {
-                    Disable_Charging();
+                else if (param == 2)
+                { 
+										Enable_Charging();
+										current_set=1.5;
+										dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
+                    MCP4725_WriteData_Digital(dac_set);
                 }
                 else if (param == 3)
                 {

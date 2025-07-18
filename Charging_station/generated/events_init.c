@@ -16,44 +16,6 @@
 #endif
 
 
-static void screen_btn_7_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_PRESSED:
-    {
-        ui_load_scr_animation(&guider_ui, &guider_ui.screen_2, guider_ui.screen_2_del, &guider_ui.screen_del, setup_scr_screen_2, LV_SCR_LOAD_ANIM_OVER_BOTTOM, 200, 20, false, true);
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-void events_init_screen (lv_ui *ui)
-{
-    lv_obj_add_event_cb(ui->screen_btn_7, screen_btn_7_event_handler, LV_EVENT_ALL, ui);
-}
-
-static void screen_2_btn_6_event_handler (lv_event_t *e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    switch (code) {
-    case LV_EVENT_PRESSED:
-    {
-        ui_load_scr_animation(&guider_ui, &guider_ui.screen, guider_ui.screen_del, &guider_ui.screen_2_del, setup_scr_screen, LV_SCR_LOAD_ANIM_OVER_LEFT, 200, 10, false, true);
-        break;
-    }
-    default:
-        break;
-    }
-}
-
-void events_init_screen_2 (lv_ui *ui)
-{
-    lv_obj_add_event_cb(ui->screen_2_btn_6, screen_2_btn_6_event_handler, LV_EVENT_ALL, ui);
-}
-
 
 void events_init(lv_ui *ui)
 {

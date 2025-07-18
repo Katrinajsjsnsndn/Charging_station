@@ -1,14 +1,14 @@
 build/object/monitor.o: \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_drivers/display/monitor.c \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_drivers/display/monitor.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_drv_conf.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_conf.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/lv_drivers/display/monitor.c \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/lv_drivers/display/monitor.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/lv_drv_conf.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/lv_conf.h \
  e:\desktop\apm32\charging_station\custom\lv_conf_ext.h \
  e:\desktop\apm32\charging_station\lvgl\lvgl.h \
  e:\desktop\apm32\charging_station\lvgl\src/misc/lv_log.h \
  e:\desktop\apm32\charging_station\lvgl\src\lv_conf_internal.h \
  e:\desktop\apm32\charging_station\lvgl\src\lv_conf_kconfig.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_conf.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/lv_conf.h \
  e:\desktop\apm32\charging_station\lvgl\src/misc/lv_types.h \
  e:\desktop\apm32\charging_station\lvgl\src/misc/lv_timer.h \
  e:\desktop\apm32\charging_station\lvgl\src\hal\lv_hal_tick.h \
@@ -249,7 +249,7 @@ build/object/monitor.o: \
  e:\desktop\apm32\charging_station\lvgl\src\draw\lv_draw.h \
  e:\desktop\apm32\charging_station\lvgl\src/extra/widgets/video/lv_video.h \
  e:\desktop\apm32\charging_station\lvgl\src\lvgl.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_drivers/display/pro_name.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/lv_drivers/display/pro_name.h \
  SDL2\i686-w64-mingw32\include/SDL2/SDL.h \
  SDL2\i686-w64-mingw32\include/SDL2/SDL_main.h \
  SDL2\i686-w64-mingw32\include/SDL2/SDL_stdinc.h \
@@ -300,11 +300,11 @@ build/object/monitor.o: \
  e:\desktop\apm32\charging_station\lvgl-simulator\lv_drivers\indev\keyboard.h \
  e:\desktop\apm32\charging_station\lvgl-simulator\lv_drivers\indev\mousewheel.h
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_drivers/display/monitor.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/lv_drivers/display/monitor.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_drv_conf.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/lv_drv_conf.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_conf.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/lv_conf.h:
 
 e:\desktop\apm32\charging_station\custom\lv_conf_ext.h:
 
@@ -316,7 +316,7 @@ e:\desktop\apm32\charging_station\lvgl\src\lv_conf_internal.h:
 
 e:\desktop\apm32\charging_station\lvgl\src\lv_conf_kconfig.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_conf.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/lv_conf.h:
 
 e:\desktop\apm32\charging_station\lvgl\src/misc/lv_types.h:
 
@@ -798,7 +798,7 @@ e:\desktop\apm32\charging_station\lvgl\src/extra/widgets/video/lv_video.h:
 
 e:\desktop\apm32\charging_station\lvgl\src\lvgl.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_drivers/display/pro_name.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/lv_drivers/display/pro_name.h:
 
 SDL2\i686-w64-mingw32\include/SDL2/SDL.h:
 

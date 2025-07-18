@@ -36,16 +36,34 @@
 #include "lv_port_disp_template.h"
 #include "my_lvgl_ui.h"
 #include "charge_control.h"
-
+#include "Lvgl_ui.h"
+#include "../generated/gui_guider.h"
+#include "../generated/events_init.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+
+// 定义按键枚举
+typedef enum {
+    KEY_NONE = 0,
+    KEY_RETURN = 1,
+    KEY_MENU = 2,
+    KEY_OK = 3,
+    KEY_LEFT = 4,
+    KEY_RIGHT = 5,
+    KEY_DOWN = 6,
+    KEY_UP = 7
+} KeyEnum;
+// 状态定义（可用于外部调用）
 uint8_t rx_buffer[BUFFER_SIZE] = {0};  
 uint8_t rx_done = 0;                   
 uint8_t rx_len = 0;                 
 float current=0.1;
 uint16_t dac_set;
+lv_ui guider_ui;
+uint8_t in_detail = 0; // 新增，主界面/详情页状态
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -115,15 +133,26 @@ int main(void)
 	IIC_GPIO_Config();
 
 	HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,GPIO_PIN_RESET);
+	  LCD_Init();
+    LCD_Display_Dir(2);
+    LCD_Clear(WHITE);
+# ifdef LVGL_UI 
 
+				lv_init();
+				lv_port_disp_init();
+				lvgl_main_screen_create();
+				//setup_ui(&guider_ui);
+				//events_init(&guider_ui);
+#endif
 	lvgl_task();
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
-  MX_FREERTOS_Init();
+//  MX_FREERTOS_Init();
 
-  /* Start scheduler */
-  osKernelStart();
+//  /* Start scheduler */
+//  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
 
@@ -134,6 +163,53 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+#ifdef LVGL_UI		
+		uint8_t key = read_key();
+        if (key != KEY_NONE) {
+            if (!in_detail) {
+                // 主界面按键处理
+                switch (key) {
+                    case KEY_LEFT:
+                        if (selected_card % 2 == 1) selected_card--;
+                        break;
+                    case KEY_RIGHT:
+                        if (selected_card % 2 == 0) selected_card++;
+                        break;
+                    case KEY_UP:
+                        if (selected_card >= 2) selected_card -= 2;
+                        break;
+                    case KEY_DOWN:
+                        if (selected_card < 2) selected_card += 2;
+                        break;
+                    case KEY_OK:
+                        // 进入详情页
+                        if (selected_card == 0)
+                            lvgl_detail_screen_create("Station 01", "Charging", 36.2, 2.5, 90);
+                        else if (selected_card == 1)
+                            lvgl_detail_screen_create("Station 02", "Idle", 0, 0, 0);
+                        else if (selected_card == 2)
+                            lvgl_detail_screen_create("Station 03", "Charging", 42.1, 3.0, 126);
+                        else if (selected_card == 3)
+                            lvgl_detail_screen_create("Station 04", "Idle", 0, 0, 0);
+                        in_detail = 1;
+                        break;
+                    case KEY_MENU:
+                        // 可扩展菜单页
+                        break;
+                }
+                lvgl_update_card_highlight(selected_card);
+            } else {
+                // 详情页按键处理
+                if (key == KEY_RETURN) {
+                    lvgl_main_screen_create();
+                    in_detail = 0;
+                }
+            }
+        }
+		 lv_tick_inc(1);
+    lv_task_handler();
+    HAL_Delay(5);
+#endif		
   }
   /* USER CODE END 3 */
 }
@@ -178,7 +254,30 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+#ifdef LVGL_UI
+uint8_t read_key(void)
+{
+	
+    uint8_t temp = KEY_NONE;
 
+    if (HAL_GPIO_ReadPin(KEY_1_GPIO_Port, KEY_1_Pin) == 0)
+        temp = KEY_UP;
+    else if (HAL_GPIO_ReadPin(KEY_6_GPIO_Port, KEY_6_Pin) == 0)
+        temp = KEY_MENU;
+    else if (HAL_GPIO_ReadPin(KEY_5_GPIO_Port, KEY_5_Pin) == 0)
+        temp = KEY_OK;
+    else if (HAL_GPIO_ReadPin(KEY_3_GPIO_Port, KEY_3_Pin) == 0)
+        temp = KEY_RIGHT;
+    else if (HAL_GPIO_ReadPin(KEY_2_GPIO_Port, KEY_2_Pin) == 0)
+        temp = KEY_DOWN;
+    else if (HAL_GPIO_ReadPin(KEY_4_GPIO_Port, KEY_4_Pin) == 0)
+        temp = KEY_LEFT;
+    else if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9) == 0)
+        temp = KEY_RETURN;
+
+    return temp;
+}
+#endif
 void USART2_IRQHandler(void)
 {
   /* USER CODE BEGIN USART2_IRQn 0 */

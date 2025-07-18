@@ -1,12 +1,12 @@
 build/object/gg_external_data.o: \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/gg_external_data.c \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/gg_external_data.c \
  e:\desktop\apm32\charging_station\lvgl\src\misc\lv_ll.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/gg_external_data.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/gg_external_data.h \
  e:\desktop\apm32\charging_station\lvgl\lvgl.h \
  e:\desktop\apm32\charging_station\lvgl\src/misc/lv_log.h \
  e:\desktop\apm32\charging_station\lvgl\src\lv_conf_internal.h \
  e:\desktop\apm32\charging_station\lvgl\src\lv_conf_kconfig.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_conf.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/lv_conf.h \
  e:\desktop\apm32\charging_station\custom\lv_conf_ext.h \
  e:\desktop\apm32\charging_station\lvgl\src/misc/lv_types.h \
  e:\desktop\apm32\charging_station\lvgl\src/misc/lv_timer.h \
@@ -248,13 +248,13 @@ build/object/gg_external_data.o: \
  e:\desktop\apm32\charging_station\lvgl\src\draw\lv_draw.h \
  e:\desktop\apm32\charging_station\lvgl\src/extra/widgets/video/lv_video.h \
  e:\desktop\apm32\charging_station\lvgl\src\lvgl.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/freemaster/freemaster_client.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/freemaster/connect_utils.h \
- E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/gg_external_data.h
+ E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/freemaster/freemaster_client.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/freemaster/connect_utils.h \
+ E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/gg_external_data.h
 
 e:\desktop\apm32\charging_station\lvgl\src\misc\lv_ll.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/gg_external_data.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/gg_external_data.h:
 
 e:\desktop\apm32\charging_station\lvgl\lvgl.h:
 
@@ -264,7 +264,7 @@ e:\desktop\apm32\charging_station\lvgl\src\lv_conf_internal.h:
 
 e:\desktop\apm32\charging_station\lvgl\src\lv_conf_kconfig.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/lv_conf.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/lv_conf.h:
 
 e:\desktop\apm32\charging_station\custom\lv_conf_ext.h:
 
@@ -748,8 +748,8 @@ e:\desktop\apm32\charging_station\lvgl\src/extra/widgets/video/lv_video.h:
 
 e:\desktop\apm32\charging_station\lvgl\src\lvgl.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/freemaster/freemaster_client.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/freemaster/freemaster_client.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/freemaster/connect_utils.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/freemaster/connect_utils.h:
 
-E:/Desktop/APM32/Charging_station/lvgl-simulator/gg_external_data/gg_external_data.h:
+E:/Desktop/APM32/charging_station/lvgl-simulator/gg_external_data/gg_external_data.h:

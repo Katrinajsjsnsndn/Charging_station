@@ -119,7 +119,7 @@ int main(void)
 
 
 	dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
-	//Enable_Charging();
+	Enable_Charging();
 
   /* USER CODE END 2 */
 

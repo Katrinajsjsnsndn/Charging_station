@@ -76,15 +76,14 @@ void init_scr_del_flag(lv_ui *ui)
 {
 
     ui->screen_del = true;
-    ui->screen_2_del = true;
 }
 
 void setup_ui(lv_ui *ui)
 {
     init_scr_del_flag(ui);
     init_keyboard(ui);
-    setup_scr_screen_2(ui);
-    lv_scr_load(ui->screen_2);
+    setup_scr_screen(ui);
+    lv_scr_load(ui->screen);
 }
 
 void init_keyboard(lv_ui *ui)

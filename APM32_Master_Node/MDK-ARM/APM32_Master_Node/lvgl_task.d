@@ -44,7 +44,6 @@ apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
-apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 apm32_master_node\lvgl_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 apm32_master_node\lvgl_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 apm32_master_node\lvgl_task.o: ../Core/Inc/usart.h

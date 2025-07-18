@@ -2,16 +2,9 @@
 #include "lcd.h"
 #include "string.h"
 #include "stdio.h"
+#include "rs485.h"
 
-// 站点信息结构体
-// typedef struct {
-//     uint8_t status;
-//     float voltage;
-//     float current;
-//     float power;
-//     uint8_t progress;
-//     uint8_t battery_connected;
-// } Station_Info_t;
+
 
 #define STATION_NUM 4
 
@@ -56,6 +49,25 @@ static void draw_charging_screen(void);
 #define COLOR_GREEN     0x07E0
 #define COLOR_BLUE      0x001F
 #define COLOR_DARK_GRAY 0x4208
+#define COLOR_ORANGE 0xFD20
+
+typedef struct {
+    const char *name;
+    uint16_t power;
+    uint16_t color;
+} ChargeMode_t;
+
+static const ChargeMode_t charge_modes[] = {
+    {"标准充电", 25, COLOR_GREEN},
+    {"快速充电", 90, COLOR_RED},
+    {"放电测试", 30, COLOR_ORANGE}
+};
+#define CHARGE_MODE_NUM (sizeof(charge_modes)/sizeof(charge_modes[0]))
+static uint8_t charge_mode_selected = 0;
+static uint8_t charge_progress = 65;
+
+// 记录上一次选中的充电模式索引
+static uint8_t last_charge_mode_selected = 0;
 
 // 尺寸
 #define SCREEN_WIDTH        320
@@ -73,6 +85,7 @@ static void draw_station_card(uint16_t x, uint16_t y, uint8_t idx, uint8_t selec
 static void draw_progress_bar(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint8_t progress, uint16_t color);
 static void update_power(void);
 static void update_station_selection(uint8_t new_selected);
+static void update_charge_mode_selection(uint8_t old_sel, uint8_t new_sel);
 
 // 初始化
 void charging_station_ui_init(void)
@@ -160,7 +173,10 @@ void charging_station_ui_task(void)
                     break;
                 }
                 case UI_DETAIL:
-                    if(key_down == KEY_RETURN) {
+                    if(key_down == KEY_OK) {
+                        ui_state = UI_CHARGING;
+                        need_redraw = 1;
+                    } else if(key_down == KEY_RETURN) {
                         ui_state = UI_MAIN;
                         need_redraw = 1;
                     }
@@ -184,10 +200,41 @@ void charging_station_ui_task(void)
                     }
                     break;
                 case UI_CHARGING:
+                    if(key_down == KEY_UP && charge_mode_selected > 0) {
+                        uint8_t old_sel = charge_mode_selected;
+                        charge_mode_selected--;
+                        update_charge_mode_selection(old_sel, charge_mode_selected);
+                        last_charge_mode_selected = charge_mode_selected;
+                    }
+                    if(key_down == KEY_DOWN && charge_mode_selected < CHARGE_MODE_NUM-1) {
+                        uint8_t old_sel = charge_mode_selected;
+                        charge_mode_selected++;
+                        update_charge_mode_selection(old_sel, charge_mode_selected);
+                        last_charge_mode_selected = charge_mode_selected;
+                    }
                     if(key_down == KEY_RETURN) {
-                        ui_state = UI_MENU;
+                        ui_state = UI_DETAIL;
                         need_redraw = 1;
                     }
+										uint8_t send_order;
+										if(key_down == KEY_OK && charge_mode_selected==0 )
+										{
+											send_order=1;
+											RS485_Master_Send_Turn(0x01,&send_order,1);
+											//标准充电
+										}
+										if(key_down == KEY_OK && charge_mode_selected==1 )
+										{
+											send_order=2;
+											RS485_Master_Send_Turn(0x01,&send_order,1);
+
+											//快速充电
+										}
+										if(key_down == KEY_OK && charge_mode_selected==2 )
+										{
+											//放电测试
+										}
+                    // KEY_OK 可扩展为启动充电
                     break;
                 default:
                     break;
@@ -217,12 +264,14 @@ static void draw_main_screen(void)
     // 先清理全屏，防止残影
     LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
 
-    // 顶部黑色背景（可选，实际已全屏清理，这行可省略）
-    //LCD_Fill(0, 0, SCREEN_WIDTH-1, HEADER_HEIGHT-1, COLOR_BLACK);
+    // 顶部黑色背景
+    LCD_Fill(0, 0, SCREEN_WIDTH-1, HEADER_HEIGHT-1, COLOR_BLACK);
     // 居中显示“主站状态”
-    Show_Str(128, 8, (uint8_t*)"主站状态", 16, COLOR_WHITE);
+    POINT_COLOR = COLOR_GREEN;
+    Show_Str(128, 8, (uint8_t*)"主站状态", 16, 0);
     // 居中显示绿色“● 正常运行”
-    Show_Str(120, 32, (uint8_t*)"● 正常运行", 12, COLOR_GREEN);
+    POINT_COLOR = COLOR_GREEN;
+    Show_Str(120, 32, (uint8_t*)"● 正常运行", 12, 0);
 
     // 只刷新卡片区
     for(uint8_t i = 0; i < STATION_NUM; i++) {
@@ -410,6 +459,50 @@ static void draw_monitor_screen(void)
 static void draw_charging_screen(void)
 {
     LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
-    Show_Str(10, 8, (uint8_t*)"充电控制(示例)", 16, 0);
-    Show_Str(10, 40, (uint8_t*)"返回: RETURN", 12, 0);
+
+    // 顶部标题
+    Show_Str(100, 8, (uint8_t*)"快速充电", 16, 0);
+
+    // 进度条
+    uint16_t bar_x = 20, bar_y = 40, bar_w = 280, bar_h = 16;
+    LCD_Fill(bar_x, bar_y, bar_x+bar_w-1, bar_y+bar_h-1, COLOR_DARK_GRAY);
+    uint16_t fill_w = (charge_progress * bar_w) / 100;
+    LCD_Fill(bar_x, bar_y, bar_x+fill_w-1, bar_y+bar_h-1, COLOR_GREEN);
+
+    // 进度百分比
+    char progress_str[32];
+    sprintf(progress_str, "已充电 %d%%", charge_progress);
+    Show_Str(120, 62, (uint8_t*)progress_str, 12, 0);
+
+    // 充电模式列表
+    Show_Str(20, 90, (uint8_t*)"充电模式", 12, 0);
+    for(uint8_t i=0; i<CHARGE_MODE_NUM; i++) {
+        uint16_t y = 110 + i*28;
+        uint16_t bg = (i == charge_mode_selected) ? COLOR_BLUE : COLOR_DARK_GRAY;
+        LCD_Fill(20, y, 220, y+24, bg);
+        Show_Str(30, y+6, (uint8_t*)charge_modes[i].name, 12, 0);
+        char power_str[16];
+        sprintf(power_str, "%dW", charge_modes[i].power);
+        POINT_COLOR = charge_modes[i].color;
+        Show_Str(180, y+6, (uint8_t*)power_str, 12, 0);
+    }
+
+    // 底部操作提示
+    Show_Str(20, 210, (uint8_t*)"↑↓选择模式 OK启动 BACK返回", 10, 0);
+}
+
+static void update_charge_mode_selection(uint8_t old_sel, uint8_t new_sel)
+{
+    for (uint8_t i = 0; i < CHARGE_MODE_NUM; i++) {
+        if (i == old_sel || i == new_sel) {
+            uint16_t y = 110 + i*28;
+            uint16_t bg = (i == new_sel) ? COLOR_BLUE : COLOR_DARK_GRAY;
+            LCD_Fill(20, y, SCREEN_WIDTH-20, y+24, bg);
+            Show_Str(30, y+6, (uint8_t*)charge_modes[i].name, 12, 0);
+            char power_str[16];
+            sprintf(power_str, "%dW", charge_modes[i].power);
+            POINT_COLOR = charge_modes[i].color;
+            Show_Str(180, y+6, (uint8_t*)power_str, 12, 0);
+        }
+    }
 }
