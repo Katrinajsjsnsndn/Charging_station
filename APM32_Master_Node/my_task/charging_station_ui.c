@@ -114,7 +114,7 @@ uint8_t read_key()
         temp = KEY_DOWN;
     else if (HAL_GPIO_ReadPin(KEY_4_GPIO_Port, KEY_4_Pin) == 0)
         temp = KEY_LEFT;
-    else if (HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9) == 0)
+    else if (HAL_GPIO_ReadPin(KEY_7_GPIO_Port, KEY_7_Pin) == 0)
         temp = KEY_RETURN;
 
     return temp;
@@ -233,6 +233,9 @@ void charging_station_ui_task(void)
 										if(key_down == KEY_OK && charge_mode_selected==2 )
 										{
 											//放电测试
+											send_order=3;
+											RS485_Master_Send_Turn(0x01,&send_order,1);
+
 										}
                     // KEY_OK 可扩展为启动充电
                     break;
