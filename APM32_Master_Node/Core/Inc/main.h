@@ -67,9 +67,7 @@ void Error_Handler(void);
 #define DB14_GPIO_Port GPIOC
 #define DB15_Pin GPIO_PIN_15
 #define DB15_GPIO_Port GPIOC
-#define DB0_Pin GPIO_PIN_0
-#define DB0_GPIO_Port GPIOC
-#define KEY_7_Pin GPIO_PIN_1
+#define KEY_7_Pin GPIO_PIN_0
 #define KEY_7_GPIO_Port GPIOC
 #define KEY_6_Pin GPIO_PIN_2
 #define KEY_6_GPIO_Port GPIOC
