@@ -24,13 +24,31 @@ void Enable_Charging()
 	HAL_GPIO_WritePin(GPIOB,CD4051_A0_Pin,1);
 	HAL_GPIO_WritePin(GPIOB,CD4051_A1_Pin,1);
 	HAL_GPIO_WritePin(GPIOB,CD4051_A2_Pin,0);
+	
+	HAL_GPIO_WritePin(LED_3_GPIO_Port,LED_3_Pin,1);//三个红灯
+	HAL_GPIO_WritePin(LED_2_GPIO_Port,LED_2_Pin,0);//三个绿灯
+
 }
 
 void Disable_Charging() 
 {
   HAL_GPIO_WritePin(CE_GPIO_Port, CE_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(LED_3_GPIO_Port,LED_3_Pin,0);//三个红灯
+	HAL_GPIO_WritePin(LED_2_GPIO_Port,LED_2_Pin,1);//三个绿灯
+
 }
 
+void Enable_Discharging()
+{
+	HAL_GPIO_WritePin(BATOTSW_GPIO_Port,BATOTSW_Pin,1);
+
+}
+void Disable_discharging()
+{
+	HAL_GPIO_WritePin(BATOTSW_GPIO_Port,BATOTSW_Pin,0);
+
+
+}
 
 void MCP4725_WriteData_Digital(uint16_t data)   //12位数字量
 {

@@ -23,7 +23,9 @@ RS485_Frame_t frame;
 
 /* ----------------------------------------------------------
  * 2. 接收处理：按“头-len-data-checksum”方式解析
- * ---------------------------------------------------------- */
+
+* ---------------------------------------------------------- */
+uint8_t i=0;
 void RS485_Master_Receive_Process(void)
 {
     if (!rx_done) return;
@@ -51,24 +53,41 @@ void RS485_Master_Receive_Process(void)
             if (pHdr->len >= 1)          /* 至少 1 字节参数 */
             {
                 uint8_t param = rx_buffer[5];   /* data 起始位置 */
+								if (param == 4)
+								{
+									i=1;
+									Disable_Charging();
+									Enable_Discharging();
+									return;
+								}
+								else
+								{
+									Disable_discharging();
+								}
                 if (param == 1)
                 {
-                    Enable_Charging();
-										current_set=1;
+										current_set=4;
 										dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
                     MCP4725_WriteData_Digital(dac_set);
                 }
                 else if (param == 2)
                 { 
-										Enable_Charging();
-										current_set=1.5;
+										current_set=8;
 										dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
                     MCP4725_WriteData_Digital(dac_set);
                 }
                 else if (param == 3)
                 {
-                    data_feedback_flag = 1;
-                }
+									i++;
+									if(i%2==0)
+									{
+										Enable_Charging();
+									}
+									else
+									{
+											Disable_Charging();
+									}
+								}
             }
             break;
 

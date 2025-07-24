@@ -40,7 +40,16 @@ typedef struct {
     uint8_t progress;
     uint8_t battery_connected;
 } Station_Info_t;
-
+// UI״̬
+typedef enum {
+    UI_MAIN = 0,
+    UI_MENU,
+    UI_DETAIL,
+    UI_SETTINGS,
+    UI_POWER,
+    UI_MONITOR,
+    UI_CHARGING
+} UIState;
 #define STATION_NUM 4
 
 #define STATION_STATUS_IDLE        0

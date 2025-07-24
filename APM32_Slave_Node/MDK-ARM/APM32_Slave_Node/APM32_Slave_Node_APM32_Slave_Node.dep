@@ -1,8 +1,8 @@
 Dependencies for Project 'APM32_Slave_Node', Target 'APM32_Slave_Node': (DO NOT MODIFY !)
 CompilerVersion: 5060528::V5.06 update 5 (build 528)::ARMCC
-F (startup_stm32f103xb.s)(0x686E2D0B)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include--pd "__UVISION_VERSION SETA 539" --pd "_RTE_ SETA 1" --pd "APM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o apm32_slave_node\startup_stm32f103xb.o --depend apm32_slave_node\startup_stm32f103xb.d)
-F (../Core/Src/main.c)(0x6879FD48)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\main.o --omf_browse apm32_slave_node\main.crf --depend apm32_slave_node\main.d)
-I (../Core/Inc/main.h)(0x686DED54)
+F (startup_stm32f103xb.s)(0x687DE4A5)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include--pd "__UVISION_VERSION SETA 539" --pd "_RTE_ SETA 1" --pd "APM32F10X_MD SETA 1" --pd "_RTE_ SETA 1"--list startup_stm32f103xb.lst --xref -o apm32_slave_node\startup_stm32f103xb.o --depend apm32_slave_node\startup_stm32f103xb.d)
+F (../Core/Src/main.c)(0x687DF6F7)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\main.o --omf_browse apm32_slave_node\main.crf --depend apm32_slave_node\main.d)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -37,10 +37,10 @@ I (../Core/Inc/gpio.h)(0x686B3702)
 I (../rs485/rs485.h)(0x68760008)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
-I (../APP/charge_control.h)(0x68776ED7)
-F (../Core/Src/gpio.c)(0x686E2D08)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\gpio.o --omf_browse apm32_slave_node\gpio.crf --depend apm32_slave_node\gpio.d)
+I (../APP/charge_control.h)(0x687DE71F)
+F (../Core/Src/gpio.c)(0x687DE4A2)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\gpio.o --omf_browse apm32_slave_node\gpio.crf --depend apm32_slave_node\gpio.d)
 I (../Core/Inc/gpio.h)(0x686B3702)
-I (../Core/Inc/main.h)(0x686DED54)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -70,7 +70,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66FF73A8)
 F (../Core/Src/adc.c)(0x686DE932)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\adc.o --omf_browse apm32_slave_node\adc.crf --depend apm32_slave_node\adc.d)
 I (../Core/Inc/adc.h)(0x686DE932)
-I (../Core/Inc/main.h)(0x686DED54)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -100,7 +100,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66FF73A8)
 F (../Core/Src/dma.c)(0x686B409F)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\dma.o --omf_browse apm32_slave_node\dma.crf --depend apm32_slave_node\dma.d)
 I (../Core/Inc/dma.h)(0x686B409F)
-I (../Core/Inc/main.h)(0x686DED54)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -130,7 +130,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66FF73A8)
 F (../Core/Src/usart.c)(0x686D0DE3)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\usart.o --omf_browse apm32_slave_node\usart.crf --depend apm32_slave_node\usart.d)
 I (../Core/Inc/usart.h)(0x686B3703)
-I (../Core/Inc/main.h)(0x686DED54)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -158,8 +158,8 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66FF73A8)
-F (../Core/Src/stm32f1xx_it.c)(0x686E2D79)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\stm32f1xx_it.o --omf_browse apm32_slave_node\stm32f1xx_it.crf --depend apm32_slave_node\stm32f1xx_it.d)
-I (../Core/Inc/main.h)(0x686DED54)
+F (../Core/Src/stm32f1xx_it.c)(0x687DE568)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\stm32f1xx_it.o --omf_browse apm32_slave_node\stm32f1xx_it.crf --depend apm32_slave_node\stm32f1xx_it.d)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -189,7 +189,7 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_it.h)(0x686B409F)
 F (../Core/Src/stm32f1xx_hal_msp.c)(0x686B3703)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\stm32f1xx_hal_msp.o --omf_browse apm32_slave_node\stm32f1xx_hal_msp.crf --depend apm32_slave_node\stm32f1xx_hal_msp.d)
-I (../Core/Inc/main.h)(0x686DED54)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -637,12 +637,12 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66FF73A8)
-F (..\rs485\rs485.c)(0x6879FEE5)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\rs485.o --omf_browse apm32_slave_node\rs485.crf --depend apm32_slave_node\rs485.d)
+F (..\rs485\rs485.c)(0x687DE71F)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\rs485.o --omf_browse apm32_slave_node\rs485.crf --depend apm32_slave_node\rs485.d)
 I (..\rs485\rs485.h)(0x68760008)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (../Core/Inc/usart.h)(0x686B3703)
-I (../Core/Inc/main.h)(0x686DED54)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -670,13 +670,13 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66FF73A8)
-I (../APP/charge_control.h)(0x68776ED7)
+I (../APP/charge_control.h)(0x687DE71F)
 I (../Core/Inc/gpio.h)(0x686B3702)
 F (..\rs485\rs485.h)(0x68760008)()
-F (..\APP\charge_control.c)(0x68779C24)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\charge_control.o --omf_browse apm32_slave_node\charge_control.crf --depend apm32_slave_node\charge_control.d)
-I (..\APP\charge_control.h)(0x68776ED7)
+F (..\APP\charge_control.c)(0x687DE71F)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc -I ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I ../Drivers/CMSIS/Include -I ../rs485 -I ../APP-I.\RTE\_APM32_Slave_Node-ID:\keil_pack\ARM\CMSIS\5.9.0\CMSIS\Core\Include-ID:\keil_pack\Geehy\APM32F1xx_DFP\1.1.0\Device\Device\Geehy\APM32F10x\Include-D__UVISION_VERSION="539" -D_RTE_ -DAPM32F10X_MD -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F103xB-o apm32_slave_node\charge_control.o --omf_browse apm32_slave_node\charge_control.crf --depend apm32_slave_node\charge_control.d)
+I (..\APP\charge_control.h)(0x687DE71F)
 I (../Core/Inc/gpio.h)(0x686B3702)
-I (../Core/Inc/main.h)(0x686DED54)
+I (../Core/Inc/main.h)(0x687DE4A4)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h)(0x66FF73A8)
 I (../Core/Inc/stm32f1xx_hal_conf.h)(0x686B8919)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h)(0x66FF73A8)
@@ -704,4 +704,4 @@ I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h)(0x66FF73A8)
 I (../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h)(0x66FF73A8)
-F (..\APP\charge_control.h)(0x68776ED7)()
+F (..\APP\charge_control.h)(0x687DE71F)()

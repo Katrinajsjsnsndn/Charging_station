@@ -214,7 +214,9 @@ void DMA1_Channel6_IRQHandler(void)
 }
 
 /**
-  * @brief This func
+  * @brief This function handles USART2 global interrupt.
+  */
+
 /* USER CODE BEGIN 1 */
 
 /* USER CODE END 1 */

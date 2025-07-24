@@ -1,8 +1,9 @@
 apm32_master_node\lvgl_task.o: ..\my_task\lvgl_task.c
 apm32_master_node\lvgl_task.o: ..\my_task\lvgl_task.h
+apm32_master_node\lvgl_task.o: ..\my_task\charging_station_ui.h
+apm32_master_node\lvgl_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 apm32_master_node\lvgl_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-apm32_master_node\lvgl_task.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 apm32_master_node\lvgl_task.o: ../Core/Inc/FreeRTOSConfig.h
 apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
 apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
@@ -16,6 +17,7 @@ apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/includ
 apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 apm32_master_node\lvgl_task.o: ../rs485/rs485.h
 apm32_master_node\lvgl_task.o: ../Core/Inc/main.h
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
@@ -38,6 +40,8 @@ apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h
+apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 apm32_master_node\lvgl_task.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
@@ -176,7 +180,6 @@ apm32_master_node\lvgl_task.o: ../lvgl/src/extra/widgets/led/lv_led.h
 apm32_master_node\lvgl_task.o: ../lvgl/src/extra/widgets/imgbtn/lv_imgbtn.h
 apm32_master_node\lvgl_task.o: ../lvgl/src/extra/widgets/span/lv_span.h
 apm32_master_node\lvgl_task.o: ../lvgl/examples/porting/lv_port_disp_template.h
+apm32_master_node\lvgl_task.o: ../Core/Inc/adc.h
 apm32_master_node\lvgl_task.o: ..\my_task\charge_control.h
 apm32_master_node\lvgl_task.o: ../Core/Inc/gpio.h
-apm32_master_node\lvgl_task.o: ..\my_task\charging_station_ui.h
-apm32_master_node\lvgl_task.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h

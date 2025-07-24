@@ -1,6 +1,7 @@
 #ifndef LVGL_TASK_H
 #define LVGL_TASK_H
 
+#include "charging_station_ui.h"
 
 
 void lvgl_task(void);

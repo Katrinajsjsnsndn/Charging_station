@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "adc.h"
 #include "dma.h"
 #include "usart.h"
 #include "gpio.h"
@@ -44,17 +45,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-// 定义按键枚举
-typedef enum {
-    KEY_NONE = 0,
-    KEY_RETURN = 1,
-    KEY_MENU = 2,
-    KEY_OK = 3,
-    KEY_LEFT = 4,
-    KEY_RIGHT = 5,
-    KEY_DOWN = 6,
-    KEY_UP = 7
-} KeyEnum;
+
 // 状态定义（可用于外部调用）
 uint8_t rx_buffer[BUFFER_SIZE] = {0};  
 uint8_t rx_done = 0;                   
@@ -107,7 +98,7 @@ int main(void)
 
   /* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  /* Reset of all peripherals, Initializes the Flash interfac1e and the Systick. */
   HAL_Init();
 
   /* USER CODE BEGIN Init */
@@ -125,6 +116,8 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_USART2_UART_Init();
+  MX_ADC2_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_UART_Receive_DMA(&huart2, rx_buffer, BUFFER_SIZE);
 	__HAL_UART_ENABLE_IT(&huart2, UART_IT_IDLE);
@@ -133,9 +126,7 @@ int main(void)
 	IIC_GPIO_Config();
 
 	HAL_GPIO_WritePin(RS485_EN_GPIO_Port,RS485_EN_Pin,GPIO_PIN_RESET);
-	  LCD_Init();
-    LCD_Display_Dir(2);
-    LCD_Clear(WHITE);
+
 # ifdef LVGL_UI 
 
 				lv_init();
@@ -222,6 +213,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -248,6 +240,12 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV6;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }

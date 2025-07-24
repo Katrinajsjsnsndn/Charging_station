@@ -8,10 +8,13 @@
 #include "rs485.h"
 #include "lvgl.h" 
 #include "lv_port_disp_template.h"
+#include "adc.h"
 
 #include "charge_control.h"
 #include "charging_station_ui.h"
 
+uint16_t Get_ADC1(uint8_t adc_channel);
+uint16_t Get_ADC2(uint8_t adc_channel);
 
 extern uint16_t dac_set;
 extern Station_Info_t stations[STATION_NUM];
@@ -109,7 +112,6 @@ void start_task(void *pvParameters)
 void lv_demo_task(void *pvParameters)
 {
     
-			MCP4725_WriteData_Digital(1240);
 
     while(1)
     {
@@ -123,8 +125,8 @@ void lv_demo_task(void *pvParameters)
  * @param       pvParameters : 传入参数(未用到)
  * @retval      无
  */
-uint16_t read_adc;
-
+uint16_t read_adc_1,read_adc_2,read_adc_3;
+float out_cal,out_current;
 void rs485_task(void *pvParameters)
 {
     pvParameters = pvParameters;
@@ -132,12 +134,43 @@ void rs485_task(void *pvParameters)
     while(1)
     {
 
-
+				read_adc_1=Get_ADC1(0);//采样电阻0.005哦  放大倍数50倍
+				read_adc_3=Get_ADC1(8);
+				read_adc_2=Get_ADC2(1);
+				out_cal=(read_adc_2/4095.0f)*3.3/0.09;
+				out_current=(read_adc_3/4095.0f)*3.3*100;
 				RS485_Master_Receive_Process();
         vTaskDelay(10);
     }
 }
-
+uint16_t Get_ADC1(uint8_t adc_channel)
+{
+   	ADC_ChannelConfTypeDef sConfig = {0};
+	sConfig.Channel = adc_channel;                                         /* 通道 */
+	sConfig.Rank = ADC_REGULAR_RANK_1;                              
+	sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;                  /* 采样时间 */
+	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)             
+	{
+		Error_Handler();
+	}
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+	return (uint16_t)HAL_ADC_GetValue(&hadc1);
+}
+uint16_t Get_ADC2(uint8_t adc_channel)
+{
+   	ADC_ChannelConfTypeDef sConfig = {0};
+	sConfig.Channel = adc_channel;                                         /* 通道 */
+	sConfig.Rank = ADC_REGULAR_RANK_1;                              
+	sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;                  /* 采样时间 */
+	if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)             
+	{
+		Error_Handler();
+	}
+	HAL_ADC_Start(&hadc2);
+	HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY);
+	return (uint16_t)HAL_ADC_GetValue(&hadc2);
+}
 
 
 
@@ -197,6 +230,7 @@ void RS485_Master_Receive_Process(void)
 		if(pHdr->addr_from==0x01)
 		{
 				stations[0].battery_connected = 1;
+			
 				stations[0].current = receive_current;
 				stations[0].voltage = receive_val;
 				stations[0].power = receive_current * receive_val;
@@ -206,6 +240,7 @@ void RS485_Master_Receive_Process(void)
 				{
 						if(stations[0].current > 0.1f) {
 								stations[0].status = 1; // 充电中
+							
 						} else {
 								stations[0].status = 0; // 空闲
 						}
@@ -214,6 +249,8 @@ void RS485_Master_Receive_Process(void)
 				{
 						stations[0].status = 0; // 未连接
 				}
+	
+
 		}
 frame_err:
     /* 3. 重新启动下一轮 DMA 接收 */

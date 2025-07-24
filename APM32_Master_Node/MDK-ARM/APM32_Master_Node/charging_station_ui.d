@@ -38,6 +38,8 @@ apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm
 apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
 apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
 apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h
+apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
 apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 apm32_master_node\charging_station_ui.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
@@ -48,3 +50,5 @@ apm32_master_node\charging_station_ui.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\str
 apm32_master_node\charging_station_ui.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 apm32_master_node\charging_station_ui.o: ../rs485/rs485.h
 apm32_master_node\charging_station_ui.o: ../Core/Inc/usart.h
+apm32_master_node\charging_station_ui.o: ..\my_task\charge_control.h
+apm32_master_node\charging_station_ui.o: ../Core/Inc/gpio.h

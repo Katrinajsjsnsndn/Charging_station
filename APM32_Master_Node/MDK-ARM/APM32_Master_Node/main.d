@@ -22,6 +22,8 @@ apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_exti
 apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
 apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
 apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h
+apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
 apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 apm32_master_node\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
@@ -42,10 +44,13 @@ apm32_master_node\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/tim
 apm32_master_node\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 apm32_master_node\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 apm32_master_node\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+apm32_master_node\main.o: ../Core/Inc/adc.h
 apm32_master_node\main.o: ../Core/Inc/dma.h
 apm32_master_node\main.o: ../Core/Inc/usart.h
 apm32_master_node\main.o: ../Core/Inc/gpio.h
 apm32_master_node\main.o: ../my_task/lvgl_task.h
+apm32_master_node\main.o: ../my_task/charging_station_ui.h
+apm32_master_node\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 apm32_master_node\main.o: ../tft/lcd.h
 apm32_master_node\main.o: ../tft/test code.h
 apm32_master_node\main.o: ../lvgl/lvgl.h

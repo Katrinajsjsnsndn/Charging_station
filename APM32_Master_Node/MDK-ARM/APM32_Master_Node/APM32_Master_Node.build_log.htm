@@ -17,21 +17,28 @@ Library Manager: ArmAr.exe V5.06 update 5 (build 528)
 Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
 CPU DLL:         SARMCM3.DLL V5.39.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.2.0.0
+Target DLL:      CMSIS_AGDI.dll V1.33.16.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
 E:\Desktop\APM32\APM32_Master_Node\MDK-ARM\APM32_Master_Node.uvprojx
-Project File Date:  07/19/2025
+Project File Date:  07/21/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'APM32_Master_Node'
-compiling stm32f1xx_it.c...
+compiling charging_station_ui.c...
+..\my_task\charging_station_ui.c(44): warning:  #550-D: variable "system_total_power"  was set but never used
+  static uint16_t system_total_power = 200;
+..\my_task\charging_station_ui.c(52): warning:  #550-D: variable "last_menu_selected"  was set but never used
+  static uint8_t last_menu_selected = 0;    // 菜单局部刷新索引
+..\my_task\charging_station_ui.c(69): warning:  #550-D: variable "last_charge_mode_selected"  was set but never used
+  static uint8_t last_charge_mode_selected = 0; // 记录上一次选中的充电模式索引
+..\my_task\charging_station_ui.c: 3 warnings, 0 errors
 linking...
-Program Size: Code=21536 RO-data=6752 RW-data=4824 ZI-data=5944  
+Program Size: Code=30724 RO-data=6768 RW-data=4944 ZI-data=6080  
 FromELF: creating hex file...
-"APM32_Master_Node\APM32_Master_Node.axf" - 0 Error(s), 0 Warning(s).
+"APM32_Master_Node\APM32_Master_Node.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -54,7 +61,7 @@ Package Vendor: Geehy
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE@5.6.0
-Build Time Elapsed:  00:00:06
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>
