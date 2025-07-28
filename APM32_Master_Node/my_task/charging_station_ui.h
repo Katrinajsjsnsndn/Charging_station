@@ -39,6 +39,10 @@ typedef struct {
     float power;
     uint8_t progress;
     uint8_t battery_connected;
+    // 新增放电信息字段
+    float discharge_voltage;
+    float discharge_current;
+    float discharge_power;
 } Station_Info_t;
 // UI状态
 typedef enum {

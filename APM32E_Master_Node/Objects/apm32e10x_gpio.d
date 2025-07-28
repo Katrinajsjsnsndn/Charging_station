@@ -1,0 +1,10 @@
+.\objects\apm32e10x_gpio.o: Library\src\apm32e10x_gpio.c
+.\objects\apm32e10x_gpio.o: .\Library\inc\apm32e10x_gpio.h
+.\objects\apm32e10x_gpio.o: .\User\apm32e10x.h
+.\objects\apm32e10x_gpio.o: .\Start\core_cm3.h
+.\objects\apm32e10x_gpio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\apm32e10x_gpio.o: .\Start\cmsis_version.h
+.\objects\apm32e10x_gpio.o: .\Start\cmsis_compiler.h
+.\objects\apm32e10x_gpio.o: .\Start\cmsis_armcc.h
+.\objects\apm32e10x_gpio.o: .\User\system_apm32e10x.h
+.\objects\apm32e10x_gpio.o: .\Library\inc\apm32e10x_rcm.h

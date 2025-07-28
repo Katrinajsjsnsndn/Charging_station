@@ -1,0 +1,14 @@
+.\objects\board_apm32e103_mini.o: Boards\Board_APM32E103_MINI\src\Board_APM32E103_MINI.c
+.\objects\board_apm32e103_mini.o: .\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h
+.\objects\board_apm32e103_mini.o: .\User\apm32e10x.h
+.\objects\board_apm32e103_mini.o: .\Start\core_cm3.h
+.\objects\board_apm32e103_mini.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\board_apm32e103_mini.o: .\Start\cmsis_version.h
+.\objects\board_apm32e103_mini.o: .\Start\cmsis_compiler.h
+.\objects\board_apm32e103_mini.o: .\Start\cmsis_armcc.h
+.\objects\board_apm32e103_mini.o: .\User\system_apm32e10x.h
+.\objects\board_apm32e103_mini.o: .\Library\inc\apm32e10x_gpio.h
+.\objects\board_apm32e103_mini.o: .\Library\inc\apm32e10x_rcm.h
+.\objects\board_apm32e103_mini.o: .\Library\inc\apm32e10x_eint.h
+.\objects\board_apm32e103_mini.o: .\Library\inc\apm32e10x_usart.h
+.\objects\board_apm32e103_mini.o: .\Library\inc\apm32e10x_misc.h

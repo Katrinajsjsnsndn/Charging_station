@@ -41,6 +41,8 @@ uint8_t rx_buffer[BUFFER_SIZE] = {0};
 uint8_t rx_done = 0;                   
 uint8_t rx_len = 0;                 
 uint16_t Get_ADC(uint8_t adc_channel);
+uint16_t Get_ADC1(uint8_t adc_channel);
+
 RS485_Frame_t my_frame;
 /* USER CODE END PTD */
 
@@ -68,9 +70,10 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint16_t read_adc_1,read_adc_2;
+uint16_t read_adc_1,read_adc_2,read_adc_4,read_adc_5,read_adc_6,read_adc_7;
 uint16_t dac_set;
-float current_set=3,read_current,read_val;
+float current_set=2,read_current,read_val;
+uint8_t Master_order;
 /* USER CODE END 0 */
 
 /**
@@ -122,8 +125,7 @@ int main(void)
 
 
 	dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
-	Enable_Charging();
-
+	Disable_Charging();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -136,10 +138,27 @@ int main(void)
 		RS485_Master_Receive_Process();
 		Data_Feedback();//默认一直发送
     MCP4725_WriteData_Digital(dac_set);
-		read_adc_1=Get_ADC(1);//采样电阻0.005哦  放大倍数50倍
+		read_adc_1=Get_ADC1(0);//采样电阻0.005哦  放大倍数50倍
+		read_adc_4=Get_ADC1(4);
+		read_adc_5=Get_ADC1(5);
+		read_adc_6=Get_ADC1(6);
+		read_adc_7=Get_ADC1(7);
+
 		read_adc_2=Get_ADC(2);
 		read_current =((float)read_adc_1 / 4095.0f) * 3.3f / 0.25f;
 		read_val = (float)read_adc_2 / 4095.0f * 3.3f * 10.0f;
+		if(read_val<16)
+		{
+			Disable_discharging();//停止放电
+		}
+		if(read_adc_4==0&& Master_order==0)
+		{
+			Enable_Charging();
+		}
+		else
+		{
+		Disable_Charging();
+		}
 		HAL_Delay(10);
   }
   /* USER CODE END 3 */
@@ -192,6 +211,22 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+uint16_t Get_ADC1(uint8_t adc_channel)
+{
+   	ADC_ChannelConfTypeDef sConfig = {0};
+	sConfig.Channel = adc_channel;                                         /* 通道 */
+	sConfig.Rank = ADC_REGULAR_RANK_1;                              
+	sConfig.SamplingTime = ADC_SAMPLETIME_55CYCLES_5;                  /* 采样时间 */
+	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)             
+	{
+		Error_Handler();
+	}
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+	return (uint16_t)HAL_ADC_GetValue(&hadc1);
+}
+
 uint16_t Get_ADC(uint8_t adc_channel)
 {
     uint16_t adc_value = 0;

@@ -1,0 +1,9 @@
+.\objects\apm32e10x_eint.o: Library\src\apm32e10x_eint.c
+.\objects\apm32e10x_eint.o: .\Library\inc\apm32e10x_eint.h
+.\objects\apm32e10x_eint.o: .\User\apm32e10x.h
+.\objects\apm32e10x_eint.o: .\Start\core_cm3.h
+.\objects\apm32e10x_eint.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\apm32e10x_eint.o: .\Start\cmsis_version.h
+.\objects\apm32e10x_eint.o: .\Start\cmsis_compiler.h
+.\objects\apm32e10x_eint.o: .\Start\cmsis_armcc.h
+.\objects\apm32e10x_eint.o: .\User\system_apm32e10x.h

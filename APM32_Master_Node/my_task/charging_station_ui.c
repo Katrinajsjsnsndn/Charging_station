@@ -1,4 +1,9 @@
 // ======================== 头文件包含 ========================
+// 注意：如需放电信息局部刷新，请在 charging_station_ui.h 的 Station_Info_t 结构体中添加：
+// float discharge_voltage;
+// float discharge_current;
+// float discharge_power;
+// 否则放电信息无法显示和刷新。
 #include "charging_station_ui.h"
 #include "lcd.h"
 #include "string.h"
@@ -31,6 +36,10 @@
 #define DETAIL_VOLTAGE_Y    40
 #define DETAIL_CURRENT_Y    65
 #define DETAIL_POWER_Y      90
+// 新增放电信息显示Y坐标
+#define DETAIL_DISCHARGE_VOLTAGE_Y   160
+#define DETAIL_DISCHARGE_CURRENT_Y   185
+#define DETAIL_DISCHARGE_POWER_Y     210
 
 // ======================== 类型定义 ========================
 typedef struct {
@@ -72,6 +81,10 @@ static uint8_t last_charge_mode_selected = 0; // 记录上一次选中的充电模式索引
 static float last_voltage = -1000.0f;
 static float last_current = -1000.0f;
 static float last_power = -1000.0f;
+// 新增放电信息last值
+static float last_discharge_voltage = -1000.0f;
+static float last_discharge_current = -1000.0f;
+static float last_discharge_power = -1000.0f;
 
 // ======================== 函数声明 ========================
 static void draw_main_screen(void);
@@ -91,6 +104,25 @@ static void refresh_voltage_line(float voltage);
 static void refresh_current_line(float current);
 static void refresh_power_line(float power);
 static void update_detail_numbers(void);
+// 新增放电信息局部刷新函数
+static void refresh_discharge_voltage_line(float voltage) {
+    LCD_Fill(0, DETAIL_DISCHARGE_VOLTAGE_Y, SCREEN_WIDTH - 1, DETAIL_DISCHARGE_VOLTAGE_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+    char info_str[32];
+    sprintf(info_str, "放电电压: %.2f V", voltage);
+    Show_Str(DETAIL_LINE_X, DETAIL_DISCHARGE_VOLTAGE_Y, (uint8_t *)info_str, 12, 0);
+}
+static void refresh_discharge_current_line(float current) {
+    LCD_Fill(0, DETAIL_DISCHARGE_CURRENT_Y, SCREEN_WIDTH - 1, DETAIL_DISCHARGE_CURRENT_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+    char info_str[32];
+    sprintf(info_str, "放电电流: %.2f A", current);
+    Show_Str(DETAIL_LINE_X, DETAIL_DISCHARGE_CURRENT_Y, (uint8_t *)info_str, 12, 0);
+}
+static void refresh_discharge_power_line(float power) {
+    LCD_Fill(0, DETAIL_DISCHARGE_POWER_Y, SCREEN_WIDTH - 1, DETAIL_DISCHARGE_POWER_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+    char info_str[32];
+    sprintf(info_str, "放电功率: %d W", (int)(power));
+    Show_Str(DETAIL_LINE_X, DETAIL_DISCHARGE_POWER_Y, (uint8_t *)info_str, 12, 0);
+}
 
 // ======================== UI初始化 ========================
 void charging_station_ui_init(void)
@@ -270,7 +302,7 @@ void charging_station_ui_task(void)
                     }
                     if (key_down == KEY_OK && charge_mode_selected == 2)
                     {
-                        MCP4725_WriteData_Digital(100); // 1 v
+                        MCP4725_WriteData_Digital(1861); // 1 v
                         send_order = 4;
                         RS485_Master_Send_Turn(0x01, &send_order, 1);
                         // 放电测试
@@ -328,6 +360,7 @@ static void refresh_power_line(float power)
     Show_Str(DETAIL_LINE_X, DETAIL_POWER_Y, (uint8_t *)info_str, 12, 0);
 }
 
+
 static void update_detail_numbers(void)
 {
     Station_Info_t *s = &stations[selected_station];
@@ -345,6 +378,22 @@ static void update_detail_numbers(void)
     {
         refresh_power_line(s->power);
         last_power = s->power;
+    }
+    // 放电信息
+    if (s->discharge_voltage != last_discharge_voltage)
+    {
+        refresh_discharge_voltage_line(s->discharge_voltage);
+        last_discharge_voltage = s->discharge_voltage;
+    }
+    if (s->discharge_current != last_discharge_current)
+    {
+        refresh_discharge_current_line(s->discharge_current);
+        last_discharge_current = s->discharge_current;
+    }
+    if (s->discharge_power != last_discharge_power)
+    {
+        refresh_discharge_power_line(s->discharge_power);
+        last_discharge_power = s->discharge_power;
     }
 }
 
@@ -493,6 +542,32 @@ void set_system_power(uint16_t total_power, uint16_t used_power)
     need_redraw = 1;
 }
 
+// 新增外部接口
+void set_station_discharge_voltage(uint8_t station_id, float voltage) {
+    if(station_id < STATION_NUM) {
+        stations[station_id].discharge_voltage = voltage;
+        if (ui_state == UI_DETAIL && station_id == selected_station) {
+            update_detail_numbers();
+        }
+    }
+}
+void set_station_discharge_current(uint8_t station_id, float current) {
+    if(station_id < STATION_NUM) {
+        stations[station_id].discharge_current = current;
+        if (ui_state == UI_DETAIL && station_id == selected_station) {
+            update_detail_numbers();
+        }
+    }
+}
+void set_station_discharge_power(uint8_t station_id, float power) {
+    if(station_id < STATION_NUM) {
+        stations[station_id].discharge_power = power;
+        if (ui_state == UI_DETAIL && station_id == selected_station) {
+            update_detail_numbers();
+        }
+    }
+}
+
 // 菜单页面
 static void draw_menu_screen(void)
 {
@@ -520,11 +595,17 @@ static void draw_detail_screen(void)
     last_voltage = -1000.0f;
     last_current = -1000.0f;
     last_power = -1000.0f;
+    last_discharge_voltage = -1000.0f;
+    last_discharge_current = -1000.0f;
+    last_discharge_power = -1000.0f;
 
-    // 只绘制三行，其他内容可按需添加
+    // 只绘制六行，其他内容可按需添加
     refresh_voltage_line(s->voltage);
     refresh_current_line(s->current);
     refresh_power_line(s->power);
+    refresh_discharge_voltage_line(s->discharge_voltage);
+    refresh_discharge_current_line(s->discharge_current);
+    refresh_discharge_power_line(s->discharge_power);
 
     Show_Str(10, 130, (uint8_t*)"返回: RETURN", 12, 0);
 }

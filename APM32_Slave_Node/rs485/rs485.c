@@ -26,6 +26,8 @@ RS485_Frame_t frame;
 
 * ---------------------------------------------------------- */
 uint8_t i=0;
+extern uint8_t Master_order;
+
 void RS485_Master_Receive_Process(void)
 {
     if (!rx_done) return;
@@ -53,11 +55,12 @@ void RS485_Master_Receive_Process(void)
             if (pHdr->len >= 1)          /* 至少 1 字节参数 */
             {
                 uint8_t param = rx_buffer[5];   /* data 起始位置 */
-								if (param == 4)
+								if (param == 4)//放电指令
 								{
 									i=1;
 									Disable_Charging();
 									Enable_Discharging();
+									Master_order=1;
 									return;
 								}
 								else
@@ -85,8 +88,9 @@ void RS485_Master_Receive_Process(void)
 									}
 									else
 									{
-											Disable_Charging();
+										Disable_Charging();
 									}
+									Master_order=0;
 								}
             }
             break;

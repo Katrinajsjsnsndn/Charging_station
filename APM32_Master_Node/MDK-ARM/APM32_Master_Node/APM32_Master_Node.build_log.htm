@@ -27,18 +27,14 @@ Project File Date:  07/21/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'APM32_Master_Node'
-compiling charging_station_ui.c...
-..\my_task\charging_station_ui.c(44): warning:  #550-D: variable "system_total_power"  was set but never used
-  static uint16_t system_total_power = 200;
-..\my_task\charging_station_ui.c(52): warning:  #550-D: variable "last_menu_selected"  was set but never used
-  static uint8_t last_menu_selected = 0;    // 菜单局部刷新索引
-..\my_task\charging_station_ui.c(69): warning:  #550-D: variable "last_charge_mode_selected"  was set but never used
-  static uint8_t last_charge_mode_selected = 0; // 记录上一次选中的充电模式索引
-..\my_task\charging_station_ui.c: 3 warnings, 0 errors
+compiling main.c...
+../tft/my_lvgl_ui.h(6): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Core/Src/main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=30724 RO-data=6768 RW-data=4944 ZI-data=6080  
+Program Size: Code=31092 RO-data=6768 RW-data=4960 ZI-data=6128  
 FromELF: creating hex file...
-"APM32_Master_Node\APM32_Master_Node.axf" - 0 Error(s), 3 Warning(s).
+"APM32_Master_Node\APM32_Master_Node.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -61,7 +57,7 @@ Package Vendor: Geehy
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE@5.6.0
-Build Time Elapsed:  00:00:07
+Build Time Elapsed:  00:00:08
 </pre>
 </body>
 </html>

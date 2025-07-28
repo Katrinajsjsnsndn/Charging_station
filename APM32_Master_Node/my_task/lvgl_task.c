@@ -127,18 +127,24 @@ void lv_demo_task(void *pvParameters)
  */
 uint16_t read_adc_1,read_adc_2,read_adc_3;
 float out_cal,out_current;
+uint8_t send_order_to_slave;
 void rs485_task(void *pvParameters)
 {
     pvParameters = pvParameters;
 
     while(1)
     {
-
+				
 				read_adc_1=Get_ADC1(0);//采样电阻0.005哦  放大倍数50倍
 				read_adc_3=Get_ADC1(8);
 				read_adc_2=Get_ADC2(1);
 				out_cal=(read_adc_2/4095.0f)*3.3/0.09;
-				out_current=(read_adc_3/4095.0f)*3.3*100;
+				out_current=(read_adc_3/4095.0f)*3.3;
+			stations[0].discharge_voltage=out_cal;
+			stations[0].discharge_current=out_current;
+			stations[0].discharge_power=out_cal*out_current;
+
+
 				RS485_Master_Receive_Process();
         vTaskDelay(10);
     }

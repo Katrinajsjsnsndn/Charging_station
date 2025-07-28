@@ -1,0 +1,9 @@
+.\objects\apm32e10x_usb.o: Library\src\apm32e10x_usb.c
+.\objects\apm32e10x_usb.o: .\Library\inc\apm32e10x_usb.h
+.\objects\apm32e10x_usb.o: .\User\apm32e10x.h
+.\objects\apm32e10x_usb.o: .\Start\core_cm3.h
+.\objects\apm32e10x_usb.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\apm32e10x_usb.o: .\Start\cmsis_version.h
+.\objects\apm32e10x_usb.o: .\Start\cmsis_compiler.h
+.\objects\apm32e10x_usb.o: .\Start\cmsis_armcc.h
+.\objects\apm32e10x_usb.o: .\User\system_apm32e10x.h
