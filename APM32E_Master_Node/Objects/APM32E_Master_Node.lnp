@@ -46,6 +46,8 @@
 ".\objects\lcd.o"
 ".\objects\test code.o"
 ".\objects\rs485.o"
+".\objects\charge_control.o"
+".\objects\charging_station_ui.o"
 --strict --scatter ".\Objects\APM32E_Master_Node.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

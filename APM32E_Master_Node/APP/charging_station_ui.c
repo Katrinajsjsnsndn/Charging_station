@@ -158,7 +158,7 @@ uint8_t key_val = 0, key_old = 0, key_down = 0;
 void charging_station_ui_task(void)
 {
     // 移除重复的LCD初始化，因为main函数中已经初始化了
-    // charging_station_ui_init();
+     charging_station_ui_init();
     
     // 简单的初始化
     need_redraw = 1;

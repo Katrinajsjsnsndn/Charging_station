@@ -18,3 +18,14 @@
 .\objects\rs485.o: .\Library\inc\apm32e10x_dma.h
 .\objects\rs485.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\rs485.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\rs485.o: .\FreeRTOS\include\FreeRTOS.h
+.\objects\rs485.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\rs485.o: .\User\FreeRTOSConfig.h
+.\objects\rs485.o: .\FreeRTOS\include\projdefs.h
+.\objects\rs485.o: .\FreeRTOS\include\portable.h
+.\objects\rs485.o: .\FreeRTOS\include\deprecated_definitions.h
+.\objects\rs485.o: .\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h
+.\objects\rs485.o: .\FreeRTOS\include\mpu_wrappers.h
+.\objects\rs485.o: .\FreeRTOS\include\task.h
+.\objects\rs485.o: .\FreeRTOS\include\list.h
+.\objects\rs485.o: .\FreeRTOS\include\queue.h

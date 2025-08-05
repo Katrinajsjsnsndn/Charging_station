@@ -25,10 +25,6 @@
 
 /* Includes */
 #include "main.h"
-#include "apm32e10x_gpio.h"
-#include "apm32e10x_rcm.h"
-#include "apm32e10x_usart.h"
-#include "board.h"
 /* FreeRTOS */
 #include "FreeRTOS.h"
 #include "task.h"
@@ -37,30 +33,11 @@
 #include "my_init.h"
 #include "lcd.h"
 #include "test code.h"
-#include "rs485.h"
+#include "charge_control.h"
 
-// 串口发送函数
-void USART_SendString(USART_T* usart, const char* str)
-{
-    while (*str)
-    {
-        USART_TxData(usart, *str++);
-        while (USART_ReadStatusFlag(usart, USART_FLAG_TXBE) == RESET);
-    }
-}
-
-void USART_SendArray(USART_T* usart, const uint8_t* data, uint16_t length)
-{
-    for (uint16_t i = 0; i < length; i++)
-    {
-        USART_TxData(usart, data[i]);
-        while (USART_ReadStatusFlag(usart, USART_FLAG_TXBE) == RESET);
-    }
-}
 
 // 串口接收相关定义
 #define UART_RX_BUFFER_SIZE 100
-static uint8_t uartRxBuffer[UART_RX_BUFFER_SIZE];
 static volatile uint16_t uartRxIndex = 0;
 static volatile uint8_t uartDataReceived = 0;
 
@@ -86,7 +63,7 @@ static TaskHandle_t xHandleTaskUsartTest = NULL;
 static void UserTaskCreate(void);
 
 /* Led toggle task */
-void vTaskLedToggle(void* pvParameters);
+void charging_station_ui_task(void* pvParameters);
 /* Usart test task */
 void vTaskUsartTest(void* pvParameters);
 /*!
@@ -109,20 +86,9 @@ int main(void)
     
     // 串口初始化
     USART_Init();
-    
-//    // 串口初始化完成
-//    LCD_Init();
-//    LCD_Display_Dir(3);
-//    LCD_Clear(WHITE);
+    IIC_GPIO_Config();
 
-//			main_test("IC:ST7789");		  //测试主页
-//			Color_Test();								//纯色测试
-//			FillRec_Test();							//图形测试
-//			English_Font_test();				//英文测试
-//			Chinese_Font_test();				//中文测试
-//			Pic_test();									//图片测试
-//			Switch_test();							//显示开关测试
-//			Rotate_Test();							//旋转测试
+
 
     /* User create task */
     UserTaskCreate();
@@ -148,8 +114,8 @@ int main(void)
  */
 static void UserTaskCreate(void)
 {
-    xTaskCreate(vTaskLedToggle,
-                "TaskLedToggle",
+    xTaskCreate(charging_station_ui_task,
+                "charging_station_ui_task",
                 256,  // 增加栈空间
                 NULL,
                 0,
@@ -157,7 +123,7 @@ static void UserTaskCreate(void)
 
     xTaskCreate(vTaskUsartTest,
                 "TaskUsartTest",
-                512,  // 增加栈空间
+                256,  // 增加栈空间
                 NULL,
                 2,
                 &xHandleTaskUsartTest);
@@ -169,24 +135,6 @@ static void UserTaskCreate(void)
 /**@} end of group GPIO_Toggle */
 /**@} end of group Examples */
 
-/*!
- * @brief       Led toggle task
- *
- * @param       pvParameters - passed into the task function as the function parameters
- *
- * @retval      None
- */
-void vTaskLedToggle(void* pvParameters)
-{
-	UNUSED(pvParameters);
-    while (1)
-    {
-        /* Toggle LED2 */
-        APM_MINI_LEDToggle(LED2);
-        /* Task blocking time Delay */
-        vTaskDelay(500);
-    }
-}
 
 /*!
  * @brief       Led toggle task
@@ -195,21 +143,20 @@ void vTaskLedToggle(void* pvParameters)
  *
  * @retval      None
  */
-uint8_t send_order=1;
+uint16_t currentCount;
 void vTaskUsartTest(void* pvParameters)
 {
-    UNUSED(pvParameters);
-		RS485_Master_Send_Turn(0x01,&send_order,1);
 
-
+    
     while (1)
     {
-
+        
+        
+        
         // 简单的 LED 指示，确认任务在运行
         APM_MINI_LEDToggle(LED3);
-        
         /* Task blocking time Delay */
-        vTaskDelay(2);  // 缩短延时，提高轮询频率
+        vTaskDelay(10);  // 缩短延时，提高轮询频率
     }
 }
 

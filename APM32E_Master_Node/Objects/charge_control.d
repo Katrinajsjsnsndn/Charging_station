@@ -1,0 +1,16 @@
+.\objects\charge_control.o: APP\charge_control.c
+.\objects\charge_control.o: APP\charge_control.h
+.\objects\charge_control.o: .\Boards\Board.h
+.\objects\charge_control.o: .\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h
+.\objects\charge_control.o: .\User\apm32e10x.h
+.\objects\charge_control.o: .\Start\core_cm3.h
+.\objects\charge_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\charge_control.o: .\Start\cmsis_version.h
+.\objects\charge_control.o: .\Start\cmsis_compiler.h
+.\objects\charge_control.o: .\Start\cmsis_armcc.h
+.\objects\charge_control.o: .\User\system_apm32e10x.h
+.\objects\charge_control.o: .\Library\inc\apm32e10x_gpio.h
+.\objects\charge_control.o: .\Library\inc\apm32e10x_rcm.h
+.\objects\charge_control.o: .\Library\inc\apm32e10x_eint.h
+.\objects\charge_control.o: .\Library\inc\apm32e10x_usart.h
+.\objects\charge_control.o: .\Library\inc\apm32e10x_misc.h

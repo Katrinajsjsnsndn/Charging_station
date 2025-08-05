@@ -36,8 +36,8 @@ void RS485_Master_Send_Turn(uint8_t slave_addr,
         // 等待发送缓冲区空
         USART_TxData(USART2, tx_buf[i]);
 			  while (USART_ReadStatusFlag(USART2, USART_FLAG_TXBE) == RESET);
-
     }
+				vTaskDelay(2);
 
     // 4. 关闭RS485发送（拉低EN）
      GPIO_ResetBit(GPIOA, GPIO_PIN_11);

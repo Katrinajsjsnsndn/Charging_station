@@ -72,7 +72,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 uint16_t read_adc_1,read_adc_2,read_adc_4,read_adc_5,read_adc_6,read_adc_7;
 uint16_t dac_set;
-float current_set=2,read_current,read_val;
+float current_set=2,read_current=0.1,read_val=0.5;
 uint8_t Master_order;
 /* USER CODE END 0 */
 
@@ -136,7 +136,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		RS485_Master_Receive_Process();
-		//Data_Feedback();//默认一直发送
+		Data_Feedback();//默认一直发送
     MCP4725_WriteData_Digital(dac_set);
 		read_adc_1=Get_ADC1(0);//采样电阻0.005哦  放大倍数50倍
 		read_adc_4=Get_ADC1(4);

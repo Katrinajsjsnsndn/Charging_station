@@ -7,6 +7,10 @@
 #include "stdio.h"
 #include "string.h"
 
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "list.h"
 #define RS485_FRAME_HEAD    0xAA
 
 #define RS485_ADDR_MASTER   0x00

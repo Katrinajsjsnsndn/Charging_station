@@ -1,6 +1,6 @@
 Dependencies for Project 'APM32E_Master_Node', Target 'Target 1': (DO NOT MODIFY !)
 CompilerVersion: 5060528::V5.06 update 5 (build 528)::ARMCC
-F (.\User\apm32e10x_int.c)(0x6891A0FC)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_int.o --omf_browse .\objects\apm32e10x_int.crf --depend .\objects\apm32e10x_int.d)
+F (.\User\apm32e10x_int.c)(0x6891BBB6)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_int.o --omf_browse .\objects\apm32e10x_int.crf --depend .\objects\apm32e10x_int.d)
 I (User\main.h)(0x68917EA3)
 I (.\Boards\Board.h)(0x68833D81)
 I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
@@ -18,7 +18,7 @@ I (.\Library\inc\apm32e10x_usart.h)(0x684B95C5)
 I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
 I (User\apm32e10x_int.h)(0x684B81DF)
-F (.\User\main.c)(0x6891AED1)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\User\main.c)(0x6891C169)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (User\main.h)(0x68917EA3)
 I (.\Boards\Board.h)(0x68833D81)
 I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
@@ -37,7 +37,7 @@ I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -46,14 +46,12 @@ I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
 I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
 I (.\FreeRTOS\include\queue.h)(0x68416145)
-I (User\my_init.h)(0x6891847A)
-I (.\APP\tft\lcd.h)(0x6891A0FC)
+I (User\my_init.h)(0x6891BBB4)
+I (.\APP\tft\lcd.h)(0x6891BBB6)
 I (.\Library\inc\apm32e10x_spi.h)(0x684B957D)
-I (.\APP\tft\test code.h)(0x6891847B)
-I (.\APP\rs485\rs485.h)(0x688740AB)
-I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
-F (.\User\system_apm32e10x.c)(0x6891A0FC)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\system_apm32e10x.o --omf_browse .\objects\system_apm32e10x.crf --depend .\objects\system_apm32e10x.d)
+I (.\APP\tft\test code.h)(0x6891BBB4)
+I (.\APP\charge_control.h)(0x6891BD91)
+F (.\User\system_apm32e10x.c)(0x6891BBB6)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\system_apm32e10x.o --omf_browse .\objects\system_apm32e10x.crf --depend .\objects\system_apm32e10x.d)
 I (User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -61,8 +59,8 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (User\system_apm32e10x.h)(0x684B99D3)
-F (.\User\my_init.c)(0x6891AAE6)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\my_init.o --omf_browse .\objects\my_init.crf --depend .\objects\my_init.d)
-I (User\my_init.h)(0x6891847A)
+F (.\User\my_init.c)(0x6891BBB6)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\my_init.o --omf_browse .\objects\my_init.crf --depend .\objects\my_init.d)
+I (User\my_init.h)(0x6891BBB4)
 I (.\Library\inc\apm32e10x_gpio.h)(0x684B9418)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -77,7 +75,7 @@ I (.\Boards\board.h)(0x68833D81)
 I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
 I (.\Library\inc\apm32e10x_eint.h)(0x684B93B8)
 I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
-F (.\Library\src\apm32e10x_adc.c)(0x684B9684)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_adc.o --omf_browse .\objects\apm32e10x_adc.crf --depend .\objects\apm32e10x_adc.d)
+F (.\Library\src\apm32e10x_adc.c)(0x684B9684)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_adc.o --omf_browse .\objects\apm32e10x_adc.crf --depend .\objects\apm32e10x_adc.d)
 I (.\Library\inc\apm32e10x_adc.h)(0x684B9259)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -87,7 +85,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_bakpr.c)(0x684B9692)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_bakpr.o --omf_browse .\objects\apm32e10x_bakpr.crf --depend .\objects\apm32e10x_bakpr.d)
+F (.\Library\src\apm32e10x_bakpr.c)(0x684B9692)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_bakpr.o --omf_browse .\objects\apm32e10x_bakpr.crf --depend .\objects\apm32e10x_bakpr.d)
 I (.\Library\inc\apm32e10x_bakpr.h)(0x684B928F)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -97,7 +95,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_can.c)(0x684B96B4)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_can.o --omf_browse .\objects\apm32e10x_can.crf --depend .\objects\apm32e10x_can.d)
+F (.\Library\src\apm32e10x_can.c)(0x684B96B4)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_can.o --omf_browse .\objects\apm32e10x_can.crf --depend .\objects\apm32e10x_can.d)
 I (.\Library\inc\apm32e10x_can.h)(0x684B92C3)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -107,7 +105,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_crc.c)(0x684B96D2)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_crc.o --omf_browse .\objects\apm32e10x_crc.crf --depend .\objects\apm32e10x_crc.d)
+F (.\Library\src\apm32e10x_crc.c)(0x684B96D2)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_crc.o --omf_browse .\objects\apm32e10x_crc.crf --depend .\objects\apm32e10x_crc.d)
 I (.\Library\inc\apm32e10x_crc.h)(0x684B92E6)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -116,7 +114,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_dac.c)(0x684B96EC)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_dac.o --omf_browse .\objects\apm32e10x_dac.crf --depend .\objects\apm32e10x_dac.d)
+F (.\Library\src\apm32e10x_dac.c)(0x684B96EC)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_dac.o --omf_browse .\objects\apm32e10x_dac.crf --depend .\objects\apm32e10x_dac.d)
 I (.\Library\inc\apm32e10x_dac.h)(0x684B9314)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -126,7 +124,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_dbgmcu.c)(0x684B9702)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_dbgmcu.o --omf_browse .\objects\apm32e10x_dbgmcu.crf --depend .\objects\apm32e10x_dbgmcu.d)
+F (.\Library\src\apm32e10x_dbgmcu.c)(0x684B9702)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_dbgmcu.o --omf_browse .\objects\apm32e10x_dbgmcu.crf --depend .\objects\apm32e10x_dbgmcu.d)
 I (.\Library\inc\apm32e10x_dbgmcu.h)(0x684B9334)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -135,7 +133,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_dma.c)(0x684B971E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_dma.o --omf_browse .\objects\apm32e10x_dma.crf --depend .\objects\apm32e10x_dma.d)
+F (.\Library\src\apm32e10x_dma.c)(0x684B971E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_dma.o --omf_browse .\objects\apm32e10x_dma.crf --depend .\objects\apm32e10x_dma.d)
 I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -144,7 +142,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_dmc.c)(0x684B9733)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_dmc.o --omf_browse .\objects\apm32e10x_dmc.crf --depend .\objects\apm32e10x_dmc.d)
+F (.\Library\src\apm32e10x_dmc.c)(0x684B9733)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_dmc.o --omf_browse .\objects\apm32e10x_dmc.crf --depend .\objects\apm32e10x_dmc.d)
 I (.\Library\inc\apm32e10x_dmc.h)(0x684B939B)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -153,7 +151,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_eint.c)(0x684B974D)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_eint.o --omf_browse .\objects\apm32e10x_eint.crf --depend .\objects\apm32e10x_eint.d)
+F (.\Library\src\apm32e10x_eint.c)(0x684B974D)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_eint.o --omf_browse .\objects\apm32e10x_eint.crf --depend .\objects\apm32e10x_eint.d)
 I (.\Library\inc\apm32e10x_eint.h)(0x684B93B8)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -162,7 +160,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_fmc.c)(0x684B976E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_fmc.o --omf_browse .\objects\apm32e10x_fmc.crf --depend .\objects\apm32e10x_fmc.d)
+F (.\Library\src\apm32e10x_fmc.c)(0x684B976E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_fmc.o --omf_browse .\objects\apm32e10x_fmc.crf --depend .\objects\apm32e10x_fmc.d)
 I (.\Library\inc\apm32e10x_fmc.h)(0x684B93F6)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -172,7 +170,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_gpio.c)(0x684B9785)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_gpio.o --omf_browse .\objects\apm32e10x_gpio.crf --depend .\objects\apm32e10x_gpio.d)
+F (.\Library\src\apm32e10x_gpio.c)(0x684B9785)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_gpio.o --omf_browse .\objects\apm32e10x_gpio.crf --depend .\objects\apm32e10x_gpio.d)
 I (.\Library\inc\apm32e10x_gpio.h)(0x684B9418)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -182,7 +180,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_i2c.c)(0x684B9799)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_i2c.o --omf_browse .\objects\apm32e10x_i2c.crf --depend .\objects\apm32e10x_i2c.d)
+F (.\Library\src\apm32e10x_i2c.c)(0x684B9799)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_i2c.o --omf_browse .\objects\apm32e10x_i2c.crf --depend .\objects\apm32e10x_i2c.d)
 I (.\Library\inc\apm32e10x_i2c.h)(0x684B943A)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -192,7 +190,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_iwdt.c)(0x684B97B0)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_iwdt.o --omf_browse .\objects\apm32e10x_iwdt.crf --depend .\objects\apm32e10x_iwdt.d)
+F (.\Library\src\apm32e10x_iwdt.c)(0x684B97B0)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_iwdt.o --omf_browse .\objects\apm32e10x_iwdt.crf --depend .\objects\apm32e10x_iwdt.d)
 I (.\Library\inc\apm32e10x_iwdt.h)(0x684B9456)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -201,7 +199,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_misc.c)(0x684B97D7)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_misc.o --omf_browse .\objects\apm32e10x_misc.crf --depend .\objects\apm32e10x_misc.d)
+F (.\Library\src\apm32e10x_misc.c)(0x684B97D7)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_misc.o --omf_browse .\objects\apm32e10x_misc.crf --depend .\objects\apm32e10x_misc.d)
 I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -210,7 +208,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_pmu.c)(0x684B97EF)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_pmu.o --omf_browse .\objects\apm32e10x_pmu.crf --depend .\objects\apm32e10x_pmu.d)
+F (.\Library\src\apm32e10x_pmu.c)(0x684B97EF)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_pmu.o --omf_browse .\objects\apm32e10x_pmu.crf --depend .\objects\apm32e10x_pmu.d)
 I (.\Library\inc\apm32e10x_pmu.h)(0x684B9498)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -220,7 +218,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_rcm.c)(0x684B9808)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_rcm.o --omf_browse .\objects\apm32e10x_rcm.crf --depend .\objects\apm32e10x_rcm.d)
+F (.\Library\src\apm32e10x_rcm.c)(0x684B9808)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_rcm.o --omf_browse .\objects\apm32e10x_rcm.crf --depend .\objects\apm32e10x_rcm.d)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -229,7 +227,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_rtc.c)(0x684B981E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_rtc.o --omf_browse .\objects\apm32e10x_rtc.crf --depend .\objects\apm32e10x_rtc.d)
+F (.\Library\src\apm32e10x_rtc.c)(0x684B981E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_rtc.o --omf_browse .\objects\apm32e10x_rtc.crf --depend .\objects\apm32e10x_rtc.d)
 I (.\Library\inc\apm32e10x_rtc.h)(0x684B94CD)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -238,7 +236,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_sci2c.c)(0x684B9833)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_sci2c.o --omf_browse .\objects\apm32e10x_sci2c.crf --depend .\objects\apm32e10x_sci2c.d)
+F (.\Library\src\apm32e10x_sci2c.c)(0x684B9833)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_sci2c.o --omf_browse .\objects\apm32e10x_sci2c.crf --depend .\objects\apm32e10x_sci2c.d)
 I (.\Library\inc\apm32e10x_sci2c.h)(0x684B9501)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -248,7 +246,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_sdio.c)(0x684B9848)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_sdio.o --omf_browse .\objects\apm32e10x_sdio.crf --depend .\objects\apm32e10x_sdio.d)
+F (.\Library\src\apm32e10x_sdio.c)(0x684B9848)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_sdio.o --omf_browse .\objects\apm32e10x_sdio.crf --depend .\objects\apm32e10x_sdio.d)
 I (.\Library\inc\apm32e10x_sdio.h)(0x684B9534)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -258,7 +256,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_smc.c)(0x684B985C)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_smc.o --omf_browse .\objects\apm32e10x_smc.crf --depend .\objects\apm32e10x_smc.d)
+F (.\Library\src\apm32e10x_smc.c)(0x684B985C)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_smc.o --omf_browse .\objects\apm32e10x_smc.crf --depend .\objects\apm32e10x_smc.d)
 I (.\Library\inc\apm32e10x_smc.h)(0x684B9555)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -268,7 +266,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_spi.c)(0x684B986E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_spi.o --omf_browse .\objects\apm32e10x_spi.crf --depend .\objects\apm32e10x_spi.d)
+F (.\Library\src\apm32e10x_spi.c)(0x684B986E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_spi.o --omf_browse .\objects\apm32e10x_spi.crf --depend .\objects\apm32e10x_spi.d)
 I (.\Library\inc\apm32e10x_spi.h)(0x684B957D)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -278,7 +276,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_tmr.c)(0x684B9892)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_tmr.o --omf_browse .\objects\apm32e10x_tmr.crf --depend .\objects\apm32e10x_tmr.d)
+F (.\Library\src\apm32e10x_tmr.c)(0x684B9892)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_tmr.o --omf_browse .\objects\apm32e10x_tmr.crf --depend .\objects\apm32e10x_tmr.d)
 I (.\Library\inc\apm32e10x_tmr.h)(0x684B95A6)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -288,7 +286,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_usart.c)(0x684B98AA)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_usart.o --omf_browse .\objects\apm32e10x_usart.crf --depend .\objects\apm32e10x_usart.d)
+F (.\Library\src\apm32e10x_usart.c)(0x684B98AA)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_usart.o --omf_browse .\objects\apm32e10x_usart.crf --depend .\objects\apm32e10x_usart.d)
 I (.\Library\inc\apm32e10x_usart.h)(0x684B95C5)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -298,7 +296,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Library\src\apm32e10x_usb.c)(0x684B98F4)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_usb.o --omf_browse .\objects\apm32e10x_usb.crf --depend .\objects\apm32e10x_usb.d)
+F (.\Library\src\apm32e10x_usb.c)(0x684B98F4)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_usb.o --omf_browse .\objects\apm32e10x_usb.crf --depend .\objects\apm32e10x_usb.d)
 I (.\Library\inc\apm32e10x_usb.h)(0x684B9633)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -307,7 +305,7 @@ I (.\Start\cmsis_version.h)(0x68479140)
 I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
-F (.\Library\src\apm32e10x_usb_device.c)(0x684B98C0)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_usb_device.o --omf_browse .\objects\apm32e10x_usb_device.crf --depend .\objects\apm32e10x_usb_device.d)
+F (.\Library\src\apm32e10x_usb_device.c)(0x684B98C0)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_usb_device.o --omf_browse .\objects\apm32e10x_usb_device.crf --depend .\objects\apm32e10x_usb_device.d)
 I (.\Library\inc\apm32e10x_usb_device.h)(0x68833DC1)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -327,7 +325,7 @@ I (.\Library\inc\apm32e10x_eint.h)(0x684B93B8)
 I (.\Library\inc\apm32e10x_usart.h)(0x684B95C5)
 I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
-F (.\Library\src\apm32e10x_wwdt.c)(0x684B990E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_wwdt.o --omf_browse .\objects\apm32e10x_wwdt.crf --depend .\objects\apm32e10x_wwdt.d)
+F (.\Library\src\apm32e10x_wwdt.c)(0x684B990E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\apm32e10x_wwdt.o --omf_browse .\objects\apm32e10x_wwdt.crf --depend .\objects\apm32e10x_wwdt.d)
 I (.\Library\inc\apm32e10x_wwdt.h)(0x684B9648)
 I (.\User\apm32e10x.h)(0x684B99AC)
 I (.\Start\core_cm3.h)(0x68479140)
@@ -337,7 +335,7 @@ I (.\Start\cmsis_compiler.h)(0x68479140)
 I (.\Start\cmsis_armcc.h)(0x68479140)
 I (.\User\system_apm32e10x.h)(0x684B99D3)
 I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
-F (.\Boards\Board.c)(0x684B9115)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\board.o --omf_browse .\objects\board.crf --depend .\objects\board.d)
+F (.\Boards\Board.c)(0x684B9115)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\board.o --omf_browse .\objects\board.crf --depend .\objects\board.d)
 I (Boards\Board.h)(0x68833D81)
 I (Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
 I (.\User\apm32e10x.h)(0x684B99AC)
@@ -353,7 +351,7 @@ I (.\Library\inc\apm32e10x_eint.h)(0x684B93B8)
 I (.\Library\inc\apm32e10x_usart.h)(0x684B95C5)
 I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (Boards\Board_APM32E103_MINI\src\Board_APM32E103_MINI.c)(0x684B9174)
-F (.\Boards\Board_APM32E103_MINI\src\bsp_delay.c)(0x684B9199)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\bsp_delay.o --omf_browse .\objects\bsp_delay.crf --depend .\objects\bsp_delay.d)
+F (.\Boards\Board_APM32E103_MINI\src\bsp_delay.c)(0x684B9199)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\bsp_delay.o --omf_browse .\objects\bsp_delay.crf --depend .\objects\bsp_delay.d)
 I (.\Boards\Board_APM32E103_MINI\inc\bsp_delay.h)(0x684B906C)
 I (.\User\main.h)(0x68917EA3)
 I (.\Boards\Board.h)(0x68833D81)
@@ -371,7 +369,7 @@ I (.\Library\inc\apm32e10x_eint.h)(0x684B93B8)
 I (.\Library\inc\apm32e10x_usart.h)(0x684B95C5)
 I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
-F (.\Boards\Board_APM32E103_MINI\src\bsp_key.c)(0x684B91AF)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\bsp_key.o --omf_browse .\objects\bsp_key.crf --depend .\objects\bsp_key.d)
+F (.\Boards\Board_APM32E103_MINI\src\bsp_key.c)(0x684B91AF)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\bsp_key.o --omf_browse .\objects\bsp_key.crf --depend .\objects\bsp_key.d)
 I (.\Boards\Board_APM32E103_MINI\inc\bsp_key.h)(0x684B90B2)
 I (.\Boards\Board.h)(0x68833D81)
 I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
@@ -390,7 +388,7 @@ I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (.\User\main.h)(0x68917EA3)
 I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
 I (.\Boards\Board_APM32E103_MINI\inc\bsp_delay.h)(0x684B906C)
-F (.\Boards\Board_APM32E103_MINI\src\bsp_sdio.c)(0x684B91E9)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\bsp_sdio.o --omf_browse .\objects\bsp_sdio.crf --depend .\objects\bsp_sdio.d)
+F (.\Boards\Board_APM32E103_MINI\src\bsp_sdio.c)(0x684B91E9)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\bsp_sdio.o --omf_browse .\objects\bsp_sdio.crf --depend .\objects\bsp_sdio.d)
 I (.\Boards\Board_APM32E103_MINI\inc\bsp_sdio.h)(0x684B90F5)
 I (.\Boards\Board.h)(0x68833D81)
 I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
@@ -413,11 +411,11 @@ I (.\Library\inc\apm32e10x_sdio.h)(0x684B9534)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
 F (.\Start\startup_apm32e10x_hd.s)(0x684B81D9)(--cpu Cortex-M3 -g --apcs=interwork -ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include--pd "__UVISION_VERSION SETA 539" --pd "APM32E10X_HD SETA 1"--list .\listings\startup_apm32e10x_hd.lst --xref -o .\objects\startup_apm32e10x_hd.o --depend .\objects\startup_apm32e10x_hd.d)
-F (.\FreeRTOS\croutine.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\croutine.o --omf_browse .\objects\croutine.crf --depend .\objects\croutine.d)
+F (.\FreeRTOS\croutine.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\croutine.o --omf_browse .\objects\croutine.crf --depend .\objects\croutine.d)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -426,12 +424,12 @@ I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
 I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
 I (.\FreeRTOS\include\croutine.h)(0x68416145)
-F (.\FreeRTOS\event_groups.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\event_groups.o --omf_browse .\objects\event_groups.crf --depend .\objects\event_groups.d)
+F (.\FreeRTOS\event_groups.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\event_groups.o --omf_browse .\objects\event_groups.crf --depend .\objects\event_groups.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -441,25 +439,25 @@ I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
 I (.\FreeRTOS\include\timers.h)(0x68416145)
 I (.\FreeRTOS\include\event_groups.h)(0x68416145)
-F (.\FreeRTOS\list.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\list.o --omf_browse .\objects\list.crf --depend .\objects\list.d)
+F (.\FreeRTOS\list.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\list.o --omf_browse .\objects\list.crf --depend .\objects\list.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
 I (.\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x68416145)
 I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
-F (.\FreeRTOS\queue.c)(0x68416146)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\queue.o --omf_browse .\objects\queue.crf --depend .\objects\queue.d)
+F (.\FreeRTOS\queue.c)(0x68416146)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\queue.o --omf_browse .\objects\queue.crf --depend .\objects\queue.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -468,12 +466,12 @@ I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
 I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
 I (.\FreeRTOS\include\queue.h)(0x68416145)
-F (.\FreeRTOS\stream_buffer.c)(0x68416146)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\stream_buffer.o --omf_browse .\objects\stream_buffer.crf --depend .\objects\stream_buffer.d)
+F (.\FreeRTOS\stream_buffer.c)(0x68416146)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\stream_buffer.o --omf_browse .\objects\stream_buffer.crf --depend .\objects\stream_buffer.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -482,13 +480,13 @@ I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
 I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
 I (.\FreeRTOS\include\stream_buffer.h)(0x68416145)
-F (.\FreeRTOS\tasks.c)(0x68416146)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\tasks.o --omf_browse .\objects\tasks.crf --depend .\objects\tasks.d)
+F (.\FreeRTOS\tasks.c)(0x68416146)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\tasks.o --omf_browse .\objects\tasks.crf --depend .\objects\tasks.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -498,12 +496,12 @@ I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
 I (.\FreeRTOS\include\timers.h)(0x68416145)
 I (.\FreeRTOS\include\stack_macros.h)(0x68416145)
-F (.\FreeRTOS\timers.c)(0x68416146)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\timers.o --omf_browse .\objects\timers.crf --depend .\objects\timers.d)
+F (.\FreeRTOS\timers.c)(0x68416146)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\timers.o --omf_browse .\objects\timers.crf --depend .\objects\timers.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -513,12 +511,12 @@ I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
 I (.\FreeRTOS\include\queue.h)(0x68416145)
 I (.\FreeRTOS\include\timers.h)(0x68416145)
-F (.\FreeRTOS\portable\MemMang\heap_4.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\heap_4.o --omf_browse .\objects\heap_4.crf --depend .\objects\heap_4.d)
+F (.\FreeRTOS\portable\MemMang\heap_4.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\heap_4.o --omf_browse .\objects\heap_4.crf --depend .\objects\heap_4.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -526,11 +524,11 @@ I (.\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x68416145)
 I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
 I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
-F (.\FreeRTOS\portable\RVDS\ARM_CM3\port.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\port.o --omf_browse .\objects\port.crf --depend .\objects\port.d)
+F (.\FreeRTOS\portable\RVDS\ARM_CM3\port.c)(0x68416145)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\port.o --omf_browse .\objects\port.crf --depend .\objects\port.d)
 I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
-I (.\User\FreeRTOSConfig.h)(0x6891A0FC)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
 I (.\FreeRTOS\include\projdefs.h)(0x68416145)
 I (.\FreeRTOS\include\portable.h)(0x68416145)
 I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
@@ -538,8 +536,8 @@ I (.\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x68416145)
 I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
 I (.\FreeRTOS\include\task.h)(0x68416145)
 I (.\FreeRTOS\include\list.h)(0x68416145)
-F (.\APP\tft\LCD.c)(0x6891847B)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
-I (APP\tft\lcd.h)(0x6891A0FC)
+F (.\APP\tft\LCD.c)(0x6891BE63)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\lcd.o --omf_browse .\objects\lcd.crf --depend .\objects\lcd.d)
+I (APP\tft\lcd.h)(0x6891BBB6)
 I (.\User\main.h)(0x68917EA3)
 I (.\Boards\Board.h)(0x68833D81)
 I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
@@ -560,8 +558,8 @@ I (.\Library\inc\apm32e10x_spi.h)(0x684B957D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588B8344)
 I (APP\tft\font.h)(0x687D9D8C)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
-F (.\APP\tft\test code.c)(0x6891847A)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o ".\objects\test code.o" --omf_browse ".\objects\test code.crf" --depend ".\objects\test code.d")
-I (APP\tft\lcd.h)(0x6891A0FC)
+F (.\APP\tft\test code.c)(0x6891BBB4)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o ".\objects\test code.o" --omf_browse ".\objects\test code.crf" --depend ".\objects\test code.d")
+I (APP\tft\lcd.h)(0x6891BBB6)
 I (.\User\main.h)(0x68917EA3)
 I (.\Boards\Board.h)(0x68833D81)
 I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
@@ -580,10 +578,10 @@ I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
 I (.\Library\inc\apm32e10x_spi.h)(0x684B957D)
 I (APP\tft\pic.h)(0x68760A1C)
-I (APP\tft\test code.h)(0x6891847B)
+I (APP\tft\test code.h)(0x6891BBB4)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
-F (.\APP\rs485\rs485.c)(0x6891AE42)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\rs485.o --omf_browse .\objects\rs485.crf --depend .\objects\rs485.d)
-I (APP\rs485\rs485.h)(0x688740AB)
+F (.\APP\rs485\rs485.c)(0x6891C726)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\rs485.o --omf_browse .\objects\rs485.crf --depend .\objects\rs485.d)
+I (APP\rs485\rs485.h)(0x6891C6C3)
 I (.\User\main.h)(0x68917EA3)
 I (.\Boards\Board.h)(0x68833D81)
 I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
@@ -602,3 +600,64 @@ I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
 I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
+I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
+I (.\FreeRTOS\include\projdefs.h)(0x68416145)
+I (.\FreeRTOS\include\portable.h)(0x68416145)
+I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
+I (.\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x68416145)
+I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
+I (.\FreeRTOS\include\task.h)(0x68416145)
+I (.\FreeRTOS\include\list.h)(0x68416145)
+I (.\FreeRTOS\include\queue.h)(0x68416145)
+F (.\APP\charge_control.c)(0x6891BDD5)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\charge_control.o --omf_browse .\objects\charge_control.crf --depend .\objects\charge_control.d)
+I (APP\charge_control.h)(0x6891BD91)
+I (.\Boards\Board.h)(0x68833D81)
+I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
+I (.\User\apm32e10x.h)(0x684B99AC)
+I (.\Start\core_cm3.h)(0x68479140)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (.\Start\cmsis_version.h)(0x68479140)
+I (.\Start\cmsis_compiler.h)(0x68479140)
+I (.\Start\cmsis_armcc.h)(0x68479140)
+I (.\User\system_apm32e10x.h)(0x684B99D3)
+I (.\Library\inc\apm32e10x_gpio.h)(0x684B9418)
+I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
+I (.\Library\inc\apm32e10x_eint.h)(0x684B93B8)
+I (.\Library\inc\apm32e10x_usart.h)(0x684B95C5)
+I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
+F (.\APP\charging_station_ui.c)(0x6891C19E)(--c99 --gnu -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Boards -I .\Boards\Board_APM32E103_MINI\inc -I .\Library\inc -I .\Start -I .\User -I .\FreeRTOS\include -I .\FreeRTOS\portable\MemMang -I .\FreeRTOS\portable\RVDS -I .\FreeRTOS\portable\RVDS\ARM_CM3 -I .\APP\tft -I .\APP\rs485 -I .\APP-ID:\keil_pack\Geehy\APM32E1xx_DFP\1.0.3\Device\Include-D__UVISION_VERSION="539" -DAPM32E10X_HD-o .\objects\charging_station_ui.o --omf_browse .\objects\charging_station_ui.crf --depend .\objects\charging_station_ui.d)
+I (APP\charging_station_ui.h)(0x68874796)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
+I (.\FreeRTOS\include\FreeRTOS.h)(0x68416145)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588B8344)
+I (.\User\FreeRTOSConfig.h)(0x6891BBB6)
+I (.\FreeRTOS\include\projdefs.h)(0x68416145)
+I (.\FreeRTOS\include\portable.h)(0x68416145)
+I (.\FreeRTOS\include\deprecated_definitions.h)(0x68416145)
+I (.\FreeRTOS\portable\RVDS\ARM_CM3\portmacro.h)(0x68416145)
+I (.\FreeRTOS\include\mpu_wrappers.h)(0x68416145)
+I (.\FreeRTOS\include\task.h)(0x68416145)
+I (.\FreeRTOS\include\list.h)(0x68416145)
+I (.\APP\tft\lcd.h)(0x6891BBB6)
+I (.\User\main.h)(0x68917EA3)
+I (.\Boards\Board.h)(0x68833D81)
+I (.\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h)(0x6881F9C0)
+I (.\User\apm32e10x.h)(0x684B99AC)
+I (.\Start\core_cm3.h)(0x68479140)
+I (.\Start\cmsis_version.h)(0x68479140)
+I (.\Start\cmsis_compiler.h)(0x68479140)
+I (.\Start\cmsis_armcc.h)(0x68479140)
+I (.\User\system_apm32e10x.h)(0x684B99D3)
+I (.\Library\inc\apm32e10x_gpio.h)(0x684B9418)
+I (.\Library\inc\apm32e10x_rcm.h)(0x684B94B6)
+I (.\Library\inc\apm32e10x_eint.h)(0x684B93B8)
+I (.\Library\inc\apm32e10x_usart.h)(0x684B95C5)
+I (.\Library\inc\apm32e10x_misc.h)(0x684B9476)
+I (.\Library\inc\apm32e10x_dma.h)(0x684B935B)
+I (.\Library\inc\apm32e10x_spi.h)(0x684B957D)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588B8344)
+I (.\APP\rs485\rs485.h)(0x6891C6C3)
+I (.\FreeRTOS\include\queue.h)(0x68416145)

@@ -2,10 +2,9 @@
 #include "stdlib.h"
 #include "font.h" 
 #include "string.h"
+#include "apm32e10x_gpio.h"
+#include "apm32e10x_rcm.h"
 #include "apm32e10x_spi.h"
-
-// DMA传输完成标志
-volatile uint8_t dma_transfer_complete = 1;
 
 //LCD屏幕画笔颜色和背景色	   
 uint16_t POINT_COLOR=0x0000;	//画笔颜色
@@ -246,16 +245,15 @@ void LCD_Init(void)
 	gpioConfig.pin = LCD_LED_PIN;
 	GPIO_Config(LCD_LED_GPIO_PORT, &gpioConfig);
 	
-	// 配置SPI2引脚为复用功能 - 最大速度
+	// 配置SPI2引脚为复用功能
 	// MOSI (PB15)
 	gpioConfig.pin = SPI_SDI_PIN;
 	gpioConfig.mode = GPIO_MODE_AF_PP;
-	gpioConfig.speed = GPIO_SPEED_50MHz;  // 最大GPIO速度
+	gpioConfig.speed = GPIO_SPEED_50MHz;
 	GPIO_Config(SPI_SDI_GPIO_PORT, &gpioConfig);
 	
 	// SCK (PB13)
 	gpioConfig.pin = SPI_SCK_PIN;
-	gpioConfig.speed = GPIO_SPEED_50MHz;  // 最大GPIO速度
 	GPIO_Config(SPI_SCK_GPIO_PORT, &gpioConfig);
 	
 	// MISO (PB14) - 如果需要读取数据
@@ -269,7 +267,7 @@ void LCD_Init(void)
 	GPIO_SetBit(SPI_RST_GPIO_PORT, SPI_RST_PIN); // RST高电平
 	GPIO_SetBit(LCD_LED_GPIO_PORT, LCD_LED_PIN); // 背光开启
 	
-	// 配置SPI2 - 稳定速度
+	// 配置SPI2
 	SPI_Config_T spiConfig;
 	SPI_ConfigStructInit(&spiConfig);
 	spiConfig.mode = SPI_MODE_MASTER;
@@ -278,15 +276,12 @@ void LCD_Init(void)
 	spiConfig.polarity = SPI_CLKPOL_LOW;
 	spiConfig.phase = SPI_CLKPHA_1EDGE;
 	spiConfig.nss = SPI_NSS_SOFT;
-	spiConfig.baudrateDiv = SPI_BAUDRATE_DIV_4;  // 稳定速度：4分频
+	spiConfig.baudrateDiv = SPI_BAUDRATE_DIV_2;
 	spiConfig.firstBit = SPI_FIRSTBIT_MSB;
 	SPI_Config(LCD_SPI, &spiConfig);
 	
 	// 使能SPI2
 	SPI_Enable(LCD_SPI);
-	
-	// 初始化DMA
-	LCD_DMA_Init();
 	
 	// LCD复位序列
 	GPIO_SetBit(SPI_RST_GPIO_PORT, SPI_RST_PIN);
@@ -429,40 +424,16 @@ void LCD_Init(void)
 //return color;
 //}		
   
-//清屏函数 - DMA加速版本
+//清屏函数
 //color:要清屏的填充色
 void LCD_Clear(uint16_t color)
 {
-	uint32_t totalpoint = lcddev.width * lcddev.height;   	//得到总点数
-	uint16_t color_buffer[512];  // 静态缓冲区，避免动态内存分配
-	
-	// 填充颜色缓冲区
-	for(int i = 0; i < 512; i++)
-	{
-		color_buffer[i] = color;
-	}
-	
-	LCD_SetCursor(0x00, 0x0000);	 	//设置光标位置
-	LCD_WriteRAM_Prepare();			//开始写入GRAM
-	
-	// 分块DMA传输
-	uint32_t remaining = totalpoint;
-	while(remaining > 0)
-	{
-		uint32_t block_size = (remaining > 512) ? 512 : remaining;
-		
-		// 设置DC为数据模式
-		GPIO_ResetBit(SPI_CS_GPIO_PORT, SPI_CS_PIN);  // CS = 0
-		GPIO_SetBit(SPI_DC_GPIO_PORT, SPI_DC_PIN);    // DC = 1 (写数据)
-		
-		// DMA传输 - 每个16位颜色需要传输2个字节
-		LCD_DMA_WriteData(color_buffer, block_size * 2);  // 16位数据，所以乘2
-		LCD_DMA_WaitComplete();
-		
-		GPIO_SetBit(SPI_CS_GPIO_PORT, SPI_CS_PIN);  // CS = 1
-		
-		remaining -= block_size;
-	}
+	uint32_t index=0;      
+	uint32_t totalpoint=lcddev.width;
+	totalpoint*=lcddev.height; 			//得到总点数
+	LCD_SetCursor(0x00,0x0000);	//设置光标位置 
+	LCD_WriteRAM_Prepare();     		//开始写入GRAM	  	  
+	for(index=0;index<totalpoint;index++)LCD_WriteRAM(color);
 }  
 //在指定区域内填充指定颜色
 //区域大小:(xend-xsta+1)*(yend-ysta+1)
@@ -1058,106 +1029,4 @@ uint32_t LCD_Read_ID(void)
 
     id32 = ((uint32_t)id[0] << 16) | ((uint32_t)id[1] << 8) | id[2];
     return id32;
-}
-
-// 动态调整SPI速度
-void LCD_Set_SPI_Speed(SPI_BAUDRATE_DIV_T speed)
-{
-    // 禁用SPI
-    SPI_Disable(LCD_SPI);
-    
-    // 重新配置SPI速度
-    SPI_Config_T spiConfig;
-    SPI_ConfigStructInit(&spiConfig);
-    spiConfig.mode = SPI_MODE_MASTER;
-    spiConfig.direction = SPI_DIRECTION_2LINES_FULLDUPLEX;
-    spiConfig.length = SPI_DATA_LENGTH_8B;
-    spiConfig.polarity = SPI_CLKPOL_LOW;
-    spiConfig.phase = SPI_CLKPHA_1EDGE;
-    spiConfig.nss = SPI_NSS_SOFT;
-    spiConfig.baudrateDiv = speed;  // 新的速度设置
-    spiConfig.firstBit = SPI_FIRSTBIT_MSB;
-    SPI_Config(LCD_SPI, &spiConfig);
-    
-    // 重新使能SPI
-    SPI_Enable(LCD_SPI);
-}
-
-//DMA初始化
-void LCD_DMA_Init(void)
-{
-    // 使能DMA1时钟
-    RCM_EnableAHBPeriphClock(RCM_AHB_PERIPH_DMA1);
-    
-    // 配置DMA通道
-    DMA_Config_T dmaConfig;
-    DMA_ConfigStructInit(&dmaConfig);
-    
-    dmaConfig.peripheralBaseAddr = (uint32_t)&LCD_SPI->DATA;  // SPI2数据寄存器地址
-    dmaConfig.memoryBaseAddr = 0;  // 将在传输时设置
-    dmaConfig.dir = DMA_DIR_PERIPHERAL_DST;  // 内存到外设
-    dmaConfig.bufferSize = 0;  // 将在传输时设置
-    dmaConfig.peripheralInc = DMA_PERIPHERAL_INC_DISABLE;  // 外设地址不递增
-    dmaConfig.memoryInc = DMA_MEMORY_INC_ENABLE;  // 内存地址递增
-    dmaConfig.peripheralDataSize = DMA_PERIPHERAL_DATA_SIZE_BYTE;  // 外设数据宽度8位
-    dmaConfig.memoryDataSize = DMA_MEMORY_DATA_SIZE_BYTE;  // 内存数据宽度8位
-    dmaConfig.loopMode = DMA_MODE_NORMAL;  // 正常模式
-    dmaConfig.priority = DMA_PRIORITY_HIGH;  // 高优先级
-    dmaConfig.M2M = DMA_M2MEN_DISABLE;  // 非内存到内存模式
-    
-    DMA_Config(LCD_DMA_TX_CHANNEL, &dmaConfig);
-    
-    // 使能DMA传输完成中断
-    DMA_EnableInterrupt(LCD_DMA_TX_CHANNEL, DMA_INT_TC);
-    
-    // 配置NVIC
-    NVIC_EnableIRQRequest(LCD_DMA_TX_IRQn, 2, 0);
-    
-    // 使能SPI2的DMA发送请求
-    SPI_I2S_EnableDMA(LCD_SPI, SPI_I2S_DMA_REQ_TX);
-}
-
-//DMA等待传输完成
-void LCD_DMA_WaitComplete(void)
-{
-    while(!dma_transfer_complete)
-    {
-        // 等待DMA传输完成
-    }
-}
-
-//DMA发送数据
-void LCD_DMA_WriteData(uint16_t *data, uint32_t size)
-{
-	// 等待上一次传输完成
-	LCD_DMA_WaitComplete();
-	
-	// 设置传输参数
-	LCD_DMA_TX_CHANNEL->CHMADDR = (uint32_t)data;  // 设置内存地址
-	LCD_DMA_TX_CHANNEL->CHNDATA = size;  // 设置传输数量（字节数）
-	
-	// 清除传输完成标志
-	dma_transfer_complete = 0;
-	
-	// 清除DMA标志
-	DMA_ClearStatusFlag(LCD_DMA_TX_FLAG);
-	
-	// 使能DMA通道
-	DMA_Enable(LCD_DMA_TX_CHANNEL);
-}
-
-//DMA中断处理函数
-void DMA1_Channel5_IRQHandler(void)
-{
-    if(DMA_ReadStatusFlag(LCD_DMA_TX_FLAG) != RESET)
-    {
-        // 清除中断标志
-        DMA_ClearStatusFlag(LCD_DMA_TX_FLAG);
-        
-        // 禁用DMA通道
-        DMA_Disable(LCD_DMA_TX_CHANNEL);
-        
-        // 设置传输完成标志
-        dma_transfer_complete = 1;
-    }
 }
