@@ -25,6 +25,10 @@
 
 /* Includes */
 #include "main.h"
+#include "apm32e10x_gpio.h"
+#include "apm32e10x_rcm.h"
+#include "apm32e10x_usart.h"
+#include "board.h"
 /* FreeRTOS */
 #include "FreeRTOS.h"
 #include "task.h"
@@ -33,7 +37,26 @@
 #include "my_init.h"
 #include "lcd.h"
 #include "test code.h"
+#include "rs485.h"
 
+// 串口发送函数
+void USART_SendString(USART_T* usart, const char* str)
+{
+    while (*str)
+    {
+        USART_TxData(usart, *str++);
+        while (USART_ReadStatusFlag(usart, USART_FLAG_TXBE) == RESET);
+    }
+}
+
+void USART_SendArray(USART_T* usart, const uint8_t* data, uint16_t length)
+{
+    for (uint16_t i = 0; i < length; i++)
+    {
+        USART_TxData(usart, data[i]);
+        while (USART_ReadStatusFlag(usart, USART_FLAG_TXBE) == RESET);
+    }
+}
 
 // 串口接收相关定义
 #define UART_RX_BUFFER_SIZE 100
@@ -87,19 +110,19 @@ int main(void)
     // 串口初始化
     USART_Init();
     
-    // 串口初始化完成
-    LCD_Init();
-    LCD_Display_Dir(3);
-    LCD_Clear(WHITE);
+//    // 串口初始化完成
+//    LCD_Init();
+//    LCD_Display_Dir(3);
+//    LCD_Clear(WHITE);
 
-			main_test("IC:ST7789");		  //测试主页
-			Color_Test();								//纯色测试
-			FillRec_Test();							//图形测试
-			English_Font_test();				//英文测试
-			Chinese_Font_test();				//中文测试
-			Pic_test();									//图片测试
-			Switch_test();							//显示开关测试
-			Rotate_Test();							//旋转测试
+//			main_test("IC:ST7789");		  //测试主页
+//			Color_Test();								//纯色测试
+//			FillRec_Test();							//图形测试
+//			English_Font_test();				//英文测试
+//			Chinese_Font_test();				//中文测试
+//			Pic_test();									//图片测试
+//			Switch_test();							//显示开关测试
+//			Rotate_Test();							//旋转测试
 
     /* User create task */
     UserTaskCreate();
@@ -172,50 +195,21 @@ void vTaskLedToggle(void* pvParameters)
  *
  * @retval      None
  */
-uint16_t currentCount;
+uint8_t send_order=1;
 void vTaskUsartTest(void* pvParameters)
 {
-    uint8_t testData[] = "Hello UART!\r\n";
-    uint16_t dataLength = sizeof(testData) - 1;  // 不包括字符串结束符
-    
+    UNUSED(pvParameters);
+		RS485_Master_Send_Turn(0x01,&send_order,1);
+
+
     while (1)
     {
-        // 使用轮询方式检查接收数据
-        if (USART_ReadStatusFlag(MINI_COM2, USART_FLAG_RXBNE))
-        {
-            // 读取接收到的数据
-            uint8_t receivedByte = USART_RxData(MINI_COM2);
-            
-            // 存储到接收缓冲区
-            if (uartRxIndex < UART_RX_BUFFER_SIZE - 1)
-            {
-                uartRxBuffer[uartRxIndex++] = receivedByte;
-                
-                // 如果接收到换行符，表示一帧数据接收完成
-                if (receivedByte == '\n' || receivedByte == '\r')
-                {
-                    // 数据处理完成标志
-                    uartDataReceived = 1;
-                    
-                    // 可以在这里添加你的数据处理逻辑
-                    // 例如：解析命令、存储数据等
-                    
-                    // 重置接收索引
-                    uartRxIndex = 0;
-                }
-            }
-            else
-            {
-                // 缓冲区满，重置索引
-                uartRxIndex = 0;
-            }
-        }
-        
+
         // 简单的 LED 指示，确认任务在运行
         APM_MINI_LEDToggle(LED3);
         
         /* Task blocking time Delay */
-        vTaskDelay(10);  // 缩短延时，提高轮询频率
+        vTaskDelay(2);  // 缩短延时，提高轮询频率
     }
 }
 

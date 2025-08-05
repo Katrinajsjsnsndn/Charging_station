@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Boards;.\Boards\Board_APM32E103_MINI\inc;.\Library\inc;.\Start;.\User;.\FreeRTOS\include;.\FreeRTOS\portable\MemMang;.\FreeRTOS\portable\RVDS;.\FreeRTOS\portable\RVDS\ARM_CM3;.\APP\tft</IncludePath>
+              <IncludePath>.\Boards;.\Boards\Board_APM32E103_MINI\inc;.\Library\inc;.\Start;.\User;.\FreeRTOS\include;.\FreeRTOS\portable\MemMang;.\FreeRTOS\portable\RVDS;.\FreeRTOS\portable\RVDS\ARM_CM3;.\APP\tft;.\APP\rs485</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -638,6 +638,11 @@
               <FileName>test code.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\APP\tft\test code.c</FilePath>
+            </File>
+            <File>
+              <FileName>rs485.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\APP\rs485\rs485.c</FilePath>
             </File>
           </Files>
         </Group>

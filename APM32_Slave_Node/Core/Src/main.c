@@ -136,7 +136,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		RS485_Master_Receive_Process();
-		Data_Feedback();//默认一直发送
+		//Data_Feedback();//默认一直发送
     MCP4725_WriteData_Digital(dac_set);
 		read_adc_1=Get_ADC1(0);//采样电阻0.005哦  放大倍数50倍
 		read_adc_4=Get_ADC1(4);

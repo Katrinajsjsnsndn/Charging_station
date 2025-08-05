@@ -42,7 +42,7 @@ void USART_Init(void)
     usartConfigStruct.stopBits = USART_STOP_BIT_1;
     usartConfigStruct.wordLength = USART_WORD_LEN_8B;
 
-    APM_MINI_COMInit(COM1, &usartConfigStruct);
+    //APM_MINI_COMInit(COM1, &usartConfigStruct);
     APM_MINI_COMInit(COM2, &usartConfigStruct);
 
     Delay(0x7FFF);

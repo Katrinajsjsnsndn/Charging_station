@@ -160,6 +160,11 @@
           <WinNumber>1</WinNumber>
           <ItemText>uartRxBuffer,0x10</ItemText>
         </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tx_buf,0x10</ItemText>
+        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -801,6 +806,18 @@
       <bDave2>0</bDave2>
       <PathWithFileName>.\APP\tft\test code.c</PathWithFileName>
       <FilenameWithoutPath>test code.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>6</GroupNumber>
+      <FileNumber>47</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\APP\rs485\rs485.c</PathWithFileName>
+      <FilenameWithoutPath>rs485.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

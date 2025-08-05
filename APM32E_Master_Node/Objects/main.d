@@ -30,3 +30,6 @@
 .\objects\main.o: .\APP\tft\lcd.h
 .\objects\main.o: .\Library\inc\apm32e10x_spi.h
 .\objects\main.o: .\APP\tft\test code.h
+.\objects\main.o: .\APP\rs485\rs485.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
