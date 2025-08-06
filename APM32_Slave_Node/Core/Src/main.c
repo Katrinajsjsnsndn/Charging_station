@@ -72,7 +72,7 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 uint16_t read_adc_1,read_adc_2,read_adc_4,read_adc_5,read_adc_6,read_adc_7;
 uint16_t dac_set;
-float current_set=2,read_current=0.1,read_val=0.5;
+float current_set=2,read_current,read_val;
 uint8_t Master_order;
 /* USER CODE END 0 */
 
@@ -120,7 +120,7 @@ int main(void)
 	HAL_GPIO_WritePin(BATOTSW_GPIO_Port,BATOTSW_Pin,0);
 	IIC_GPIO_Config();
 	HAL_GPIO_WritePin(BATA0_GPIO_Port,BATA0_Pin,0);
-		HAL_GPIO_WritePin(BATA1_GPIO_Port,BATA1_Pin,1);
+	HAL_GPIO_WritePin(BATA1_GPIO_Port,BATA1_Pin,1);
 	HAL_GPIO_WritePin(BATA2_GPIO_Port,BATA2_Pin,0);
 
 
@@ -145,8 +145,8 @@ int main(void)
 		read_adc_7=Get_ADC1(7);
 
 		read_adc_2=Get_ADC(2);
-		read_current =((float)read_adc_1 / 4095.0f) * 3.3f / 0.25f;
-		read_val = (float)read_adc_2 / 4095.0f * 3.3f * 10.0f;
+		read_current =((float)read_adc_1 / 4095.0f) * 3.29f / 0.25f;
+		read_val = (float)read_adc_2 / 4095.0f * 3.29f * 10.0f;
 		if(read_val<16)
 		{
 			Disable_discharging();//停止放电

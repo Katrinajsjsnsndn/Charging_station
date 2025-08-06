@@ -61,6 +61,8 @@ void RS485_Master_Receive_Process(void)
 									Disable_Charging();
 									Enable_Discharging();
 									Master_order=1;
+									rx_done = 0;
+
 									return;
 								}
 								else
@@ -102,6 +104,7 @@ void RS485_Master_Receive_Process(void)
         default:
             break;
     }
+		rx_done = 0;
 
 frame_err:
     /* 3. 重新启动下一轮 DMA 接收 */

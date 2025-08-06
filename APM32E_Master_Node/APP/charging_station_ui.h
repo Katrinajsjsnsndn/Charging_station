@@ -6,7 +6,7 @@
 #include "task.h"
 // UI主任务初始化与循环
 void charging_station_ui_init(void);
-void charging_station_ui_task(void);
+void charging_station_ui_task(void* pvParameters);
 
 // 外部接口：用于其他任务/协议更新UI数据
 void set_station_status(uint8_t station_id, uint8_t status);

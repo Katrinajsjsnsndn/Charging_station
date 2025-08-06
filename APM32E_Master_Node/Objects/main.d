@@ -15,6 +15,7 @@
 .\objects\main.o: .\Library\inc\apm32e10x_usart.h
 .\objects\main.o: .\Library\inc\apm32e10x_misc.h
 .\objects\main.o: .\Library\inc\apm32e10x_dma.h
+.\objects\main.o: .\Library\inc\apm32e10x_adc.h
 .\objects\main.o: .\FreeRTOS\include\FreeRTOS.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\main.o: .\User\FreeRTOSConfig.h
@@ -31,3 +32,7 @@
 .\objects\main.o: .\Library\inc\apm32e10x_spi.h
 .\objects\main.o: .\APP\tft\test code.h
 .\objects\main.o: .\APP\charge_control.h
+.\objects\main.o: .\APP\rs485\rs485.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: .\APP\charging_station_ui.h

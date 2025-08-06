@@ -37,6 +37,7 @@ typedef struct {
     uint8_t data[];    // 柔性数组：实际数据紧跟其后
     /* checksum 紧跟在 data[] 后面，不放在结构体里 */
 } RS485_Frame_t;
+void RS485_Master_Receive_Process(void);
 
 uint8_t RS485_CalcChecksum(const uint8_t *buf, uint8_t len);
 void RS485_Master_Send_Turn(uint8_t slave_addr,

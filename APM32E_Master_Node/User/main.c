@@ -25,7 +25,11 @@
 
 /* Includes */
 #include "main.h"
-/* FreeRTOS */
+
+#include "apm32e10x.h"
+#include "apm32e10x_adc.h"
+#include "apm32e10x_gpio.h"
+#include "apm32e10x_rcm.h"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
@@ -34,6 +38,8 @@
 #include "lcd.h"
 #include "test code.h"
 #include "charge_control.h"
+#include "rs485.h"
+#include "charging_station_ui.h"
 
 
 // 串口接收相关定义
@@ -86,6 +92,7 @@ int main(void)
     
     // 串口初始化
     USART_Init();
+		USART2_DMA_RX_Init();
     IIC_GPIO_Config();
 
 
@@ -144,21 +151,98 @@ static void UserTaskCreate(void)
  * @retval      None
  */
 uint16_t currentCount;
+uint16_t adc_pa1, adc_pb0;
+extern Station_Info_t stations[STATION_NUM] ;
+float out_cal,out_current;
 void vTaskUsartTest(void* pvParameters)
 {
-
+    
+    // 初始化ADC
+    ADC_Init_Once();
     
     while (1)
     {
+        // 读取PA1和PB0的ADC值
+        adc_pa1 = ADC_ReadChannel(1);  // PA1对应ADC通道1
+        //adc_pb0 = ADC_ReadChannel(8);  // PB0对应ADC通道8
         
-        
-        
-        // 简单的 LED 指示，确认任务在运行
-        APM_MINI_LEDToggle(LED3);
+    	out_cal=(adc_pb0/4095.0f)*3.3/0.005;
+			out_current=(adc_pa1/4095.0f)*3.3*11.0f;
+			stations[0].discharge_voltage=out_current;
+			stations[0].discharge_current=1.5;
+			stations[0].discharge_power=out_cal*out_current;
+
+        RS485_Master_Receive_Process();
         /* Task blocking time Delay */
-        vTaskDelay(10);  // 缩短延时，提高轮询频率
+        vTaskDelay(10);
     }
 }
 
+// ADC初始化标志
+static uint8_t adc_initialized = 0;
 
+/* ADC初始化函数 */
+void ADC_Init_Once(void)
+{
+    if(adc_initialized) return;
+    
+    GPIO_Config_T gpioConfig;
+    
+    // 使能ADC1时钟
+    RCM_EnableAPB2PeriphClock(RCM_APB2_PERIPH_ADC1);
+    
+    // 配置GPIO为模拟输入
+    RCM_EnableAPB2PeriphClock(RCM_APB2_PERIPH_GPIOA);
+    RCM_EnableAPB2PeriphClock(RCM_APB2_PERIPH_GPIOB);
+    GPIO_ConfigStructInit(&gpioConfig);
+    gpioConfig.pin = GPIO_PIN_1;  // 配置PA1
+    gpioConfig.mode = GPIO_MODE_ANALOG;
+    GPIO_Config(GPIOA, &gpioConfig);
+    
+    gpioConfig.pin = GPIO_PIN_0;  // 配置PB0
+    GPIO_Config(GPIOB, &gpioConfig);
+    
+    // 配置ADC
+    ADC_Config_T adcConfig;
+    ADC_ConfigStructInit(&adcConfig);
+    // 根据APM32库的特点，使用软件触发模式
+    adcConfig.externalTrigConv = ADC_EXT_TRIG_CONV_None;  // 软件触发
+    ADC_Config(ADC1, &adcConfig);
+    
+    // 使能ADC
+    ADC_Enable(ADC1);
+    
+    // 等待ADC稳定
+    for(volatile uint32_t i = 0; i < 1000; i++);
+    
+    adc_initialized = 1;
+}
+
+/* ADC读取函数 */
+uint16_t ADC_ReadChannel(uint8_t channel)
+{
+    // 确保ADC已初始化
+    ADC_Init_Once();
+    
+    // 配置ADC通道
+    ADC_ConfigRegularChannel(ADC1, channel, 1, ADC_SAMPLETIME_239CYCLES5);
+    
+    // 开始转换
+    ADC_EnableSoftwareStartConv(ADC1);
+    
+    // 等待转换完成
+    uint32_t timeout = 10000;
+    while(!ADC_ReadStatusFlag(ADC1, ADC_FLAG_EOC) && timeout--);
+    
+    // 读取结果
+    uint16_t result = ADC_ReadConversionValue(ADC1);
+    
+    // 如果超时，返回0
+    if(timeout == 0)
+    {
+        return 0;
+    }
+    
+    return result;
+}
 

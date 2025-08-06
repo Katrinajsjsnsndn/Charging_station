@@ -29,3 +29,4 @@
 .\objects\rs485.o: .\FreeRTOS\include\task.h
 .\objects\rs485.o: .\FreeRTOS\include\list.h
 .\objects\rs485.o: .\FreeRTOS\include\queue.h
+.\objects\rs485.o: .\APP\charging_station_ui.h

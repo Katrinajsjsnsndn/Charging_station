@@ -10,7 +10,9 @@
 .\objects\my_init.o: .\User\system_apm32e10x.h
 .\objects\my_init.o: .\Library\inc\apm32e10x_usart.h
 .\objects\my_init.o: .\Library\inc\apm32e10x_rcm.h
+.\objects\my_init.o: .\Library\inc\apm32e10x_adc.h
 .\objects\my_init.o: .\Boards\board.h
 .\objects\my_init.o: .\Boards\Board_APM32E103_MINI\inc\Board_APM32E103_MINI.h
 .\objects\my_init.o: .\Library\inc\apm32e10x_eint.h
 .\objects\my_init.o: .\Library\inc\apm32e10x_misc.h
+.\objects\my_init.o: .\Library\inc\apm32e10x_dma.h

@@ -9,6 +9,7 @@
 #include "string.h"
 #include "stdio.h"
 #include "rs485.h"
+#include "charge_control.h"
 
 // ======================== 宏定义 ========================
 #define STATION_NUM         4
@@ -155,7 +156,7 @@ uint8_t read_key(void)
 
 // ======================== 主任务循环 ========================
 uint8_t key_val = 0, key_old = 0, key_down = 0;
-void charging_station_ui_task(void)
+void charging_station_ui_task(void* pvParameters)
 {
     // 移除重复的LCD初始化，因为main函数中已经初始化了
      charging_station_ui_init();
@@ -306,7 +307,7 @@ void charging_station_ui_task(void)
                     }
                     if (key_down == KEY_OK && charge_mode_selected == 2)
                     {
-                        //MCP4725_WriteData_Digital(1861); // 1 v
+                        MCP4725_WriteData_Digital(1240); // 1 v
                         send_order = 4;
                         RS485_Master_Send_Turn(0x01, &send_order, 1);
                         // 放电测试

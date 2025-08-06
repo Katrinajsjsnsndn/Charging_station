@@ -32,3 +32,4 @@
 .\objects\charging_station_ui.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\charging_station_ui.o: .\APP\rs485\rs485.h
 .\objects\charging_station_ui.o: .\FreeRTOS\include\queue.h
+.\objects\charging_station_ui.o: APP\charge_control.h
