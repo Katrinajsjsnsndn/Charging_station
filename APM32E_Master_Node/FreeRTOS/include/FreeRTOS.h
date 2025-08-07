@@ -46,7 +46,6 @@
  *     in FreeRTOS/source/stdint.readme for more information.
  */
 #include <stdint.h>     /* READ COMMENT ABOVE. */
-
 /* *INDENT-OFF* */
 #ifdef __cplusplus
     extern "C" {

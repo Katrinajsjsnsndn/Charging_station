@@ -544,7 +544,7 @@
 
 #define LV_USE_LED        0
 
-#define LV_USE_LIST       0
+#define LV_USE_LIST       1
 
 #define LV_USE_MENU       0
 
@@ -597,7 +597,7 @@
  *----------*/
 
 /*A layout similar to Flexbox in CSS.*/
-#define LV_USE_FLEX 0
+#define LV_USE_FLEX 1
 
 /*A layout similar to Grid in CSS.*/
 #define LV_USE_GRID 0

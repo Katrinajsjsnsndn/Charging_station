@@ -3,7 +3,7 @@
 	"version": "1.9.1-GA",
 	"lvglVersion": "v8",
 	"projectSettings": {
-		"board_radius": 0,
+		"board_radius": 3,
 		"keyBoard": {
 			"display_kb": false,
 			"chinese_input": false,
@@ -236,7 +236,7 @@
 	},
 	"FrontJson": [
 		{
-			"name": "screen",
+			"name": "screen_Master",
 			"id": "emg7n4dm",
 			"type": "scr",
 			"version": 190,
@@ -245,7 +245,8 @@
 				"code_c": "",
 				"inc_c": "",
 				"code_py": "",
-				"inc_py": ""
+				"inc_py": "",
+				"type": "screen"
 			},
 			"width": 320,
 			"height": 240,
@@ -257,7 +258,7 @@
 					"id": "mqafx9o4",
 					"type": "label",
 					"left": 103,
-					"top": 48,
+					"top": 60,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -284,7 +285,7 @@
 							"text_opa": 255,
 							"font": 12,
 							"text_align": "LV_TEXT_ALIGN_CENTER",
-							"font_family": "montserratMedium",
+							"font_family": "SourceHanSerifSC_Regular",
 							"letter_space": 0,
 							"line_space": 0,
 							"bg_color": "#2195f6",
@@ -356,7 +357,7 @@
 					"id": "l6tqm3pe",
 					"type": "label",
 					"left": 103,
-					"top": 20,
+					"top": 30,
 					"visible": true,
 					"isLock": false,
 					"flag": [],
@@ -383,7 +384,7 @@
 							"text_opa": 255,
 							"font": 16,
 							"text_align": "LV_TEXT_ALIGN_CENTER",
-							"font_family": "montserratMedium",
+							"font_family": "SourceHanSerifSC_Regular",
 							"letter_space": 0,
 							"line_space": 0,
 							"bg_color": "#2195f6",
@@ -454,10 +455,10 @@
 					"name": "Master_screen",
 					"id": "v3foq93p",
 					"type": "cont",
-					"left": -2,
-					"top": -2,
+					"left": -3,
+					"top": -4,
 					"visible": true,
-					"isLock": false,
+					"isLock": true,
 					"flag": [],
 					"width": 324,
 					"height": 247,
@@ -575,8 +576,7 @@
 											"shadow_ofs_x": 0,
 											"shadow_ofs_y": 0
 										}
-									],
-									"dropToGap": false
+									]
 								}
 							],
 							"style": [
@@ -613,8 +613,7 @@
 									"shadow_ofs_x": 0,
 									"shadow_ofs_y": 0
 								}
-							],
-							"dropToGap": false
+							]
 						},
 						{
 							"name": "cont_3",
@@ -662,7 +661,7 @@
 											"text_opa": 255,
 											"font": 11,
 											"text_align": "LV_TEXT_ALIGN_CENTER",
-											"font_family": "montserratMedium",
+											"font_family": "SourceHanSerifSC_Regular",
 											"letter_space": 0,
 											"line_space": 0,
 											"bg_color": "#2195f6",
@@ -727,8 +726,7 @@
 											"shadow_ofs_x": 0,
 											"shadow_ofs_y": 0
 										}
-									],
-									"dropToGap": false
+									]
 								}
 							],
 							"style": [
@@ -765,8 +763,7 @@
 									"shadow_ofs_x": 0,
 									"shadow_ofs_y": 0
 								}
-							],
-							"dropToGap": false
+							]
 						},
 						{
 							"name": "cont_2",
@@ -814,7 +811,7 @@
 											"text_opa": 255,
 											"font": 11,
 											"text_align": "LV_TEXT_ALIGN_CENTER",
-											"font_family": "montserratMedium",
+											"font_family": "SourceHanSerifSC_Regular",
 											"letter_space": 0,
 											"line_space": 0,
 											"bg_color": "#2195f6",
@@ -879,8 +876,7 @@
 											"shadow_ofs_x": 0,
 											"shadow_ofs_y": 0
 										}
-									],
-									"dropToGap": false
+									]
 								}
 							],
 							"style": [
@@ -917,8 +913,7 @@
 									"shadow_ofs_x": 0,
 									"shadow_ofs_y": 0
 								}
-							],
-							"dropToGap": false
+							]
 						},
 						{
 							"name": "cont_1",
@@ -966,7 +961,7 @@
 											"text_opa": 255,
 											"font": 11,
 											"text_align": "LV_TEXT_ALIGN_CENTER",
-											"font_family": "montserratMedium",
+											"font_family": "SourceHanSerifSC_Regular",
 											"letter_space": 0,
 											"line_space": 0,
 											"bg_color": "#2195f6",
@@ -1031,8 +1026,7 @@
 											"shadow_ofs_x": 0,
 											"shadow_ofs_y": 0
 										}
-									],
-									"dropToGap": false
+									]
 								}
 							],
 							"style": [
@@ -1069,8 +1063,817 @@
 									"shadow_ofs_x": 0,
 									"shadow_ofs_y": 0
 								}
+							]
+						}
+					],
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
 							],
-							"dropToGap": false
+							"border_width": 2,
+							"border_color": "#2195f6",
+							"border_opa": 255,
+							"radius": 0,
+							"bg_color": "#000000",
+							"bg_grad_color": "#ffffff",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"bg_opa": 255,
+							"padding_top": 0,
+							"padding_bottom": 0,
+							"padding_left": 0,
+							"padding_right": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0
+						}
+					],
+					"event": {
+						"widget": {
+							"clicked": {
+								"condition": [],
+								"action": [
+									{
+										"dst": "load_screen",
+										"bindCondi": "",
+										"actionList": {
+											"load_screen": {
+												"duration": 200,
+												"delay": 200,
+												"scrId": "bkpccx62",
+												"anim_type": "LV_SCR_LOAD_ANIM_OVER_TOP",
+												"is_clean": false,
+												"is_del": true
+											}
+										}
+									}
+								]
+							}
+						}
+					}
+				}
+			],
+			"event": {
+				"widget": {
+					"clicked": {
+						"condition": [
+							{
+								"value": "",
+								"id": "kgejuk17",
+								"children": [
+									{
+										"type": "else",
+										"id": "z6f37ege",
+										"value": "",
+										"isSystem": true
+									}
+								],
+								"type": "if"
+							}
+						],
+						"action": [
+							{
+								"dst": "load_screen",
+								"bindCondi": "",
+								"actionList": {
+									"load_screen": {
+										"duration": 200,
+										"delay": 200,
+										"scrId": "bkpccx62",
+										"anim_type": "LV_SCR_LOAD_ANIM_NONE",
+										"is_clean": false,
+										"is_del": true
+									}
+								}
+							}
+						]
+					}
+				}
+			},
+			"style": [
+				{
+					"part": "LV_PART_MAIN",
+					"state": "LV_STATE_DEFAULT",
+					"disable": false,
+					"bg_color": "#ffffff",
+					"bg_grad_dir": "LV_GRAD_DIR_NONE",
+					"bg_dither_mode": "LV_DITHER_NONE",
+					"bg_main_stop": 0,
+					"bg_grad_stop": 255,
+					"bg_grad_color": "#2195f6",
+					"bg_opa": 0,
+					"bg_img_src": "",
+					"bg_img_opa": 255,
+					"bg_img_recolor": "#ffffff",
+					"bg_img_recolor_opa": 0
+				}
+			]
+		},
+		{
+			"name": "screen_detail",
+			"id": "bkpccx62",
+			"type": "scr",
+			"version": 190,
+			"scrollbar_mode": "OFF",
+			"customer_code": {
+				"code_c": "",
+				"inc_c": "",
+				"code_py": "",
+				"inc_py": "",
+				"type": "screen"
+			},
+			"width": 320,
+			"height": 240,
+			"visible": true,
+			"flag": [],
+			"list": [
+				{
+					"name": "cont_1",
+					"id": "iketxar8",
+					"type": "cont",
+					"left": -2,
+					"top": -2,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 326,
+					"height": 244,
+					"default_style": false,
+					"scrollbar_mode": "OFF",
+					"child": [
+						{
+							"name": "label_6",
+							"id": "tyoxrvi7",
+							"type": "label",
+							"left": 20,
+							"top": 209,
+							"visible": true,
+							"isLock": false,
+							"flag": [],
+							"width": 49,
+							"height": 16,
+							"default_style": false,
+							"text": "电池温度",
+							"long_mode": "LV_LABEL_LONG_WRAP",
+							"custom_attribute": [],
+							"attribute_type": "",
+							"style": [
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DEFAULT",
+									"disable": false,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#ffffff",
+									"text_opa": 255,
+									"font": 12,
+									"text_align": "LV_TEXT_ALIGN_LEFT",
+									"font_family": "SourceHanSerifSC_Regular",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								},
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DISABLED",
+									"disable": true,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#000000",
+									"text_opa": 255,
+									"font": 16,
+									"font_family": "SourceHanSerifSC_Regular",
+									"text_align": "LV_TEXT_ALIGN_CENTER",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								}
+							]
+						},
+						{
+							"name": "label_5",
+							"id": "k5fawayh",
+							"type": "label",
+							"left": 20,
+							"top": 188,
+							"visible": true,
+							"isLock": false,
+							"flag": [],
+							"width": 49,
+							"height": 16,
+							"default_style": false,
+							"text": "输出功率",
+							"long_mode": "LV_LABEL_LONG_WRAP",
+							"custom_attribute": [],
+							"attribute_type": "",
+							"style": [
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DEFAULT",
+									"disable": false,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#ffffff",
+									"text_opa": 255,
+									"font": 12,
+									"text_align": "LV_TEXT_ALIGN_LEFT",
+									"font_family": "SourceHanSerifSC_Regular",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								},
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DISABLED",
+									"disable": true,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#000000",
+									"text_opa": 255,
+									"font": 16,
+									"font_family": "SourceHanSerifSC_Regular",
+									"text_align": "LV_TEXT_ALIGN_CENTER",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								}
+							]
+						},
+						{
+							"name": "label_4",
+							"id": "i8nz2c1p",
+							"type": "label",
+							"left": 21,
+							"top": 163,
+							"visible": true,
+							"isLock": false,
+							"flag": [],
+							"width": 49,
+							"height": 16,
+							"default_style": false,
+							"text": "输出电流",
+							"long_mode": "LV_LABEL_LONG_WRAP",
+							"custom_attribute": [],
+							"attribute_type": "",
+							"style": [
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DEFAULT",
+									"disable": false,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#ffffff",
+									"text_opa": 255,
+									"font": 12,
+									"text_align": "LV_TEXT_ALIGN_CENTER",
+									"font_family": "SourceHanSerifSC_Regular",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								},
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DISABLED",
+									"disable": true,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#000000",
+									"text_opa": 255,
+									"font": 16,
+									"font_family": "SourceHanSerifSC_Regular",
+									"text_align": "LV_TEXT_ALIGN_CENTER",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								}
+							]
+						},
+						{
+							"name": "bar_1",
+							"id": "8w0kn6q6",
+							"type": "bar",
+							"left": 16,
+							"top": 41,
+							"visible": true,
+							"isLock": false,
+							"flag": [],
+							"width": 274,
+							"height": 20,
+							"default_style": false,
+							"animtime": 1000,
+							"bar_value": 53,
+							"bar_start_value": 30,
+							"range_s": 0,
+							"range_e": 100,
+							"anim": false,
+							"mode": "LV_BAR_MODE_NORMAL",
+							"attribute_type": "freemaster",
+							"custom_attribute": [],
+							"style": [
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DEFAULT",
+									"disable": false,
+									"bg_color": "#3ac9a0",
+									"bg_grad_color": "#2195f6",
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"bg_opa": 160,
+									"radius": 11,
+									"shadow_color": "#55e200",
+									"shadow_opa": 125,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0
+								},
+								{
+									"part": "LV_PART_INDICATOR",
+									"state": "LV_STATE_DEFAULT",
+									"disable": false,
+									"bg_color": "#72ff07",
+									"bg_grad_color": "#2195f6",
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"bg_opa": 255,
+									"radius": 10,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0
+								}
+							],
+							"event": {
+								"widget": {}
+							}
+						},
+						{
+							"name": "label_3",
+							"id": "83ks1zfv",
+							"type": "label",
+							"left": 20,
+							"top": 139,
+							"visible": true,
+							"isLock": false,
+							"flag": [],
+							"width": 49,
+							"height": 16,
+							"default_style": false,
+							"text": "输出电压",
+							"long_mode": "LV_LABEL_LONG_WRAP",
+							"custom_attribute": [],
+							"attribute_type": "",
+							"style": [
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DEFAULT",
+									"disable": false,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#ffffff",
+									"text_opa": 255,
+									"font": 12,
+									"text_align": "LV_TEXT_ALIGN_LEFT",
+									"font_family": "SourceHanSerifSC_Regular",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								},
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DISABLED",
+									"disable": true,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#000000",
+									"text_opa": 255,
+									"font": 16,
+									"font_family": "SourceHanSerifSC_Regular",
+									"text_align": "LV_TEXT_ALIGN_CENTER",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								}
+							]
+						},
+						{
+							"name": "label_2",
+							"id": "qd7lcfsq",
+							"type": "label",
+							"left": 20,
+							"top": 117,
+							"visible": true,
+							"isLock": false,
+							"flag": [],
+							"width": 75,
+							"height": 16,
+							"default_style": false,
+							"text": "实时参数",
+							"long_mode": "LV_LABEL_LONG_WRAP",
+							"custom_attribute": [],
+							"attribute_type": "",
+							"style": [
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DEFAULT",
+									"disable": false,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#5fa8f2",
+									"text_opa": 255,
+									"font": 12,
+									"text_align": "LV_TEXT_ALIGN_LEFT",
+									"font_family": "SourceHanSerifSC_Regular",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								},
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DISABLED",
+									"disable": true,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#000000",
+									"text_opa": 255,
+									"font": 16,
+									"font_family": "SourceHanSerifSC_Regular",
+									"text_align": "LV_TEXT_ALIGN_CENTER",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								}
+							]
+						},
+						{
+							"name": "label_1",
+							"id": "fsrf8as5",
+							"type": "label",
+							"left": 109,
+							"top": 10,
+							"visible": true,
+							"isLock": false,
+							"flag": [],
+							"width": 101,
+							"height": 19,
+							"default_style": false,
+							"text": "充电中",
+							"long_mode": "LV_LABEL_LONG_WRAP",
+							"custom_attribute": [],
+							"attribute_type": "",
+							"style": [
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DEFAULT",
+									"disable": false,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#0bef25",
+									"text_opa": 255,
+									"font": 16,
+									"text_align": "LV_TEXT_ALIGN_CENTER",
+									"font_family": "SourceHanSerifSC_Regular",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								},
+								{
+									"part": "LV_PART_MAIN",
+									"state": "LV_STATE_DISABLED",
+									"disable": true,
+									"border_side": [
+										"LV_BORDER_SIDE_FULL"
+									],
+									"border_width": 0,
+									"border_opa": 255,
+									"border_color": "#2195f6",
+									"radius": 0,
+									"text_color": "#000000",
+									"text_opa": 255,
+									"font": 16,
+									"font_family": "montserratMedium",
+									"text_align": "LV_TEXT_ALIGN_CENTER",
+									"letter_space": 0,
+									"line_space": 0,
+									"bg_color": "#2195f6",
+									"bg_grad_color": "#2195f6",
+									"bg_opa": 0,
+									"bg_grad_dir": "LV_GRAD_DIR_NONE",
+									"bg_dither_mode": "LV_DITHER_NONE",
+									"bg_main_stop": 0,
+									"bg_grad_stop": 255,
+									"padding_top": 0,
+									"padding_right": 0,
+									"padding_bottom": 0,
+									"padding_left": 0,
+									"bg_img_src": "",
+									"bg_img_opa": 255,
+									"bg_img_recolor": "#ffffff",
+									"bg_img_recolor_opa": 0,
+									"shadow_color": "#2195f6",
+									"shadow_opa": 255,
+									"shadow_width": 0,
+									"shadow_spread": 0,
+									"shadow_ofs_x": 0,
+									"shadow_ofs_y": 0
+								}
+							]
 						}
 					],
 					"style": [
@@ -1110,7 +1913,29 @@
 					]
 				}
 			],
-			"event": {},
+			"event": {
+				"widget": {
+					"clicked": {
+						"condition": [],
+						"action": [
+							{
+								"dst": "load_screen",
+								"bindCondi": "",
+								"actionList": {
+									"load_screen": {
+										"duration": 200,
+										"delay": 200,
+										"scrId": "lnmgeg4h",
+										"anim_type": "LV_SCR_LOAD_ANIM_OVER_RIGHT",
+										"is_clean": false,
+										"is_del": true
+									}
+								}
+							}
+						]
+					}
+				}
+			},
 			"style": [
 				{
 					"part": "LV_PART_MAIN",
@@ -1128,7 +1953,567 @@
 					"bg_img_recolor": "#ffffff",
 					"bg_img_recolor_opa": 0
 				}
-			]
+			],
+			"layerName": "screen_detail"
+		},
+		{
+			"name": "screen_control",
+			"id": "lnmgeg4h",
+			"type": "scr",
+			"version": 190,
+			"scrollbar_mode": "OFF",
+			"customer_code": {
+				"code_c": "",
+				"inc_c": "",
+				"code_py": "",
+				"inc_py": "",
+				"type": "screen"
+			},
+			"width": 320,
+			"height": 240,
+			"visible": true,
+			"flag": [],
+			"list": [
+				{
+					"name": "label_2",
+					"id": "jljazcc9",
+					"type": "label",
+					"left": 123,
+					"top": 72,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 64,
+					"height": 16,
+					"default_style": false,
+					"text": "已充电",
+					"long_mode": "LV_LABEL_LONG_WRAP",
+					"custom_attribute": [],
+					"attribute_type": "",
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 0,
+							"text_color": "#868686",
+							"text_opa": 255,
+							"font": 12,
+							"text_align": "LV_TEXT_ALIGN_CENTER",
+							"font_family": "SourceHanSerifSC_Regular",
+							"letter_space": 0,
+							"line_space": 0,
+							"bg_color": "#f3f9fe",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 0,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"padding_top": 0,
+							"padding_right": 0,
+							"padding_bottom": 0,
+							"padding_left": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DISABLED",
+							"disable": true,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"radius": 0,
+							"text_color": "#000000",
+							"text_opa": 255,
+							"font": 16,
+							"font_family": "SourceHanSerifSC_Regular",
+							"text_align": "LV_TEXT_ALIGN_CENTER",
+							"letter_space": 0,
+							"line_space": 0,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_opa": 0,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"padding_top": 0,
+							"padding_right": 0,
+							"padding_bottom": 0,
+							"padding_left": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0
+						}
+					]
+				},
+				{
+					"name": "list_1",
+					"id": "escfhwvx",
+					"type": "list",
+					"left": 24,
+					"top": 100,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 271,
+					"height": 122,
+					"default_style": false,
+					"scrollbar_mode": "OFF",
+					"items": [
+						{
+							"type": "text",
+							"img_path": "",
+							"img_width": 20,
+							"img_height": 20,
+							"img_symbol": "LV_SYMBOL_SAVE",
+							"text": "标准充电             "
+						},
+						{
+							"type": "text",
+							"text": "快速充电",
+							"img_path": "",
+							"img_width": 20,
+							"img_height": 20,
+							"img_symbol": "LV_SYMBOL_SAVE"
+						},
+						{
+							"type": "text",
+							"text": "放电测试",
+							"img_path": "",
+							"img_width": 20,
+							"img_height": 20,
+							"img_symbol": "LV_SYMBOL_SAVE"
+						}
+					],
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"object": "main",
+							"disable": false,
+							"padding_top": 5,
+							"padding_left": 5,
+							"padding_right": 5,
+							"padding_bottom": 5,
+							"bg_color": "#626262",
+							"bg_grad_color": "#ffffff",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"bg_opa": 255,
+							"border_color": "#494949",
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 1,
+							"border_opa": 255,
+							"radius": 3,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_FOCUSED",
+							"object": "main",
+							"disable": true,
+							"padding_top": 5,
+							"padding_left": 5,
+							"padding_right": 5,
+							"padding_bottom": 5,
+							"bg_color": "#ffffff",
+							"bg_grad_color": "#ffffff",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"bg_opa": 255,
+							"border_color": "#e1e6ee",
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 1,
+							"border_opa": 255,
+							"radius": 3,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DISABLED",
+							"object": "main",
+							"disable": true,
+							"padding_top": 5,
+							"padding_left": 5,
+							"padding_right": 5,
+							"padding_bottom": 5,
+							"bg_color": "#ffffff",
+							"bg_grad_color": "#ffffff",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"bg_opa": 255,
+							"border_color": "#e1e6ee",
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 1,
+							"border_opa": 255,
+							"radius": 3,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0
+						},
+						{
+							"part": "LV_PART_SCROLLBAR",
+							"state": "LV_STATE_DEFAULT",
+							"object": "main",
+							"disable": false,
+							"bg_color": "#aa9c9c",
+							"radius": 3,
+							"bg_opa": 255,
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_grad_color": null
+						},
+						{
+							"part": "LV_BTN_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"desc": "Button",
+							"object": "extra_btns",
+							"disable": false,
+							"bg_color": "#ffffff",
+							"bg_grad_color": "#ffffff",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"padding_top": 5,
+							"padding_left": 5,
+							"padding_right": 5,
+							"padding_bottom": 5,
+							"border_color": "#e1e6ee",
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"text_color": "#0D3055",
+							"font": 12,
+							"font_family": "SourceHanSerifSC_Regular",
+							"radius": 3,
+							"bg_opa": 255
+						},
+						{
+							"part": "LV_BTN_PART_MAIN",
+							"state": "LV_STATE_PRESSED",
+							"desc": "Button",
+							"object": "extra_btns",
+							"disable": true,
+							"bg_color": "#ffffff",
+							"bg_grad_color": "#ffffff",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"padding_top": 5,
+							"padding_left": 5,
+							"padding_right": 5,
+							"padding_bottom": 5,
+							"border_color": "#e1e6ee",
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"text_color": "#0D3055",
+							"radius": 3,
+							"font": 12,
+							"font_family": "SourceHanSerifSC_Regular",
+							"bg_opa": 255
+						},
+						{
+							"part": "LV_BTN_PART_MAIN",
+							"state": "LV_STATE_FOCUSED",
+							"desc": "Button",
+							"object": "extra_btns",
+							"disable": true,
+							"bg_color": "#ffffff",
+							"bg_grad_color": "#ffffff",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"padding_top": 5,
+							"padding_left": 5,
+							"padding_right": 5,
+							"padding_bottom": 5,
+							"border_color": "#e1e6ee",
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"text_color": "#0D3055",
+							"radius": 3,
+							"font": 12,
+							"font_family": "SourceHanSerifSC_Regular",
+							"bg_opa": 255
+						},
+						{
+							"part": "LV_TXT_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"desc": "item text",
+							"object": "extra_texts",
+							"disable": false,
+							"bg_color": "#1ea8fa",
+							"bg_grad_color": "#ffffff",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"padding_top": 5,
+							"padding_left": 5,
+							"padding_right": 5,
+							"padding_bottom": 5,
+							"border_color": "#e1e6ee",
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"text_color": "#ffffff",
+							"font": 12,
+							"font_family": "SourceHanSerifSC_Regular",
+							"radius": 1,
+							"transform_width": 0,
+							"bg_opa": 255,
+							"text_opa": 255
+						}
+					]
+				},
+				{
+					"name": "bar_1",
+					"id": "708ja2v2",
+					"type": "bar",
+					"left": 24,
+					"top": 43,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 274,
+					"height": 15,
+					"default_style": false,
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"bg_color": "#487b4b",
+							"bg_grad_color": "#2195f6",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_opa": 178,
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"radius": 10,
+							"shadow_color": "#1de012",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0
+						},
+						{
+							"part": "LV_PART_INDICATOR",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"bg_color": "#08ff54",
+							"bg_grad_color": "#2195f6",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_opa": 255,
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"radius": 10,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0
+						}
+					],
+					"animtime": 1000,
+					"bar_value": 50,
+					"bar_start_value": 30,
+					"range_s": 0,
+					"range_e": 100,
+					"anim": false,
+					"mode": "LV_BAR_MODE_NORMAL",
+					"attribute_type": "freemaster",
+					"custom_attribute": []
+				},
+				{
+					"name": "label_1",
+					"id": "9nhc2xu2",
+					"type": "label",
+					"left": 109,
+					"top": 11,
+					"visible": true,
+					"isLock": false,
+					"flag": [],
+					"width": 100,
+					"height": 32,
+					"default_style": false,
+					"style": [
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DEFAULT",
+							"disable": false,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"bg_opa": 0,
+							"radius": 0,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"text_color": "#ffffff",
+							"text_opa": 255,
+							"font": 16,
+							"text_align": "LV_TEXT_ALIGN_CENTER",
+							"font_family": "SourceHanSerifSC_Regular",
+							"letter_space": 0,
+							"line_space": 0,
+							"padding_top": 0,
+							"padding_right": 0,
+							"padding_bottom": 0,
+							"padding_left": 0
+						},
+						{
+							"part": "LV_PART_MAIN",
+							"state": "LV_STATE_DISABLED",
+							"disable": true,
+							"bg_color": "#2195f6",
+							"bg_grad_color": "#2195f6",
+							"bg_grad_dir": "LV_GRAD_DIR_NONE",
+							"bg_dither_mode": "LV_DITHER_NONE",
+							"bg_main_stop": 0,
+							"bg_grad_stop": 255,
+							"bg_opa": 0,
+							"radius": 0,
+							"bg_img_src": "",
+							"bg_img_opa": 255,
+							"bg_img_recolor": "#ffffff",
+							"bg_img_recolor_opa": 0,
+							"border_side": [
+								"LV_BORDER_SIDE_FULL"
+							],
+							"border_width": 0,
+							"border_opa": 255,
+							"border_color": "#2195f6",
+							"text_color": "#000000",
+							"text_opa": 255,
+							"font": 16,
+							"font_family": "SourceHanSerifSC_Regular",
+							"text_align": "LV_TEXT_ALIGN_CENTER",
+							"letter_space": 0,
+							"line_space": 0,
+							"padding_top": 0,
+							"padding_right": 0,
+							"padding_bottom": 0,
+							"padding_left": 0,
+							"shadow_color": "#2195f6",
+							"shadow_opa": 255,
+							"shadow_width": 0,
+							"shadow_spread": 0,
+							"shadow_ofs_x": 0,
+							"shadow_ofs_y": 0
+						}
+					],
+					"attribute_type": "",
+					"custom_attribute": [],
+					"text": "快速充电",
+					"long_mode": "LV_LABEL_LONG_WRAP"
+				}
+			],
+			"event": {},
+			"style": [
+				{
+					"part": "LV_PART_MAIN",
+					"state": "LV_STATE_DEFAULT",
+					"disable": false,
+					"bg_color": "#010000",
+					"bg_grad_dir": "LV_GRAD_DIR_NONE",
+					"bg_dither_mode": "LV_DITHER_NONE",
+					"bg_main_stop": 0,
+					"bg_grad_stop": 255,
+					"bg_grad_color": "#2195f6",
+					"bg_opa": 255,
+					"bg_img_src": "",
+					"bg_img_opa": 255,
+					"bg_img_recolor": "#ffffff",
+					"bg_img_recolor_opa": 0
+				}
+			],
+			"layerName": "screen_control"
 		}
 	],
 	"Application": {
@@ -1148,11 +2533,11 @@
 			"keyboard_font_type": "SourceHanSerifSC_Regular",
 			"keyboard_font_size": 18
 		},
-		"default_scr": "screen",
+		"default_scr": "screen_detail",
 		"theme": "LV_THEME_MATERIAL_FLAG_LIGHT",
 		"screen": [
 			{
-				"name": "screen",
+				"name": "screen_Master",
 				"id": "emg7n4dm",
 				"type": "scr",
 				"version": 190,
@@ -1161,13 +2546,51 @@
 					"code_c": "",
 					"inc_c": "",
 					"code_py": "",
-					"inc_py": ""
+					"inc_py": "",
+					"type": "screen"
 				},
 				"width": 320,
 				"height": 240,
 				"visible": true,
 				"flag": [],
-				"event": {},
+				"event": {
+					"widget": {
+						"clicked": {
+							"condition": [
+								{
+									"value": "",
+									"id": "kgejuk17",
+									"children": [
+										{
+											"type": "else",
+											"id": "z6f37ege",
+											"value": "",
+											"isSystem": true
+										}
+									],
+									"type": "if"
+								}
+							],
+							"action": [
+								{
+									"dst": "screen_detail",
+									"bindCondi": "",
+									"actionList": {
+										"load_screen": {
+											"duration": 200,
+											"delay": 200,
+											"scrId": "bkpccx62",
+											"anim_type": "LV_SCR_LOAD_ANIM_NONE",
+											"is_clean": false,
+											"is_del": true
+										}
+									},
+									"dst_type": "scr"
+								}
+							]
+						}
+					}
+				},
 				"style": [
 					{
 						"part": "LV_PART_MAIN",
@@ -1192,24 +2615,48 @@
 				],
 				"widgets": [
 					{
-						"name": "screen_Master_screen",
+						"name": "screen_Master_Master_screen",
 						"id": "v3foq93p",
 						"type": "cont",
 						"visible": true,
 						"scrollbar_mode": "OFF",
 						"flag": [],
 						"pos": [
-							-2,
-							-2
+							-3,
+							-4
 						],
 						"size": [
 							324,
 							247
 						],
 						"default_style": false,
+						"event": {
+							"widget": {
+								"clicked": {
+									"condition": [],
+									"action": [
+										{
+											"dst": "screen_detail",
+											"bindCondi": "",
+											"actionList": {
+												"load_screen": {
+													"duration": 200,
+													"delay": 200,
+													"scrId": "bkpccx62",
+													"anim_type": "LV_SCR_LOAD_ANIM_OVER_TOP",
+													"is_clean": false,
+													"is_del": true
+												}
+											},
+											"dst_type": "scr"
+										}
+									]
+								}
+							}
+						},
 						"child": [
 							{
-								"name": "screen_cont_1",
+								"name": "screen_Master_cont_1",
 								"id": "5fyk78jo",
 								"type": "cont",
 								"visible": true,
@@ -1226,7 +2673,7 @@
 								"default_style": false,
 								"child": [
 									{
-										"name": "screen_label_1",
+										"name": "screen_Master_label_1",
 										"id": "o88dcl7p",
 										"type": "label",
 										"visible": true,
@@ -1260,7 +2707,7 @@
 												"text_opa": 255,
 												"font": 11,
 												"text_align": "LV_TEXT_ALIGN_CENTER",
-												"font_family": "montserratMedium",
+												"font_family": "SourceHanSerifSC_Regular",
 												"letter_space": 0,
 												"line_space": 0,
 												"bg_color": "#2195f6",
@@ -1365,7 +2812,7 @@
 								]
 							},
 							{
-								"name": "screen_cont_2",
+								"name": "screen_Master_cont_2",
 								"id": "pph3xzm1",
 								"type": "cont",
 								"visible": true,
@@ -1382,7 +2829,7 @@
 								"default_style": false,
 								"child": [
 									{
-										"name": "screen_label_2",
+										"name": "screen_Master_label_2",
 										"id": "nx9wmmsk",
 										"type": "label",
 										"visible": true,
@@ -1416,7 +2863,7 @@
 												"text_opa": 255,
 												"font": 11,
 												"text_align": "LV_TEXT_ALIGN_CENTER",
-												"font_family": "montserratMedium",
+												"font_family": "SourceHanSerifSC_Regular",
 												"letter_space": 0,
 												"line_space": 0,
 												"bg_color": "#2195f6",
@@ -1521,7 +2968,7 @@
 								]
 							},
 							{
-								"name": "screen_cont_3",
+								"name": "screen_Master_cont_3",
 								"id": "6p9qrk8d",
 								"type": "cont",
 								"visible": true,
@@ -1538,7 +2985,7 @@
 								"default_style": false,
 								"child": [
 									{
-										"name": "screen_label_3",
+										"name": "screen_Master_label_3",
 										"id": "o87dbrcd",
 										"type": "label",
 										"visible": true,
@@ -1572,7 +3019,7 @@
 												"text_opa": 255,
 												"font": 11,
 												"text_align": "LV_TEXT_ALIGN_CENTER",
-												"font_family": "montserratMedium",
+												"font_family": "SourceHanSerifSC_Regular",
 												"letter_space": 0,
 												"line_space": 0,
 												"bg_color": "#2195f6",
@@ -1677,7 +3124,7 @@
 								]
 							},
 							{
-								"name": "screen_cont_4",
+								"name": "screen_Master_cont_4",
 								"id": "dq52vg91",
 								"type": "cont",
 								"visible": true,
@@ -1694,7 +3141,7 @@
 								"default_style": false,
 								"child": [
 									{
-										"name": "screen_label_4",
+										"name": "screen_Master_label_4",
 										"id": "2q559jeo",
 										"type": "label",
 										"visible": true,
@@ -1870,14 +3317,14 @@
 						]
 					},
 					{
-						"name": "screen_label_5",
+						"name": "screen_Master_label_5",
 						"id": "l6tqm3pe",
 						"type": "label",
 						"visible": true,
 						"flag": [],
 						"pos": [
 							103,
-							20
+							30
 						],
 						"size": [
 							100,
@@ -1904,7 +3351,7 @@
 								"text_opa": 255,
 								"font": 16,
 								"text_align": "LV_TEXT_ALIGN_CENTER",
-								"font_family": "montserratMedium",
+								"font_family": "SourceHanSerifSC_Regular",
 								"letter_space": 0,
 								"line_space": 0,
 								"bg_color": "#2195f6",
@@ -1972,14 +3419,14 @@
 						]
 					},
 					{
-						"name": "screen_label_6",
+						"name": "screen_Master_label_6",
 						"id": "mqafx9o4",
 						"type": "label",
 						"visible": true,
 						"flag": [],
 						"pos": [
 							103,
-							48
+							60
 						],
 						"size": [
 							100,
@@ -2006,7 +3453,7 @@
 								"text_opa": 255,
 								"font": 12,
 								"text_align": "LV_TEXT_ALIGN_CENTER",
-								"font_family": "montserratMedium",
+								"font_family": "SourceHanSerifSC_Regular",
 								"letter_space": 0,
 								"line_space": 0,
 								"bg_color": "#2195f6",
@@ -2046,6 +3493,1414 @@
 								"text_opa": 255,
 								"font": 16,
 								"font_family": "montserratMedium",
+								"text_align": "LV_TEXT_ALIGN_CENTER",
+								"letter_space": 0,
+								"line_space": 0,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 0,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"padding_top": 0,
+								"padding_right": 0,
+								"padding_bottom": 0,
+								"padding_left": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "screen_detail",
+				"id": "bkpccx62",
+				"type": "scr",
+				"version": 190,
+				"scrollbar_mode": "OFF",
+				"customer_code": {
+					"code_c": "",
+					"inc_c": "",
+					"code_py": "",
+					"inc_py": "",
+					"type": "screen"
+				},
+				"width": 320,
+				"height": 240,
+				"visible": true,
+				"flag": [],
+				"event": {
+					"widget": {
+						"clicked": {
+							"condition": [],
+							"action": [
+								{
+									"dst": "screen_control",
+									"bindCondi": "",
+									"actionList": {
+										"load_screen": {
+											"duration": 200,
+											"delay": 200,
+											"scrId": "lnmgeg4h",
+											"anim_type": "LV_SCR_LOAD_ANIM_OVER_RIGHT",
+											"is_clean": false,
+											"is_del": true
+										}
+									},
+									"dst_type": "scr"
+								}
+							]
+						}
+					}
+				},
+				"style": [
+					{
+						"part": "LV_PART_MAIN",
+						"state": "LV_STATE_DEFAULT",
+						"disable": false,
+						"bg_color": "#ffffff",
+						"bg_grad_dir": "LV_GRAD_DIR_NONE",
+						"bg_dither_mode": "LV_DITHER_NONE",
+						"bg_main_stop": 0,
+						"bg_grad_stop": 255,
+						"bg_grad_color": "#2195f6",
+						"bg_opa": 0,
+						"bg_img_src": "",
+						"bg_img_opa": 255,
+						"bg_img_recolor": "#ffffff",
+						"bg_img_recolor_opa": 0
+					}
+				],
+				"layerName": "screen_detail",
+				"size": [
+					320,
+					240
+				],
+				"widgets": [
+					{
+						"name": "screen_detail_cont_1",
+						"id": "iketxar8",
+						"type": "cont",
+						"visible": true,
+						"scrollbar_mode": "OFF",
+						"flag": [],
+						"pos": [
+							-2,
+							-2
+						],
+						"size": [
+							326,
+							244
+						],
+						"default_style": false,
+						"child": [
+							{
+								"name": "screen_detail_label_1",
+								"id": "fsrf8as5",
+								"type": "label",
+								"visible": true,
+								"flag": [],
+								"pos": [
+									109,
+									10
+								],
+								"size": [
+									101,
+									19
+								],
+								"default_style": false,
+								"attribute_type": "",
+								"custom_attribute": [],
+								"text": "充电中",
+								"long_mode": "LV_LABEL_LONG_WRAP",
+								"style": [
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DEFAULT",
+										"disable": false,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#0bef25",
+										"text_opa": 255,
+										"font": 16,
+										"text_align": "LV_TEXT_ALIGN_CENTER",
+										"font_family": "SourceHanSerifSC_Regular",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									},
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DISABLED",
+										"disable": true,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#000000",
+										"text_opa": 255,
+										"font": 16,
+										"font_family": "montserratMedium",
+										"text_align": "LV_TEXT_ALIGN_CENTER",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									}
+								]
+							},
+							{
+								"name": "screen_detail_label_2",
+								"id": "qd7lcfsq",
+								"type": "label",
+								"visible": true,
+								"flag": [],
+								"pos": [
+									20,
+									117
+								],
+								"size": [
+									75,
+									16
+								],
+								"default_style": false,
+								"attribute_type": "",
+								"custom_attribute": [],
+								"text": "实时参数",
+								"long_mode": "LV_LABEL_LONG_WRAP",
+								"style": [
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DEFAULT",
+										"disable": false,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#5fa8f2",
+										"text_opa": 255,
+										"font": 12,
+										"text_align": "LV_TEXT_ALIGN_LEFT",
+										"font_family": "SourceHanSerifSC_Regular",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									},
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DISABLED",
+										"disable": true,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#000000",
+										"text_opa": 255,
+										"font": 16,
+										"font_family": "SourceHanSerifSC_Regular",
+										"text_align": "LV_TEXT_ALIGN_CENTER",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									}
+								]
+							},
+							{
+								"name": "screen_detail_label_3",
+								"id": "83ks1zfv",
+								"type": "label",
+								"visible": true,
+								"flag": [],
+								"pos": [
+									20,
+									139
+								],
+								"size": [
+									49,
+									16
+								],
+								"default_style": false,
+								"attribute_type": "",
+								"custom_attribute": [],
+								"text": "输出电压",
+								"long_mode": "LV_LABEL_LONG_WRAP",
+								"style": [
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DEFAULT",
+										"disable": false,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#ffffff",
+										"text_opa": 255,
+										"font": 12,
+										"text_align": "LV_TEXT_ALIGN_LEFT",
+										"font_family": "SourceHanSerifSC_Regular",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									},
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DISABLED",
+										"disable": true,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#000000",
+										"text_opa": 255,
+										"font": 16,
+										"font_family": "SourceHanSerifSC_Regular",
+										"text_align": "LV_TEXT_ALIGN_CENTER",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									}
+								]
+							},
+							{
+								"name": "screen_detail_bar_1",
+								"id": "8w0kn6q6",
+								"type": "bar",
+								"visible": true,
+								"flag": [],
+								"pos": [
+									16,
+									41
+								],
+								"size": [
+									274,
+									20
+								],
+								"default_style": false,
+								"attribute_type": "freemaster",
+								"custom_attribute": [],
+								"event": {
+									"widget": {}
+								},
+								"mode": "LV_BAR_MODE_NORMAL",
+								"range": [
+									0,
+									100
+								],
+								"bar_start_value": 30,
+								"animtime": 1000,
+								"animValue": [
+									{
+										"bar_value": 53,
+										"anim": "LV_ANIM_OFF"
+									}
+								],
+								"style": [
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DEFAULT",
+										"disable": false,
+										"bg_color": "#3ac9a0",
+										"bg_grad_color": "#2195f6",
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"bg_opa": 160,
+										"radius": 11,
+										"shadow_color": "#55e200",
+										"shadow_opa": 125,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0
+									},
+									{
+										"part": "LV_PART_INDICATOR",
+										"state": "LV_STATE_DEFAULT",
+										"disable": false,
+										"bg_color": "#72ff07",
+										"bg_grad_color": "#2195f6",
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"bg_opa": 255,
+										"radius": 10,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0
+									}
+								]
+							},
+							{
+								"name": "screen_detail_label_4",
+								"id": "i8nz2c1p",
+								"type": "label",
+								"visible": true,
+								"flag": [],
+								"pos": [
+									21,
+									163
+								],
+								"size": [
+									49,
+									16
+								],
+								"default_style": false,
+								"attribute_type": "",
+								"custom_attribute": [],
+								"text": "输出电流",
+								"long_mode": "LV_LABEL_LONG_WRAP",
+								"style": [
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DEFAULT",
+										"disable": false,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#ffffff",
+										"text_opa": 255,
+										"font": 12,
+										"text_align": "LV_TEXT_ALIGN_CENTER",
+										"font_family": "SourceHanSerifSC_Regular",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									},
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DISABLED",
+										"disable": true,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#000000",
+										"text_opa": 255,
+										"font": 16,
+										"font_family": "SourceHanSerifSC_Regular",
+										"text_align": "LV_TEXT_ALIGN_CENTER",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									}
+								]
+							},
+							{
+								"name": "screen_detail_label_5",
+								"id": "k5fawayh",
+								"type": "label",
+								"visible": true,
+								"flag": [],
+								"pos": [
+									20,
+									188
+								],
+								"size": [
+									49,
+									16
+								],
+								"default_style": false,
+								"attribute_type": "",
+								"custom_attribute": [],
+								"text": "输出功率",
+								"long_mode": "LV_LABEL_LONG_WRAP",
+								"style": [
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DEFAULT",
+										"disable": false,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#ffffff",
+										"text_opa": 255,
+										"font": 12,
+										"text_align": "LV_TEXT_ALIGN_LEFT",
+										"font_family": "SourceHanSerifSC_Regular",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									},
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DISABLED",
+										"disable": true,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#000000",
+										"text_opa": 255,
+										"font": 16,
+										"font_family": "SourceHanSerifSC_Regular",
+										"text_align": "LV_TEXT_ALIGN_CENTER",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									}
+								]
+							},
+							{
+								"name": "screen_detail_label_6",
+								"id": "tyoxrvi7",
+								"type": "label",
+								"visible": true,
+								"flag": [],
+								"pos": [
+									20,
+									209
+								],
+								"size": [
+									49,
+									16
+								],
+								"default_style": false,
+								"attribute_type": "",
+								"custom_attribute": [],
+								"text": "电池温度",
+								"long_mode": "LV_LABEL_LONG_WRAP",
+								"style": [
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DEFAULT",
+										"disable": false,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#ffffff",
+										"text_opa": 255,
+										"font": 12,
+										"text_align": "LV_TEXT_ALIGN_LEFT",
+										"font_family": "SourceHanSerifSC_Regular",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									},
+									{
+										"part": "LV_PART_MAIN",
+										"state": "LV_STATE_DISABLED",
+										"disable": true,
+										"border_side": [
+											"LV_BORDER_SIDE_FULL"
+										],
+										"border_width": 0,
+										"border_opa": 255,
+										"border_color": "#2195f6",
+										"radius": 0,
+										"text_color": "#000000",
+										"text_opa": 255,
+										"font": 16,
+										"font_family": "SourceHanSerifSC_Regular",
+										"text_align": "LV_TEXT_ALIGN_CENTER",
+										"letter_space": 0,
+										"line_space": 0,
+										"bg_color": "#2195f6",
+										"bg_grad_color": "#2195f6",
+										"bg_opa": 0,
+										"bg_grad_dir": "LV_GRAD_DIR_NONE",
+										"bg_dither_mode": "LV_DITHER_NONE",
+										"bg_main_stop": 0,
+										"bg_grad_stop": 255,
+										"padding_top": 0,
+										"padding_right": 0,
+										"padding_bottom": 0,
+										"padding_left": 0,
+										"bg_img_src": "",
+										"bg_img_opa": 255,
+										"bg_img_recolor": "#ffffff",
+										"bg_img_recolor_opa": 0,
+										"shadow_color": "#2195f6",
+										"shadow_opa": 255,
+										"shadow_width": 0,
+										"shadow_spread": 0,
+										"shadow_ofs_x": 0,
+										"shadow_ofs_y": 0
+									}
+								]
+							}
+						],
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 2,
+								"border_color": "#2195f6",
+								"border_opa": 255,
+								"radius": 0,
+								"bg_color": "#000000",
+								"bg_grad_color": "#ffffff",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"bg_opa": 255,
+								"padding_top": 0,
+								"padding_bottom": 0,
+								"padding_left": 0,
+								"padding_right": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "screen_control",
+				"id": "lnmgeg4h",
+				"type": "scr",
+				"version": 190,
+				"scrollbar_mode": "OFF",
+				"customer_code": {
+					"code_c": "",
+					"inc_c": "",
+					"code_py": "",
+					"inc_py": "",
+					"type": "screen"
+				},
+				"width": 320,
+				"height": 240,
+				"visible": true,
+				"flag": [],
+				"event": {},
+				"style": [
+					{
+						"part": "LV_PART_MAIN",
+						"state": "LV_STATE_DEFAULT",
+						"disable": false,
+						"bg_color": "#010000",
+						"bg_grad_dir": "LV_GRAD_DIR_NONE",
+						"bg_dither_mode": "LV_DITHER_NONE",
+						"bg_main_stop": 0,
+						"bg_grad_stop": 255,
+						"bg_grad_color": "#2195f6",
+						"bg_opa": 255,
+						"bg_img_src": "",
+						"bg_img_opa": 255,
+						"bg_img_recolor": "#ffffff",
+						"bg_img_recolor_opa": 0
+					}
+				],
+				"layerName": "screen_control",
+				"size": [
+					320,
+					240
+				],
+				"widgets": [
+					{
+						"name": "screen_control_label_1",
+						"id": "9nhc2xu2",
+						"type": "label",
+						"visible": true,
+						"flag": [],
+						"pos": [
+							109,
+							11
+						],
+						"size": [
+							100,
+							32
+						],
+						"default_style": false,
+						"attribute_type": "",
+						"custom_attribute": [],
+						"text": "快速充电",
+						"long_mode": "LV_LABEL_LONG_WRAP",
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"bg_opa": 0,
+								"radius": 0,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"text_color": "#ffffff",
+								"text_opa": 255,
+								"font": 16,
+								"text_align": "LV_TEXT_ALIGN_CENTER",
+								"font_family": "SourceHanSerifSC_Regular",
+								"letter_space": 0,
+								"line_space": 0,
+								"padding_top": 0,
+								"padding_right": 0,
+								"padding_bottom": 0,
+								"padding_left": 0
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DISABLED",
+								"disable": true,
+								"bg_color": "#2195f6",
+								"bg_grad_color": "#2195f6",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"bg_opa": 0,
+								"radius": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"text_color": "#000000",
+								"text_opa": 255,
+								"font": 16,
+								"font_family": "SourceHanSerifSC_Regular",
+								"text_align": "LV_TEXT_ALIGN_CENTER",
+								"letter_space": 0,
+								"line_space": 0,
+								"padding_top": 0,
+								"padding_right": 0,
+								"padding_bottom": 0,
+								"padding_left": 0,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0
+							}
+						]
+					},
+					{
+						"name": "screen_control_bar_1",
+						"id": "708ja2v2",
+						"type": "bar",
+						"visible": true,
+						"flag": [],
+						"pos": [
+							24,
+							43
+						],
+						"size": [
+							274,
+							15
+						],
+						"default_style": false,
+						"attribute_type": "freemaster",
+						"custom_attribute": [],
+						"mode": "LV_BAR_MODE_NORMAL",
+						"range": [
+							0,
+							100
+						],
+						"bar_start_value": 30,
+						"animtime": 1000,
+						"animValue": [
+							{
+								"bar_value": 50,
+								"anim": "LV_ANIM_OFF"
+							}
+						],
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"bg_color": "#487b4b",
+								"bg_grad_color": "#2195f6",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_opa": 178,
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"radius": 10,
+								"shadow_color": "#1de012",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0
+							},
+							{
+								"part": "LV_PART_INDICATOR",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"bg_color": "#08ff54",
+								"bg_grad_color": "#2195f6",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_opa": 255,
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"radius": 10,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0
+							}
+						]
+					},
+					{
+						"name": "screen_control_list_1",
+						"id": "escfhwvx",
+						"type": "list",
+						"visible": true,
+						"scrollbar_mode": "OFF",
+						"flag": [],
+						"pos": [
+							24,
+							100
+						],
+						"size": [
+							271,
+							122
+						],
+						"default_style": false,
+						"items": [
+							{
+								"type": "text",
+								"img_path": "",
+								"img_width": 20,
+								"img_height": 20,
+								"img_symbol": "LV_SYMBOL_SAVE",
+								"text": "标准充电             ",
+								"img_size": [
+									20,
+									20
+								],
+								"img_sd_path": "S://",
+								"img_flash_path": "F:/"
+							},
+							{
+								"type": "text",
+								"text": "快速充电",
+								"img_path": "",
+								"img_width": 20,
+								"img_height": 20,
+								"img_symbol": "LV_SYMBOL_SAVE",
+								"img_size": [
+									20,
+									20
+								],
+								"img_sd_path": "S://",
+								"img_flash_path": "F:/"
+							},
+							{
+								"type": "text",
+								"text": "放电测试",
+								"img_path": "",
+								"img_width": 20,
+								"img_height": 20,
+								"img_symbol": "LV_SYMBOL_SAVE",
+								"img_size": [
+									20,
+									20
+								],
+								"img_sd_path": "S://",
+								"img_flash_path": "F:/"
+							}
+						],
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"object": "main",
+								"disable": false,
+								"padding_top": 5,
+								"padding_left": 5,
+								"padding_right": 5,
+								"padding_bottom": 5,
+								"bg_color": "#626262",
+								"bg_grad_color": "#ffffff",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"bg_opa": 255,
+								"border_color": "#494949",
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 1,
+								"border_opa": 255,
+								"radius": 3,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_FOCUSED",
+								"object": "main",
+								"disable": true,
+								"padding_top": 5,
+								"padding_left": 5,
+								"padding_right": 5,
+								"padding_bottom": 5,
+								"bg_color": "#ffffff",
+								"bg_grad_color": "#ffffff",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"bg_opa": 255,
+								"border_color": "#e1e6ee",
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 1,
+								"border_opa": 255,
+								"radius": 3,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DISABLED",
+								"object": "main",
+								"disable": true,
+								"padding_top": 5,
+								"padding_left": 5,
+								"padding_right": 5,
+								"padding_bottom": 5,
+								"bg_color": "#ffffff",
+								"bg_grad_color": "#ffffff",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"bg_opa": 255,
+								"border_color": "#e1e6ee",
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 1,
+								"border_opa": 255,
+								"radius": 3,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0
+							},
+							{
+								"part": "LV_PART_SCROLLBAR",
+								"state": "LV_STATE_DEFAULT",
+								"object": "main",
+								"disable": false,
+								"bg_color": "#aa9c9c",
+								"radius": 3,
+								"bg_opa": 255,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_grad_color": null
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"desc": "Button",
+								"object": "extra_btns",
+								"disable": false,
+								"bg_color": "#ffffff",
+								"bg_grad_color": "#ffffff",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"padding_top": 5,
+								"padding_left": 5,
+								"padding_right": 5,
+								"padding_bottom": 5,
+								"border_color": "#e1e6ee",
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"text_color": "#0D3055",
+								"font": 12,
+								"font_family": "SourceHanSerifSC_Regular",
+								"radius": 3,
+								"bg_opa": 255
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_PRESSED",
+								"desc": "Button",
+								"object": "extra_btns",
+								"disable": true,
+								"bg_color": "#ffffff",
+								"bg_grad_color": "#ffffff",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"padding_top": 5,
+								"padding_left": 5,
+								"padding_right": 5,
+								"padding_bottom": 5,
+								"border_color": "#e1e6ee",
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"text_color": "#0D3055",
+								"radius": 3,
+								"font": 12,
+								"font_family": "SourceHanSerifSC_Regular",
+								"bg_opa": 255
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_FOCUSED",
+								"desc": "Button",
+								"object": "extra_btns",
+								"disable": true,
+								"bg_color": "#ffffff",
+								"bg_grad_color": "#ffffff",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"padding_top": 5,
+								"padding_left": 5,
+								"padding_right": 5,
+								"padding_bottom": 5,
+								"border_color": "#e1e6ee",
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"text_color": "#0D3055",
+								"radius": 3,
+								"font": 12,
+								"font_family": "SourceHanSerifSC_Regular",
+								"bg_opa": 255
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"desc": "item text",
+								"object": "extra_texts",
+								"disable": false,
+								"bg_color": "#1ea8fa",
+								"bg_grad_color": "#ffffff",
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"padding_top": 5,
+								"padding_left": 5,
+								"padding_right": 5,
+								"padding_bottom": 5,
+								"border_color": "#e1e6ee",
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"text_color": "#ffffff",
+								"font": 12,
+								"font_family": "SourceHanSerifSC_Regular",
+								"radius": 1,
+								"transform_width": 0,
+								"bg_opa": 255,
+								"text_opa": 255
+							}
+						]
+					},
+					{
+						"name": "screen_control_label_2",
+						"id": "jljazcc9",
+						"type": "label",
+						"visible": true,
+						"flag": [],
+						"pos": [
+							123,
+							72
+						],
+						"size": [
+							64,
+							16
+						],
+						"default_style": false,
+						"attribute_type": "",
+						"custom_attribute": [],
+						"text": "已充电",
+						"long_mode": "LV_LABEL_LONG_WRAP",
+						"style": [
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DEFAULT",
+								"disable": false,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 0,
+								"text_color": "#868686",
+								"text_opa": 255,
+								"font": 12,
+								"text_align": "LV_TEXT_ALIGN_CENTER",
+								"font_family": "SourceHanSerifSC_Regular",
+								"letter_space": 0,
+								"line_space": 0,
+								"bg_color": "#f3f9fe",
+								"bg_grad_color": "#2195f6",
+								"bg_opa": 0,
+								"bg_grad_dir": "LV_GRAD_DIR_NONE",
+								"bg_dither_mode": "LV_DITHER_NONE",
+								"bg_main_stop": 0,
+								"bg_grad_stop": 255,
+								"padding_top": 0,
+								"padding_right": 0,
+								"padding_bottom": 0,
+								"padding_left": 0,
+								"bg_img_src": "",
+								"bg_img_opa": 255,
+								"bg_img_recolor": "#ffffff",
+								"bg_img_recolor_opa": 0,
+								"shadow_color": "#2195f6",
+								"shadow_opa": 255,
+								"shadow_width": 0,
+								"shadow_spread": 0,
+								"shadow_ofs_x": 0,
+								"shadow_ofs_y": 0
+							},
+							{
+								"part": "LV_PART_MAIN",
+								"state": "LV_STATE_DISABLED",
+								"disable": true,
+								"border_side": [
+									"LV_BORDER_SIDE_FULL"
+								],
+								"border_width": 0,
+								"border_opa": 255,
+								"border_color": "#2195f6",
+								"radius": 0,
+								"text_color": "#000000",
+								"text_opa": 255,
+								"font": 16,
+								"font_family": "SourceHanSerifSC_Regular",
 								"text_align": "LV_TEXT_ALIGN_CENTER",
 								"letter_space": 0,
 								"line_space": 0,

@@ -423,9 +423,9 @@
 /*Documentation of the widgets: https://docs.lvgl.io/latest/en/html/widgets/index.html*/
 #define LV_USE_ARC 0
 
-#define LV_USE_BAR 0
+#define LV_USE_BAR 1
 
-#define LV_USE_BTN 0
+#define LV_USE_BTN 1
 
 #define LV_USE_BTNMATRIX 0
 
@@ -501,7 +501,7 @@
 
 #define LV_USE_LED 0
 
-#define LV_USE_LIST 0
+#define LV_USE_LIST 1
 
 #define LV_USE_MENU 0
 

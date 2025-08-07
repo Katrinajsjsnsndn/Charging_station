@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Boards;.\Boards\Board_APM32E103_MINI\inc;.\Library\inc;.\Start;.\User;.\FreeRTOS\include;.\FreeRTOS\portable\MemMang;.\FreeRTOS\portable\RVDS;.\FreeRTOS\portable\RVDS\ARM_CM3;.\APP\tft;.\APP\rs485;.\APP;.\lvgl;.\lvgl\examples\porting;.\lvgl\src</IncludePath>
+              <IncludePath>.\Boards;.\Boards\Board_APM32E103_MINI\inc;.\Library\inc;.\Start;.\User;.\FreeRTOS\include;.\FreeRTOS\portable\MemMang;.\FreeRTOS\portable\RVDS;.\FreeRTOS\portable\RVDS\ARM_CM3;.\APP\tft;.\APP\rs485;.\APP;.\lvgl;.\lvgl\examples\porting;.\lvgl\src;.\Source;.\lvgl\guigder\src\generated\guider_customer_fonts;.\lvgl\guigder\src\generated\guider_fonts;.\lvgl\guigder\src\generated\images;.\lvgl\guigder\src\custom;.\lvgl\guigder\src\generated</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1503,6 +1503,81 @@
               <FileName>lv_port_indev_template.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\lvgl\examples\porting\lv_port_indev_template.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>lvgl_ui</GroupName>
+          <Files>
+            <File>
+              <FileName>lv_font_montserratMedium_11.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_montserratMedium_11.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_montserratMedium_12.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_montserratMedium_12.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_montserratMedium_16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_montserratMedium_16.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_SourceHanSerifSC_Regular_11.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_11.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_SourceHanSerifSC_Regular_12.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_12.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_SourceHanSerifSC_Regular_16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_16.c</FilePath>
+            </File>
+            <File>
+              <FileName>widgets_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\widgets_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>setup_scr_screen_Master.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\setup_scr_screen_Master.c</FilePath>
+            </File>
+            <File>
+              <FileName>setup_scr_screen_detail.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\setup_scr_screen_detail.c</FilePath>
+            </File>
+            <File>
+              <FileName>setup_scr_screen_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\setup_scr_screen_control.c</FilePath>
+            </File>
+            <File>
+              <FileName>gui_guider.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\gui_guider.c</FilePath>
+            </File>
+            <File>
+              <FileName>events_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\events_init.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>My_lvgl</GroupName>
+          <Files>
+            <File>
+              <FileName>lvgl_charging_station_ui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\lvgl_charging_station_ui.c</FilePath>
             </File>
           </Files>
         </Group>

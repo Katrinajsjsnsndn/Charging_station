@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电动工具充电站 UI 设计</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .device {
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .screen {
+            width: 320px;
+            height: 240px;
+            background: #000;
+            border: 3px solid #34495e;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            color: #fff;
+            font-size: 12px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .control-row {
+            margin: 10px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #34495e;
+            background: #ecf0f1;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2c3e50;
+            user-select: none;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #bdc3c7;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+            background: #95a5a6;
+        }
+
+        .btn.special {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn.special:hover {
+            background: #2980b9;
+        }
+
+        .header {
+            background: #2980b9;
+            color: white;
+            padding: 6px;
+            margin: -8px -8px 8px -8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .station-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .station-item {
+            border: 1px solid #444;
+            padding: 8px;
+            border-radius: 4px;
+            background: #333;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .station-item.selected {
+            background: #2980b9;
+            border-color: #3498db;
+        }
+
+        .station-item.charging {
+            background: #27ae60;
+        }
+
+        .station-item.error {
+            background: #e74c3c;
+        }
+
+        .menu-item {
+            padding: 8px;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu-item.selected {
+            background: #2980b9;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 6px 0;
+            font-size: 11px;
+        }
+
+        .current-setting {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px;
+            background: #333;
+            border-radius: 4px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #333;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            transition: width 0.3s;
+        }
+
+        .info-panel {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .info-panel h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .navigation-help {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .key-mapping {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .key-mapping div {
+            background: #ecf0f1;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        /* 弹窗样式 */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-overlay.show {
+            display: flex;
+        }
+
+        .popup-content {
+            width: 280px;
+            background: #2c3e50;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            border: 2px solid #34495e;
+        }
+
+        .popup-header {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #e74c3c;
+        }
+
+        .popup-message {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .popup-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .popup-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .popup-btn-ok {
+            background: #3498db;
+            color: white;
+        }
+
+        .popup-btn-cancel {
+            background: #95a5a6;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 设备模拟器 -->
+        <div class="device">
+            <div class="screen">
+                <!-- 主界面 -->
+                <div class="page active" id="main">
+                    <div class="header">电动工具充电站 v1.0</div>
+                    <div style="text-align: center; margin: 15px 0;">
+                        <div style="font-size: 16px; margin-bottom: 8px;">主站状态</div>
+                        <div style="color: #27ae60;">● 正常运行</div>
+                    </div>
+                    <div class="station-grid" id="main-station-grid">
+                        <div class="station-item charging selected" data-station="1">
+                            <div>子站 01</div>
+                            <div style="font-size: 10px; color: #fff;">充电中 2.5A</div>
+                            <div style="font-size: 9px; color: #ddd;">36.2V | 90W</div>
+                        </div>
+                        <div class="station-item" data-station="2">
+                            <div>子站 02</div>
+                            <div style="font-size: 10px; color: #aaa;">空闲</div>
+                            <div style="font-size: 9px; color: #27ae60;">● 电池已连接</div>
+                        </div>
+                        <div class="station-item charging" data-station="3">
+                            <div>子站 03</div>
+                            <div style="font-size: 10px; color: #fff;">充电中 3.0A</div>
+                            <div style="font-size: 9px; color: #ddd;">42.1V | 126W</div>
+                        </div>
+                        <div class="station-item" data-station="4">
+                            <div>子站 04</div>
+                            <div style="font-size: 10px; color: #aaa;">空闲</div>
+                            <div style="font-size: 9px; color: #e74c3c;">○ 请连接电池</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 12px; font-size: 11px;">
+                        <div style="background: #333; padding: 6px; border-radius: 4px; margin-bottom: 6px;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>功率分配:</span>
+                                <span style="color: #3498db;" id="power-usage">126W / 200W</span>
+                            </div>
+                            <div style="width: 100%; height: 8px; background: #555; border-radius: 4px; margin-top: 4px;">
+                                <div style="height: 100%; background: linear-gradient(90deg, #27ae60, #f39c12); border-radius: 4px; width: 63%;" id="power-bar"></div>
+                            </div>
+                        </div>
+                        <div style="color: #aaa;">←→↑↓选择子站 OK查看详情 MENU菜单</div>
+                    </div>
+                </div>
+
+                <!-- 菜单界面 -->
+                <div class="page" id="menu">
+                    <div class="header">主菜单</div>
+                    <div class="menu-item selected">
+                        <span>子站管理</span>
+                        <span>→</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>充电设置</span>
+                        <span>→</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>状态监控</span>
+                        <span>→</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>系统设置</span>
+                        <span>→</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>故障记录</span>
+                        <span>→</span>
+                    </div>
+                    <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; text-align: center; color: #666; font-size: 10px;">
+                        ↑↓选择 OK确认 BACK返回
+                    </div>
+                </div>
+
+                <!-- 子站管理界面 -->
+                <div class="page" id="stations">
+                    <div class="header">子站管理</div>
+                    <div class="station-grid">
+                        <div class="station-item selected">
+                            <div>子站 01</div>
+                            <div style="font-size: 10px;">充电中</div>
+                            <div style="font-size: 9px; color: #27ae60;">2.5A | 36V</div>
+                        </div>
+                        <div class="station-item">
+                            <div>子站 02</div>
+                            <div style="font-size: 10px;">空闲</div>
+                            <div style="font-size: 9px; color: #aaa;">- | -</div>
+                        </div>
+                        <div class="station-item">
+                            <div>子站 03</div>
+                            <div style="font-size: 10px;">充电中</div>
+                            <div style="font-size: 9px; color: #27ae60;">3.0A | 42V</div>
+                        </div>
+                        <div class="station-item">
+                            <div>子站 04</div>
+                            <div style="font-size: 10px; color: #e74c3c;">故障</div>
+                            <div style="font-size: 9px; color: #e74c3c;">过温保护</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; padding: 8px; background: #333; border-radius: 4px;">
+                        <div style="font-weight: bold; margin-bottom: 4px;">子站 01 详情</div>
+                        <div style="font-size: 10px;">
+                            <div>状态: 充电中</div>
+                            <div>电流: 2.5A / 3.0A</div>
+                            <div>电压: 36.2V</div>
+                            <div>已充电: 15分钟</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 充电控制界面 -->
+                <div class="page" id="charging">
+                    <div class="header">充电控制 - 子站 01</div>
+                    <div style="text-align: center; margin: 10px 0;">
+                        <div style="font-size: 16px; margin-bottom: 8px;" id="charging-status-text">快速充电</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                        <div style="font-size: 11px; color: #aaa;">已充电 65%</div>
+                    </div>
+                    
+                    <div style="background: #333; padding: 8px; border-radius: 4px; margin-bottom: 10px;">
+                        <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">充电模式</div>
+                        <div class="menu-item selected" id="mode-standard">
+                            <span>标准充电</span>
+                            <span style="color: #27ae60;">25W</span>
+                        </div>
+                        <div class="menu-item" id="mode-fast">
+                            <span>快速充电</span>
+                            <span style="color: #e67e22;">90W</span>
+                        </div>
+                        <div class="menu-item" id="mode-discharge">
+                            <span>放电测试</span>
+                            <span style="color: #8e44ad;">30W</span>
+                        </div>
+                        <div class="menu-item" id="mode-maintenance">
+                            <span>保养模式</span>
+                            <span style="color: #3498db;">15W</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #333; padding: 8px; border-radius: 4px; margin-bottom: 10px;">
+                        <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">实时参数</div>
+                        <div class="status-row">
+                            <span>电压:</span>
+                            <span style="color: #27ae60;" id="charging-voltage">36.2V</span>
+                        </div>
+                        <div class="status-row">
+                            <span>电流:</span>
+                            <span style="color: #27ae60;" id="charging-current">2.5A</span>
+                        </div>
+                        <div class="status-row">
+                            <span>功率:</span>
+                            <span style="color: #27ae60;" id="charging-power">90W</span>
+                        </div>
+                        <div class="status-row">
+                            <span>单节电压:</span>
+                            <span style="color: #3498db;" id="charging-cell-voltage">3.95V</span>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; text-align: center; color: #666; font-size: 10px;">
+                        ↑↓选择模式 OK启动 BACK返回
+                    </div>
+                </div>
+
+                <!-- 状态监控界面 -->
+                <div class="page" id="monitor">
+                    <div class="header">系统监控</div>
+                    <div style="margin-bottom: 10px;">
+                        <div style="font-weight: bold; margin-bottom: 6px;">实时状态</div>
+                        <div class="status-row">
+                            <span>系统电压:</span>
+                            <span style="color: #27ae60;">220V AC</span>
+                        </div>
+                        <div class="status-row">
+                            <span>总功率:</span>
+                            <span style="color: #27ae60;">180W</span>
+                        </div>
+                        <div class="status-row">
+                            <span>系统温度:</span>
+                            <span style="color: #f39c12;">45°C</span>
+                        </div>
+                        <div class="status-row">
+                            <span>运行时间:</span>
+                            <span>02:30:15</span>
+                        </div>
+                    </div>
+                    
+                    <div style="border-top: 1px solid #444; padding-top: 8px;">
+                        <div style="font-weight: bold; margin-bottom: 6px;">活跃充电</div>
+                        <div class="status-row">
+                            <span>子站01:</span>
+                            <span style="color: #27ae60;">2.5A | 90W</span>
+                        </div>
+                        <div class="status-row">
+                            <span>子站03:</span>
+                            <span style="color: #27ae60;">3.0A | 126W</span>
+                        </div>
+                    </div>
+                    
+                    <div style="border-top: 1px solid #444; padding-top: 8px;">
+                        <div style="font-weight: bold; margin-bottom: 6px;">告警信息</div>
+                        <div style="color: #e74c3c; font-size: 10px;">
+                            ⚠ 子站04: 过温保护激活
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 功率管理界面 -->
+                <div class="page" id="power-management">
+                    <div class="header">功率管理 (200W)</div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="background: #333; padding: 8px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">当前功率分配</div>
+                            <div class="status-row">
+                                <span>总功率:</span>
+                                <span style="color: #27ae60;">200W</span>
+                            </div>
+                            <div class="status-row">
+                                <span>已用功率:</span>
+                                <span style="color: #f39c12;" id="power-used">126W</span>
+                            </div>
+                            <div class="status-row">
+                                <span>可用功率:</span>
+                                <span style="color: #3498db;" id="power-available">74W</span>
+                            </div>
+                        </div>
+
+                        <div style="background: #333; padding: 8px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">充电策略</div>
+                            <div class="menu-item selected" id="strategy-item">
+                                <span>智能分配</span>
+                                <span style="color: #27ae60;">启用</span>
+                            </div>
+                            <div style="font-size: 10px; color: #aaa; margin-top: 4px;">
+                                自动根据电池状态和优先级分配功率
+                            </div>
+                        </div>
+
+                        <div style="background: #333; padding: 8px; border-radius: 4px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">功率分配详情</div>
+                            <div class="status-row">
+                                <span>子站01(快充):</span>
+                                <span style="color: #e67e22;">90W</span>
+                            </div>
+                            <div class="status-row">
+                                <span>子站03(标准):</span>
+                                <span style="color: #27ae60;">36W</span>
+                            </div>
+                            <div class="status-row">
+                                <span>子站02,04:</span>
+                                <span style="color: #95a5a6;">待机</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; text-align: center; color: #666; font-size: 10px;">
+                        ↑↓选择策略 ←→调整 OK确认 BACK返回
+                    </div>
+                </div>
+
+                <!-- 电池测试界面 -->
+                <div class="page" id="battery-test">
+                    <div class="header">电池测试</div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="text-align: center; margin-bottom: 10px;">
+                            <div style="font-size: 16px; margin-bottom: 6px; color: #f39c12;">循环测试进行中</div>
+                            <div style="font-size: 12px; color: #aaa;">子站 01 - 第 3/5 轮循环</div>
+                        </div>
+                        
+                        <div style="background: #333; padding: 8px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">当前测试状态</div>
+                            <div class="status-row">
+                                <span>测试阶段:</span>
+                                <span style="color: #8e44ad;">放电中</span>
+                            </div>
+                            <div class="status-row">
+                                <span>放电电流:</span>
+                                <span style="color: #8e44ad;">1.5A</span>
+                            </div>
+                            <div class="status-row">
+                                <span>已放电:</span>
+                                <span>1850mAh</span>
+                            </div>
+                            <div class="status-row">
+                                <span>剩余时间:</span>
+                                <span>00:25:30</span>
+                            </div>
+                        </div>
+
+                        <div style="background: #333; padding: 8px; border-radius: 4px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">测试结果</div>
+                            <div class="status-row">
+                                <span>实际容量:</span>
+                                <span style="color: #27ae60;">2380mAh</span>
+                            </div>
+                            <div class="status-row">
+                                <span>标称容量:</span>
+                                <span>2500mAh</span>
+                            </div>
+                            <div class="status-row">
+                                <span>健康度:</span>
+                                <span style="color: #27ae60;">95.2%</span>
+                            </div>
+                            <div class="status-row">
+                                <span>内阻:</span>
+                                <span style="color: #f39c12;">45mΩ</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; text-align: center; color: #666; font-size: 10px;">
+                        OK停止测试 BACK返回 ←→选择子站
+                    </div>
+                </div>
+
+                <!-- 电池保养界面 -->
+                <div class="page" id="battery-maintenance">
+                    <div class="header">电池保养</div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="text-align: center; margin-bottom: 10px;">
+                            <div style="font-size: 16px; margin-bottom: 6px; color: #3498db;">保养模式</div>
+                            <div style="font-size: 12px; color: #aaa;">将电池调节至最佳存储电压 3.8V</div>
+                        </div>
+                        
+                        <div style="background: #333; padding: 8px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">保养状态</div>
+                            <div class="status-row">
+                                <span>子站01:</span>
+                                <span style="color: #3498db;">调节中 3.95V→3.8V</span>
+                            </div>
+                            <div class="status-row">
+                                <span>子站02:</span>
+                                <span style="color: #95a5a6;">无电池</span>
+                            </div>
+                            <div class="status-row">
+                                <span>子站03:</span>
+                                <span style="color: #27ae60;">已完成 3.8V</span>
+                            </div>
+                            <div class="status-row">
+                                <span>子站04:</span>
+                                <span style="color: #e74c3c;">故障停止</span>
+                            </div>
+                        </div>
+
+                        <div style="background: #333; padding: 8px; border-radius: 4px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">保养设置</div>
+                            <div class="menu-item selected">
+                                <span>目标电压:</span>
+                                <span style="color: #3498db;">3.8V</span>
+                            </div>
+                            <div class="menu-item">
+                                <span>保养电流:</span>
+                                <span style="color: #3498db;">0.5A</span>
+                            </div>
+                            <div class="menu-item">
+                                <span>自动保养:</span>
+                                <span style="color: #27ae60;">启用</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; text-align: center; color: #666; font-size: 10px;">
+                        ↑↓选择 ←→调整 OK开始保养 BACK返回
+                    </div>
+                </div>
+
+                <!-- 设置界面 -->
+                <div class="page" id="settings">
+                    <div class="header">系统设置</div>
+                    <div class="menu-item selected">
+                        <span>最大电流限制</span>
+                        <span style="color: #3498db;">5.0A</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>充电超时</span>
+                        <span style="color: #3498db;">4小时</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>过温保护</span>
+                        <span style="color: #27ae60;">启用</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>自动识别</span>
+                        <span style="color: #27ae60;">启用</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>显示亮度</span>
+                        <span style="color: #3498db;">80%</span>
+                    </div>
+                    <div class="menu-item">
+                        <span>系统信息</span>
+                        <span>→</span>
+                    </div>
+                    <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; text-align: center; color: #666; font-size: 10px;">
+                        ←→调整 ↑↓选择 OK确认
+                    </div>
+                </div>
+
+                <!-- 子站详情界面 -->
+                <div class="page" id="station-detail">
+                    <div class="header" id="station-detail-header">子站 01 详情</div>
+                    <div style="margin-bottom: 12px;">
+                        <div style="text-align: center; margin-bottom: 10px;">
+                            <div style="font-size: 18px; margin-bottom: 6px;" id="station-status">充电中</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%;" id="station-progress"></div>
+                            </div>
+                            <div style="font-size: 11px; color: #aaa;" id="station-progress-text">已充电 65%</div>
+                        </div>
+                        
+                        <div style="background: #333; padding: 8px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">实时参数</div>
+                            <div class="status-row">
+                                <span>输出电压:</span>
+                                <span style="color: #27ae60;" id="detail-voltage">36.2V</span>
+                            </div>
+                            <div class="status-row">
+                                <span>输出电流:</span>
+                                <span style="color: #27ae60;" id="detail-current">2.5A</span>
+                            </div>
+                            <div class="status-row">
+                                <span>输出功率:</span>
+                                <span style="color: #27ae60;" id="detail-power">90W</span>
+                            </div>
+                            <div class="status-row">
+                                <span>电池温度:</span>
+                                <span style="color: #f39c12;" id="detail-temp">32°C</span>
+                            </div>
+                        </div>
+
+                        <div style="background: #333; padding: 8px; border-radius: 4px; margin-bottom: 10px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">充电信息</div>
+                            <div class="status-row">
+                                <span>充电时间:</span>
+                                <span id="detail-time">00:15:23</span>
+                            </div>
+                            <div class="status-row">
+                                <span>预计剩余:</span>
+                                <span id="detail-remaining">00:08:15</span>
+                            </div>
+                            <div class="status-row">
+                                <span>充电模式:</span>
+                                <span style="color: #3498db;" id="detail-mode">快充</span>
+                            </div>
+                            <div class="status-row">
+                                <span>电池类型:</span>
+                                <span id="detail-battery">Li-ion 18V</span>
+                            </div>
+                        </div>
+
+                        <div style="background: #333; padding: 8px; border-radius: 4px;">
+                            <div style="font-weight: bold; margin-bottom: 6px; color: #3498db;">电池健康</div>
+                            <div class="status-row">
+                                <span>单节电压:</span>
+                                <span style="color: #27ae60;" id="detail-cell-voltage">3.95V</span>
+                            </div>
+                            <div class="status-row">
+                                <span>实际容量:</span>
+                                <span style="color: #27ae60;" id="detail-capacity">2500mAh</span>
+                            </div>
+                            <div class="status-row">
+                                <span>健康度:</span>
+                                <span style="color: #27ae60;" id="detail-health">96%</span>
+                            </div>
+                            <div class="status-row">
+                                <span>循环次数:</span>
+                                <span id="detail-cycles">45次</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="position: absolute; bottom: 8px; left: 8px; right: 8px; text-align: center; color: #666; font-size: 10px;">
+                        OK进入控制 BACK返回主页
+                    </div>
+                </div>
+            </div>
+
+            <!-- 控制按键 -->
+            <div class="controls">
+                <div class="control-row">
+                    <div class="btn" onclick="keyPress('up')">↑</div>
+                </div>
+                <div class="control-row">
+                    <div class="btn" onclick="keyPress('left')">←</div>
+                    <div class="btn special" onclick="keyPress('ok')">OK</div>
+                    <div class="btn" onclick="keyPress('right')">→</div>
+                </div>
+                <div class="control-row">
+                    <div class="btn" onclick="keyPress('down')">↓</div>
+                </div>
+                <div class="control-row">
+                    <div class="btn special" onclick="keyPress('menu')">MENU</div>
+                    <div class="btn" onclick="keyPress('back')">BACK</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 弹窗提示 -->
+        <div class="popup-overlay" id="popup-overlay">
+            <div class="popup-content">
+                <div class="popup-header" id="popup-header">⚠️ 提示</div>
+                <div class="popup-message" id="popup-message">请连接电池后再启动充电</div>
+                <div class="popup-buttons">
+                    <button class="popup-btn popup-btn-ok" onclick="closePopup()">确定</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 设计说明 -->
+        <div class="info-panel">
+            <h3>🔋 电动工具充电站 UI 设计</h3>
+            
+            <h4>核心功能</h4>
+            <ul class="feature-list">
+                <li>多子站状态总览</li>
+                <li>智能功率分配管理 (200W)</li>
+                <li>多种充电模式 (标准/快充/放电/保养)</li>
+                <li>电池循环测试与健康评估</li>
+                <li>3.8V自动保养功能</li>
+                <li>实时电流电压监控</li>
+                <li>电池容量与内阻检测</li>
+                <li>系统参数设置与故障诊断</li>
+            </ul>
+
+            <h4>界面结构</h4>
+            <ul class="feature-list">
+                <li><strong>主界面:</strong> 子站状态总览 + 功率分配显示</li>
+                <li><strong>子站详情:</strong> 单站详细信息 + 电池健康</li>
+                <li><strong>功率管理:</strong> 智能分配策略 + 功率监控</li>
+                <li><strong>充电控制:</strong> 模式选择 + 实时参数</li>
+                <li><strong>电池测试:</strong> 循环测试 + 容量检测</li>
+                <li><strong>电池保养:</strong> 3.8V保养 + 自动调节</li>
+                <li><strong>状态监控:</strong> 系统参数 + 告警信息</li>
+            </ul>
+
+            <div class="navigation-help">
+                <h4>📱 按键导航说明</h4>
+                <div class="key-mapping">
+                    <div><strong>↑↓</strong><br>菜单选择</div>
+                    <div><strong>←→</strong><br>数值调节</div>
+                    <div><strong>OK</strong><br>确认选择</div>
+                    <div><strong>BACK</strong><br>返回上级</div>
+                    <div><strong>MENU</strong><br>主菜单</div>
+                    <div><strong>组合键</strong><br>快捷功能</div>
+                </div>
+            </div>
+
+            <h4>💡 LVGL 实现建议</h4>
+            <ul class="feature-list">
+                <li>使用 lv_tabview 管理多页面切换</li>
+                <li>lv_table 显示子站状态网格</li>
+                <li>lv_bar 显示充电进度和功率分配</li>
+                <li>lv_dropdown 选择充电模式</li>
+                <li>lv_chart 显示电池测试曲线</li>
+                <li>lv_switch 控制保养功能开关</li>
+                <li>lv_arc 显示电池健康度环形图</li>
+                <li>定时器实现功率分配算法</li>
+                <li>状态机管理充电/放电/保养流程</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 'main';
+        let selectedItem = 0;
+        let selectedStation = 0;
+        let mainStationSelected = 0; // 主页面选中的子站索引
+        let chargingCurrent = 2.5;
+        let chargingModeSelected = 0; // 充电页面选中的模式索引
+        let currentChargingStation = 0; // 当前充电控制页面的子站
+        
+        const pages = ['main', 'menu', 'stations', 'power-management', 'battery-test', 'battery-maintenance', 'charging', 'monitor', 'settings', 'station-detail'];
+        const menuItems = ['子站管理', '功率管理', '电池测试', '电池保养', '状态监控', '系统设置'];
+        
+        // 系统参数
+        const systemConfig = {
+            totalPower: 200,     // 总功率 200W
+            powerUsed: 126,      // 已使用功率
+            powerAvailable: 74   // 可用功率
+        };
+
+        // 子站数据
+        const stationData = [
+            {
+                id: 1,
+                name: '子站 01',
+                status: 'charging',
+                current: 2.5,
+                voltage: 36.2,
+                power: 90,
+                progress: 65,
+                time: '00:15:23',
+                remaining: '00:08:15',
+                mode: 'fast_charge',  // 快充模式
+                battery: 'Li-ion 18V',
+                temp: 32,
+                cellVoltage: 3.95,    // 单节电压
+                capacity: 2500,       // 容量 mAh
+                health: 96,           // 健康度 %
+                cycles: 45,           // 循环次数
+                priority: 1,          // 优先级
+                batteryConnected: true // 电池连接状态
+            },
+            {
+                id: 2,
+                name: '子站 02',
+                status: 'idle',
+                current: 0,
+                voltage: 0,
+                power: 0,
+                progress: 0,
+                time: '00:00:00',
+                remaining: '--:--:--',
+                mode: 'standby',
+                battery: 'Li-ion 20V',
+                temp: 25,
+                cellVoltage: 4.12,
+                capacity: 2800,
+                health: 92,
+                cycles: 67,
+                priority: 4,
+                batteryConnected: true // 已连接电池但空闲
+            },
+            {
+                id: 3,
+                name: '子站 03',
+                status: 'charging',
+                current: 3.0,
+                voltage: 42.1,
+                power: 126,
+                progress: 45,
+                time: '00:08:45',
+                remaining: '00:11:30',
+                mode: 'standard',     // 标准充电
+                battery: 'Li-ion 20V',
+                temp: 29,
+                cellVoltage: 4.21,
+                capacity: 3000,
+                health: 89,
+                cycles: 128,
+                priority: 2,
+                batteryConnected: true
+            },
+            {
+                id: 4,
+                name: '子站 04',
+                status: 'idle',
+                current: 0,
+                voltage: 0,
+                power: 0,
+                progress: 0,
+                time: '00:00:00',
+                remaining: '--:--:--',
+                mode: 'standby',
+                battery: '未连接',
+                temp: 25,
+                cellVoltage: 0,
+                capacity: 0,
+                health: 0,
+                cycles: 0,
+                priority: 3,
+                batteryConnected: false // 未连接电池
+            }
+        ];
+
+        // 充电模式定义
+        const chargeModes = {
+            'standard': { name: '标准充电', power: 25, color: '#27ae60' },
+            'fast_charge': { name: '快速充电', power: 60, color: '#e67e22' },
+            'discharge': { name: '放电测试', power: -30, color: '#8e44ad' },
+            'maintenance': { name: '保养模式', power: 15, color: '#3498db' },
+            'cycle_test': { name: '循环测试', power: 40, color: '#f39c12' },
+            'standby': { name: '待机', power: 0, color: '#95a5a6' },
+            'error': { name: '故障', power: 0, color: '#e74c3c' }
+        };
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            currentPage = pageId;
+        }
+
+        function keyPress(key) {
+            console.log(`按键: ${key}, 当前页面: ${currentPage}`);
+            
+            switch(key) {
+                case 'menu':
+                    if(currentPage === 'main') {
+                        showPage('menu');
+                        selectedItem = 0;
+                        updateMenuSelection();
+                    } else {
+                        showPage('main');
+                    }
+                    break;
+                    
+                case 'back':
+                    if(currentPage === 'main') {
+                        // 主页面不响应back键
+                        return;
+                    } else if(currentPage === 'menu' || currentPage === 'station-detail') {
+                        showPage('main');
+                    } else {
+                        showPage('menu');
+                    }
+                    break;
+                    
+                case 'ok':
+                    if(currentPage === 'main') {
+                        // 主页面OK键进入选中子站的详情页
+                        const station = stationData[mainStationSelected];
+                        if(station.status === 'idle' && !station.batteryConnected) {
+                            // 空闲状态且电池未连接，显示提示
+                            showPopup('电池未连接', '请先连接电池到子站' + (mainStationSelected + 1).toString().padStart(2, '0') + '，然后重试。', 'warning');
+                        } else {
+                            // 进入子站详情
+                            showStationDetail(mainStationSelected);
+                        }
+                    } else if(currentPage === 'menu') {
+                        const targetPages = ['stations', 'power-management', 'battery-test', 'battery-maintenance', 'monitor', 'settings'];
+                        if(selectedItem < targetPages.length) {
+                            showPage(targetPages[selectedItem]);
+                        }
+                    } else if(currentPage === 'stations') {
+                        showPage('charging');
+                    } else if(currentPage === 'station-detail') {
+                        // 从详情页进入充电控制页
+                        currentChargingStation = mainStationSelected;
+                        showPage('charging');
+                    } else if(currentPage === 'charging') {
+                        // 充电页面OK键启动选中的充电模式
+                        startChargingWithMode();
+                    }
+                    break;
+                    
+                case 'up':
+                    if(currentPage === 'main') {
+                        // 主页面向上导航 (0,1 -> 2,3)
+                        if(mainStationSelected >= 2) {
+                            mainStationSelected -= 2;
+                            updateMainStationSelection();
+                        }
+                    } else if(currentPage === 'menu' && selectedItem > 0) {
+                        selectedItem--;
+                        updateMenuSelection();
+                    } else if(currentPage === 'charging' && chargingModeSelected > 0) {
+                        chargingModeSelected--;
+                        updateChargingModeSelection();
+                    }
+                    break;
+                    
+                case 'down':
+                    if(currentPage === 'main') {
+                        // 主页面向下导航 (0,1 -> 2,3)
+                        if(mainStationSelected < 2) {
+                            mainStationSelected += 2;
+                            updateMainStationSelection();
+                        }
+                    } else if(currentPage === 'menu' && selectedItem < menuItems.length - 1) {
+                        selectedItem++;
+                        updateMenuSelection();
+                    } else if(currentPage === 'charging' && chargingModeSelected < 3) {
+                        chargingModeSelected++;
+                        updateChargingModeSelection();
+                    }
+                    break;
+                    
+                case 'left':
+                    if(currentPage === 'main') {
+                        // 主页面向左导航
+                        if(mainStationSelected % 2 === 1) {
+                            mainStationSelected--;
+                            updateMainStationSelection();
+                        }
+                    } else if(currentPage === 'charging') {
+                        if(chargingCurrent > 1.0) {
+                            chargingCurrent -= 0.5;
+                            updateChargingCurrent();
+                        }
+                    } else if(currentPage === 'stations') {
+                        updateStationSelection('left');
+                    }
+                    break;
+                    
+                case 'right':
+                    if(currentPage === 'main') {
+                        // 主页面向右导航
+                        if(mainStationSelected % 2 === 0) {
+                            mainStationSelected++;
+                            updateMainStationSelection();
+                        }
+                    } else if(currentPage === 'charging') {
+                        if(chargingCurrent < 5.0) {
+                            chargingCurrent += 0.5;
+                            updateChargingCurrent();
+                        }
+                    } else if(currentPage === 'stations') {
+                        updateStationSelection('right');
+                    }
+                    break;
+            }
+        }
+
+        function updateMenuSelection() {
+            document.querySelectorAll('#menu .menu-item').forEach((item, index) => {
+                item.classList.toggle('selected', index === selectedItem);
+            });
+        }
+
+        function updateStationSelection(direction) {
+            const stations = document.querySelectorAll('#stations .station-item');
+            stations[selectedStation].classList.remove('selected');
+            
+            if(direction === 'left' && selectedStation > 0) {
+                selectedStation--;
+            } else if(direction === 'right' && selectedStation < stations.length - 1) {
+                selectedStation++;
+            }
+            
+            stations[selectedStation].classList.add('selected');
+        }
+
+        function updateChargingCurrent() {
+            document.querySelector('.current-setting span:last-child').innerHTML = 
+                `◀ ${chargingCurrent.toFixed(1)}A ▶`;
+        }
+
+        function updateMainStationSelection() {
+            // 更新主页面子站选择状态和显示
+            updateMainStationDisplay();
+        }
+
+        function showStationDetail(stationIndex) {
+            const station = stationData[stationIndex];
+            if(!station) return;
+            
+            // 更新详情页面内容
+            document.getElementById('station-detail-header').textContent = `${station.name} 详情`;
+            document.getElementById('station-status').textContent = getStatusText(station.status);
+            document.getElementById('station-status').style.color = getStatusColor(station.status);
+            
+            // 更新进度条
+            document.getElementById('station-progress').style.width = `${station.progress}%`;
+            document.getElementById('station-progress-text').textContent = `已充电 ${station.progress}%`;
+            
+            // 更新实时参数
+            document.getElementById('detail-voltage').textContent = station.voltage > 0 ? `${station.voltage}V` : '--';
+            document.getElementById('detail-current').textContent = station.current > 0 ? `${station.current}A` : '--';
+            document.getElementById('detail-power').textContent = station.power > 0 ? `${station.power}W` : '--';
+            document.getElementById('detail-temp').textContent = `${station.temp}°C`;
+            
+            // 更新充电信息
+            document.getElementById('detail-time').textContent = station.time;
+            document.getElementById('detail-remaining').textContent = station.remaining;
+            document.getElementById('detail-mode').textContent = chargeModes[station.mode]?.name || station.mode;
+            document.getElementById('detail-battery').textContent = station.battery;
+            
+            // 更新电池健康信息
+            document.getElementById('detail-cell-voltage').textContent = station.cellVoltage > 0 ? `${station.cellVoltage}V` : '--';
+            document.getElementById('detail-capacity').textContent = station.capacity > 0 ? `${station.capacity}mAh` : '--';
+            document.getElementById('detail-health').textContent = station.health > 0 ? `${station.health}%` : '--';
+            document.getElementById('detail-cycles').textContent = station.cycles > 0 ? `${station.cycles}次` : '--';
+            
+            // 设置当前充电站
+            currentChargingStation = stationIndex;
+            
+            // 显示详情页面
+            showPage('station-detail');
+        }
+
+        function getStatusText(status) {
+            switch(status) {
+                case 'charging': return '充电中';
+                case 'idle': return '空闲';
+                case 'error': return '故障';
+                case 'complete': return '充电完成';
+                case 'discharging': return '放电中';
+                case 'testing': return '测试中';
+                case 'maintenance': return '保养中';
+                default: return '未知状态';
+            }
+        }
+
+        function getStatusColor(status) {
+            switch(status) {
+                case 'charging': return '#27ae60';
+                case 'idle': return '#95a5a6';
+                case 'error': return '#e74c3c';
+                case 'complete': return '#3498db';
+                case 'discharging': return '#8e44ad';
+                case 'testing': return '#f39c12';
+                case 'maintenance': return '#3498db';
+                default: return '#bdc3c7';
+            }
+        }
+
+        function updatePowerDisplay() {
+            // 计算总功率使用
+            let totalPowerUsed = 0;
+            stationData.forEach(station => {
+                if(station.status === 'charging' || station.status === 'discharging') {
+                    const mode = chargeModes[station.mode];
+                    if(mode) {
+                        totalPowerUsed += Math.abs(mode.power);
+                    }
+                }
+            });
+            
+            systemConfig.powerUsed = totalPowerUsed;
+            systemConfig.powerAvailable = systemConfig.totalPower - totalPowerUsed;
+            
+            // 更新主页面功率显示
+            const powerUsageElement = document.getElementById('power-usage');
+            const powerBarElement = document.getElementById('power-bar');
+            if(powerUsageElement) {
+                powerUsageElement.textContent = `${totalPowerUsed}W / ${systemConfig.totalPower}W`;
+            }
+            if(powerBarElement) {
+                const percentage = (totalPowerUsed / systemConfig.totalPower) * 100;
+                powerBarElement.style.width = `${Math.min(percentage, 100)}%`;
+            }
+            
+            // 更新功率管理页面
+            const powerUsedElement = document.getElementById('power-used');
+            const powerAvailableElement = document.getElementById('power-available');
+            if(powerUsedElement) {
+                powerUsedElement.textContent = `${totalPowerUsed}W`;
+            }
+            if(powerAvailableElement) {
+                powerAvailableElement.textContent = `${systemConfig.powerAvailable}W`;
+            }
+        }
+
+        function canStartCharging(stationIndex, mode) {
+            const station = stationData[stationIndex];
+            const requiredPower = chargeModes[mode]?.power || 0;
+            const availablePower = systemConfig.powerAvailable;
+            
+            // 检查电池是否连接
+            if(!station.batteryConnected) {
+                return { success: false, reason: 'battery_not_connected' };
+            }
+            
+            // 检查功率是否足够
+            if(mode === 'fast_charge' && requiredPower > availablePower) {
+                return { success: false, reason: 'insufficient_power' };
+            }
+            
+            return { success: true };
+        }
+
+        function showPopup(header, message, type = 'warning') {
+            document.getElementById('popup-header').textContent = header;
+            document.getElementById('popup-message').textContent = message;
+            document.getElementById('popup-overlay').classList.add('show');
+            
+            // 更新header颜色
+            const headerElement = document.getElementById('popup-header');
+            switch(type) {
+                case 'error':
+                    headerElement.style.color = '#e74c3c';
+                    headerElement.textContent = '❌ ' + header;
+                    break;
+                case 'warning':
+                    headerElement.style.color = '#f39c12';
+                    headerElement.textContent = '⚠️ ' + header;
+                    break;
+                case 'info':
+                    headerElement.style.color = '#3498db';
+                    headerElement.textContent = 'ℹ️ ' + header;
+                    break;
+                case 'success':
+                    headerElement.style.color = '#27ae60';
+                    headerElement.textContent = '✅ ' + header;
+                    break;
+                default:
+                    headerElement.style.color = '#f39c12';
+                    headerElement.textContent = '⚠️ ' + header;
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('popup-overlay').classList.remove('show');
+        }
+
+        function updateMainStationDisplay() {
+            // 更新主页面子站显示
+            const stationItems = document.querySelectorAll('#main-station-grid .station-item');
+            
+            stationItems.forEach((item, index) => {
+                const station = stationData[index];
+                const nameDiv = item.children[0];
+                const statusDiv = item.children[1];
+                const detailDiv = item.children[2];
+                
+                nameDiv.textContent = station.name;
+                
+                // 根据状态更新显示
+                if(station.status === 'charging') {
+                    item.className = 'station-item charging' + (index === mainStationSelected ? ' selected' : '');
+                    statusDiv.textContent = `充电中 ${station.current}A`;
+                    statusDiv.style.color = '#fff';
+                    detailDiv.textContent = `${station.voltage.toFixed(1)}V | ${station.power}W`;
+                    detailDiv.style.color = '#ddd';
+                } else if(station.status === 'idle') {
+                    item.className = 'station-item' + (index === mainStationSelected ? ' selected' : '');
+                    statusDiv.textContent = '空闲';
+                    statusDiv.style.color = '#aaa';
+                    
+                    if(station.batteryConnected) {
+                        detailDiv.textContent = '● 电池已连接';
+                        detailDiv.style.color = '#27ae60';
+                    } else {
+                        detailDiv.textContent = '○ 请连接电池';
+                        detailDiv.style.color = '#e74c3c';
+                    }
+                } else if(station.status === 'error') {
+                    item.className = 'station-item error' + (index === mainStationSelected ? ' selected' : '');
+                    statusDiv.textContent = '故障';
+                    statusDiv.style.color = '#fff';
+                    detailDiv.textContent = station.battery;
+                    detailDiv.style.color = '#ffaaaa';
+                }
+            });
+        }
+
+        function updateChargingModeSelection() {
+            // 更新充电模式选择显示
+            const modeItems = ['#mode-standard', '#mode-fast', '#mode-discharge', '#mode-maintenance'];
+            modeItems.forEach((selector, index) => {
+                const element = document.querySelector(selector);
+                if(element) {
+                    element.classList.toggle('selected', index === chargingModeSelected);
+                }
+            });
+        }
+
+        function startChargingWithMode() {
+            const station = stationData[currentChargingStation];
+            const modeNames = ['standard', 'fast_charge', 'discharge', 'maintenance'];
+            const selectedMode = modeNames[chargingModeSelected];
+            
+            // 检查是否可以启动充电
+            const canStart = canStartCharging(currentChargingStation, selectedMode);
+            
+            if(!canStart.success) {
+                if(canStart.reason === 'battery_not_connected') {
+                    showPopup('电池未连接', '请先连接电池到' + station.name + '，然后重试。', 'warning');
+                } else if(canStart.reason === 'insufficient_power') {
+                    const requiredPower = chargeModes[selectedMode]?.power || 0;
+                    showPopup('功率不足', `${chargeModes[selectedMode]?.name}需要${requiredPower}W功率，当前可用功率仅${systemConfig.powerAvailable}W。`, 'warning');
+                }
+                return;
+            }
+            
+            // 启动充电
+            station.status = selectedMode === 'discharge' ? 'discharging' : 'charging';
+            station.mode = selectedMode;
+            station.current = selectedMode === 'discharge' ? 1.5 : (selectedMode === 'fast_charge' ? 5.0 : 2.0);
+            station.power = Math.abs(chargeModes[selectedMode]?.power || 0);
+            
+            // 显示成功消息并返回主页
+            showPopup('启动成功', `${station.name} ${chargeModes[selectedMode]?.name}已启动`, 'success');
+            
+            setTimeout(() => {
+                closePopup();
+                showPage('main');
+            }, 2000);
+        }
+
+        // 模拟实时数据更新
+        setInterval(() => {
+            // 更新功率显示
+            updatePowerDisplay();
+            
+            // 模拟电池连接状态变化 (演示用)
+            if(Math.random() < 0.1) { // 10%概率模拟电池插拔
+                const randomStation = Math.floor(Math.random() * stationData.length);
+                if(stationData[randomStation].status === 'idle') {
+                    stationData[randomStation].batteryConnected = !stationData[randomStation].batteryConnected;
+                    
+                    // 更新电池信息
+                    if(stationData[randomStation].batteryConnected) {
+                        stationData[randomStation].battery = 'Li-ion 18V';
+                        stationData[randomStation].cellVoltage = (3.7 + Math.random() * 0.5).toFixed(2);
+                        stationData[randomStation].capacity = 2000 + Math.floor(Math.random() * 1000);
+                        stationData[randomStation].health = 80 + Math.floor(Math.random() * 20);
+                        stationData[randomStation].cycles = Math.floor(Math.random() * 200);
+                    } else {
+                        stationData[randomStation].battery = '未连接';
+                        stationData[randomStation].cellVoltage = 0;
+                        stationData[randomStation].capacity = 0;
+                        stationData[randomStation].health = 0;
+                        stationData[randomStation].cycles = 0;
+                    }
+                    
+                    // 如果在主页面，更新显示
+                    if(currentPage === 'main') {
+                        updateMainStationDisplay();
+                    }
+                }
+            }
+            
+            if(currentPage === 'charging' || currentPage === 'monitor' || currentPage === 'station-detail') {
+                // 模拟电压波动
+                stationData.forEach((station, index) => {
+                    if(station.status === 'charging' || station.status === 'discharging') {
+                        station.voltage += (Math.random() - 0.5) * 0.2;
+                        station.cellVoltage = Math.max(0, parseFloat(station.cellVoltage) + (Math.random() - 0.5) * 0.02).toFixed(2);
+                        station.temp += (Math.random() - 0.5) * 1;
+                        
+                        // 模拟充电进度变化
+                        if(station.status === 'charging' && station.progress < 100) {
+                            station.progress += 0.3;
+                        } else if(station.status === 'discharging' && station.progress > 0) {
+                            station.progress -= 0.5;
+                        }
+                    }
+                });
+            }
+        }, 4000);
+
+        // 添加鼠标点击事件支持
+        document.addEventListener('DOMContentLoaded', function() {
+            // 主页面子站点击事件
+            document.querySelectorAll('#main-station-grid .station-item').forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    if(currentPage === 'main') {
+                        mainStationSelected = index;
+                        updateMainStationSelection();
+                        // 双击进入详情
+                        setTimeout(() => {
+                            if(this.classList.contains('selected')) {
+                                showStationDetail(index);
+                            }
+                        }, 200);
+                    }
+                });
+            });
+        });
+
+        // 初始化
+        updateMenuSelection();
+        updateMainStationSelection();
+        updatePowerDisplay();
+        updateChargingModeSelection();
+    </script>
+</body>
+</html> 

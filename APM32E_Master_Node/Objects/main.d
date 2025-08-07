@@ -164,3 +164,6 @@
 .\objects\main.o: .\lvgl\src/extra/widgets/imgbtn/lv_imgbtn.h
 .\objects\main.o: .\lvgl\src/extra/widgets/span/lv_span.h
 .\objects\main.o: .\lvgl\examples\porting\lv_port_disp_template.h
+.\objects\main.o: .\lvgl\guigder\src\generated\gui_guider.h
+.\objects\main.o: .\lvgl\guigder\src\generated\events_init.h
+.\objects\main.o: .\Source\lvgl_charging_station_ui.h

@@ -123,9 +123,12 @@ int main(void)
 	HAL_GPIO_WritePin(BATA1_GPIO_Port,BATA1_Pin,1);
 	HAL_GPIO_WritePin(BATA2_GPIO_Port,BATA2_Pin,0);
 
+	HAL_ADCEx_Calibration_Start(&hadc1);
 
 	dac_set=(uint16_t)(((current_set*0.2f)/3.3f)*4095);
 	Disable_Charging();
+	HAL_ADCEx_Calibration_Start(&hadc2);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -139,10 +142,10 @@ int main(void)
 		Data_Feedback();//默认一直发送
     MCP4725_WriteData_Digital(dac_set);
 		read_adc_1=Get_ADC1(0);//采样电阻0.005哦  放大倍数50倍
-		read_adc_4=Get_ADC1(4);
-		read_adc_5=Get_ADC1(5);
-		read_adc_6=Get_ADC1(6);
-		read_adc_7=Get_ADC1(7);
+//		read_adc_4=Get_ADC1(4);
+//		read_adc_5=Get_ADC1(5);
+//		read_adc_6=Get_ADC1(6);
+//		read_adc_7=Get_ADC1(7);
 
 		read_adc_2=Get_ADC(2);
 		read_current =((float)read_adc_1 / 4095.0f) * 3.29f / 0.25f;
