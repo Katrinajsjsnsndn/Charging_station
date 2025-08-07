@@ -71,7 +71,7 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 uint16_t read_adc_1,read_adc_2,read_adc_4,read_adc_5,read_adc_6,read_adc_7;
-uint16_t dac_set;
+uint16_t dac_set,check_count;
 float current_set=2,read_current,read_val;
 uint8_t Master_order;
 /* USER CODE END 0 */
@@ -147,9 +147,18 @@ int main(void)
 		read_adc_2=Get_ADC(2);
 		read_current =((float)read_adc_1 / 4095.0f) * 3.29f / 0.25f;
 		read_val = (float)read_adc_2 / 4095.0f * 3.29f * 10.0f;
-		if(read_val<16)
+		if(read_val<16 && read_val>10)
 		{
-			Disable_discharging();//停止放电
+			check_count++;
+			if(check_count>1000)
+			{
+				Disable_discharging();//停止放电
+				check_count=0;
+			}
+		}
+		else
+		{
+			check_count=0;
 		}
 		if(read_adc_4==0&& Master_order==0)
 		{

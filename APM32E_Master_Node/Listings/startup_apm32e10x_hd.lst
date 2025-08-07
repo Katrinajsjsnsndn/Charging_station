@@ -42,26 +42,26 @@ ARM Macro Assembler    Page 1
    27 00000000         ;   <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
    28 00000000         ; </h>
    29 00000000         
-   30 00000000 00000400 
+   30 00000000 00000800 
                        Stack_Size
-                               EQU              0x00000400
+                               EQU              0x00000800
    31 00000000         
    32 00000000                 AREA             STACK, NOINIT, READWRITE, ALIGN
 =3
    33 00000000         Stack_Mem
                                SPACE            Stack_Size
-   34 00000400         __initial_sp
-   35 00000400         
-   36 00000400         
-   37 00000400         ; <h> Heap Configuration
-   38 00000400         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
-   39 00000400         ; </h>
-   40 00000400         
-   41 00000400 00000200 
+   34 00000800         __initial_sp
+   35 00000800         
+   36 00000800         
+   37 00000800         ; <h> Heap Configuration
+   38 00000800         ;   <o>  Heap Size (in Bytes) <0x0-0xFFFFFFFF:8>
+   39 00000800         ; </h>
+   40 00000800         
+   41 00000800 00000200 
                        Heap_Size
                                EQU              0x00000200
-   42 00000400         
-   43 00000400                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
+   42 00000800         
+   43 00000800                 AREA             HEAP, NOINIT, READWRITE, ALIGN=
 3
 
 
@@ -568,7 +568,7 @@ ARM Macro Assembler    Page 9
               00000000 
               00000000 
               00000000 
-              00000400 
+              00000800 
               00000200 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
@@ -599,7 +599,7 @@ Symbol: Stack_Mem
       At line 356 in file Start\startup_apm32e10x_hd.s
       At line 358 in file Start\startup_apm32e10x_hd.s
 
-__initial_sp 00000400
+__initial_sp 00000800
 
 Symbol: __initial_sp
    Definitions
@@ -1459,7 +1459,7 @@ Symbol: Heap_Size
       At line 45 in file Start\startup_apm32e10x_hd.s
       At line 357 in file Start\startup_apm32e10x_hd.s
 
-Stack_Size 00000400
+Stack_Size 00000800
 
 Symbol: Stack_Size
    Definitions

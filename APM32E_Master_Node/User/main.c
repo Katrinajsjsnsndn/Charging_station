@@ -40,7 +40,8 @@
 #include "charge_control.h"
 #include "rs485.h"
 #include "charging_station_ui.h"
-
+#include "lvgl.h" 
+#include "lv_port_disp_template.h"
 
 // 串口接收相关定义
 #define UART_RX_BUFFER_SIZE 100
@@ -92,11 +93,18 @@ int main(void)
     
     // 串口初始化
     USART_Init();
-		USART2_DMA_RX_Init();
+    USART2_DMA_RX_Init();
     IIC_GPIO_Config();
 
-
-
+    LCD_Init();
+    LCD_Display_Dir(3);
+    LCD_Clear(WHITE);
+    lv_init();
+    lv_port_disp_init();
+    
+    // 初始化ADC
+    ADC_Init_Once();
+    
     /* User create task */
     UserTaskCreate();
 
@@ -130,7 +138,7 @@ static void UserTaskCreate(void)
 
     xTaskCreate(vTaskUsartTest,
                 "TaskUsartTest",
-                256,  // 增加栈空间
+                1024,  // 增加栈空间
                 NULL,
                 2,
                 &xHandleTaskUsartTest);
@@ -160,9 +168,29 @@ void vTaskUsartTest(void* pvParameters)
     // 初始化ADC
     ADC_Init_Once();
     
+//    // 先清屏为红色
+//    LCD_Clear(0xF800); // 红色 (RGB565格式)
+//    
+//    // 设置屏幕背景色为红色 - 使用多种方法确保生效
+//    lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(0xFF0000), LV_PART_MAIN);
+//    lv_obj_set_style_bg_opa(lv_scr_act(), LV_OPA_COVER, LV_PART_MAIN);
+//    
+//    // 创建简单的LVGL界面
+//    lv_obj_t * label = lv_label_create(lv_scr_act());
+//    if (label != NULL) {
+//        lv_label_set_text(label, "Hello World");
+//        lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);
+//    }
+//    
+//    // 强制刷新屏幕
+//    lv_obj_invalidate(lv_scr_act());
+    
     while (1)
     {
-        // 读取PA1和PB0的ADC值
+//        // LVGL任务处理
+//        lv_tick_inc(5);
+//        lv_task_handler();
+			    // 读取PA1和PB0的ADC值
         adc_pa1 = ADC_ReadChannel(1);  // PA1对应ADC通道1
         //adc_pb0 = ADC_ReadChannel(8);  // PB0对应ADC通道8
         
@@ -175,6 +203,7 @@ void vTaskUsartTest(void* pvParameters)
         RS485_Master_Receive_Process();
         /* Task blocking time Delay */
         vTaskDelay(10);
+		
     }
 }
 
