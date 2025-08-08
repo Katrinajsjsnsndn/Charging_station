@@ -48,6 +48,7 @@
 ".\objects\rs485.o"
 ".\objects\charge_control.o"
 ".\objects\charging_station_ui.o"
+".\objects\ui_state_machine.o"
 ".\objects\lv_disp.o"
 ".\objects\lv_event.o"
 ".\objects\lv_group.o"

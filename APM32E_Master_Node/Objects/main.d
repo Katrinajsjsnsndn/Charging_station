@@ -167,3 +167,4 @@
 .\objects\main.o: .\lvgl\guigder\src\generated\gui_guider.h
 .\objects\main.o: .\lvgl\guigder\src\generated\events_init.h
 .\objects\main.o: .\Source\lvgl_charging_station_ui.h
+.\objects\main.o: .\APP\ui_state_machine.h

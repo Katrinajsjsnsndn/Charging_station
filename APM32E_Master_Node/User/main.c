@@ -45,6 +45,7 @@
 #include "gui_guider.h"           // Gui Guider 生成的界面和控件的声明
 #include "events_init.h"          // Gui Guider 生成的初始化事件、回调函数
 #include "lvgl_charging_station_ui.h"
+#include "ui_state_machine.h"
 
 // 串口接收相关定义
 #define UART_RX_BUFFER_SIZE 100
@@ -165,82 +166,17 @@ void vApplicationTickHook(void)
 /**@} end of group GPIO_Toggle */
 /**@} end of group Examples */
 lv_ui  guider_ui;                     // 声明 界面对象
-static uint8_t key_val = 0, key_old = 0, key_down = 0;
-
-// 选项框高亮相关变量
-static int selected_option = 0;  // 当前选中的选项索引 (0-3)
 lv_obj_t* control_labels[3] = {NULL, NULL, NULL}; // Control页面标签指针
-static int selected_control_option = 0; // Control页面当前选中的选项索引 (0-2)
+// 按键扫描变量已在状态机模块中管理
+// 选项框高亮相关变量已在状态机模块中管理
 
 
 
-// 选项框高亮功能函数
-void update_option_highlight(lv_ui *ui)
-{
-    // 获取所有选项框
-    lv_obj_t* option_boxes[4] = {
-        ui->screen_Master_cont_1,
-        ui->screen_Master_cont_2,
-        ui->screen_Master_cont_3,
-        ui->screen_Master_cont_4
-    };
-    
-    // 更新所有选项框的样式
-    for(int i = 0; i < 4; i++) {
-        if(i == selected_option) {
-            // 高亮选中的选项：绿色边框，高亮背景，添加阴影
-            lv_obj_set_style_border_width(option_boxes[i], 3, LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_border_color(option_boxes[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_shadow_width(option_boxes[i], 8, LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_shadow_color(option_boxes[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
-        } else {
-            // 普通样式：恢复原始颜色
-            lv_obj_set_style_border_width(option_boxes[i], 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_border_color(option_boxes[i], lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_shadow_width(option_boxes[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-            // 恢复原始背景色
-            if(i == 0) lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0x5a9838), LV_PART_MAIN|LV_STATE_DEFAULT);
-            else if(i == 1) lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
-            else if(i == 2) lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0xff9800), LV_PART_MAIN|LV_STATE_DEFAULT);
-            else if(i == 3) lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0xf44336), LV_PART_MAIN|LV_STATE_DEFAULT);
-        }
-    }
-}
-
-void select_option(int new_index)
-{
-    if(new_index < 0 || new_index >= 4) return;
-    
-    selected_option = new_index;
-    update_option_highlight(&guider_ui);
-}
-
-void select_control_option(int new_index)
-{
-    if(new_index < 0 || new_index >= 3) return;
-    
-    selected_control_option = new_index;
-    guider_ui.screen_control_selected_index = new_index;
-    update_control_option_highlight();
-}
-
-void update_control_option_highlight(void)
-{
-    for(int i = 0; i < 3; i++) {
-        if(control_labels[i] == NULL || !lv_obj_is_valid(control_labels[i])) continue;
-        
-        if(i == selected_control_option) {
-            lv_obj_set_style_bg_color(control_labels[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_bg_opa(control_labels[i], 255, LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_border_width(control_labels[i], 2, LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_border_color(control_labels[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
-        } else {
-            lv_obj_set_style_bg_opa(control_labels[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-            lv_obj_set_style_border_width(control_labels[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-        }
-    }
-}
+// 这些函数已经在状态机模块中实现，这里保留声明供外部调用
+void update_option_highlight(lv_ui *ui);
+void select_option(int new_index);
+void select_control_option(int new_index);
+void update_control_option_highlight(void);
 
 
 
@@ -264,166 +200,67 @@ uint8_t key_scan(void)
         temp = KEY_UP;
     return temp;
 }
+// 使用状态机模块的UI任务
+// 状态机模块提供了更好的代码组织和扩展性
+// 核心功能：
+// 1. 状态机模块自动处理所有UI页面切换和按键响应
+// 2. 要添加新页面，只需在ui_state_machine.h中定义新的页面状态
+// 3. 在ui_state_machine.c中实现对应的页面处理函数
+// 4. 在状态转换表中添加页面间的转换规则
+// 5. 所有动态数据更新都在update_dynamic_data函数中统一管理
 void Lvgl_ui_task(void* pvParameters)
 {
-    // 添加调试指示
-    APM_MINI_LEDToggle(LED2);  // 指示任务启动
+    // 初始化状态机
+    ui_state_machine_init();
     
-    // 分步初始化，避免内存问题
-    setup_ui(&guider_ui);           // 初始化 UI
-    vTaskDelay(10);  // 给系统一些时间处理
+    // 获取UI上下文
+    ui_context_t* ctx = ui_get_context();
     
-    events_init(&guider_ui);       // 初始化 事件  
-    vTaskDelay(10);  // 给系统一些时间处理
+    // 按键扫描变量
+    static uint8_t key_val = 0, key_old = 0, key_down = 0;
     
-    // 设置初始高亮（第一个选项）
-    update_option_highlight(&guider_ui);
-    
-
-    
-    while(1)
-    {
+    while (1) {
+        // 按键扫描
         key_val = key_scan();
         key_down = key_val & (key_val ^ key_old);
         key_old = key_val;
         
-        if (key_down)
-        {
-            if (key_down == KEY_OK)
-            {
-                // 检查当前界面，实现正确的切换逻辑
-                if (lv_scr_act() == guider_ui.screen_Master)
-                {
-                    // 从master界面进入detail界面 - 直接切换
-                    lv_scr_load(guider_ui.screen_detail);
-                    lv_refr_now(NULL);
-                }
-                else if (lv_scr_act() == guider_ui.screen_detail)
-                {
-                    // 从detail界面进入control界面 - 直接切换
-                    lv_scr_load(guider_ui.screen_control);
-                    lv_refr_now(NULL);
-                    // 初始化control页面选中状态
-                    selected_control_option = 0;
-                    guider_ui.screen_control_selected_index = 0;
-                    // 恢复高亮功能
-                    update_control_option_highlight();
-                }
+        // 处理按键事件
+        if (key_down) {
+            key_event_t event = convert_key_to_event(key_down);
+            if (event != KEY_EVENT_NONE) {
+                ui_state_machine_process(ctx, event);
             }
-            else if(key_down == KEY_RETURN)
-            {
-                // 检查当前界面，实现正确的返回逻辑
-                if (lv_scr_act() == guider_ui.screen_detail)
-                {
-                    // 从detail界面返回master界面 - 直接切换
-                    lv_scr_load(guider_ui.screen_Master);
-                    lv_refr_now(NULL);
-                    // 重新应用高亮
-                    update_option_highlight(&guider_ui);
-                }
-                else if (lv_scr_act() == guider_ui.screen_control)
-                {
-                    // 从control界面返回detail界面 - 直接切换
-                    lv_scr_load(guider_ui.screen_detail);
-                    lv_refr_now(NULL);
-                }
-            }
-            // 方向键处理（仅在master界面有效）
-            else if(key_down == KEY_LEFT && lv_scr_act() == guider_ui.screen_Master)
-            {
-                // 向左选择（上一个选项）
-                int new_index = selected_option - 1;
-                if(new_index < 0) new_index = 3;  // 循环到最后一个
-                select_option(new_index);
-            }
-            else if(key_down == KEY_RIGHT && lv_scr_act() == guider_ui.screen_Master)
-            {
-                // 向右选择（下一个选项）
-                int new_index = selected_option + 1;
-                if(new_index >= 4) new_index = 0;  // 循环到第一个
-                select_option(new_index);
-            }
-            else if(key_down == KEY_UP && lv_scr_act() == guider_ui.screen_Master)
-            {
-                // 向上选择（上一行）
-                int new_index = selected_option - 2;
-                if(new_index < 0) new_index += 4;  // 循环
-                select_option(new_index);
-            }
-            else if(key_down == KEY_DOWN && lv_scr_act() == guider_ui.screen_Master)
-            {
-                // 向下选择（下一行）
-                int new_index = selected_option + 2;
-                if(new_index >= 4) new_index -= 4;  // 循环
-                select_option(new_index);
-            }
-            // Control页面上下选择处理
-            else if(key_down == KEY_UP && lv_scr_act() == guider_ui.screen_control)
-            {
-                int new_index = selected_control_option - 1;
-                if(new_index < 0) new_index = 2;
-                select_control_option(new_index);
-            }
-            else if(key_down == KEY_DOWN && lv_scr_act() == guider_ui.screen_control)
-            {
-                int new_index = selected_control_option + 1;
-                if(new_index > 2) new_index = 0;
-                select_control_option(new_index);
-            }                   
         }
         
+        // 页面更新
+        ui_page_update(ctx);
+        
+        // LVGL任务处理
         lv_task_handler();
         
-        // 动态更新一些显示数据
-        static uint32_t update_counter = 0;
-        update_counter++;
+        // 动态数据更新
+        update_dynamic_data(ctx);
         
-        // 每50次循环更新一次数据（约250ms），提高更新频率
-        if(update_counter % 50 == 0) {
-            // 更新control页面的进度条
-            if(lv_scr_act() == guider_ui.screen_control && guider_ui.screen_control_bar_1 != NULL) {
-                static int control_bar_value = 75;
-                control_bar_value = (control_bar_value + 5) % 100;
-                lv_bar_set_value(guider_ui.screen_control_bar_1, control_bar_value, LV_ANIM_OFF); // 关闭动画提高速度
-            }
-            
-            // 更新detail页面的进度条
-            if(lv_scr_act() == guider_ui.screen_detail && guider_ui.screen_detail_bar_1 != NULL) {
-                static int detail_bar_value = 50;
-                detail_bar_value = (detail_bar_value + 2) % 100; // 每次增加2%，模拟充电进度
-                lv_bar_set_value(guider_ui.screen_detail_bar_1, detail_bar_value, LV_ANIM_ON); // 开启动画效果
-                
-                // 同时更新充电百分比标签
-                static char percent_text[20];
-                snprintf(percent_text, sizeof(percent_text), "Charged %d%%", detail_bar_value);
-                lv_label_set_text(guider_ui.screen_detail_label_7, percent_text);
-                
-                // 更新电压显示（模拟变化）
-                static float voltage = 17.23f;
-                voltage = 16.5f + (detail_bar_value / 100.0f) * 1.5f; // 16.5V到18V之间变化
-                static char voltage_text[20];
-                snprintf(voltage_text, sizeof(voltage_text), "%.2fV", voltage);
-                lv_label_set_text(guider_ui.screen_detail_label_8, voltage_text);
-                
-                // 更新功率显示
-                static int power = 20;
-                power = 15 + (detail_bar_value / 20); // 15W到20W之间变化
-                static char power_text[20];
-                snprintf(power_text, sizeof(power_text), "%dW", power);
-                lv_label_set_text(guider_ui.screen_detail_label_10, power_text);
-                
-                // 更新温度显示（模拟变化）
-                static int temp_counter = 0;
-                temp_counter++;
-                int temperature = 30 + (temp_counter % 20); // 30°C到50°C之间变化
-                static char temp_text[20];
-                snprintf(temp_text, sizeof(temp_text), "%d°C", temperature);
-                lv_label_set_text(guider_ui.screen_detail_label_11, temp_text);
-            }
-        }
-        
-        vTaskDelay(2); // 减少延迟，提高响应速度
+        vTaskDelay(2);
     }
+}
+
+// 示例：如何在其他任务中调用状态机模块的函数
+// 例如，在串口任务中更新UI数据
+void update_ui_from_other_task(void)
+{
+    // 获取UI上下文
+    ui_context_t* ctx = ui_get_context();
+    
+    // 检查当前页面
+    if (ctx->current_page == PAGE_MAIN) {
+        // 在主页面时更新某些数据
+        // 例如更新功率显示等
+    }
+    
+    // 或者直接切换到某个页面
+    // switch_to_page(ctx, PAGE_DETAIL);
 }
 /*!
  * @brief       Led toggle task
