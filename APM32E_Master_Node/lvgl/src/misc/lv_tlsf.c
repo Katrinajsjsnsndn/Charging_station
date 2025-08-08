@@ -1174,6 +1174,7 @@ size_t lv_tlsf_free(lv_tlsf_t tlsf, const void * ptr)
     return size;
 }
 
+
 /*
 ** The TLSF block information provides us with enough information to
 ** provide a reasonably intelligent implementation of realloc, growing or

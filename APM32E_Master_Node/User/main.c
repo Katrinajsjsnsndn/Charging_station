@@ -93,10 +93,10 @@ int main(void)
     SystemInit();
     
     // GPIO 初始化
-    GPIO_INIT();
+		GPIO_INIT();
     APM_MINI_LEDInit(LED2);
     APM_MINI_LEDInit(LED3);
-    
+		
     // 串口初始化
     USART_Init();
     USART2_DMA_RX_Init();
@@ -137,36 +137,113 @@ static void UserTaskCreate(void)
 {
 //    xTaskCreate(charging_station_ui_task,
 //                "charging_station_ui_task",
-//                256,  // 增加栈空间
+//                256,  
 //                NULL,
 //                0,
 //                &xHandleTaskLedToggle);
 
     xTaskCreate(vTaskUsartTest,
                 "TaskUsartTest",
-                128,  // 增加栈空间
+                128,
                 NULL,
-                2,
+                5,
                 &xHandleTaskUsartTest);
 	  xTaskCreate(Lvgl_ui_task,
                 "Lvgl_ui_task",
-                1024,  // 增加栈空间
+                4096,  // 增加栈大小到4KB
                 NULL,
                 2,
                 &xHandleLVGL);
 }
 
 
-// FreeRTOSConfig.h 里要有 configUSE_TICK_HOOK 设为 1
 void vApplicationTickHook(void)
 {
-    lv_tick_inc(1); // 1ms，如果你的 FreeRTOS tick 是 1ms
+    lv_tick_inc(1); 
 }
 /**@} end of group GPIO_Toggle_Functions */
 /**@} end of group GPIO_Toggle */
 /**@} end of group Examples */
 lv_ui  guider_ui;                     // 声明 界面对象
 static uint8_t key_val = 0, key_old = 0, key_down = 0;
+
+// 选项框高亮相关变量
+static int selected_option = 0;  // 当前选中的选项索引 (0-3)
+lv_obj_t* control_labels[3] = {NULL, NULL, NULL}; // Control页面标签指针
+static int selected_control_option = 0; // Control页面当前选中的选项索引 (0-2)
+
+
+
+// 选项框高亮功能函数
+void update_option_highlight(lv_ui *ui)
+{
+    // 获取所有选项框
+    lv_obj_t* option_boxes[4] = {
+        ui->screen_Master_cont_1,
+        ui->screen_Master_cont_2,
+        ui->screen_Master_cont_3,
+        ui->screen_Master_cont_4
+    };
+    
+    // 更新所有选项框的样式
+    for(int i = 0; i < 4; i++) {
+        if(i == selected_option) {
+            // 高亮选中的选项：绿色边框，高亮背景，添加阴影
+            lv_obj_set_style_border_width(option_boxes[i], 3, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_border_color(option_boxes[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_shadow_width(option_boxes[i], 8, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_shadow_color(option_boxes[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
+        } else {
+            // 普通样式：恢复原始颜色
+            lv_obj_set_style_border_width(option_boxes[i], 2, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_border_color(option_boxes[i], lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_shadow_width(option_boxes[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+            // 恢复原始背景色
+            if(i == 0) lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0x5a9838), LV_PART_MAIN|LV_STATE_DEFAULT);
+            else if(i == 1) lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
+            else if(i == 2) lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0xff9800), LV_PART_MAIN|LV_STATE_DEFAULT);
+            else if(i == 3) lv_obj_set_style_bg_color(option_boxes[i], lv_color_hex(0xf44336), LV_PART_MAIN|LV_STATE_DEFAULT);
+        }
+    }
+}
+
+void select_option(int new_index)
+{
+    if(new_index < 0 || new_index >= 4) return;
+    
+    selected_option = new_index;
+    update_option_highlight(&guider_ui);
+}
+
+void select_control_option(int new_index)
+{
+    if(new_index < 0 || new_index >= 3) return;
+    
+    selected_control_option = new_index;
+    guider_ui.screen_control_selected_index = new_index;
+    update_control_option_highlight();
+}
+
+void update_control_option_highlight(void)
+{
+    for(int i = 0; i < 3; i++) {
+        if(control_labels[i] == NULL || !lv_obj_is_valid(control_labels[i])) continue;
+        
+        if(i == selected_control_option) {
+            lv_obj_set_style_bg_color(control_labels[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(control_labels[i], 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(control_labels[i], 2, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_border_color(control_labels[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
+        } else {
+            lv_obj_set_style_bg_opa(control_labels[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(control_labels[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+        }
+    }
+}
+
+
+
 
 uint8_t key_scan(void)
 {
@@ -179,7 +256,7 @@ uint8_t key_scan(void)
         temp = KEY_MENU;
     else if (GPIO_ReadInputBit(GPIOC, GPIO_PIN_4) == RESET)    // KEY4
         temp = KEY_OK;
-    else if (GPIO_ReadInputBit(GPIOA, GPIO_PIN_6) == RESET)    // KEY5
+                                                                                        else if (GPIO_ReadInputBit(GPIOA, GPIO_PIN_6) == RESET)    // KEY5
         temp = KEY_RIGHT;
     else if (GPIO_ReadInputBit(GPIOA, GPIO_PIN_5) == RESET)    // KEY6
         temp = KEY_DOWN;
@@ -189,31 +266,134 @@ uint8_t key_scan(void)
 }
 void Lvgl_ui_task(void* pvParameters)
 {
-		//charging_station_ui_create(lv_scr_act());
+    // 添加调试指示
+    APM_MINI_LEDToggle(LED2);  // 指示任务启动
+    
+    // 分步初始化，避免内存问题
     setup_ui(&guider_ui);           // 初始化 UI
-		events_init(&guider_ui);       // 初始化 事件  
-	while(1)
-	{
-				key_val = key_scan();
+    vTaskDelay(10);  // 给系统一些时间处理
+    
+    events_init(&guider_ui);       // 初始化 事件  
+    vTaskDelay(10);  // 给系统一些时间处理
+    
+    // 设置初始高亮（第一个选项）
+    update_option_highlight(&guider_ui);
+    
+
+    
+    while(1)
+    {
+        key_val = key_scan();
         key_down = key_val & (key_val ^ key_old);
         key_old = key_val;
-				if (key_down)
+        
+        if (key_down)
         {
-					 if (key_down == KEY_OK)
-					 {
-						 ui_load_scr_animation(&guider_ui, &guider_ui.screen_detail, guider_ui.screen_detail_del, &guider_ui.screen_Master_del, setup_scr_screen_detail, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, true);
-					 }
-					 else if(key_down==KEY_RETURN)
-					 {
-						 ui_load_scr_animation(&guider_ui, &guider_ui.screen_Master, guider_ui.screen_Master_del, &guider_ui.screen_control_del, setup_scr_screen_Master, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, true);
-					 }					
-				}
+            if (key_down == KEY_OK)
+            {
+                // 检查当前界面，实现正确的切换逻辑
+                if (lv_scr_act() == guider_ui.screen_Master)
+                {
+                    // 从master界面进入detail界面
+                    ui_load_scr_animation(&guider_ui, &guider_ui.screen_detail, guider_ui.screen_detail_del, &guider_ui.screen_Master_del, setup_scr_screen_detail, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, true);
+                }
+                else if (lv_scr_act() == guider_ui.screen_detail)
+                {
+                    // 从detail界面进入control界面 - 直接加载测试
+                    if (guider_ui.screen_control == NULL) {
+                        setup_scr_screen_control(&guider_ui);
+                    }
+                    lv_scr_load(guider_ui.screen_control);
+                    // 初始化control页面选中状态
+                    selected_control_option = 0;
+                    guider_ui.screen_control_selected_index = 0;
+                    // 恢复高亮功能
+                    update_control_option_highlight();
+                }
+            }
+            else if(key_down == KEY_RETURN)
+            {
+                // 检查当前界面，实现正确的返回逻辑
+                if (lv_scr_act() == guider_ui.screen_detail)
+                {
+                    // 从detail界面返回master界面
+                    ui_load_scr_animation(&guider_ui, &guider_ui.screen_Master, guider_ui.screen_Master_del, &guider_ui.screen_detail_del, setup_scr_screen_Master, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, true);
+                    // 重新应用高亮
+                    update_option_highlight(&guider_ui);
+                }
+                else if (lv_scr_act() == guider_ui.screen_control)
+                {
+                    // 从control界面返回detail界面
+                    ui_load_scr_animation(&guider_ui, &guider_ui.screen_detail, guider_ui.screen_detail_del, &guider_ui.screen_control_del, setup_scr_screen_detail, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, true);
+                }
+            }
+            // 方向键处理（仅在master界面有效）
+            else if(key_down == KEY_LEFT && lv_scr_act() == guider_ui.screen_Master)
+            {
+                // 向左选择（上一个选项）
+                int new_index = selected_option - 1;
+                if(new_index < 0) new_index = 3;  // 循环到最后一个
+                select_option(new_index);
+            }
+            else if(key_down == KEY_RIGHT && lv_scr_act() == guider_ui.screen_Master)
+            {
+                // 向右选择（下一个选项）
+                int new_index = selected_option + 1;
+                if(new_index >= 4) new_index = 0;  // 循环到第一个
+                select_option(new_index);
+            }
+            else if(key_down == KEY_UP && lv_scr_act() == guider_ui.screen_Master)
+            {
+                // 向上选择（上一行）
+                int new_index = selected_option - 2;
+                if(new_index < 0) new_index += 4;  // 循环
+                select_option(new_index);
+            }
+            else if(key_down == KEY_DOWN && lv_scr_act() == guider_ui.screen_Master)
+            {
+                // 向下选择（下一行）
+                int new_index = selected_option + 2;
+                if(new_index >= 4) new_index -= 4;  // 循环
+                select_option(new_index);
+            }
+            // Control页面上下选择处理
+            else if(key_down == KEY_UP && lv_scr_act() == guider_ui.screen_control)
+            {
+                int new_index = selected_control_option - 1;
+                if(new_index < 0) new_index = 2;
+                select_control_option(new_index);
+            }
+            else if(key_down == KEY_DOWN && lv_scr_act() == guider_ui.screen_control)
+            {
+                int new_index = selected_control_option + 1;
+                if(new_index > 2) new_index = 0;
+                select_control_option(new_index);
+            }                   
+        }
+        
         lv_task_handler();
+        
+        // 动态更新一些显示数据
+        static uint32_t update_counter = 0;
+        update_counter++;
+        
+        // 每100次循环更新一次数据（约500ms）
+        if(update_counter % 100 == 0) {
+            // 更新control页面的进度条
+            if(lv_scr_act() == guider_ui.screen_control && guider_ui.screen_control_bar_1 != NULL) {
+                static int bar_value = 75;
+                bar_value = (bar_value + 5) % 100;
+                lv_bar_set_value(guider_ui.screen_control_bar_1, bar_value, LV_ANIM_ON);
+            }
+            
+            // 更新detail页面的数据（如果有的话）
+            if(lv_scr_act() == guider_ui.screen_detail) {
+                // 这里可以添加detail页面的数据更新
+            }
+        }
+        
         vTaskDelay(5);
-	}
-		
-
-
+    }
 }
 /*!
  * @brief       Led toggle task
@@ -230,96 +410,27 @@ float out_cal,out_current;
 
 void vTaskUsartTest(void* pvParameters)
 {
-    
+	
     // 初始化ADC
     ADC_Init_Once();
-  
+
     while (1)
     {
- 
 
-//			    // 读取PA1和PB0的ADC值
-//        adc_pa1 = ADC_ReadChannel(1);  // PA1对应ADC通道1
-//        //adc_pb0 = ADC_ReadChannel(8);  // PB0对应ADC通道8
-//        
-//    	out_cal=(adc_pb0/4095.0f)*3.3/0.005;
-//			out_current=(adc_pa1/4095.0f)*3.3*11.0f;
-//			stations[0].discharge_voltage=out_current;
-//			stations[0].discharge_current=1.5;
-//			stations[0].discharge_power=out_cal*out_current;
 
-//        RS485_Master_Receive_Process();
-//        /* Task blocking time Delay */
+			    // 读取PA1和PB0的ADC值
+        adc_pa1 = ADC_ReadChannel(1);  // PA1对应ADC通道1
+        //adc_pb0 = ADC_ReadChannel(8);  // PB0对应ADC通道8
+        
+    	out_cal=(adc_pb0/4095.0f)*3.3/0.005;
+			out_current=(adc_pa1/4095.0f)*3.3*11.0f;
+			stations[0].discharge_voltage=out_current;
+			stations[0].discharge_current=1.5;
+			stations[0].discharge_power=out_cal*out_current;
+
+        RS485_Master_Receive_Process();
+        /* Task blocking time Delay */
         vTaskDelay(10);
 		
     }
 }
-
-// ADC初始化标志
-static uint8_t adc_initialized = 0;
-
-/* ADC初始化函数 */
-void ADC_Init_Once(void)
-{
-    if(adc_initialized) return;
-    
-    GPIO_Config_T gpioConfig;
-    
-    // 使能ADC1时钟
-    RCM_EnableAPB2PeriphClock(RCM_APB2_PERIPH_ADC1);
-    
-    // 配置GPIO为模拟输入
-    RCM_EnableAPB2PeriphClock(RCM_APB2_PERIPH_GPIOA);
-    RCM_EnableAPB2PeriphClock(RCM_APB2_PERIPH_GPIOB);
-    GPIO_ConfigStructInit(&gpioConfig);
-    gpioConfig.pin = GPIO_PIN_1;  // 配置PA1
-    gpioConfig.mode = GPIO_MODE_ANALOG;
-    GPIO_Config(GPIOA, &gpioConfig);
-    
-    gpioConfig.pin = GPIO_PIN_0;  // 配置PB0
-    GPIO_Config(GPIOB, &gpioConfig);
-    
-    // 配置ADC
-    ADC_Config_T adcConfig;
-    ADC_ConfigStructInit(&adcConfig);
-    // 根据APM32库的特点，使用软件触发模式
-    adcConfig.externalTrigConv = ADC_EXT_TRIG_CONV_None;  // 软件触发
-    ADC_Config(ADC1, &adcConfig);
-    
-    // 使能ADC
-    ADC_Enable(ADC1);
-    
-    // 等待ADC稳定
-    for(volatile uint32_t i = 0; i < 1000; i++);
-    
-    adc_initialized = 1;
-}
-
-/* ADC读取函数 */
-uint16_t ADC_ReadChannel(uint8_t channel)
-{
-    // 确保ADC已初始化
-    ADC_Init_Once();
-    
-    // 配置ADC通道
-    ADC_ConfigRegularChannel(ADC1, channel, 1, ADC_SAMPLETIME_239CYCLES5);
-    
-    // 开始转换
-    ADC_EnableSoftwareStartConv(ADC1);
-    
-    // 等待转换完成
-    uint32_t timeout = 10000;
-    while(!ADC_ReadStatusFlag(ADC1, ADC_FLAG_EOC) && timeout--);
-    
-    // 读取结果
-    uint16_t result = ADC_ReadConversionValue(ADC1);
-    
-    // 如果超时，返回0
-    if(timeout == 0)
-    {
-        return 0;
-    }
-    
-    return result;
-}
-

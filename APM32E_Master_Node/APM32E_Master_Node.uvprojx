@@ -337,7 +337,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>--locale=chinese</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>.\Boards;.\Boards\Board_APM32E103_MINI\inc;.\Library\inc;.\Start;.\User;.\FreeRTOS\include;.\FreeRTOS\portable\MemMang;.\FreeRTOS\portable\RVDS;.\FreeRTOS\portable\RVDS\ARM_CM3;.\APP\tft;.\APP\rs485;.\APP;.\lvgl;.\lvgl\examples\porting;.\lvgl\src;.\Source;.\lvgl\guigder\src\generated\guider_customer_fonts;.\lvgl\guigder\src\generated\guider_fonts;.\lvgl\guigder\src\generated\images;.\lvgl\guigder\src\custom;.\lvgl\guigder\src\generated</IncludePath>
@@ -1538,6 +1538,31 @@
               <FileName>lv_font_SourceHanSerifSC_Regular_16.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_16.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_SourceHanSerifSC_Regular_9.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_9.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_SourceHanSerifSC_Regular_13.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_13.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_SourceHanSerifSC_Regular_14.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_14.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_SourceHanSerifSC_Regular_15.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_15.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_font_SourceHanSerifSC_Regular_19.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_19.c</FilePath>
             </File>
             <File>
               <FileName>widgets_init.c</FileName>

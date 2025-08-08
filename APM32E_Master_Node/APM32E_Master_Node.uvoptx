@@ -210,6 +210,26 @@
           <WinNumber>1</WinNumber>
           <ItemText>out_current,0x0A</ItemText>
         </Ww>
+        <Ww>
+          <count>12</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>lv_scr_act,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>13</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>guider_ui</ItemText>
+        </Ww>
+        <Ww>
+          <count>14</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>on_master,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>selected_option,0x0A</ItemText>
+        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -3009,6 +3029,66 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
+      <PathWithFileName>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_9.c</PathWithFileName>
+      <FilenameWithoutPath>lv_font_SourceHanSerifSC_Regular_9.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>225</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_13.c</PathWithFileName>
+      <FilenameWithoutPath>lv_font_SourceHanSerifSC_Regular_13.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>226</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_14.c</PathWithFileName>
+      <FilenameWithoutPath>lv_font_SourceHanSerifSC_Regular_14.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>227</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_15.c</PathWithFileName>
+      <FilenameWithoutPath>lv_font_SourceHanSerifSC_Regular_15.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>228</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\lvgl\guigder\src\generated\guider_fonts\lv_font_SourceHanSerifSC_Regular_19.c</PathWithFileName>
+      <FilenameWithoutPath>lv_font_SourceHanSerifSC_Regular_19.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>9</GroupNumber>
+      <FileNumber>229</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <bDave2>0</bDave2>
       <PathWithFileName>.\lvgl\guigder\src\generated\widgets_init.c</PathWithFileName>
       <FilenameWithoutPath>widgets_init.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
@@ -3016,7 +3096,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>225</FileNumber>
+      <FileNumber>230</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3028,7 +3108,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>226</FileNumber>
+      <FileNumber>231</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3040,7 +3120,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>227</FileNumber>
+      <FileNumber>232</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3052,7 +3132,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>228</FileNumber>
+      <FileNumber>233</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3064,7 +3144,7 @@
     </File>
     <File>
       <GroupNumber>9</GroupNumber>
-      <FileNumber>229</FileNumber>
+      <FileNumber>234</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
@@ -3084,7 +3164,7 @@
     <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>10</GroupNumber>
-      <FileNumber>230</FileNumber>
+      <FileNumber>235</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>

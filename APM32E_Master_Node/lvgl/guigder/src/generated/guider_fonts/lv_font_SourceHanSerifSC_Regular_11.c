@@ -1761,7 +1761,6 @@ lv_font_t lv_font_SourceHanSerifSC_Regular_11 = {
 #if LV_VERSION_CHECK(8, 2, 0) || LVGL_VERSION_MAJOR >= 9
     .fallback = NULL,
 #endif
-//    .user_data = NULL,
 };
 
 

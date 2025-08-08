@@ -129,8 +129,5 @@
 .\objects\setup_scr_screen_control.o: .\lvgl\src/extra/widgets/led/lv_led.h
 .\objects\setup_scr_screen_control.o: .\lvgl\src/extra/widgets/imgbtn/lv_imgbtn.h
 .\objects\setup_scr_screen_control.o: .\lvgl\src/extra/widgets/span/lv_span.h
-.\objects\setup_scr_screen_control.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\setup_scr_screen_control.o: lvgl\guigder\src\generated\gui_guider.h
-.\objects\setup_scr_screen_control.o: lvgl\guigder\src\generated\events_init.h
 .\objects\setup_scr_screen_control.o: lvgl\guigder\src\generated\widgets_init.h
-.\objects\setup_scr_screen_control.o: .\lvgl\guigder\src\custom\custom.h

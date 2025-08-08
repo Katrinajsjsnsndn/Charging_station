@@ -69,6 +69,24 @@ void events_init_screen_detail (lv_ui *ui)
     lv_obj_add_event_cb(ui->screen_detail, screen_detail_event_handler, LV_EVENT_ALL, ui);
 }
 
+static void screen_control_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_screen_control (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->screen_control, screen_control_event_handler, LV_EVENT_ALL, ui);
+}
+
 
 void events_init(lv_ui *ui)
 {

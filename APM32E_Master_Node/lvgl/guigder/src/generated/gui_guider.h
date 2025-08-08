@@ -23,12 +23,16 @@ typedef struct
 	lv_obj_t *screen_Master_Master_screen;
 	lv_obj_t *screen_Master_cont_1;
 	lv_obj_t *screen_Master_label_1;
+	lv_obj_t *screen_Master_label_7;
 	lv_obj_t *screen_Master_cont_2;
+	lv_obj_t *screen_Master_label_8;
 	lv_obj_t *screen_Master_label_2;
 	lv_obj_t *screen_Master_cont_3;
 	lv_obj_t *screen_Master_label_3;
+	lv_obj_t *screen_Master_label_9;
 	lv_obj_t *screen_Master_cont_4;
 	lv_obj_t *screen_Master_label_4;
+	lv_obj_t *screen_Master_label_10;
 	lv_obj_t *screen_Master_label_5;
 	lv_obj_t *screen_Master_label_6;
 	lv_obj_t *screen_detail;
@@ -41,15 +45,31 @@ typedef struct
 	lv_obj_t *screen_detail_label_4;
 	lv_obj_t *screen_detail_label_5;
 	lv_obj_t *screen_detail_label_6;
+	lv_obj_t *screen_detail_label_7;
+	lv_obj_t *screen_detail_label_8;
+	lv_obj_t *screen_detail_label_9;
+	lv_obj_t *screen_detail_label_10;
+	lv_obj_t *screen_detail_label_11;
 	lv_obj_t *screen_control;
 	bool screen_control_del;
 	lv_obj_t *screen_control_label_1;
 	lv_obj_t *screen_control_bar_1;
-	lv_obj_t *screen_control_list_1;
-	lv_obj_t *screen_control_list_1_item0;
-	lv_obj_t *screen_control_list_1_item1;
-	lv_obj_t *screen_control_list_1_item2;
 	lv_obj_t *screen_control_label_2;
+	lv_obj_t *screen_control_radiobtn_1;
+	// 注释掉这些不存在的对象，因为 btnmatrix 是空的
+	// lv_obj_t *screen_control_radiobtn_1_item0;
+	// lv_obj_t *screen_control_radiobtn_1_item1;
+	// lv_obj_t *screen_control_radiobtn_1_item2;
+	lv_obj_t *screen_control_label_3;
+	lv_obj_t *screen_control_label_4;
+	lv_obj_t *screen_control_label_5;
+	lv_obj_t *screen_control_label_6;
+	int screen_control_selected_index; // 当前control页面选中索引(0-2)
+	/* 新增：control 页面三行模式标签对象指针，用于上下选择与高亮 */
+	lv_obj_t *screen_control_mode_label_0; // Standard Charging
+	lv_obj_t *screen_control_mode_label_1; // Fast Charging
+	lv_obj_t *screen_control_mode_label_2; // Discharge Test
+	lv_obj_t *screen_control_msgbox_1;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -77,11 +97,18 @@ void setup_scr_screen_Master(lv_ui *ui);
 void setup_scr_screen_detail(lv_ui *ui);
 void setup_scr_screen_control(lv_ui *ui);
 
+// control 页面高亮更新接口
+void control_update_highlight(lv_ui *ui);
+
 LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_11)
 LV_FONT_DECLARE(lv_font_montserratMedium_16)
-LV_FONT_DECLARE(lv_font_montserratMedium_11)
+LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_9)
 LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_16)
 LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_12)
+LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_14)
+LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_15)
+LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_13)
+LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_19)
 
 
 #ifdef __cplusplus

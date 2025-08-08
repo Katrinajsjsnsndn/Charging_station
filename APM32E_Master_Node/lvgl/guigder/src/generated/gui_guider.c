@@ -34,13 +34,22 @@ void ui_load_scr_animation(lv_ui *ui, lv_obj_t ** new_scr, bool new_scr_del, boo
         gg_edata_task_clear(act_scr);
     }
 #endif
-    if (auto_del && is_clean) {
-        lv_obj_clean(act_scr);
-    }
-    if (new_scr_del) {
+    // 先创建新屏幕
+    if (new_scr_del && *new_scr == NULL) {
         setup_scr(ui);
     }
-    lv_scr_load_anim(*new_scr, anim_type, time, delay, auto_del);
+    
+    // 确保新屏幕已创建
+    if (*new_scr == NULL) {
+        return;
+    }
+    
+    // 加载新屏幕 - 使用简单的加载方式，不使用动画
+    lv_scr_load(*new_scr);
+    
+    // 不在这里清理旧屏幕，让调用者处理
+    // 这样可以避免在同一个函数调用中创建和删除对象
+    
     *old_scr_del = auto_del;
 }
 
@@ -86,6 +95,43 @@ void setup_ui(lv_ui *ui)
     init_keyboard(ui);
     setup_scr_screen_Master(ui);
     lv_scr_load(ui->screen_Master);
+}
+
+void control_update_highlight(lv_ui *ui)
+{
+    /* 高亮选中的control标签，未选中保持透明背景 */
+    lv_obj_t* labels[3] = {
+        ui->screen_control_mode_label_0,
+        ui->screen_control_mode_label_1,
+        ui->screen_control_mode_label_2
+    };
+    
+    // 边界检查，确保索引在有效范围内
+    if(ui->screen_control_selected_index < 0 || ui->screen_control_selected_index >= 3) {
+        ui->screen_control_selected_index = 0; // 重置为默认值
+    }
+    
+    // 检查所有标签是否都已创建
+    for(int i = 0; i < 3; i++) {
+        if(labels[i] == NULL) {
+            return; // 如果有任何标签未创建，直接返回
+        }
+    }
+    
+    for(int i = 0; i < 3; i++) {
+        // 检查对象是否仍然有效
+        if(!lv_obj_is_valid(labels[i])) continue;
+        
+        if(i == ui->screen_control_selected_index) {
+            lv_obj_set_style_bg_color(labels[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(labels[i], 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(labels[i], 2, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_border_color(labels[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
+        } else {
+            lv_obj_set_style_bg_opa(labels[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_border_width(labels[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+        }
+    }
 }
 
 void init_keyboard(lv_ui *ui)
