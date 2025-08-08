@@ -81,10 +81,10 @@ void lv_port_disp_init(void)
      *      and you only need to change the frame buffer's address.
      */
 
-    /* Example for 1) */
+    /* Example for 1) - 优化版本 */
     static lv_disp_draw_buf_t draw_buf_dsc_1;
-    static lv_color_t buf_1[MY_DISP_HOR_RES * 20];                          /*A buffer for 10 rows*/
-    lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_1, NULL, MY_DISP_HOR_RES * 20);   /*Initialize the display buffer*/
+    static lv_color_t buf_1[MY_DISP_HOR_RES * 40];                          /*A buffer for 40 rows - 增加缓冲区大小*/
+    lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_1, NULL, MY_DISP_HOR_RES * 40);   /*Initialize the display buffer*/
 
 //    /* Example for 2) */
 //    static lv_disp_draw_buf_t draw_buf_dsc_2;
@@ -162,34 +162,41 @@ void disp_disable_update(void)
 static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
 {
     if(disp_flush_enabled) {
-        /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one*/
-
-        int32_t x;
-        int32_t y;
-        
         // 添加边界检查
         if (area->x1 < 0 || area->y1 < 0 || 
-            area->x2 >= MY_DISP_HOR_RES || area->y2 >= MY_DISP_VER_RES) {
-            // 边界错误，直接返回
+            area->x2 >= MY_DISP_HOR_RES || area->y2 >= MY_DISP_VER_RES ||
+            color_p == NULL) {
+            // 边界错误或空指针，直接返回
             lv_disp_flush_ready(disp_drv);
             return;
         }
         
-        for(y = area->y1; y <= area->y2; y++) {
-            for(x = area->x1; x <= area->x2; x++) {
-                /*Put a pixel to the display. For example:*/
-                /*put_px(x, y, *color_p)*/
-                // 添加空指针检查
-                if (color_p != NULL) {
-                    // 确保颜色格式正确
+        // 计算区域大小
+        uint16_t width = area->x2 - area->x1 + 1;
+        uint16_t height = area->y2 - area->y1 + 1;
+        
+        // 优化：对于小区域使用逐点绘制，大区域使用批量绘制
+        if (width * height < 100) {
+            // 小区域：逐点绘制（避免窗口设置的额外开销）
+            int32_t x, y;
+            for(y = area->y1; y <= area->y2; y++) {
+                for(x = area->x1; x <= area->x2; x++) {
                     uint16_t color = color_p->full;
-                    // 使用更可靠的画点方法
                     LCD_SetCursor(x, y);
                     LCD_WriteRAM_Prepare();
                     LCD_WriteRAM(color);
                     color_p++;
                 }
             }
+        } else {
+            // 大区域：使用窗口模式批量绘制
+            LCD_Set_Window(area->x1, area->y1, width, height);
+            LCD_WriteRAM_Prepare();
+            
+            // 使用批量写入函数，减少CS切换次数
+            uint32_t total_pixels = width * height;
+            uint16_t *color_array = (uint16_t*)color_p;
+            LCD_WriteRAM_Batch(color_array, total_pixels);
         }
     }
 

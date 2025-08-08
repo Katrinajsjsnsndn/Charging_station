@@ -27,7 +27,95 @@ Project File Date:  08/08/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\APM32E_Master_Node.axf" - 0 Error(s), 0 Warning(s).
+compiling test code.c...
+APP\tft\test code.c(18): warning:  #223-D: function "LCD_Fill" declared implicitly
+  	LCD_Fill(0,0,lcddev.width,20,BLUE);
+APP\tft\test code.c(50): warning:  #223-D: function "delay_ms" declared implicitly
+  		delay_ms(1500);
+APP\tft\test code.c(67): warning:  #223-D: function "delay_ms" declared implicitly
+  	delay_ms(1800);			
+APP\tft\test code.c(75): warning:  #223-D: function "LCD_Fill" declared implicitly
+  	LCD_Fill(0,24,lcddev.width,lcddev.height-24,WHITE);
+APP\tft\test code.c(80): warning:  #223-D: function "delay_ms" declared implicitly
+  		delay_ms(100);
+APP\tft\test code.c(86): warning:  #223-D: function "delay_ms" declared implicitly
+  		delay_ms(100);
+APP\tft\test code.c(88): warning:  #223-D: function "delay_ms" declared implicitly
+  	delay_ms(1500);
+APP\tft\test code.c(120): warning:  #223-D: function "delay_ms" declared implicitly
+  	delay_ms(1500);
+APP\tft\test code.c(131): warning:  #223-D: function "delay_ms" declared implicitly
+  	delay_ms(1500);
+APP\tft\test code.c(147): warning:  #223-D: function "delay_ms" declared implicitly
+  			delay_ms(1000);delay_ms(1000);
+APP\tft\test code.c(189): warning:  #223-D: function "delay_ms" declared implicitly
+  	delay_ms(1000);
+APP\tft\test code.c(198): warning:  #223-D: function "delay_ms" declared implicitly
+  	Show_Str(20,30,"WHITE",16,1);delay_ms(1000);
+APP\tft\test code.c(216): warning:  #223-D: function "delay_ms" declared implicitly
+  	delay_ms(400);
+APP\tft\test code.c(309): warning:  #223-D: function "LCD_Fill" declared implicitly
+          LCD_Fill(10 + i*20, 70, 25 + i*20, 90, BLUE);
+APP\tft\test code.c(310): warning:  #223-D: function "delay_ms" declared implicitly
+          delay_ms(50);
+APP\tft\test code.c(319): warning:  #223-D: function "delay_ms" declared implicitly
+          delay_ms(100);
+APP\tft\test code.c: 16 warnings, 0 errors
+compiling LCD.c...
+compiling charging_station_ui.c...
+APP\charging_station_ui.c(109): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, DETAIL_DISCHARGE_VOLTAGE_Y, SCREEN_WIDTH - 1, DETAIL_DISCHARGE_VOLTAGE_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+APP\charging_station_ui.c(115): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, DETAIL_DISCHARGE_CURRENT_Y, SCREEN_WIDTH - 1, DETAIL_DISCHARGE_CURRENT_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+APP\charging_station_ui.c(121): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, DETAIL_DISCHARGE_POWER_Y, SCREEN_WIDTH - 1, DETAIL_DISCHARGE_POWER_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+APP\charging_station_ui.c(346): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, DETAIL_VOLTAGE_Y, SCREEN_WIDTH - 1, DETAIL_VOLTAGE_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+APP\charging_station_ui.c(354): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, DETAIL_CURRENT_Y, SCREEN_WIDTH - 1, DETAIL_CURRENT_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+APP\charging_station_ui.c(362): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, DETAIL_POWER_Y, SCREEN_WIDTH - 1, DETAIL_POWER_Y + DETAIL_LINE_H - 1, COLOR_BLACK);
+APP\charging_station_ui.c(410): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
+APP\charging_station_ui.c(446): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(x, y, x + STATION_WIDTH - 1, y + STATION_HEIGHT - 1, card_color);
+APP\charging_station_ui.c(476): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(x, y, x + w - 1, y + h - 1, COLOR_DARK_GRAY);
+APP\charging_station_ui.c(579): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
+APP\charging_station_ui.c(593): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
+APP\charging_station_ui.c(620): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
+APP\charging_station_ui.c(628): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
+APP\charging_station_ui.c(636): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
+APP\charging_station_ui.c(644): warning:  #223-D: function "LCD_Fill" declared implicitly
+      LCD_Fill(0, 0, SCREEN_WIDTH-1, SCREEN_HEIGHT-1, COLOR_BLACK);
+APP\charging_station_ui.c(686): warning:  #223-D: function "LCD_Fill" declared implicitly
+              LCD_Fill(20, y, SCREEN_WIDTH-20, y+24, bg);
+APP\charging_station_ui.c(708): warning:  #223-D: function "LCD_Fill" declared implicitly
+              LCD_Fill(20, y, SCREEN_WIDTH-20, y+24, color);
+APP\charging_station_ui.c(53): warning:  #550-D: variable "system_total_power"  was set but never used
+  static uint16_t system_total_power = 200;
+APP\charging_station_ui.c(61): warning:  #550-D: variable "last_menu_selected"  was set but never used
+  static uint8_t last_menu_selected = 0;    // 菜单局部刷新索引
+APP\charging_station_ui.c(78): warning:  #550-D: variable "last_charge_mode_selected"  was set but never used
+  static uint8_t last_charge_mode_selected = 0; // 记录上一次选中的充电模式索引
+APP\charging_station_ui.c: 20 warnings, 0 errors
+compiling lv_port_disp_template.c...
+compiling main.c...
+User\main.c(225): warning:  #223-D: function "update_control_option_highlight" declared implicitly
+      update_control_option_highlight();
+User\main.c(228): warning:  #159-D: declaration is incompatible with previous "update_control_option_highlight"  (declared at line 225)
+  void update_control_option_highlight(void)
+User\main.c(69): warning:  #177-D: variable "xHandleTaskLedToggle"  was declared but never referenced
+  static TaskHandle_t xHandleTaskLedToggle = NULL;
+User\main.c: 3 warnings, 0 errors
+linking...
+Program Size: Code=84116 RO-data=112156 RW-data=524 ZI-data=109636  
+".\Objects\APM32E_Master_Node.axf" - 0 Error(s), 39 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -40,7 +128,7 @@ Package Vendor: Geehy
   D:/keil_pack/Geehy/APM32E1xx_DFP/1.0.3/Device/Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:05
+Build Time Elapsed:  00:00:08
 </pre>
 </body>
 </html>

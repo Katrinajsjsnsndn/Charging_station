@@ -112,6 +112,7 @@ void LCD_ShowString(uint16_t x,uint16_t y,uint16_t width,uint16_t height,uint8_t
 void LCD_WriteReg(uint16_t LCD_Reg, uint16_t LCD_RegValue);
 void LCD_WriteRAM_Prepare(void);
 void LCD_WriteRAM(uint16_t RGB_Code);
+void LCD_WriteRAM_Batch(uint16_t *colors, uint32_t count); // 批量写入RAM
 void Load_Drow_Dialog(void);
 void LCD_Set_Window(uint16_t sx,uint16_t sy,uint16_t width,uint16_t height);	//设置窗口				
 void Show_Str(uint16_t x, uint16_t y,uint8_t *str,uint8_t size,uint8_t mode);//显示中文

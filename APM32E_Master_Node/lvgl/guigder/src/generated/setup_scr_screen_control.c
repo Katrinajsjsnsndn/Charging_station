@@ -58,6 +58,7 @@ void setup_scr_screen_control(lv_ui *ui)
     lv_bar_set_value(ui->screen_control_bar_1, 75, LV_ANIM_OFF);
     lv_obj_set_pos(ui->screen_control_bar_1, 20, 180);
     lv_obj_set_size(ui->screen_control_bar_1, 280, 20);
+    // 简化样式设置，减少渲染负担
     lv_obj_set_style_bg_color(ui->screen_control_bar_1, lv_color_hex(0x333333), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_control_bar_1, lv_color_hex(0x00ff00), LV_PART_INDICATOR|LV_STATE_DEFAULT);
     

@@ -71,18 +71,45 @@ void LCD_WriteRAM_Prepare(void)
 //RGB_Code:颜色值
 void LCD_WriteRAM(uint16_t RGB_Code)
 {							    
-	//写十六位GRAM
+	//写十六位GRAM - 优化版本
 	GPIO_ResetBit(SPI_CS_GPIO_PORT, SPI_CS_PIN);  // CS = 0
 	GPIO_SetBit(SPI_DC_GPIO_PORT, SPI_DC_PIN);    // DC = 1
 	
 	// 发送高8位
 	while(SPI_I2S_ReadStatusFlag(LCD_SPI, SPI_FLAG_TXBE) == RESET);
 	SPI_I2S_TxData(LCD_SPI, (RGB_Code >> 8) & 0xFF);
-	while(SPI_I2S_ReadStatusFlag(LCD_SPI, SPI_FLAG_BSY) == SET);
 	
-	// 发送低8位
+	// 发送低8位 - 减少等待时间
 	while(SPI_I2S_ReadStatusFlag(LCD_SPI, SPI_FLAG_TXBE) == RESET);
 	SPI_I2S_TxData(LCD_SPI, RGB_Code & 0xFF);
+	
+	// 只等待最后一次传输完成
+	while(SPI_I2S_ReadStatusFlag(LCD_SPI, SPI_FLAG_BSY) == SET);
+	
+	GPIO_SetBit(SPI_CS_GPIO_PORT, SPI_CS_PIN);  // CS = 1
+}
+
+// 批量写入RAM - 优化版本，减少CS切换次数
+void LCD_WriteRAM_Batch(uint16_t *colors, uint32_t count)
+{
+	if(colors == NULL || count == 0) return;
+	
+	GPIO_ResetBit(SPI_CS_GPIO_PORT, SPI_CS_PIN);  // CS = 0
+	GPIO_SetBit(SPI_DC_GPIO_PORT, SPI_DC_PIN);    // DC = 1
+	
+	for(uint32_t i = 0; i < count; i++) {
+		uint16_t color = colors[i];
+		
+		// 发送高8位
+		while(SPI_I2S_ReadStatusFlag(LCD_SPI, SPI_FLAG_TXBE) == RESET);
+		SPI_I2S_TxData(LCD_SPI, (color >> 8) & 0xFF);
+		
+		// 发送低8位
+		while(SPI_I2S_ReadStatusFlag(LCD_SPI, SPI_FLAG_TXBE) == RESET);
+		SPI_I2S_TxData(LCD_SPI, color & 0xFF);
+	}
+	
+	// 等待最后一次传输完成
 	while(SPI_I2S_ReadStatusFlag(LCD_SPI, SPI_FLAG_BSY) == SET);
 	
 	GPIO_SetBit(SPI_CS_GPIO_PORT, SPI_CS_PIN);  // CS = 1

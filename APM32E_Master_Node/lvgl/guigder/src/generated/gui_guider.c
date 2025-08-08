@@ -47,6 +47,9 @@ void ui_load_scr_animation(lv_ui *ui, lv_obj_t ** new_scr, bool new_scr_del, boo
     // 加载新屏幕 - 使用简单的加载方式，不使用动画
     lv_scr_load(*new_scr);
     
+    // 立即刷新显示，提高响应速度
+    lv_refr_now(NULL);
+    
     // 不在这里清理旧屏幕，让调用者处理
     // 这样可以避免在同一个函数调用中创建和删除对象
     
@@ -93,7 +96,13 @@ void setup_ui(lv_ui *ui)
 {
     init_scr_del_flag(ui);
     init_keyboard(ui);
+    
+    // 预加载所有屏幕，提高切换速度
     setup_scr_screen_Master(ui);
+    setup_scr_screen_detail(ui);
+    setup_scr_screen_control(ui);
+    
+    // 加载主屏幕
     lv_scr_load(ui->screen_Master);
 }
 

@@ -294,16 +294,15 @@ void Lvgl_ui_task(void* pvParameters)
                 // 检查当前界面，实现正确的切换逻辑
                 if (lv_scr_act() == guider_ui.screen_Master)
                 {
-                    // 从master界面进入detail界面
-                    ui_load_scr_animation(&guider_ui, &guider_ui.screen_detail, guider_ui.screen_detail_del, &guider_ui.screen_Master_del, setup_scr_screen_detail, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, true);
+                    // 从master界面进入detail界面 - 直接切换
+                    lv_scr_load(guider_ui.screen_detail);
+                    lv_refr_now(NULL);
                 }
                 else if (lv_scr_act() == guider_ui.screen_detail)
                 {
-                    // 从detail界面进入control界面 - 直接加载测试
-                    if (guider_ui.screen_control == NULL) {
-                        setup_scr_screen_control(&guider_ui);
-                    }
+                    // 从detail界面进入control界面 - 直接切换
                     lv_scr_load(guider_ui.screen_control);
+                    lv_refr_now(NULL);
                     // 初始化control页面选中状态
                     selected_control_option = 0;
                     guider_ui.screen_control_selected_index = 0;
@@ -316,15 +315,17 @@ void Lvgl_ui_task(void* pvParameters)
                 // 检查当前界面，实现正确的返回逻辑
                 if (lv_scr_act() == guider_ui.screen_detail)
                 {
-                    // 从detail界面返回master界面
-                    ui_load_scr_animation(&guider_ui, &guider_ui.screen_Master, guider_ui.screen_Master_del, &guider_ui.screen_detail_del, setup_scr_screen_Master, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, true);
+                    // 从detail界面返回master界面 - 直接切换
+                    lv_scr_load(guider_ui.screen_Master);
+                    lv_refr_now(NULL);
                     // 重新应用高亮
                     update_option_highlight(&guider_ui);
                 }
                 else if (lv_scr_act() == guider_ui.screen_control)
                 {
-                    // 从control界面返回detail界面
-                    ui_load_scr_animation(&guider_ui, &guider_ui.screen_detail, guider_ui.screen_detail_del, &guider_ui.screen_control_del, setup_scr_screen_detail, LV_SCR_LOAD_ANIM_NONE, 200, 200, false, true);
+                    // 从control界面返回detail界面 - 直接切换
+                    lv_scr_load(guider_ui.screen_detail);
+                    lv_refr_now(NULL);
                 }
             }
             // 方向键处理（仅在master界面有效）
@@ -377,22 +378,51 @@ void Lvgl_ui_task(void* pvParameters)
         static uint32_t update_counter = 0;
         update_counter++;
         
-        // 每100次循环更新一次数据（约500ms）
-        if(update_counter % 100 == 0) {
+        // 每50次循环更新一次数据（约250ms），提高更新频率
+        if(update_counter % 50 == 0) {
             // 更新control页面的进度条
             if(lv_scr_act() == guider_ui.screen_control && guider_ui.screen_control_bar_1 != NULL) {
-                static int bar_value = 75;
-                bar_value = (bar_value + 5) % 100;
-                lv_bar_set_value(guider_ui.screen_control_bar_1, bar_value, LV_ANIM_ON);
+                static int control_bar_value = 75;
+                control_bar_value = (control_bar_value + 5) % 100;
+                lv_bar_set_value(guider_ui.screen_control_bar_1, control_bar_value, LV_ANIM_OFF); // 关闭动画提高速度
             }
             
-            // 更新detail页面的数据（如果有的话）
-            if(lv_scr_act() == guider_ui.screen_detail) {
-                // 这里可以添加detail页面的数据更新
+            // 更新detail页面的进度条
+            if(lv_scr_act() == guider_ui.screen_detail && guider_ui.screen_detail_bar_1 != NULL) {
+                static int detail_bar_value = 50;
+                detail_bar_value = (detail_bar_value + 2) % 100; // 每次增加2%，模拟充电进度
+                lv_bar_set_value(guider_ui.screen_detail_bar_1, detail_bar_value, LV_ANIM_ON); // 开启动画效果
+                
+                // 同时更新充电百分比标签
+                static char percent_text[20];
+                snprintf(percent_text, sizeof(percent_text), "Charged %d%%", detail_bar_value);
+                lv_label_set_text(guider_ui.screen_detail_label_7, percent_text);
+                
+                // 更新电压显示（模拟变化）
+                static float voltage = 17.23f;
+                voltage = 16.5f + (detail_bar_value / 100.0f) * 1.5f; // 16.5V到18V之间变化
+                static char voltage_text[20];
+                snprintf(voltage_text, sizeof(voltage_text), "%.2fV", voltage);
+                lv_label_set_text(guider_ui.screen_detail_label_8, voltage_text);
+                
+                // 更新功率显示
+                static int power = 20;
+                power = 15 + (detail_bar_value / 20); // 15W到20W之间变化
+                static char power_text[20];
+                snprintf(power_text, sizeof(power_text), "%dW", power);
+                lv_label_set_text(guider_ui.screen_detail_label_10, power_text);
+                
+                // 更新温度显示（模拟变化）
+                static int temp_counter = 0;
+                temp_counter++;
+                int temperature = 30 + (temp_counter % 20); // 30°C到50°C之间变化
+                static char temp_text[20];
+                snprintf(temp_text, sizeof(temp_text), "%d°C", temperature);
+                lv_label_set_text(guider_ui.screen_detail_label_11, temp_text);
             }
         }
         
-        vTaskDelay(5);
+        vTaskDelay(2); // 减少延迟，提高响应速度
     }
 }
 /*!

@@ -118,10 +118,10 @@ void setup_scr_screen_detail(lv_ui *ui)
 
     //Write codes screen_detail_bar_1
     ui->screen_detail_bar_1 = lv_bar_create(ui->screen_detail_cont_1);
-    lv_obj_set_style_anim_time(ui->screen_detail_bar_1, 1000, 0);
+    lv_obj_set_style_anim_time(ui->screen_detail_bar_1, 500, 0); // 减少动画时间，提高响应速度
     lv_bar_set_mode(ui->screen_detail_bar_1, LV_BAR_MODE_NORMAL);
     lv_bar_set_range(ui->screen_detail_bar_1, 0, 100);
-    lv_bar_set_value(ui->screen_detail_bar_1, 53, LV_ANIM_OFF);
+    lv_bar_set_value(ui->screen_detail_bar_1, 50, LV_ANIM_OFF); // 初始值设为50%
     lv_obj_set_pos(ui->screen_detail_bar_1, 16, 41);
     lv_obj_set_size(ui->screen_detail_bar_1, 295, 14);
 
