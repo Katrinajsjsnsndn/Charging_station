@@ -4,6 +4,8 @@
 #include "events_init.h"
 #include "main.h"
 #include <stdio.h>
+#include "rs485.h"
+#include "charge_control.h"
 
 // 全局变量声明
 extern lv_ui guider_ui;
@@ -35,6 +37,11 @@ static void menu_page_update(ui_context_t* ctx);
 static void menu_page_handle_key(ui_context_t* ctx, key_event_t event);
 static void menu_page_exit(ui_context_t* ctx);
 
+static void text_page_init(ui_context_t* ctx);
+static void text_page_update(ui_context_t* ctx);
+static void text_page_handle_key(ui_context_t* ctx, key_event_t event);
+static void text_page_exit(ui_context_t* ctx);
+
 // 页面处理器数组
 static const page_handler_t page_handlers[PAGE_COUNT] = {
     [PAGE_MAIN] = {
@@ -61,6 +68,12 @@ static const page_handler_t page_handlers[PAGE_COUNT] = {
         .handle_key = menu_page_handle_key,
         .exit = menu_page_exit
     },
+    [PAGE_TEXT] = {
+        .init = text_page_init,
+        .update = text_page_update,
+        .handle_key = text_page_handle_key,
+        .exit = text_page_exit
+    },
     // 其他页面暂时使用默认处理器
     [PAGE_STATIONS] = {0},
     [PAGE_POWER_MANAGEMENT] = {0},
@@ -80,12 +93,20 @@ static const state_transition_t state_transitions[] = {
     // 详情页面转换
     {PAGE_DETAIL, KEY_EVENT_OK, PAGE_CONTROL, NULL},
     {PAGE_DETAIL, KEY_EVENT_RETURN, PAGE_MAIN, NULL},
+    {PAGE_DETAIL, KEY_EVENT_MENU, PAGE_MENU, NULL},  // 菜单键跳转到菜单页面
     
     // 控制页面转换
     {PAGE_CONTROL, KEY_EVENT_RETURN, PAGE_DETAIL, NULL},
+    {PAGE_CONTROL, KEY_EVENT_MENU, PAGE_MENU, NULL}, // 菜单键跳转到菜单页面
     
     // 菜单页面转换
-    {PAGE_MENU, KEY_EVENT_RETURN, PAGE_MAIN, NULL},
+    {PAGE_MENU, KEY_EVENT_OK, PAGE_TEXT, NULL},      // OK键进入text页面
+    {PAGE_MENU, KEY_EVENT_RETURN, PAGE_MAIN, NULL},  // RETURN键返回主页面
+    
+    // text页面转换
+    {PAGE_TEXT, KEY_EVENT_RETURN, PAGE_MENU, NULL},  // RETURN键返回菜单页面
+    {PAGE_TEXT, KEY_EVENT_OK, PAGE_MENU, NULL},      // OK键返回菜单页面
+    {PAGE_TEXT, KEY_EVENT_MENU, PAGE_MENU, NULL},    // 菜单键跳转到菜单页面（虽然已经在菜单页面，但保持一致性）
     
     // 结束标记
     {PAGE_COUNT, KEY_EVENT_NONE, PAGE_COUNT, NULL}
@@ -197,6 +218,7 @@ key_event_t convert_key_to_event(KeyEnum key)
         default: return KEY_EVENT_NONE;
     }
 }
+extern Station_Info_t stations[STATION_NUM] ;
 
 // 动态数据更新函数
 void update_dynamic_data(ui_context_t* ctx)
@@ -230,17 +252,16 @@ void update_dynamic_data(ui_context_t* ctx)
             
             // 更新电压显示（模拟变化）
             static float voltage = 17.23f;
-            voltage = 16.5f + (detail_bar_value / 100.0f) * 1.5f;
             static char voltage_text[20];
-            snprintf(voltage_text, sizeof(voltage_text), "%.2fV", voltage);
-            lv_label_set_text(guider_ui.screen_detail_label_8, voltage_text);
-            
+
+              // 更新电压显示（模拟变化）
+            static float current = 0.0f;
+            static char current_text[20];
+
             // 更新功率显示
             static int power = 20;
-            power = 15 + (detail_bar_value / 20);
             static char power_text[20];
-            snprintf(power_text, sizeof(power_text), "%dW", power);
-            lv_label_set_text(guider_ui.screen_detail_label_10, power_text);
+
             
             // 更新温度显示（模拟变化）
             static int temp_counter = 0;
@@ -249,6 +270,34 @@ void update_dynamic_data(ui_context_t* ctx)
             static char temp_text[20];
             snprintf(temp_text, sizeof(temp_text), "%d°C", temperature);
             lv_label_set_text(guider_ui.screen_detail_label_11, temp_text);
+						if(ctx->selected_mode==2)
+						{
+								voltage=stations[0].discharge_voltage;
+								current=stations[0].discharge_current;
+								power=stations[0].discharge_power;
+								snprintf(voltage_text, sizeof(voltage_text), "%.2fV", voltage);
+								lv_label_set_text(guider_ui.screen_detail_label_8, voltage_text);
+							
+							  snprintf(current_text, sizeof(current_text), "%.2fA", current);
+								lv_label_set_text(guider_ui.screen_detail_label_9, current_text);
+							
+							  snprintf(power_text, sizeof(power_text), "%dW", power);
+								lv_label_set_text(guider_ui.screen_detail_label_10, power_text);
+						}
+						else
+						{
+								voltage=stations[0].voltage;
+								current=stations[0].current;
+						    power = stations[0].power;
+								snprintf(voltage_text, sizeof(voltage_text), "%.2fV", voltage);
+								lv_label_set_text(guider_ui.screen_detail_label_8, voltage_text);
+							
+							  snprintf(current_text, sizeof(current_text), "%.2fA", current);
+								lv_label_set_text(guider_ui.screen_detail_label_9, current_text);
+							
+							  snprintf(power_text, sizeof(power_text), "%dW", power);
+								lv_label_set_text(guider_ui.screen_detail_label_10, power_text);
+						}
         }
     }
 }
@@ -366,9 +415,8 @@ static void control_page_init(ui_context_t* ctx)
     lv_refr_now(NULL);
     
     // 初始化控制页面选中状态
-    ctx->selected_mode = 0;
-    selected_control_option = 0;
-    guider_ui.screen_control_selected_index = 0;
+    //ctx->selected_mode = 0;
+    //selected_control_option = 0;
     update_control_option_highlight();
 }
 
@@ -382,7 +430,7 @@ static void control_page_handle_key(ui_context_t* ctx, key_event_t event)
     // 控制页面内部按键处理
     switch (event) {
         case KEY_EVENT_UP:
-        case KEY_EVENT_DOWN:
+        case KEY_EVENT_DOWN: {
             int new_index = ctx->selected_mode;
             
             if (event == KEY_EVENT_UP) {
@@ -396,6 +444,28 @@ static void control_page_handle_key(ui_context_t* ctx, key_event_t event)
                 select_control_option(new_index);
             }
             break;
+        }
+				case KEY_EVENT_OK:
+				{
+					static unsigned char send_order=0;
+					if(ctx->selected_mode==0)
+					{
+						 send_order = 1;
+						 RS485_Master_Send_Turn(0x01, &send_order, 1);
+                        // 标准充电
+					}
+					else if(ctx->selected_mode==1)
+					{
+						send_order = 2;
+            RS485_Master_Send_Turn(0x01, &send_order, 1);
+					}
+					else if (ctx->selected_mode==2)
+					{
+					  MCP4725_WriteData_Digital(1240); // 1 v
+            send_order = 4;
+            RS485_Master_Send_Turn(0x01, &send_order, 1);
+					}
+				}					
     }
 }
 
@@ -407,12 +477,22 @@ static void control_page_exit(ui_context_t* ctx)
 // 菜单页面处理函数
 static void menu_page_init(ui_context_t* ctx)
 {
+    // 安全检查：确保LVGL对象有效
+    if (guider_ui.screen_menu == NULL) {
+        // 如果菜单页面未初始化，使用主页面作为备选
+        lv_scr_load(guider_ui.screen_Master);
+        lv_refr_now(NULL);
+        return;
+    }
+    
     // 加载菜单页面UI
-    // 这里需要创建菜单页面，暂时使用详情页面代替
-    lv_scr_load(guider_ui.screen_detail);
+    lv_scr_load(guider_ui.screen_menu);
     lv_refr_now(NULL);
     
+    // 初始化菜单选择状态
     ctx->selected_item = 0;
+    selected_option = 0;  // 确保全局变量同步
+    update_menu_selection();
 }
 
 static void menu_page_update(ui_context_t* ctx)
@@ -425,17 +505,50 @@ static void menu_page_handle_key(ui_context_t* ctx, key_event_t event)
     // 菜单页面内部按键处理
     switch (event) {
         case KEY_EVENT_UP:
-        case KEY_EVENT_DOWN:
+        case KEY_EVENT_DOWN: {
             int new_index = ctx->selected_item;
             
             if (event == KEY_EVENT_UP && new_index > 0) {
                 new_index--;
-            } else if (event == KEY_EVENT_DOWN && new_index < 5) { // 假设有6个菜单项
+            } else if (event == KEY_EVENT_DOWN && new_index < 4) { // 5个菜单项 (0-4)
                 new_index++;
             }
-            
-            ctx->selected_item = new_index;
+//            
+//            //printf("Menu key event: %s, old_index=%d, new_index=%d\n", 
+//                   (event == KEY_EVENT_UP) ? "UP" : "DOWN", 
+//                   ctx->selected_item, new_index);
+//            
+            if (new_index != ctx->selected_item) {
+                ctx->selected_item = new_index;
+                selected_option = new_index;  // 更新全局选择状态
+               // printf("Updating selected_option to %d\n", selected_option);
+                update_menu_selection();      // 更新菜单高亮
+            }
             break;
+        }
+        case KEY_EVENT_OK: {
+            // 根据选中的菜单项进入不同页面
+            switch (ctx->selected_item) {
+                case 0: // 子站管理
+                    // 可以切换到子站管理页面或返回主页面
+                    break;
+                case 1: // 充电设置
+                    // 可以切换到充电设置页面
+                    break;
+                case 2: // 状态监控
+                    // 可以切换到状态监控页面
+                    break;
+                case 3: // 系统设置
+                    // 可以切换到系统设置页面
+                    break;
+                case 4: // 故障记录
+                    // 可以切换到故障记录页面
+                    break;
+                default:
+                    break;
+            }
+            break;
+        }
     }
 }
 
@@ -493,23 +606,125 @@ void select_control_option(int new_index)
     if(new_index < 0 || new_index >= 3) return;
     
     selected_control_option = new_index;
-    guider_ui.screen_control_selected_index = new_index;
     update_control_option_highlight();
 }
 
 void update_control_option_highlight(void)
 {
+    // 直接使用guider生成的UI元素
+    lv_obj_t* control_labels[3] = {
+        guider_ui.screen_control_label_7,  // Standard Charging
+        guider_ui.screen_control_label_8,  // Fast Charging
+        guider_ui.screen_control_label_9   // Discharge Test
+    };
+    
     for(int i = 0; i < 3; i++) {
         if(control_labels[i] == NULL || !lv_obj_is_valid(control_labels[i])) continue;
         
         if(i == selected_control_option) {
+            // 高亮样式：绿色背景，绿色边框
             lv_obj_set_style_bg_color(control_labels[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
             lv_obj_set_style_bg_opa(control_labels[i], 255, LV_PART_MAIN|LV_STATE_DEFAULT);
             lv_obj_set_style_border_width(control_labels[i], 2, LV_PART_MAIN|LV_STATE_DEFAULT);
             lv_obj_set_style_border_color(control_labels[i], lv_color_hex(0x00ff00), LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_text_color(control_labels[i], lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT); // 黑色文字
         } else {
+            // 普通样式：透明背景，无边框
             lv_obj_set_style_bg_opa(control_labels[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
             lv_obj_set_style_border_width(control_labels[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_text_color(control_labels[i], lv_color_hex(0xFFFFFF), LV_PART_MAIN|LV_STATE_DEFAULT); // 白色文字
         }
     }
+}
+
+// 菜单选择高亮更新函数
+void update_menu_selection(void)
+{
+    // 直接使用guider生成的UI元素
+    lv_obj_t* menu_items[5] = {
+        guider_ui.screen_menu_list_1_item0,  // 子站管理
+        guider_ui.screen_menu_list_1_item1,  // 充电设置
+        guider_ui.screen_menu_list_1_item2,  // 状态监控
+        guider_ui.screen_menu_list_1_item3,  // 系统设置
+        guider_ui.screen_menu_list_1_item4   // 故障记录
+    };
+    
+    // 调试信息：打印当前选中的项目
+   // printf("update_menu_selection: selected_option = %d\n", selected_option);
+    
+    for(int i = 0; i < 5; i++) {
+        if(menu_items[i] == NULL || !lv_obj_is_valid(menu_items[i])) {
+            //printf("Menu item %d is NULL or invalid\n", i);
+            continue;
+        }
+        
+        if(i == selected_option) {
+            // 高亮样式：蓝色背景，白色文字
+            lv_obj_set_style_bg_color(menu_items[i], lv_color_hex(0x2980b9), LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(menu_items[i], 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_text_color(menu_items[i], lv_color_hex(0xFFFFFF), LV_PART_MAIN|LV_STATE_DEFAULT);
+           // printf("Highlighting menu item %d\n", i);
+        } else {
+            // 普通样式：透明背景，白色文字
+            lv_obj_set_style_bg_color(menu_items[i], lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_bg_opa(menu_items[i], 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+            lv_obj_set_style_text_color(menu_items[i], lv_color_hex(0xFFFFFF), LV_PART_MAIN|LV_STATE_DEFAULT);
+        }
+    }
+}
+
+// ==================== TEXT页面处理函数实现 ====================
+
+// text页面处理函数
+static void text_page_init(ui_context_t* ctx)
+{
+    // 安全检查：确保LVGL对象有效
+    if (guider_ui.screen_text == NULL) {
+        // 如果text页面未初始化，使用主页面作为备选
+        lv_scr_load(guider_ui.screen_Master);
+        lv_refr_now(NULL);
+        return;
+    }
+    
+    // 加载text页面UI
+    lv_scr_load(guider_ui.screen_text);
+    lv_refr_now(NULL);
+    
+    // 根据从菜单页面传递的信息显示相应的文本内容
+    if (guider_ui.screen_text_label_1 != NULL) {
+        const char* menu_texts[] = {
+            "子站管理 - 查看和管理所有子站状态",
+            "充电设置 - 配置充电参数和模式",
+            "状态监控 - 实时监控系统运行状态",
+            "系统设置 - 调整系统配置参数",
+            "故障记录 - 查看历史故障信息"
+        };
+        
+        if (ctx->selected_item < 5) {
+            lv_label_set_text(guider_ui.screen_text_label_1, menu_texts[ctx->selected_item]);
+        }
+    }
+}
+
+static void text_page_update(ui_context_t* ctx)
+{
+    // text页面动态更新逻辑
+}
+
+static void text_page_handle_key(ui_context_t* ctx, key_event_t event)
+{
+    // text页面内部按键处理
+    switch (event) {
+        case KEY_EVENT_RETURN:
+            // 返回上级页面
+            break;
+        case KEY_EVENT_OK:
+            // 确认操作
+            break;
+    }
+}
+
+static void text_page_exit(ui_context_t* ctx)
+{
+    // 释放text页面资源
 }

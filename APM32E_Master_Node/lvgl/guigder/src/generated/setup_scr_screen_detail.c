@@ -49,7 +49,7 @@ void setup_scr_screen_detail(lv_ui *ui)
 
     //Write codes screen_detail_label_1
     ui->screen_detail_label_1 = lv_label_create(ui->screen_detail_cont_1);
-    lv_label_set_text(ui->screen_detail_label_1, "Charging");
+    lv_label_set_text(ui->screen_detail_label_1, "充电中");
     lv_label_set_long_mode(ui->screen_detail_label_1, LV_LABEL_LONG_WRAP);
     lv_obj_set_pos(ui->screen_detail_label_1, 109, 10);
     lv_obj_set_size(ui->screen_detail_label_1, 101, 19);
@@ -118,10 +118,10 @@ void setup_scr_screen_detail(lv_ui *ui)
 
     //Write codes screen_detail_bar_1
     ui->screen_detail_bar_1 = lv_bar_create(ui->screen_detail_cont_1);
-    lv_obj_set_style_anim_time(ui->screen_detail_bar_1, 500, 0); // 减少动画时间，提高响应速度
+    lv_obj_set_style_anim_time(ui->screen_detail_bar_1, 1000, 0);
     lv_bar_set_mode(ui->screen_detail_bar_1, LV_BAR_MODE_NORMAL);
     lv_bar_set_range(ui->screen_detail_bar_1, 0, 100);
-    lv_bar_set_value(ui->screen_detail_bar_1, 50, LV_ANIM_OFF); // 初始值设为50%
+    lv_bar_set_value(ui->screen_detail_bar_1, 53, LV_ANIM_OFF);
     lv_obj_set_pos(ui->screen_detail_bar_1, 16, 41);
     lv_obj_set_size(ui->screen_detail_bar_1, 295, 14);
 
@@ -209,7 +209,7 @@ void setup_scr_screen_detail(lv_ui *ui)
 
     //Write codes screen_detail_label_7
     ui->screen_detail_label_7 = lv_label_create(ui->screen_detail);
-    lv_label_set_text(ui->screen_detail_label_7, "Charged 50%");
+    lv_label_set_text(ui->screen_detail_label_7, "已充电 50%");
     lv_label_set_long_mode(ui->screen_detail_label_7, LV_LABEL_LONG_WRAP);
     lv_obj_set_pos(ui->screen_detail_label_7, 110, 74);
     lv_obj_set_size(ui->screen_detail_label_7, 100, 21);

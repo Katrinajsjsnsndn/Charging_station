@@ -96,177 +96,6 @@ void setup_scr_screen_control(lv_ui *ui)
     lv_obj_set_style_pad_left(ui->screen_control_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->screen_control_label_2, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
-    //Write codes screen_control_radiobtn_1
-    ui->screen_control_radiobtn_1 = lv_radiobtn_create(ui->screen_control);
-    ui->screen_control_radiobtn_1_item0 =lv_radiobtn_add_item(ui->screen_control_radiobtn_1, "标准充电");
-    ui->screen_control_radiobtn_1_item1 =lv_radiobtn_add_item(ui->screen_control_radiobtn_1, "快速充电");
-    ui->screen_control_radiobtn_1_item2 =lv_radiobtn_add_item(ui->screen_control_radiobtn_1, "放电测试");
-    lv_obj_set_pos(ui->screen_control_radiobtn_1, 24, 104);
-    lv_obj_set_size(ui->screen_control_radiobtn_1, 280, 126);
-
-    //Write style state: LV_STATE_DEFAULT for &style_screen_control_radiobtn_1_main_main_default
-    static lv_style_t style_screen_control_radiobtn_1_main_main_default;
-    ui_init_style(&style_screen_control_radiobtn_1_main_main_default);
-
-    lv_style_set_pad_top(&style_screen_control_radiobtn_1_main_main_default, 5);
-    lv_style_set_pad_left(&style_screen_control_radiobtn_1_main_main_default, 5);
-    lv_style_set_pad_right(&style_screen_control_radiobtn_1_main_main_default, 5);
-    lv_style_set_pad_bottom(&style_screen_control_radiobtn_1_main_main_default, 5);
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_main_main_default, 1);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_main_main_default, 0);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_main_main_default, lv_color_hex(0xe1e6ee));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_main_main_default, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_main_main_default, 6);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_main_main_default, 255);
-    lv_style_set_bg_color(&style_screen_control_radiobtn_1_main_main_default, lv_color_hex(0x434a4f));
-    lv_style_set_bg_grad_dir(&style_screen_control_radiobtn_1_main_main_default, LV_GRAD_DIR_NONE);
-    lv_style_set_shadow_width(&style_screen_control_radiobtn_1_main_main_default, 0);
-    lv_obj_add_style(ui->screen_control_radiobtn_1, &style_screen_control_radiobtn_1_main_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write style state: LV_STATE_DEFAULT for &style_screen_control_radiobtn_1_extra_btns_main_default
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_main_default;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_main_default);
-
-    lv_style_set_pad_top(&style_screen_control_radiobtn_1_extra_btns_main_default, 15);
-    lv_style_set_pad_right(&style_screen_control_radiobtn_1_extra_btns_main_default, 6);
-    lv_style_set_pad_bottom(&style_screen_control_radiobtn_1_extra_btns_main_default, 0);
-    lv_style_set_pad_left(&style_screen_control_radiobtn_1_extra_btns_main_default, 0);
-    lv_style_set_text_color(&style_screen_control_radiobtn_1_extra_btns_main_default, lv_color_hex(0xffffff));
-    lv_style_set_text_font(&style_screen_control_radiobtn_1_extra_btns_main_default, &lv_font_SourceHanSerifSC_Regular_13);
-    lv_style_set_text_opa(&style_screen_control_radiobtn_1_extra_btns_main_default, 255);
-    lv_style_set_text_letter_space(&style_screen_control_radiobtn_1_extra_btns_main_default, 0);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_main_default, 0);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_main_default, 0);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
-
-    //Write style state: LV_STATE_DEFAULT for &style_screen_control_radiobtn_1_extra_btns_indicator_default
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_indicator_default;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_indicator_default);
-
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_extra_btns_indicator_default, 2);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_extra_btns_indicator_default, 255);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_extra_btns_indicator_default, lv_color_hex(0x37701d));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_extra_btns_indicator_default, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_indicator_default, 20);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_indicator_default, 255);
-    lv_style_set_bg_color(&style_screen_control_radiobtn_1_extra_btns_indicator_default, lv_color_hex(0xffffff));
-    lv_style_set_bg_grad_dir(&style_screen_control_radiobtn_1_extra_btns_indicator_default, LV_GRAD_DIR_NONE);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_indicator_default, LV_PART_INDICATOR|LV_STATE_DEFAULT);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_indicator_default, LV_PART_INDICATOR|LV_STATE_DEFAULT);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_indicator_default, LV_PART_INDICATOR|LV_STATE_DEFAULT);
-
-    //Write style state: LV_STATE_PRESSED for &style_screen_control_radiobtn_1_extra_btns_indicator_pressed
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_indicator_pressed;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed);
-
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed, 2);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed, 255);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed, lv_color_hex(0x5cd624));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed, 20);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed, 255);
-    lv_style_set_bg_color(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed, lv_color_hex(0xffffff));
-    lv_style_set_bg_grad_dir(&style_screen_control_radiobtn_1_extra_btns_indicator_pressed, LV_GRAD_DIR_NONE);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_indicator_pressed, LV_PART_INDICATOR|LV_STATE_PRESSED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_indicator_pressed, LV_PART_INDICATOR|LV_STATE_PRESSED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_indicator_pressed, LV_PART_INDICATOR|LV_STATE_PRESSED);
-
-    //Write style state: LV_STATE_CHECKED for &style_screen_control_radiobtn_1_extra_btns_indicator_checked
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_indicator_checked;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_indicator_checked);
-
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_extra_btns_indicator_checked, 2);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_extra_btns_indicator_checked, 255);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_extra_btns_indicator_checked, lv_color_hex(0x5cd624));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_extra_btns_indicator_checked, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_indicator_checked, 20);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_indicator_checked, 255);
-    lv_style_set_bg_color(&style_screen_control_radiobtn_1_extra_btns_indicator_checked, lv_color_hex(0xffffff));
-    lv_style_set_bg_grad_dir(&style_screen_control_radiobtn_1_extra_btns_indicator_checked, LV_GRAD_DIR_NONE);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_indicator_checked, LV_PART_INDICATOR|LV_STATE_CHECKED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_indicator_checked, LV_PART_INDICATOR|LV_STATE_CHECKED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_indicator_checked, LV_PART_INDICATOR|LV_STATE_CHECKED);
-
-    //Write style state: LV_STATE_CHECKED | LV_STATE_PRESSED for &style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed);
-
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, 2);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, 255);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, lv_color_hex(0x5cd624));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, 20);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, 255);
-    lv_style_set_bg_color(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, lv_color_hex(0xffffff));
-    lv_style_set_bg_grad_dir(&style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, LV_GRAD_DIR_NONE);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, LV_PART_INDICATOR|LV_STATE_CHECKED | LV_STATE_PRESSED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, LV_PART_INDICATOR|LV_STATE_CHECKED | LV_STATE_PRESSED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_indicator_checked_pressed, LV_PART_INDICATOR|LV_STATE_CHECKED | LV_STATE_PRESSED);
-
-    //Write style state: LV_STATE_DEFAULT for &style_screen_control_radiobtn_1_extra_btns_custom_default
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_custom_default;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_custom_default);
-
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_extra_btns_custom_default, 2);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_extra_btns_custom_default, 0);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_extra_btns_custom_default, lv_color_hex(0xffffff));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_extra_btns_custom_default, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_custom_default, 20);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_custom_default, 0);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_custom_default, LV_PART_CUSTOM_FIRST|LV_STATE_DEFAULT);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_custom_default, LV_PART_CUSTOM_FIRST|LV_STATE_DEFAULT);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_custom_default, LV_PART_CUSTOM_FIRST|LV_STATE_DEFAULT);
-
-    //Write style state: LV_STATE_PRESSED for &style_screen_control_radiobtn_1_extra_btns_custom_pressed
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_custom_pressed;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_custom_pressed);
-
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_extra_btns_custom_pressed, 2);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_extra_btns_custom_pressed, 0);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_extra_btns_custom_pressed, lv_color_hex(0xffffff));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_extra_btns_custom_pressed, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_custom_pressed, 20);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_custom_pressed, 251);
-    lv_style_set_bg_color(&style_screen_control_radiobtn_1_extra_btns_custom_pressed, lv_color_hex(0x21ed09));
-    lv_style_set_bg_grad_dir(&style_screen_control_radiobtn_1_extra_btns_custom_pressed, LV_GRAD_DIR_NONE);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_custom_pressed, LV_PART_CUSTOM_FIRST|LV_STATE_PRESSED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_custom_pressed, LV_PART_CUSTOM_FIRST|LV_STATE_PRESSED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_custom_pressed, LV_PART_CUSTOM_FIRST|LV_STATE_PRESSED);
-
-    //Write style state: LV_STATE_CHECKED for &style_screen_control_radiobtn_1_extra_btns_custom_checked
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_custom_checked;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_custom_checked);
-
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_extra_btns_custom_checked, 2);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_extra_btns_custom_checked, 255);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_extra_btns_custom_checked, lv_color_hex(0x5cd624));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_extra_btns_custom_checked, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_custom_checked, 20);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_custom_checked, 255);
-    lv_style_set_bg_color(&style_screen_control_radiobtn_1_extra_btns_custom_checked, lv_color_hex(0x5cd624));
-    lv_style_set_bg_grad_dir(&style_screen_control_radiobtn_1_extra_btns_custom_checked, LV_GRAD_DIR_NONE);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_custom_checked, LV_PART_CUSTOM_FIRST|LV_STATE_CHECKED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_custom_checked, LV_PART_CUSTOM_FIRST|LV_STATE_CHECKED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_custom_checked, LV_PART_CUSTOM_FIRST|LV_STATE_CHECKED);
-
-    //Write style state: LV_STATE_CHECKED | LV_STATE_PRESSED for &style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed
-    static lv_style_t style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed;
-    ui_init_style(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed);
-
-    lv_style_set_border_width(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, 2);
-    lv_style_set_border_opa(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, 255);
-    lv_style_set_border_color(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, lv_color_hex(0x5cd624));
-    lv_style_set_border_side(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, LV_BORDER_SIDE_FULL);
-    lv_style_set_radius(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, 20);
-    lv_style_set_bg_opa(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, 255);
-    lv_style_set_bg_color(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, lv_color_hex(0x5cd624));
-    lv_style_set_bg_grad_dir(&style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, LV_GRAD_DIR_NONE);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item2, &style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, LV_PART_CUSTOM_FIRST|LV_STATE_CHECKED | LV_STATE_PRESSED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item1, &style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, LV_PART_CUSTOM_FIRST|LV_STATE_CHECKED | LV_STATE_PRESSED);
-    lv_obj_add_style(ui->screen_control_radiobtn_1_item0, &style_screen_control_radiobtn_1_extra_btns_custom_checked_pressed, LV_PART_CUSTOM_FIRST|LV_STATE_CHECKED | LV_STATE_PRESSED);
-
     //Write codes screen_control_label_3
     ui->screen_control_label_3 = lv_label_create(ui->screen_control);
     lv_label_set_text(ui->screen_control_label_3, "充电模式");
@@ -414,6 +243,75 @@ void setup_scr_screen_control(lv_ui *ui)
     lv_style_set_text_font(&style_screen_control_msgbox_1_extra_btns_items_default, &lv_font_SourceHanSerifSC_Regular_13);
     lv_style_set_text_opa(&style_screen_control_msgbox_1_extra_btns_items_default, 255);
     lv_obj_add_style(lv_msgbox_get_btns(ui->screen_control_msgbox_1), &style_screen_control_msgbox_1_extra_btns_items_default, LV_PART_ITEMS|LV_STATE_DEFAULT);
+
+    //Write codes screen_control_label_7
+    ui->screen_control_label_7 = lv_label_create(ui->screen_control);
+    lv_label_set_text(ui->screen_control_label_7, "标准模式");
+    lv_label_set_long_mode(ui->screen_control_label_7, LV_LABEL_LONG_WRAP);
+    lv_obj_set_pos(ui->screen_control_label_7, 16, 128);
+    lv_obj_set_size(ui->screen_control_label_7, 87, 20);
+
+    //Write style for screen_control_label_7, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->screen_control_label_7, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->screen_control_label_7, &lv_font_SourceHanSerifSC_Regular_14, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->screen_control_label_7, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->screen_control_label_7, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->screen_control_label_7, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes screen_control_label_8
+    ui->screen_control_label_8 = lv_label_create(ui->screen_control);
+    lv_label_set_text(ui->screen_control_label_8, "快充模式");
+    lv_label_set_long_mode(ui->screen_control_label_8, LV_LABEL_LONG_WRAP);
+    lv_obj_set_pos(ui->screen_control_label_8, 24, 155);
+    lv_obj_set_size(ui->screen_control_label_8, 73, 20);
+
+    //Write style for screen_control_label_8, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->screen_control_label_8, lv_color_hex(0xfdfdfd), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->screen_control_label_8, &lv_font_SourceHanSerifSC_Regular_14, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->screen_control_label_8, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->screen_control_label_8, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->screen_control_label_8, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+    //Write codes screen_control_label_9
+    ui->screen_control_label_9 = lv_label_create(ui->screen_control);
+    lv_label_set_text(ui->screen_control_label_9, "放电测试");
+    lv_label_set_long_mode(ui->screen_control_label_9, LV_LABEL_LONG_WRAP);
+    lv_obj_set_pos(ui->screen_control_label_9, 10, 186);
+    lv_obj_set_size(ui->screen_control_label_9, 100, 32);
+
+    //Write style for screen_control_label_9, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
+    lv_obj_set_style_border_width(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui->screen_control_label_9, lv_color_hex(0xfafafa), LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui->screen_control_label_9, &lv_font_SourceHanSerifSC_Regular_14, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_opa(ui->screen_control_label_9, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_letter_space(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_line_space(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_text_align(ui->screen_control_label_9, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_top(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_right(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_bottom(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_pad_left(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_shadow_width(ui->screen_control_label_9, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //The custom code of screen_control.
 

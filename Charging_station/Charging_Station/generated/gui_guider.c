@@ -78,14 +78,16 @@ void init_scr_del_flag(lv_ui *ui)
     ui->screen_Master_del = true;
     ui->screen_detail_del = true;
     ui->screen_control_del = true;
+    ui->screen_menu_del = true;
+    ui->screen_text_del = true;
 }
 
 void setup_ui(lv_ui *ui)
 {
     init_scr_del_flag(ui);
     init_keyboard(ui);
-    setup_scr_screen_control(ui);
-    lv_scr_load(ui->screen_control);
+    setup_scr_screen_Master(ui);
+    lv_scr_load(ui->screen_Master);
 }
 
 void init_keyboard(lv_ui *ui)

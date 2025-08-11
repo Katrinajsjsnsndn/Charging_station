@@ -12,6 +12,7 @@ typedef enum {
     PAGE_DETAIL,
     PAGE_CONTROL,
     PAGE_MENU,
+    PAGE_TEXT,
     PAGE_STATIONS,
     PAGE_POWER_MANAGEMENT,
     PAGE_BATTERY_TEST,
@@ -90,5 +91,6 @@ void update_option_highlight(lv_ui *ui);
 void select_option(int new_index);
 void select_control_option(int new_index);
 void update_control_option_highlight(void);
+void update_menu_selection(void);
 
 #endif // UI_STATE_MACHINE_H

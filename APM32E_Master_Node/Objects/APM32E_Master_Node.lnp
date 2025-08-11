@@ -234,6 +234,10 @@
 ".\objects\setup_scr_screen_control.o"
 ".\objects\gui_guider.o"
 ".\objects\events_init.o"
+".\objects\lv_font_montserratmedium_14.o"
+".\objects\lv_font_montserratmedium_19.o"
+".\objects\setup_scr_screen_text.o"
+".\objects\setup_scr_screen_menu.o"
 ".\objects\lvgl_charging_station_ui.o"
 --strict --scatter ".\Objects\APM32E_Master_Node.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

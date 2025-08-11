@@ -93,7 +93,7 @@ void setup_scr_screen_Master(lv_ui *ui)
 
     //Write codes screen_Master_label_7
     ui->screen_Master_label_7 = lv_label_create(ui->screen_Master_cont_1);
-    lv_label_set_text(ui->screen_Master_label_7, "Charging 2A");
+    lv_label_set_text(ui->screen_Master_label_7, "充电中 2A");
     lv_label_set_long_mode(ui->screen_Master_label_7, LV_LABEL_LONG_WRAP);
     lv_obj_set_pos(ui->screen_Master_label_7, 9, 25);
     lv_obj_set_size(ui->screen_Master_label_7, 91, 10);
@@ -317,7 +317,7 @@ void setup_scr_screen_Master(lv_ui *ui)
 
     //Write codes screen_Master_label_5
     ui->screen_Master_label_5 = lv_label_create(ui->screen_Master);
-    lv_label_set_text(ui->screen_Master_label_5, "Master Status");
+    lv_label_set_text(ui->screen_Master_label_5, "主站状态");
     lv_label_set_long_mode(ui->screen_Master_label_5, LV_LABEL_LONG_WRAP);
     lv_obj_set_pos(ui->screen_Master_label_5, 103, 30);
     lv_obj_set_size(ui->screen_Master_label_5, 100, 32);
@@ -340,7 +340,7 @@ void setup_scr_screen_Master(lv_ui *ui)
 
     //Write codes screen_Master_label_6
     ui->screen_Master_label_6 = lv_label_create(ui->screen_Master);
-    lv_label_set_text(ui->screen_Master_label_6, "* Normal Running");
+    lv_label_set_text(ui->screen_Master_label_6, "●正常运行");
     lv_label_set_long_mode(ui->screen_Master_label_6, LV_LABEL_LONG_WRAP);
     lv_obj_set_pos(ui->screen_Master_label_6, 103, 60);
     lv_obj_set_size(ui->screen_Master_label_6, 100, 32);

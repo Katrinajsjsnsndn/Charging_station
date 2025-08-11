@@ -158,3 +158,6 @@
 .\objects\ui_state_machine.o: .\Library\inc\apm32e10x_misc.h
 .\objects\ui_state_machine.o: .\Library\inc\apm32e10x_dma.h
 .\objects\ui_state_machine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\ui_state_machine.o: .\APP\rs485\rs485.h
+.\objects\ui_state_machine.o: .\FreeRTOS\include\queue.h
+.\objects\ui_state_machine.o: APP\charge_control.h

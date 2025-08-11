@@ -39,3 +39,7 @@
 .\objects\lv_draw_mask.o: lvgl\src\draw\lv_draw_mask.h
 .\objects\lv_draw_mask.o: lvgl\src\draw\lv_draw_transform.h
 .\objects\lv_draw_mask.o: lvgl\src\draw\lv_draw_layer.h
+.\objects\lv_draw_mask.o: lvgl\src\draw\../misc/lv_gc.h
+.\objects\lv_draw_mask.o: lvgl\src\draw\../misc/lv_ll.h
+.\objects\lv_draw_mask.o: lvgl\src\draw\../misc/lv_timer.h
+.\objects\lv_draw_mask.o: lvgl\src\draw\../misc/../hal/lv_hal_tick.h

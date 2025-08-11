@@ -151,7 +151,7 @@ static void UserTaskCreate(void)
                 &xHandleTaskUsartTest);
 	  xTaskCreate(Lvgl_ui_task,
                 "Lvgl_ui_task",
-                4096,  // 增加栈大小到4KB
+                6*1024,  // 增加栈大小到4KB
                 NULL,
                 2,
                 &xHandleLVGL);

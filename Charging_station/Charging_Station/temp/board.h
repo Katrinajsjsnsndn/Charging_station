@@ -501,7 +501,7 @@
 
 #define LV_USE_LED 0
 
-#define LV_USE_LIST 0
+#define LV_USE_LIST 1
 
 #define LV_USE_MENU 0
 
@@ -509,7 +509,7 @@
 
 #define LV_USE_MSGBOX 1
 
-#define LV_USE_RADIOBTN 1
+#define LV_USE_RADIOBTN 0
 
 #define LV_USE_SPAN 0
 #if LV_USE_SPAN
